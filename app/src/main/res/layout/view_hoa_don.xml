@@ -3,8 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:focusable="true">
+    android:background="@color/white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/layout_bar_sach"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_68sdp"
+        android:background="@drawable/img_bg_app_bar"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Light">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rll_fragment_explore__tab_top"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentBottom="true">
+
+                <pham.hien.honeylibrary.Extention.TextViewPoppinsMedium
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/_26sdp"
+                    android:gravity="center_vertical"
+                    android:text="Hóa đơn"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sdp" />
+
+                <ImageView
+                    android:id="@+id/imv_fragment_explore__search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_search"
+                    android:visibility="visible" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,4 +64,13 @@
         android:text="Màn hóa đơn"
         android:textSize="@dimen/_28sdp" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:padding="@dimen/_13sdp"
+        android:src="@drawable/ic_add_circle" />
 </RelativeLayout>

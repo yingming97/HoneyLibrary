@@ -2,7 +2,6 @@ package pham.hien.honeylibrary.View.Main
 
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_main.*
 import pham.hien.honeylibrary.Animation.closeViewToLeft
 import pham.hien.honeylibrary.Animation.closeViewToRight
 import pham.hien.honeylibrary.Animation.openViewFromLeft
@@ -34,9 +33,9 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var exploreViewModel: SachViewModel
-    private lateinit var meditateViewModel: PhieuMuonViewModel
-    private lateinit var rankingViewModel: HoaDonViewModel
+    private lateinit var sachViewModel: SachViewModel
+    private lateinit var phieuMuonViewModel: PhieuMuonViewModel
+    private lateinit var hoaDonViewModel: HoaDonViewModel
     private lateinit var optionViewModel: OptionViewModel
 
 
@@ -45,42 +44,43 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
     }
 
     override fun initView() {
-        this.layoutSachView = findViewById(R.id.layout_tab_explore)
-        this.layoutPhieuMuonView = findViewById(R.id.layout_tab_meditate)
+        this.layoutSachView = findViewById(R.id.layout_tab_sach)
+        this.layoutPhieuMuonView = findViewById(R.id.layout_tab_phieu_muon)
         this.layoutHomeView = findViewById(R.id.layout_tab_home)
-        this.layoutHoaDonView = findViewById(R.id.layout_tab_society)
+        this.layoutHoaDonView = findViewById(R.id.layout_tab_hoa_don)
         this.layoutOptionView = findViewById(R.id.layout_tab_option)
-        this.layoutMenuBottomView = findViewById(R.id.layout_bottom_navigation_menu)
+        this.layoutMenuBottomView = findViewById(R.id.layoutMenuBottomView)
     }
 
     override fun initListener() {
-        this.layout_bottom_navigation_menu.setListener(this)
+        this.layoutMenuBottomView.setListener(this)
     }
 
     override fun initViewModel() {
         this.mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         this.homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        this.exploreViewModel = ViewModelProvider(this)[SachViewModel::class.java]
-        this.meditateViewModel = ViewModelProvider(this)[PhieuMuonViewModel::class.java]
-        this.rankingViewModel = ViewModelProvider(this)[HoaDonViewModel::class.java]
+        this.sachViewModel = ViewModelProvider(this)[SachViewModel::class.java]
+        this.phieuMuonViewModel = ViewModelProvider(this)[PhieuMuonViewModel::class.java]
+        this.hoaDonViewModel = ViewModelProvider(this)[HoaDonViewModel::class.java]
         this.optionViewModel = ViewModelProvider(this)[OptionViewModel::class.java]
 
-        this.layout_tab_home.initViewModel(homeViewModel)
-        this.layout_tab_explore.initViewModel(exploreViewModel)
-        this.layout_tab_meditate.initViewModel(meditateViewModel)
-        this.layout_tab_society.initViewModel(rankingViewModel)
-        this.layout_tab_option.initViewModel(optionViewModel)
+        this.layoutHomeView.initViewModel(homeViewModel)
+        this.layoutSachView.initViewModel(sachViewModel)
+        this.layoutPhieuMuonView.initViewModel(phieuMuonViewModel)
+        this.layoutHoaDonView.initViewModel(hoaDonViewModel)
+        this.layoutOptionView.initViewModel(optionViewModel)
     }
 
     override fun initObserver() {
-        this.layout_tab_home.initObserver(this)
-        this.layout_tab_meditate.initObserver(this)
-        this.layout_tab_society.initObserver(this)
-        this.layout_tab_option.initObserver(this)
+        this.layoutHomeView.initObserver(this)
+        this.layoutSachView.initObserver(this)
+        this.layoutPhieuMuonView.initObserver(this)
+        this.layoutHoaDonView.initObserver(this)
+        this.layoutOptionView.initObserver(this)
     }
 
     override fun initDataDefault() {
-        this.layout_tab_home.openForTheFirstTime(this)
+        this.layoutHomeView.openForTheFirstTime(this)
     }
 
     override fun onClick(view: View?) {
@@ -89,9 +89,11 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
 
     override fun onSelectItemBottomMenuBar(position: Int) {
         when (position) {
-            Constant.POSITION.VIEW_EXPLORE -> {
+            Constant.POSITION.VIEW_SACH -> {
                 layoutSachView.openForTheFirstTime(this)
-                openViewFromLeft(layoutSachView, layoutSachView.width, 300)
+                if (!BaseView.isOpening(layoutSachView)) {
+                    openViewFromLeft(layoutSachView, layoutSachView.width, 300)
+                }
                 if (BaseView.isOpening(layoutPhieuMuonView)) {
                     closeViewToRight(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                 }
@@ -105,7 +107,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                     closeViewToRight(layoutHomeView, layoutHomeView.width, 300)
                 }
             }
-            Constant.POSITION.VIEW_MEDITATE -> {
+            Constant.POSITION.VIEW_PHIEU_MUON -> {
                 layoutPhieuMuonView.openForTheFirstTime(this)
                 if (BaseView.isOpening(layoutSachView)) {
                     openViewFromRight(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
@@ -142,7 +144,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                     closeViewToRight(layoutOptionView, layoutOptionView.width, 300)
                 }
             }
-            Constant.POSITION.VIEW_RANKING -> {
+            Constant.POSITION.VIEW_HOA_DON -> {
                 layoutHoaDonView.openForTheFirstTime(this)
                 if (BaseView.isOpening(layoutSachView)) {
                     openViewFromRight(layoutHoaDonView, layoutHoaDonView.width, 300)
@@ -162,41 +164,43 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                 }
             }
             Constant.POSITION.VIEW_OPTION -> {
-                layout_tab_option.openForTheFirstTime(this)
-                openViewFromRight(layoutOptionView, layoutOptionView.width, 300)
+                layoutOptionView.openForTheFirstTime(this)
+                if (!BaseView.isOpening(layoutOptionView)) {
+                    openViewFromRight(layoutOptionView, layoutOptionView.width, 300)
+                }
                 if (BaseView.isOpening(layoutSachView)) {
-                    closeViewToLeft(layoutSachView,layoutSachView.width,300)
+                    closeViewToLeft(layoutSachView, layoutSachView.width, 300)
                 }
                 if (BaseView.isOpening(layoutPhieuMuonView)) {
-                    closeViewToLeft(layoutPhieuMuonView,layoutPhieuMuonView.width,300)
+                    closeViewToLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                 }
                 if (BaseView.isOpening(layoutHoaDonView)) {
-                    closeViewToLeft(layoutHoaDonView,layoutHoaDonView.width,300)
+                    closeViewToLeft(layoutHoaDonView, layoutHoaDonView.width, 300)
                 }
                 if (BaseView.isOpening(layoutHomeView)) {
-                    closeViewToLeft(layoutHomeView,layoutHomeView.width,300)
+                    closeViewToLeft(layoutHomeView, layoutHomeView.width, 300)
                 }
             }
         }
     }
 
     override fun onBackPressed() {
-        if (BaseView.isOpening(layout_tab_explore)) {
-            layout_bottom_navigation_menu.onClickItemHomeView()
-            BaseView.closeViewGroup(layout_tab_explore)
-            BaseView.openViewGroup(layout_tab_home, 400)
-        } else if (BaseView.isOpening(layout_tab_meditate)) {
-            layout_bottom_navigation_menu.onClickItemHomeView()
-            BaseView.closeViewGroup(layout_tab_meditate)
-            BaseView.openViewGroup(layout_tab_home, 400)
-        } else if (BaseView.isOpening(layout_tab_society)) {
-            layout_bottom_navigation_menu.onClickItemHomeView()
-            BaseView.closeViewGroup(layout_tab_society)
-            BaseView.openViewGroup(layout_tab_home, 400)
-        } else if (BaseView.isOpening(layout_tab_option)) {
-            layout_bottom_navigation_menu.onClickItemHomeView()
-            BaseView.closeViewGroup(layout_tab_option)
-            BaseView.openViewGroup(layout_tab_home, 400)
+        if (BaseView.isOpening(layoutSachView)) {
+            layoutMenuBottomView.onClickItemHomeView()
+            openViewFromRight(layoutHomeView, layoutHomeView.width, 300)
+            closeViewToLeft(layoutSachView, layoutSachView.width, 300)
+        } else if (BaseView.isOpening(layoutPhieuMuonView)) {
+            layoutMenuBottomView.onClickItemHomeView()
+            openViewFromRight(layoutHomeView, layoutHomeView.width, 300)
+            closeViewToLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
+        } else if (BaseView.isOpening(layoutHoaDonView)) {
+            layoutMenuBottomView.onClickItemHomeView()
+            openViewFromLeft(layoutHomeView, layoutHomeView.width, 300)
+            closeViewToRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+        } else if (BaseView.isOpening(layoutOptionView)) {
+            layoutMenuBottomView.onClickItemHomeView()
+            openViewFromLeft(layoutHomeView, layoutHomeView.width, 300)
+            closeViewToRight(layoutOptionView, layoutOptionView.width, 300)
         } else {
             finish()
         }

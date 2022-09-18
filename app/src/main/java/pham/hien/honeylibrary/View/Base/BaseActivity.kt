@@ -7,8 +7,10 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.yomaster.yogaforbeginner.View.StatusBar.StatusBarCompat
 import pham.hien.honeylibrary.R
 
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
@@ -40,11 +42,36 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         currentApiVersion = Build.VERSION.SDK_INT
         PACKAGE_NAME = applicationContext.packageName
+        StatusBarCompat().translucentStatusBar(this, true)
         initView()
         initListener()
         initViewModel()
         initObserver()
         initDataDefault()
+    }
+    fun getStatusBarHeight(): Int {
+        var result = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
+    }
+
+    fun setMargins(view: View, left: Int, top: Int, right: Int, bottom: Int) {
+        if (view.layoutParams is ViewGroup.MarginLayoutParams) {
+            val p = view.layoutParams as ViewGroup.MarginLayoutParams
+            p.setMargins(left, top, right, bottom)
+            view.requestLayout()
+        }
+    }
+
+    fun setMarginsStatusBar(view: View) {
+        if (view.layoutParams is ViewGroup.MarginLayoutParams) {
+            val p = view.layoutParams as ViewGroup.MarginLayoutParams
+            p.setMargins(0, getStatusBarHeight(), 0, 0)
+            view.requestLayout()
+        }
     }
 
     open fun overridePendingTransition() {

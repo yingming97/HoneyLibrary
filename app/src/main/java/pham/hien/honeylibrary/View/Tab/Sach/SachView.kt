@@ -5,15 +5,21 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import com.google.android.material.appbar.AppBarLayout
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 
 class SachView : BaseView {
 
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
+
+    private lateinit var layoutBarSach: AppBarLayout
+    private lateinit var tvTitle: TextView
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -34,6 +40,10 @@ class SachView : BaseView {
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.view_sach, this)
 
+        layoutBarSach = rootView.findViewById(R.id.layout_bar_sach)
+        tvTitle = rootView.findViewById(R.id.tv_title)
+
+//        ScreenUtils().setMarginStatusBar(mContext, tvTitle)
     }
 
     override fun initDataDefault(activity: Activity?) {

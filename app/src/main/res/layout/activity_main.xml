@@ -11,19 +11,19 @@
         android:layout_height="match_parent" />
 
     <pham.hien.honeylibrary.View.Tab.Sach.SachView
-        android:id="@+id/layout_tab_explore"
+        android:id="@+id/layout_tab_sach"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
     <pham.hien.honeylibrary.View.Tab.PhieuMuon.PhieuMuonView
-        android:id="@+id/layout_tab_meditate"
+        android:id="@+id/layout_tab_phieu_muon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
     <pham.hien.honeylibrary.View.Tab.HoaDon.HoaDonView
-        android:id="@+id/layout_tab_society"
+        android:id="@+id/layout_tab_hoa_don"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
@@ -35,7 +35,7 @@
         android:visibility="gone" />
 
     <pham.hien.honeylibrary.View.Menu.MenuBottomView
-        android:id="@+id/layout_bottom_navigation_menu"
+        android:id="@+id/layoutMenuBottomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

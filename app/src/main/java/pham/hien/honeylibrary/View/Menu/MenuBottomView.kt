@@ -4,16 +4,32 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
-import kotlinx.android.synthetic.main.bottom_navigation_view.view.*
+import android.widget.TextView
 import pham.hien.honeylibrary.R
 
 class MenuBottomView : RelativeLayout, View.OnClickListener {
 
     private val mContext: Context
-    private var mBottomMenuBarListener: BottomMenuBarListener? = null
+    private lateinit var layoutBottomNavigationBackgroundConnerTop: LinearLayout
+    private lateinit var layoutBottomNavigationSach: LinearLayout
+    private lateinit var imvBottomNavigationSach: ImageView
+    private lateinit var tvBottomNavigationSach: TextView
+    private lateinit var layoutBottomNavigationPhieuMuon: LinearLayout
+    private lateinit var imvBottomNavigationPhieuMuon: ImageView
+    private lateinit var tvBottomNavigationPhieuMuon: TextView
+    private lateinit var lnlBottomNavigationHoaDon: LinearLayout
+    private lateinit var imvBottomNavigationHoaDon: ImageView
+    private lateinit var tvBottomNavigationHoaDon: TextView
+    private lateinit var layoutBottomNavigationOptions: LinearLayout
+    private lateinit var imvBottomNavigationOptions: ImageView
+    private lateinit var tvBottomNavigationOptions: TextView
+    private lateinit var imvBottomNavigationHome: ImageView
+    private lateinit var mBottomMenuBarListener: BottomMenuBarListener
 
-    fun setListener(BottomMenuBarListener: BottomMenuBarListener?) {
+    fun setListener(BottomMenuBarListener: BottomMenuBarListener) {
         mBottomMenuBarListener = BottomMenuBarListener
     }
 
@@ -30,93 +46,115 @@ class MenuBottomView : RelativeLayout, View.OnClickListener {
     private fun initView() {
         val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.bottom_navigation_view, this)
+        layoutBottomNavigationBackgroundConnerTop =
+            rootView.findViewById(R.id.layout_bottom_navigation__background_conner_top)
+        layoutBottomNavigationSach =
+            rootView.findViewById(R.id.layout_bottom_navigation_sach)
+        imvBottomNavigationSach =
+            rootView.findViewById(R.id.imv_bottom_navigation_sach)
+        tvBottomNavigationSach =
+            rootView.findViewById(R.id.tv_bottom_navigation_sach)
+        layoutBottomNavigationPhieuMuon =
+            rootView.findViewById(R.id.layout_bottom_navigation_phieu)
+        imvBottomNavigationPhieuMuon =
+            rootView.findViewById(R.id.imv_bottom_navigation_phieu)
+        tvBottomNavigationPhieuMuon =
+            rootView.findViewById(R.id.tv_bottom_navigation_phieu)
+        lnlBottomNavigationHoaDon =
+            rootView.findViewById(R.id.layout_bottom_navigation_hoa_don)
+        imvBottomNavigationHoaDon =
+            rootView.findViewById(R.id.imv_bottom_navigation_hoa_don)
+        tvBottomNavigationHoaDon =
+            rootView.findViewById(R.id.tv_bottom_navigation_hoa_don)
+        layoutBottomNavigationOptions =
+            rootView.findViewById(R.id.layout_bottom_navigation_options)
+        imvBottomNavigationOptions =
+            rootView.findViewById(R.id.imv_bottom_navigation_options)
+        tvBottomNavigationOptions =
+            rootView.findViewById(R.id.txv_bottom_navigation_options)
+        imvBottomNavigationHome =
+            rootView.findViewById(R.id.imv_bottom_navigation_home)
 
-        layout_bottom_navigation__background_conner_top!!.clipToOutline = true
-        layout_bottom_navigation_explore!!.setOnClickListener(this)
-        layout_bottom_navigation_meditate!!.setOnClickListener(this)
-        layout_bottom_navigation_leaderboard!!.setOnClickListener(this)
-        layout_bottom_navigation_options!!.setOnClickListener(this)
-        imv_bottom_navigation_home!!.setOnClickListener(this)
+        layoutBottomNavigationBackgroundConnerTop.clipToOutline = true
+        layoutBottomNavigationSach.setOnClickListener(this)
+        layoutBottomNavigationPhieuMuon.setOnClickListener(this)
+        lnlBottomNavigationHoaDon.setOnClickListener(this)
+        layoutBottomNavigationOptions.setOnClickListener(this)
+        imvBottomNavigationHome.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
-        when (v) {
-            layout_bottom_navigation_explore -> {
-                onClickItemExploreView()
-                mBottomMenuBarListener!!.onSelectItemBottomMenuBar(0)
-            }
-            layout_bottom_navigation_meditate -> {
-                onClickItemMeditateView()
-                mBottomMenuBarListener!!.onSelectItemBottomMenuBar(1)
-            }
-            imv_bottom_navigation_home -> {
-                onClickItemHomeView()
-                mBottomMenuBarListener!!.onSelectItemBottomMenuBar(2)
-            }
-            layout_bottom_navigation_leaderboard -> {
-                onClickItemLeaderboardView()
-                mBottomMenuBarListener!!.onSelectItemBottomMenuBar(3)
-            }
-            layout_bottom_navigation_options -> {
-                onClickItemOptionsView()
-                mBottomMenuBarListener!!.onSelectItemBottomMenuBar(4)
-            }
+        if (v === layoutBottomNavigationSach) {
+            onClickItemExploreView()
+            mBottomMenuBarListener.onSelectItemBottomMenuBar(0)
+        } else if (v === layoutBottomNavigationPhieuMuon) {
+            onClickItemMeditateView()
+            mBottomMenuBarListener.onSelectItemBottomMenuBar(1)
+        } else if (v === imvBottomNavigationHome) {
+            onClickItemHomeView()
+            mBottomMenuBarListener.onSelectItemBottomMenuBar(2)
+        } else if (v === lnlBottomNavigationHoaDon) {
+            onClickItemLeaderboardView()
+            mBottomMenuBarListener.onSelectItemBottomMenuBar(3)
+        } else if (v === layoutBottomNavigationOptions) {
+            onClickItemOptionsView()
+            mBottomMenuBarListener.onSelectItemBottomMenuBar(4)
         }
     }
 
     fun onClickItemExploreView() {
-        imv_bottom_navigation_explore!!.isSelected = true
-        imv_bottom_navigation_meditate!!.isSelected = false
-        imv_bottom_navigation_leaderboard!!.isSelected = false
-        imv_bottom_navigation_options!!.isSelected = false
-        tv_bottom_navigation_explore!!.isSelected = true
-        tv_bottom_navigation_meditate!!.isSelected = false
-        tv_bottom_navigation_leaderboard!!.isSelected = false
-        txv_bottom_navigation_options!!.isSelected = false
+        imvBottomNavigationSach.isSelected = true
+        imvBottomNavigationPhieuMuon.isSelected = false
+        imvBottomNavigationHoaDon.isSelected = false
+        imvBottomNavigationOptions.isSelected = false
+        tvBottomNavigationSach.isSelected = true
+        tvBottomNavigationPhieuMuon.isSelected = false
+        tvBottomNavigationHoaDon.isSelected = false
+        tvBottomNavigationOptions.isSelected = false
     }
 
     fun onClickItemMeditateView() {
-        imv_bottom_navigation_explore!!.isSelected = false
-        imv_bottom_navigation_meditate!!.isSelected = true
-        imv_bottom_navigation_leaderboard!!.isSelected = false
-        imv_bottom_navigation_options!!.isSelected = false
-        tv_bottom_navigation_explore!!.isSelected = false
-        tv_bottom_navigation_meditate!!.isSelected = true
-        tv_bottom_navigation_leaderboard!!.isSelected = false
-        txv_bottom_navigation_options!!.isSelected = false
+        imvBottomNavigationSach.isSelected = false
+        imvBottomNavigationPhieuMuon.isSelected = true
+        imvBottomNavigationHoaDon.isSelected = false
+        imvBottomNavigationOptions.isSelected = false
+        tvBottomNavigationSach.isSelected = false
+        tvBottomNavigationPhieuMuon.isSelected = true
+        tvBottomNavigationHoaDon.isSelected = false
+        tvBottomNavigationOptions.isSelected = false
     }
 
     fun onClickItemLeaderboardView() {
-        imv_bottom_navigation_explore!!.isSelected = false
-        imv_bottom_navigation_meditate!!.isSelected = false
-        imv_bottom_navigation_leaderboard!!.isSelected = true
-        imv_bottom_navigation_options!!.isSelected = false
-        tv_bottom_navigation_explore!!.isSelected = false
-        tv_bottom_navigation_meditate!!.isSelected = false
-        tv_bottom_navigation_leaderboard!!.isSelected = true
-        txv_bottom_navigation_options!!.isSelected = false
+        imvBottomNavigationSach.isSelected = false
+        imvBottomNavigationPhieuMuon.isSelected = false
+        imvBottomNavigationHoaDon.isSelected = true
+        imvBottomNavigationOptions.isSelected = false
+        tvBottomNavigationSach.isSelected = false
+        tvBottomNavigationPhieuMuon.isSelected = false
+        tvBottomNavigationHoaDon.isSelected = true
+        tvBottomNavigationOptions.isSelected = false
     }
 
     fun onClickItemOptionsView() {
-        imv_bottom_navigation_explore!!.isSelected = false
-        imv_bottom_navigation_meditate!!.isSelected = false
-        imv_bottom_navigation_leaderboard!!.isSelected = false
-        imv_bottom_navigation_options!!.isSelected = true
-        tv_bottom_navigation_explore!!.isSelected = false
-        tv_bottom_navigation_meditate!!.isSelected = false
-        tv_bottom_navigation_leaderboard!!.isSelected = false
-        txv_bottom_navigation_options!!.isSelected = true
+        imvBottomNavigationSach.isSelected = false
+        imvBottomNavigationPhieuMuon.isSelected = false
+        imvBottomNavigationHoaDon.isSelected = false
+        imvBottomNavigationOptions.isSelected = true
+        tvBottomNavigationSach.isSelected = false
+        tvBottomNavigationPhieuMuon.isSelected = false
+        tvBottomNavigationHoaDon.isSelected = false
+        tvBottomNavigationOptions.isSelected = true
     }
 
     fun onClickItemHomeView() {
-        imv_bottom_navigation_explore!!.isSelected = false
-        imv_bottom_navigation_meditate!!.isSelected = false
-        imv_bottom_navigation_leaderboard!!.isSelected = false
-        imv_bottom_navigation_options!!.isSelected = false
-        tv_bottom_navigation_explore!!.isSelected = false
-        tv_bottom_navigation_meditate!!.isSelected = false
-        tv_bottom_navigation_leaderboard!!.isSelected = false
-        txv_bottom_navigation_options!!.isSelected = false
+        imvBottomNavigationSach.isSelected = false
+        imvBottomNavigationPhieuMuon.isSelected = false
+        imvBottomNavigationHoaDon.isSelected = false
+        imvBottomNavigationOptions.isSelected = false
+        tvBottomNavigationSach.isSelected = false
+        tvBottomNavigationPhieuMuon.isSelected = false
+        tvBottomNavigationHoaDon.isSelected = false
+        tvBottomNavigationOptions.isSelected = false
     }
 
     interface BottomMenuBarListener {
