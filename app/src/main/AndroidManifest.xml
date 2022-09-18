@@ -24,7 +24,7 @@
         android:theme="@style/AppThemeHome"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="pham.hien.honeylibrary.View.Main.MainActivity"
+            android:name="pham.hien.honeylibrary.View.Main.SplashActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
@@ -35,6 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".View.Main.MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
