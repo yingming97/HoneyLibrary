@@ -30,7 +30,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/_26sdp"
                     android:gravity="center_vertical"
-                    android:text="Hóa đơn"
+                    android:text="Thể loại"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sdp" />
 
@@ -48,23 +48,30 @@
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <EditText
+        android:id="@+id/ed_ma_the_loai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_bar_sach" />
+
+    <EditText
+        android:id="@+id/ed_ten_the_loai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ed_ma_the_loai" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ed_ten_the_loai">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </androidx.core.widget.NestedScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Màn hóa đơn"
-        android:textSize="@dimen/_28sdp" />
-
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/btn_add_the_loai"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentEnd="true"

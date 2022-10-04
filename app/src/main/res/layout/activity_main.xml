@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <pham.hien.honeylibrary.View.Tab.HoaDon.HoaDonView
+    <pham.hien.honeylibrary.View.Tab.TheLoai.TheLoaiView
         android:id="@+id/layout_tab_hoa_don"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

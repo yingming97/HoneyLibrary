@@ -4,7 +4,6 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import pham.hien.honeylibrary.Model.UserTest
-import java.util.*
 import kotlin.collections.ArrayList
 
 class SharedPreferencesUtils {

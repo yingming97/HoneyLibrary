@@ -13,20 +13,20 @@ import pham.hien.honeylibrary.R
 class MenuBottomView : RelativeLayout, View.OnClickListener {
 
     private val mContext: Context
-    private lateinit var layoutBottomNavigationBackgroundConnerTop: LinearLayout
-    private lateinit var layoutBottomNavigationSach: LinearLayout
-    private lateinit var imvBottomNavigationSach: ImageView
-    private lateinit var tvBottomNavigationSach: TextView
-    private lateinit var layoutBottomNavigationPhieuMuon: LinearLayout
-    private lateinit var imvBottomNavigationPhieuMuon: ImageView
-    private lateinit var tvBottomNavigationPhieuMuon: TextView
-    private lateinit var lnlBottomNavigationHoaDon: LinearLayout
-    private lateinit var imvBottomNavigationHoaDon: ImageView
-    private lateinit var tvBottomNavigationHoaDon: TextView
-    private lateinit var layoutBottomNavigationOptions: LinearLayout
-    private lateinit var imvBottomNavigationOptions: ImageView
-    private lateinit var tvBottomNavigationOptions: TextView
-    private lateinit var imvBottomNavigationHome: ImageView
+    private lateinit var layoutBottomNavigationMenu: LinearLayout
+    private lateinit var layoutMenuSach: LinearLayout
+    private lateinit var imvMenuSach: ImageView
+    private lateinit var tvMenuSach: TextView
+    private lateinit var layoutMenuPhieuMuon: LinearLayout
+    private lateinit var imvMenuPhieuMuon: ImageView
+    private lateinit var tvMenuPhieuMuon: TextView
+    private lateinit var lnlMenuHoaDon: LinearLayout
+    private lateinit var imvMenuHoaDon: ImageView
+    private lateinit var tvMenuHoaDon: TextView
+    private lateinit var layoutMenuOptions: LinearLayout
+    private lateinit var imvMenuOptions: ImageView
+    private lateinit var tvMenuOptions: TextView
+    private lateinit var imvMenuHome: ImageView
     private lateinit var mBottomMenuBarListener: BottomMenuBarListener
 
     fun setListener(BottomMenuBarListener: BottomMenuBarListener) {
@@ -46,115 +46,102 @@ class MenuBottomView : RelativeLayout, View.OnClickListener {
     private fun initView() {
         val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.bottom_navigation_view, this)
-        layoutBottomNavigationBackgroundConnerTop =
-            rootView.findViewById(R.id.layout_bottom_navigation__background_conner_top)
-        layoutBottomNavigationSach =
-            rootView.findViewById(R.id.layout_bottom_navigation_sach)
-        imvBottomNavigationSach =
-            rootView.findViewById(R.id.imv_bottom_navigation_sach)
-        tvBottomNavigationSach =
-            rootView.findViewById(R.id.tv_bottom_navigation_sach)
-        layoutBottomNavigationPhieuMuon =
-            rootView.findViewById(R.id.layout_bottom_navigation_phieu)
-        imvBottomNavigationPhieuMuon =
-            rootView.findViewById(R.id.imv_bottom_navigation_phieu)
-        tvBottomNavigationPhieuMuon =
-            rootView.findViewById(R.id.tv_bottom_navigation_phieu)
-        lnlBottomNavigationHoaDon =
-            rootView.findViewById(R.id.layout_bottom_navigation_hoa_don)
-        imvBottomNavigationHoaDon =
-            rootView.findViewById(R.id.imv_bottom_navigation_hoa_don)
-        tvBottomNavigationHoaDon =
-            rootView.findViewById(R.id.tv_bottom_navigation_hoa_don)
-        layoutBottomNavigationOptions =
-            rootView.findViewById(R.id.layout_bottom_navigation_options)
-        imvBottomNavigationOptions =
-            rootView.findViewById(R.id.imv_bottom_navigation_options)
-        tvBottomNavigationOptions =
-            rootView.findViewById(R.id.txv_bottom_navigation_options)
-        imvBottomNavigationHome =
-            rootView.findViewById(R.id.imv_bottom_navigation_home)
 
-        layoutBottomNavigationBackgroundConnerTop.clipToOutline = true
-        layoutBottomNavigationSach.setOnClickListener(this)
-        layoutBottomNavigationPhieuMuon.setOnClickListener(this)
-        lnlBottomNavigationHoaDon.setOnClickListener(this)
-        layoutBottomNavigationOptions.setOnClickListener(this)
-        imvBottomNavigationHome.setOnClickListener(this)
+        layoutBottomNavigationMenu = rootView.findViewById(R.id.layout_bottom_navigation_menu)
+        layoutMenuSach = rootView.findViewById(R.id.layout_menu_sach)
+        imvMenuSach = rootView.findViewById(R.id.imv_bottom_navigation_sach)
+        tvMenuSach = rootView.findViewById(R.id.tv_bottom_navigation_sach)
+        layoutMenuPhieuMuon = rootView.findViewById(R.id.layout_menu_phieu_muon)
+        imvMenuPhieuMuon = rootView.findViewById(R.id.imv_bottom_navigation_phieu)
+        tvMenuPhieuMuon = rootView.findViewById(R.id.tv_bottom_navigation_phieu)
+        lnlMenuHoaDon = rootView.findViewById(R.id.layout_menu_the_loai)
+        imvMenuHoaDon = rootView.findViewById(R.id.imv_bottom_navigation_hoa_don)
+        tvMenuHoaDon = rootView.findViewById(R.id.tv_bottom_navigation_hoa_don)
+        layoutMenuOptions = rootView.findViewById(R.id.layout_menu_options)
+        imvMenuOptions = rootView.findViewById(R.id.imv_bottom_navigation_options)
+        tvMenuOptions = rootView.findViewById(R.id.txv_bottom_navigation_options)
+        imvMenuHome = rootView.findViewById(R.id.imv_bottom_navigation_home)
+
+        layoutBottomNavigationMenu.clipToOutline = true
+        layoutMenuSach.setOnClickListener(this)
+        layoutMenuPhieuMuon.setOnClickListener(this)
+        lnlMenuHoaDon.setOnClickListener(this)
+        layoutMenuOptions.setOnClickListener(this)
+        imvMenuHome.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
-        if (v === layoutBottomNavigationSach) {
+        if (v === layoutMenuSach) {
             onClickItemExploreView()
             mBottomMenuBarListener.onSelectItemBottomMenuBar(0)
-        } else if (v === layoutBottomNavigationPhieuMuon) {
+        } else if (v === layoutMenuPhieuMuon) {
             onClickItemMeditateView()
             mBottomMenuBarListener.onSelectItemBottomMenuBar(1)
-        } else if (v === imvBottomNavigationHome) {
+        } else if (v === imvMenuHome) {
             onClickItemHomeView()
             mBottomMenuBarListener.onSelectItemBottomMenuBar(2)
-        } else if (v === lnlBottomNavigationHoaDon) {
+        } else if (v === lnlMenuHoaDon) {
             onClickItemLeaderboardView()
             mBottomMenuBarListener.onSelectItemBottomMenuBar(3)
-        } else if (v === layoutBottomNavigationOptions) {
+        } else if (v === layoutMenuOptions) {
             onClickItemOptionsView()
             mBottomMenuBarListener.onSelectItemBottomMenuBar(4)
         }
     }
 
     fun onClickItemExploreView() {
-        imvBottomNavigationSach.isSelected = true
-        imvBottomNavigationPhieuMuon.isSelected = false
-        imvBottomNavigationHoaDon.isSelected = false
-        imvBottomNavigationOptions.isSelected = false
-        tvBottomNavigationSach.isSelected = true
-        tvBottomNavigationPhieuMuon.isSelected = false
-        tvBottomNavigationHoaDon.isSelected = false
-        tvBottomNavigationOptions.isSelected = false
+        imvMenuSach.isSelected = true
+        imvMenuPhieuMuon.isSelected = false
+        imvMenuHoaDon.isSelected = false
+        imvMenuOptions.isSelected = false
+        tvMenuSach.isSelected = true
+        tvMenuPhieuMuon.isSelected = false
+        tvMenuHoaDon.isSelected = false
+        tvMenuOptions.isSelected = false
     }
 
     fun onClickItemMeditateView() {
-        imvBottomNavigationSach.isSelected = false
-        imvBottomNavigationPhieuMuon.isSelected = true
-        imvBottomNavigationHoaDon.isSelected = false
-        imvBottomNavigationOptions.isSelected = false
-        tvBottomNavigationSach.isSelected = false
-        tvBottomNavigationPhieuMuon.isSelected = true
-        tvBottomNavigationHoaDon.isSelected = false
-        tvBottomNavigationOptions.isSelected = false
+        imvMenuSach.isSelected = false
+        imvMenuPhieuMuon.isSelected = true
+        imvMenuHoaDon.isSelected = false
+        imvMenuOptions.isSelected = false
+        tvMenuSach.isSelected = false
+        tvMenuPhieuMuon.isSelected = true
+        tvMenuHoaDon.isSelected = false
+        tvMenuOptions.isSelected = false
     }
 
     fun onClickItemLeaderboardView() {
-        imvBottomNavigationSach.isSelected = false
-        imvBottomNavigationPhieuMuon.isSelected = false
-        imvBottomNavigationHoaDon.isSelected = true
-        imvBottomNavigationOptions.isSelected = false
-        tvBottomNavigationSach.isSelected = false
-        tvBottomNavigationPhieuMuon.isSelected = false
-        tvBottomNavigationHoaDon.isSelected = true
-        tvBottomNavigationOptions.isSelected = false
+        imvMenuSach.isSelected = false
+        imvMenuPhieuMuon.isSelected = false
+        imvMenuHoaDon.isSelected = true
+        imvMenuOptions.isSelected = false
+        tvMenuSach.isSelected = false
+        tvMenuPhieuMuon.isSelected = false
+        tvMenuHoaDon.isSelected = true
+        tvMenuOptions.isSelected = false
     }
 
     fun onClickItemOptionsView() {
-        imvBottomNavigationSach.isSelected = false
-        imvBottomNavigationPhieuMuon.isSelected = false
-        imvBottomNavigationHoaDon.isSelected = false
-        imvBottomNavigationOptions.isSelected = true
-        tvBottomNavigationSach.isSelected = false
-        tvBottomNavigationPhieuMuon.isSelected = false
-        tvBottomNavigationHoaDon.isSelected = false
-        tvBottomNavigationOptions.isSelected = true
+        imvMenuSach.isSelected = false
+        imvMenuPhieuMuon.isSelected = false
+        imvMenuHoaDon.isSelected = false
+        imvMenuOptions.isSelected = true
+        tvMenuSach.isSelected = false
+        tvMenuPhieuMuon.isSelected = false
+        tvMenuHoaDon.isSelected = false
+        tvMenuOptions.isSelected = true
     }
 
     fun onClickItemHomeView() {
-        imvBottomNavigationSach.isSelected = false
-        imvBottomNavigationPhieuMuon.isSelected = false
-        imvBottomNavigationHoaDon.isSelected = false
-        imvBottomNavigationOptions.isSelected = false
-        tvBottomNavigationSach.isSelected = false
-        tvBottomNavigationPhieuMuon.isSelected = false
-        tvBottomNavigationHoaDon.isSelected = false
-        tvBottomNavigationOptions.isSelected = false
+        imvMenuSach.isSelected = false
+        imvMenuPhieuMuon.isSelected = false
+        imvMenuHoaDon.isSelected = false
+        imvMenuOptions.isSelected = false
+        tvMenuSach.isSelected = false
+        tvMenuPhieuMuon.isSelected = false
+        tvMenuHoaDon.isSelected = false
+        tvMenuOptions.isSelected = false
     }
 
     interface BottomMenuBarListener {

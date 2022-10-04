@@ -11,7 +11,7 @@ import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Menu.MenuBottomView
-import pham.hien.honeylibrary.View.Tab.HoaDon.HoaDonView
+import pham.hien.honeylibrary.View.Tab.TheLoai.TheLoaiView
 import pham.hien.honeylibrary.View.Tab.Home.HomeView
 import pham.hien.honeylibrary.View.Tab.Sach.SachView
 import pham.hien.honeylibrary.View.Tab.Option.OptionView
@@ -25,7 +25,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
     private lateinit var layoutHomeView: HomeView
     private lateinit var layoutSachView: SachView
     private lateinit var layoutPhieuMuonView: PhieuMuonView
-    private lateinit var layoutHoaDonView: HoaDonView
+    private lateinit var layoutTheLoaiView: TheLoaiView
     private lateinit var layoutOptionView: OptionView
 
     private lateinit var layoutMenuBottomView: MenuBottomView
@@ -35,7 +35,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var sachViewModel: SachViewModel
     private lateinit var phieuMuonViewModel: PhieuMuonViewModel
-    private lateinit var hoaDonViewModel: HoaDonViewModel
+    private lateinit var theLoaViewModel: TheLoaViewModel
     private lateinit var optionViewModel: OptionViewModel
 
 
@@ -47,7 +47,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         this.layoutSachView = findViewById(R.id.layout_tab_sach)
         this.layoutPhieuMuonView = findViewById(R.id.layout_tab_phieu_muon)
         this.layoutHomeView = findViewById(R.id.layout_tab_home)
-        this.layoutHoaDonView = findViewById(R.id.layout_tab_hoa_don)
+        this.layoutTheLoaiView = findViewById(R.id.layout_tab_hoa_don)
         this.layoutOptionView = findViewById(R.id.layout_tab_option)
         this.layoutMenuBottomView = findViewById(R.id.layoutMenuBottomView)
     }
@@ -61,13 +61,13 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         this.homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         this.sachViewModel = ViewModelProvider(this)[SachViewModel::class.java]
         this.phieuMuonViewModel = ViewModelProvider(this)[PhieuMuonViewModel::class.java]
-        this.hoaDonViewModel = ViewModelProvider(this)[HoaDonViewModel::class.java]
+        this.theLoaViewModel = ViewModelProvider(this)[TheLoaViewModel::class.java]
         this.optionViewModel = ViewModelProvider(this)[OptionViewModel::class.java]
 
         this.layoutHomeView.initViewModel(homeViewModel)
         this.layoutSachView.initViewModel(sachViewModel)
         this.layoutPhieuMuonView.initViewModel(phieuMuonViewModel)
-        this.layoutHoaDonView.initViewModel(hoaDonViewModel)
+        this.layoutTheLoaiView.initViewModel(theLoaViewModel)
         this.layoutOptionView.initViewModel(optionViewModel)
     }
 
@@ -75,7 +75,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         this.layoutHomeView.initObserver(this)
         this.layoutSachView.initObserver(this)
         this.layoutPhieuMuonView.initObserver(this)
-        this.layoutHoaDonView.initObserver(this)
+        this.layoutTheLoaiView.initObserver(this)
         this.layoutOptionView.initObserver(this)
     }
 
@@ -97,8 +97,8 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                 if (BaseView.isOpening(layoutPhieuMuonView)) {
                     closeViewToRight(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                 }
-                if (BaseView.isOpening(layoutHoaDonView)) {
-                    closeViewToRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+                if (BaseView.isOpening(layoutTheLoaiView)) {
+                    closeViewToRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                 }
                 if (BaseView.isOpening(layoutOptionView)) {
                     closeViewToRight(layoutOptionView, layoutOptionView.width, 300)
@@ -113,9 +113,9 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                     openViewFromRight(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                     closeViewToLeft(layoutSachView, layoutSachView.width, 300)
                 }
-                if (BaseView.isOpening(layoutHoaDonView)) {
+                if (BaseView.isOpening(layoutTheLoaiView)) {
                     openViewFromLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
-                    closeViewToRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+                    closeViewToRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                 }
                 if (BaseView.isOpening(layoutOptionView)) {
                     openViewFromLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
@@ -135,9 +135,9 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                     openViewFromRight(layoutHomeView, layoutHomeView.width, 300)
                     closeViewToLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                 }
-                if (BaseView.isOpening(layoutHoaDonView)) {
+                if (BaseView.isOpening(layoutTheLoaiView)) {
                     openViewFromLeft(layoutHomeView, layoutHomeView.width, 300)
-                    closeViewToRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+                    closeViewToRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                 }
                 if (BaseView.isOpening(layoutOptionView)) {
                     openViewFromLeft(layoutHomeView, layoutHomeView.width, 300)
@@ -145,21 +145,21 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                 }
             }
             Constant.POSITION.VIEW_HOA_DON -> {
-                layoutHoaDonView.openForTheFirstTime(this)
+                layoutTheLoaiView.openForTheFirstTime(this)
                 if (BaseView.isOpening(layoutSachView)) {
-                    openViewFromRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+                    openViewFromRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                     closeViewToLeft(layoutSachView, layoutSachView.width, 300)
                 }
                 if (BaseView.isOpening(layoutPhieuMuonView)) {
-                    openViewFromRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+                    openViewFromRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                     closeViewToLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                 }
                 if (BaseView.isOpening(layoutOptionView)) {
-                    openViewFromLeft(layoutHoaDonView, layoutHoaDonView.width, 300)
+                    openViewFromLeft(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                     closeViewToRight(layoutOptionView, layoutOptionView.width, 300)
                 }
                 if (BaseView.isOpening(layoutHomeView)) {
-                    openViewFromRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+                    openViewFromRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                     closeViewToLeft(layoutHomeView, layoutHomeView.width, 300)
                 }
             }
@@ -174,8 +174,8 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                 if (BaseView.isOpening(layoutPhieuMuonView)) {
                     closeViewToLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                 }
-                if (BaseView.isOpening(layoutHoaDonView)) {
-                    closeViewToLeft(layoutHoaDonView, layoutHoaDonView.width, 300)
+                if (BaseView.isOpening(layoutTheLoaiView)) {
+                    closeViewToLeft(layoutTheLoaiView, layoutTheLoaiView.width, 300)
                 }
                 if (BaseView.isOpening(layoutHomeView)) {
                     closeViewToLeft(layoutHomeView, layoutHomeView.width, 300)
@@ -193,10 +193,10 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
             layoutMenuBottomView.onClickItemHomeView()
             openViewFromRight(layoutHomeView, layoutHomeView.width, 300)
             closeViewToLeft(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
-        } else if (BaseView.isOpening(layoutHoaDonView)) {
+        } else if (BaseView.isOpening(layoutTheLoaiView)) {
             layoutMenuBottomView.onClickItemHomeView()
             openViewFromLeft(layoutHomeView, layoutHomeView.width, 300)
-            closeViewToRight(layoutHoaDonView, layoutHoaDonView.width, 300)
+            closeViewToRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)
         } else if (BaseView.isOpening(layoutOptionView)) {
             layoutMenuBottomView.onClickItemHomeView()
             openViewFromLeft(layoutHomeView, layoutHomeView.width, 300)
