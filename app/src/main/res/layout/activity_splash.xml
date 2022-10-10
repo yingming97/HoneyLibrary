@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:windowBackground="@drawable/img_theme"
     tools:context=".View.Main.SplashActivity">
 
-    <ImageView
+    <TextView
+        android:id="@+id/tv_app_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/img_theme" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:fontFamily="@font/potta_one"
+        android:gravity="center"
+        android:text="Honey Library"
+        android:textColor="#f4ada6"
+        android:textSize="@dimen/_34sdp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/anim_splash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_app_name"
+        android:adjustViewBounds="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/anim_splash" />
 
 
     <LinearLayout
@@ -29,7 +44,7 @@
             android:gravity="center"
             android:text="0%"
             android:textAllCaps="false"
-            android:textColor="#7265E3"
+            android:textColor="#FFC107"
             android:textSize="@dimen/_17sdp" />
 
         <ProgressBar

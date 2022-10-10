@@ -30,7 +30,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/_26sdp"
                     android:gravity="center_vertical"
-                    android:text="Cá nhân"
+                    android:text="Tùy chọn"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sdp" />
 
@@ -61,16 +61,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Màn Option"
+        android:text="Màn Tùy chọn"
         android:textSize="@dimen/_28sdp" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_60sdp"
-        android:padding="@dimen/_13sdp"
-        android:src="@drawable/ic_add_circle" />
 </RelativeLayout>
