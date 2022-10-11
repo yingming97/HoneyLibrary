@@ -41,8 +41,6 @@ class OptionView : BaseView {
 
         tv_title = rootView.findViewById(R.id.tv_title)
 
-        ScreenUtils().setMarginStatusBar(mContext, tv_title)
-
     }
 
 

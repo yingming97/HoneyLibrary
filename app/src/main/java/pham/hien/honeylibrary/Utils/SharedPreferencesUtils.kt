@@ -3,7 +3,7 @@ package pham.hien.honeylibrary.Utils
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import pham.hien.honeylibrary.Model.UserTest
+import pham.hien.honeylibrary.Model.UserModel
 import kotlin.collections.ArrayList
 
 class SharedPreferencesUtils {
@@ -116,19 +116,19 @@ class SharedPreferencesUtils {
     /**
      * lưu dạng model
      */
-    fun setModel(context: Context, userTest: UserTest) {
+    fun setModel(context: Context, userModel: UserModel) {
         val pref = context.getSharedPreferences(
             PREFERENCES_NAME,
             Context.MODE_PRIVATE
         )
         val editor = pref.edit()
         val gson = Gson()
-        val model = gson.toJson(userTest)
+        val model = gson.toJson(userModel)
         editor.putString("model", model)
         editor.apply()
     }
 
-    fun getModel(context: Context): UserTest? {
+    fun getModel(context: Context): UserModel? {
         val preferences = context.getSharedPreferences(
             PREFERENCES_NAME,
             Context.MODE_PRIVATE
@@ -136,10 +136,10 @@ class SharedPreferencesUtils {
         val result = preferences.getString("model", null)
         return if (result != null) {
             val gson = Gson()
-            val type = object : TypeToken<UserTest?>() {}.type
+            val type = object : TypeToken<UserModel?>() {}.type
             gson.fromJson(result, type)
         } else {
-            UserTest()
+            UserModel()
         }
     }
     /**

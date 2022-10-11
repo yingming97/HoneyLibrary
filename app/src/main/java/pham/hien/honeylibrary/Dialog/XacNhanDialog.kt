@@ -7,17 +7,28 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.TextView
 import pham.hien.honeylibrary.R
 
-class NoInternetDialog(context: Context) : Dialog(context), View.OnClickListener {
+class XacNhanDialog(
+    context: Context,
+    private val title: String,
+    private val content: String, private val callback: (() -> Unit)? = null
+) :
+    Dialog(context),
+    View.OnClickListener {
 
-    private lateinit var tvDong: TextView
+    private lateinit var tvTitle: TextView
+    private lateinit var tvContent: TextView
+    private lateinit var tvXoa: TextView
+    private lateinit var tvHuy: TextView
+    private lateinit var imvClose: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.dialog_no_internet)
+        setContentView(R.layout.dialog_xac_nhan)
         window!!.decorView.setBackgroundResource(R.color.transparent)
         window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
         val wlp = window!!.attributes
@@ -33,13 +44,28 @@ class NoInternetDialog(context: Context) : Dialog(context), View.OnClickListener
     }
 
     private fun initView() {
-        tvDong = findViewById(R.id.tv_ok_dialog_no_internet)
-        tvDong.setOnClickListener(this)
+        tvTitle = findViewById(R.id.tv_title)
+        tvContent = findViewById(R.id.tv_content)
+        tvXoa = findViewById(R.id.tv_xoa)
+        tvHuy = findViewById(R.id.tv_huy)
+        imvClose = findViewById(R.id.imv_close)
+
+        imvClose.setOnClickListener(this)
+        tvXoa.setOnClickListener(this)
+        tvHuy.setOnClickListener(this)
+
+        tvTitle.text = title
+        tvContent.text = content
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            tvDong -> dismiss()
+            imvClose, tvHuy -> dismiss()
+            tvXoa -> {
+                callback?.invoke()
+                dismiss()
+            }
         }
     }
 }
+

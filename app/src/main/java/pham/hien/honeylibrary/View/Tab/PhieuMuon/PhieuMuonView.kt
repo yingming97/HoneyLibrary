@@ -6,12 +6,15 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
+import pham.yingming.honeylibrary.Dialog.XacNhanDialog
 
 class PhieuMuonView : BaseView {
 
@@ -19,6 +22,7 @@ class PhieuMuonView : BaseView {
     private var checkFirstLaunchView: Boolean = false
 
     private lateinit var tv_title: TextView
+    private lateinit var imv_add_new_phieu_muon: ImageView
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -40,9 +44,9 @@ class PhieuMuonView : BaseView {
         val rootView: View = inflater.inflate(R.layout.view_phieu_muon, this)
 
         tv_title = rootView.findViewById(R.id.tv_title)
+        imv_add_new_phieu_muon = rootView.findViewById(R.id.imv_add_new_phieu_muon)
 
-        ScreenUtils().setMarginStatusBar(mContext, tv_title)
-
+        imv_add_new_phieu_muon.setOnClickListener(this)
     }
 
 
@@ -69,6 +73,11 @@ class PhieuMuonView : BaseView {
 
     override fun onClick(view: View) {
         when (view) {
+            imv_add_new_phieu_muon -> {
+                XacNhanDialog(mContext, "Xán nhận xóa", "Dữ liệu đã xóa không thể khôi phục") {
+                    Toast.makeText(mContext, "Đã xóa", Toast.LENGTH_LONG).show()
+                }.show()
+            }
         }
     }
 }

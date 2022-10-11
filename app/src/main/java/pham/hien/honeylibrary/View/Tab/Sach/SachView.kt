@@ -41,7 +41,6 @@ class SachView : BaseView {
 
         tv_title = rootView.findViewById(R.id.tv_title)
 
-        ScreenUtils().setMarginStatusBar(mContext, tv_title)
     }
 
     override fun initDataDefault(activity: Activity?) {

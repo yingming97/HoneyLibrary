@@ -5,19 +5,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import pham.hien.honeylibrary.FireStoreDataBase.addNewTheLoai
-import pham.hien.honeylibrary.FireStoreDataBase.checkTheLoaiTrung
-import pham.hien.honeylibrary.FireStoreDataBase.getListTheLoai
-import pham.hien.honeylibrary.Model.TheLoai
 import pham.hien.honeylibrary.R
-import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 
 
@@ -48,8 +39,6 @@ class TheLoaiView : BaseView {
         val rootView: View = inflater.inflate(R.layout.view_the_loai, this)
 
         tv_title = rootView.findViewById(R.id.tv_title)
-
-        ScreenUtils().setMarginStatusBar(mContext, tv_title)
 
     }
 

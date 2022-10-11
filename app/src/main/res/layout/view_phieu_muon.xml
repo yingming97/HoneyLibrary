@@ -26,7 +26,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <ImageView
-            android:id="@+id/imv_fragment_explore__search"
+            android:id="@+id/imv_search"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -61,11 +61,11 @@
             android:textSize="@dimen/_18sdp" />
 
         <ImageView
-            android:id="@+id/imv_add_new_the_loai"
+            android:id="@+id/imv_add_new_phieu_muon"
             android:layout_width="@dimen/_66sdp"
             android:layout_height="@dimen/_66sdp"
             android:layout_alignParentEnd="true"
-            android:padding="@dimen/_16sdp"
+            android:padding="@dimen/_20sdp"
             android:src="@drawable/ic_add" />
     </RelativeLayout>
 
