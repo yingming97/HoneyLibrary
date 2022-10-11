@@ -36,12 +36,218 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/layout_tool_bar"
         android:background="@drawable/bg_tab_view">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_60sdp"
+            android:orientation="vertical">
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_info_user"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginTop="@dimen/_30sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imv_avatar"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:src="@drawable/ic_avatar_default"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/_2sdp" />
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_toEndOf="@+id/imv_avatar"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Bùi Xuân Tiến"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#ccc" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lnl_doi_mat_khau"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:src="@drawable/ic_change_password" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Đổi mật khẩu"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnl_quan_ly_nhan_vien"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:src="@drawable/ic_people" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Quản lý nhân viên"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnl_quan_ly_doc_gia"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:src="@drawable/ic_book_reader" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Quản lý độc giả"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnl_tro_giup"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:src="@drawable/ic_message" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Trợ giúp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnl_thong_ke"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:src="@drawable/ic_chart" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Thống kê"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:src="@drawable/ic_arrow_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnl_dang_xuat"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:src="@drawable/ic_log_out" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Đăng xuất"
+                    android:textColor="#ED0000"
+                    android:textSize="@dimen/_16sdp" />
+            </LinearLayout>
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

@@ -19,59 +19,55 @@
                 android:id="@+id/layout_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_56sdp"
-                android:padding="@dimen/_26sdp">
+                android:layout_marginTop="@dimen/_26sdp">
 
                 <ImageView
                     android:id="@+id/imv_sun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_30sdp"
                     android:src="@drawable/ic_sun_home" />
 
                 <TextView
+                    android:id="@+id/tv_time_today"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_toEndOf="@+id/imv_sun"
                     android:fontFamily="@font/roboto_medium"
                     android:includeFontPadding="false"
                     android:text="TH3 11 OCT"
                     android:textColor="#7265E3" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_info_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_header"
-                android:paddingStart="@dimen/_30sdp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imv_avatar"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
-                    android:outlineSpotShadowColor="#ccc"
-                    android:src="@drawable/ic_avatar_default"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="@dimen/_2sdp" />
 
                 <TextView
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/_30sdp"
-                    android:layout_toEndOf="@+id/imv_avatar"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Bùi Xuân Tiến"
+                    android:text="Hi, Bùi Xuân Tiến"
                     android:textSize="@dimen/_16sdp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imv_avatar"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    android:src="@drawable/ic_avatar_default"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/_2sdp" />
             </RelativeLayout>
+
 
             <TextView
                 android:id="@+id/tv_top_sach"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_info_user"
+                android:layout_below="@+id/layout_header"
                 android:layout_marginVertical="@dimen/_28sdp"
                 android:layout_marginStart="@dimen/_14sdp"
                 android:fontFamily="@font/roboto_bold"

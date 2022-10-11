@@ -94,7 +94,8 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
         overridePendingTransition()
     }
 
-
+    override fun onClick(view: View?) {
+    }
     companion object {
 
         fun getActivity(context: Context?): Activity? {

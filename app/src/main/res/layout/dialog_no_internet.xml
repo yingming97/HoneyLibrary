@@ -61,7 +61,7 @@
                 android:textSize="@dimen/_11sdp" />
 
             <TextView
-                android:id="@+id/txv_dialog_no_internet__ok"
+                android:id="@+id/tv_ok_dialog_no_internet"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_42sdp"
                 android:layout_gravity="center_horizontal"
