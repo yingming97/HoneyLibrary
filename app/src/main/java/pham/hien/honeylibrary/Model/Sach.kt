@@ -7,15 +7,16 @@ class Sach {
     var soLuong = 0
     var giaThue = 0
     var gioiThieu: String? = ""
+    var anhBia: String? = ""
 
-    constructor()
     constructor(
         maSach: String,
         tenSach: String,
         maLoai: Int,
         soLuong: Int,
         giaThue: Int,
-        gioiThieu: String?
+        gioiThieu: String?,
+        anhBia: String?
     ) {
         this.maSach = maSach
         this.tenSach = tenSach
@@ -23,5 +24,6 @@ class Sach {
         this.soLuong = soLuong
         this.giaThue = giaThue
         this.gioiThieu = gioiThieu
+        this.anhBia = anhBia
     }
 }
