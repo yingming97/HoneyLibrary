@@ -3,12 +3,14 @@ package pham.hien.honeylibrary.Model
 class SachThue {
     var maSach: String = ""
     var tenSach: String = ""
+    var biaSach: String = ""
     var soLuong = 0
     var giaThue = 0
 
-    constructor(maSach: String, tenSach: String, soLuong: Int, giaThue: Int) {
+    constructor(maSach: String, tenSach: String, biaSach: String, soLuong: Int, giaThue: Int) {
         this.maSach = maSach
         this.tenSach = tenSach
+        this.biaSach = biaSach
         this.soLuong = soLuong
         this.giaThue = giaThue
     }
