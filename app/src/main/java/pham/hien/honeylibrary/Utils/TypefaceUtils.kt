@@ -8,19 +8,19 @@ open class TypefaceUtils {
     companion object {
 
         fun getSemiBold(assetManager: AssetManager): Typeface {
-            return Typeface.createFromAsset(assetManager, "fonts/Poppins-SemiBold.ttf")
+            return Typeface.createFromAsset(assetManager, "font/roboto_bold.xml")
         }
 
         fun getMedium(assetManager: AssetManager): Typeface {
-            return Typeface.createFromAsset(assetManager, "fonts/Poppins-Medium.ttf")
+            return Typeface.createFromAsset(assetManager, "font/roboto_medium.xml")
         }
 
         fun getBold(assetManager: AssetManager): Typeface {
-            return Typeface.createFromAsset(assetManager, "fonts/Poppins-Bold.ttf")
+            return Typeface.createFromAsset(assetManager, "font/roboto_bold.xml")
         }
 
         fun getRegular(assetManager: AssetManager): Typeface {
-            return Typeface.createFromAsset(assetManager, "fonts/Poppins-Regular.ttf")
+            return Typeface.createFromAsset(assetManager, "font/roboto.xml")
         }
     }
 }

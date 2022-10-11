@@ -9,12 +9,16 @@ import android.widget.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 
 class OptionView : BaseView {
 
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
+
+    private lateinit var tv_title: TextView
+
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -34,6 +38,10 @@ class OptionView : BaseView {
         super.initView(context, attrs)
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_option, this)
+
+        tv_title = rootView.findViewById(R.id.tv_title)
+
+        ScreenUtils().setMarginStatusBar(mContext, tv_title)
 
     }
 

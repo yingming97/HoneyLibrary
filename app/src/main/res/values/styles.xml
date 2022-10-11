@@ -59,4 +59,15 @@
         <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
+    <style name="RobotoRegular">
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="RobotoMedium">
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="RobotoBold">
+        <item name="fontFamily">@font/roboto</item>
+    </style>
 </resources>

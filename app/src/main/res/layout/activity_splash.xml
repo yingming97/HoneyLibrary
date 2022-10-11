@@ -37,7 +37,8 @@
         android:orientation="vertical"
         android:paddingBottom="24dp">
 
-        <pham.hien.honeylibrary.Extention.TextViewPoppinsSemiBold
+        <TextView
+            android:fontFamily="@font/roboto_bold"
             android:id="@+id/tvProgressBarSplashDefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +59,7 @@
             android:progress="0"
             android:progressDrawable="@drawable/custom_progress_bar_bg" />
 
-        <pham.hien.honeylibrary.Extention.TextViewPoppinsMedium
+        <TextView
             android:id="@+id/tvDescriptionAd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

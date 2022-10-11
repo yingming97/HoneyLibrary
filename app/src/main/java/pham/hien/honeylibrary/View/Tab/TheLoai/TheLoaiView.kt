@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -16,6 +17,7 @@ import pham.hien.honeylibrary.FireStoreDataBase.checkTheLoaiTrung
 import pham.hien.honeylibrary.FireStoreDataBase.getListTheLoai
 import pham.hien.honeylibrary.Model.TheLoai
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 
 
@@ -24,12 +26,7 @@ class TheLoaiView : BaseView {
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
 
-    private lateinit var btn_add_the_loai: ImageView
-    private lateinit var ed_ma_the_loai: EditText
-    private lateinit var ed_ten_the_loai: EditText
-
-    private var mListTheLoai = ArrayList<TheLoai>()
-    private val listTheLoaiLiveData = MutableLiveData<ArrayList<TheLoai>>()
+    private lateinit var tv_title: TextView
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -50,11 +47,10 @@ class TheLoaiView : BaseView {
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_the_loai, this)
 
-        btn_add_the_loai = rootView.findViewById(R.id.btn_add_the_loai)
-        ed_ma_the_loai = rootView.findViewById(R.id.ed_ma_the_loai)
-        ed_ten_the_loai = rootView.findViewById(R.id.ed_ten_the_loai)
+        tv_title = rootView.findViewById(R.id.tv_title)
 
-        btn_add_the_loai.setOnClickListener(this)
+        ScreenUtils().setMarginStatusBar(mContext, tv_title)
+
     }
 
     override fun initViewModel(viewModel: ViewModel?) {
@@ -62,16 +58,11 @@ class TheLoaiView : BaseView {
     }
 
     override fun initObserver(owner: LifecycleOwner?) {
-        listTheLoaiLiveData.observe(owner!!) {
-            it.let {
-                mListTheLoai = it
-            }
-        }
+
     }
 
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
-        listTheLoaiLiveData.value = getListTheLoai()
     }
 
     override fun openForTheFirstTime(activity: Activity?) {
@@ -84,17 +75,7 @@ class TheLoaiView : BaseView {
 
     override fun onClick(view: View) {
         when (view) {
-            btn_add_the_loai ->
-                if (!checkTheLoaiTrung(ed_ma_the_loai.text.toString(), mListTheLoai)) {
-                    addNewTheLoai(
-                        TheLoai(
-                            ed_ma_the_loai.text.toString(),
-                            ed_ten_the_loai.text.toString()
-                        )
-                    )
-                } else {
-                    Toast.makeText(mContext, "trùng id", Toast.LENGTH_LONG).show()
-                }
+
         }
     }
 }

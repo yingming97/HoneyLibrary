@@ -5,72 +5,130 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/layout_bar_sach"
+    <RelativeLayout
+        android:id="@+id/layout_tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_68sdp"
-        android:background="@drawable/img_bg_app_bar"
-        android:gravity="center"
-        android:theme="@style/ThemeOverlay.AppCompat.Light">
+        android:layout_height="@dimen/_60sdp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:elevation="@dimen/_2sdp">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_26sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center_vertical"
+            android:text="Phiếu mượn"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/_20sdp" />
 
-            <RelativeLayout
-                android:id="@+id/rll_fragment_explore__tab_top"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_alignParentBottom="true">
+        <ImageView
+            android:id="@+id/imv_fragment_explore__search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_search"
+            android:visibility="visible" />
 
-                <pham.hien.honeylibrary.Extention.TextViewPoppinsMedium
-                    android:id="@+id/tv_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="@dimen/_26sdp"
-                    android:gravity="center_vertical"
-                    android:text="Phiếu mượn"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_20sdp" />
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_alignParentBottom="true"
+            android:background="#ccc" />
 
-                <ImageView
-                    android:id="@+id/imv_fragment_explore__search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_search"
-                    android:visibility="visible" />
-            </RelativeLayout>
-        </RelativeLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_66sdp"
+        android:layout_below="@+id/layout_tool_bar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Danh sách phiếu mượn"
+            android:textSize="@dimen/_18sdp" />
+
+        <ImageView
+            android:id="@+id/imv_add_new_the_loai"
+            android:layout_width="@dimen/_66sdp"
+            android:layout_height="@dimen/_66sdp"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/_16sdp"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_title"
+        android:background="@drawable/bg_tab_view">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_26sdp"
+            android:layout_marginBottom="@dimen/_66sdp">
+
+            <TextView
+                android:id="@+id/tv_qua_han"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Phiếu quá hạn"
+                android:textSize="@dimen/_16sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_list_qua_han"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_qua_han"
+                android:layout_marginTop="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/tv_dang_muon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rcv_list_qua_han"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Phiếu đang mượn"
+                android:textSize="@dimen/_16sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_list_dang_muon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_dang_muon"
+                android:layout_marginTop="@dimen/_16sdp" />
+
+            <TextView
+                android:id="@+id/tv_da_tra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rcv_list_dang_muon"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Phiếu đang mượn"
+                android:textSize="@dimen/_16sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_list_da_tra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_da_tra"
+                android:layout_marginTop="@dimen/_16sdp" />
+        </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Màn quản phiếu mượn"
-        android:textSize="@dimen/_28sdp" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_60sdp"
-        android:padding="@dimen/_13sdp"
-        android:src="@drawable/ic_add_circle" />
 </RelativeLayout>

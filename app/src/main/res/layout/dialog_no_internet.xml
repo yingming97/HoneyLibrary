@@ -36,11 +36,12 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/img_dialog_title_no_internet" />
 
-            <pham.hien.honeylibrary.Extention.TextViewPoppinsSemiBold
+            <TextView
                 android:id="@+id/txv_dialog_no_internet__title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_26sdp"
+                android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="Không cố Internet"
                 android:textColor="#2D3142"

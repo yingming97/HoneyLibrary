@@ -11,12 +11,13 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="c">#D0D0D0</color>
 
-    <color name="colorPrimary">#C0C9F0</color>
-    <color name="colorPrimaryDark">#C0C9F0</color>
-    <color name="colorAccent">#C0C9F0</color>
+    <color name="colorPrimary">#D9FFFF</color>
+    <color name="colorPrimaryDark">#D9FFFF</color>
+    <color name="colorAccent">#D9FFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorBackground">#319bd2</color>
     <color name="colorBackground1">#319bd2</color>
     <color name="colorSplash">#0F0D4E</color>
     <color name="purple">#7265E3</color>
+    <color name="title_color">#1C4942</color>
 </resources>
