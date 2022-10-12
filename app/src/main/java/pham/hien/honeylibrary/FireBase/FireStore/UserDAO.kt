@@ -16,7 +16,7 @@ class UserDAO {
 
     fun addUser(context: Context, user: UserModel) {
         db.collection(Constant.USER.TB_NAME)
-            .document(user.sdt)
+            .document((getListUser().last().userId +1).toString())
             .set(user)
             .addOnSuccessListener {
                 SuccessDialog(context, context.getString(R.string.dang_ky_thanh_cong), "")
