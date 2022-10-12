@@ -1,22 +1,22 @@
 package pham.hien.honeylibrary.Model
 
 class UserModel {
-    private var firebaseId: String? = null
-    private var type = 0
-    private var avatar: String? = null
-    private var name: String? = null
-    private var email: String? = null
-    private var sdt: String? = null
-    private var diaChi: String? = null
+    var firebaseId: String = ""
+    var type = 0
+    var avatar: String? = null
+    var name: String = ""
+    var email: String = ""
+    var sdt: String = ""
+    var diaChi: String? = null
 
     constructor()
     constructor(
-        firebaseId: String?,
+        firebaseId: String,
         type: Int,
-        name: String?,
-        email: String?,
+        name: String,
+        email: String,
         avatar: String?,
-        sdt: String?,
+        sdt: String,
         diaChi: String?
     ) {
         this.firebaseId = firebaseId

@@ -14,7 +14,7 @@ class TheLoaiDAO {
     fun addNewTheLoai(theLoai: TheLoai) {
 
         db.collection(Constant.THELOAI.TB_NAME)
-            .document(getListTheLoai().last().maTheLoai.toString() + 1)
+            .document((getListTheLoai().last().maTheLoai + 1).toString())
             .set(theLoai)
             .addOnSuccessListener {
             }

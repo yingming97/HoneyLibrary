@@ -5,4 +5,17 @@
     <string name="them_phieu_muon_thanh_cong">Thêm phiếu mượn thành công</string>
     <string name="them_phieu_muon_khong_thanh_cong">Thêm phiếu mượn không thành công</string>
     <string name="da_xay_ra_loi_trong_qua_trinh_them_phieu_muon">Đã xảy ra lỗi trong quá trình thêm phiếu mượn</string>
+
+    <string name="them_the_loai_thanh_cong">Thêm thể loại thành công</string>
+    <string name="them_the_loai_khong_thanh_cong">Thêm thể loại không thành công</string>
+    <string name="da_xay_ra_loi_trong_qua_trinh_them_the_loai">Đã xảy ra lỗi trong quá trình thêm thể loại</string>
+
+    <string name="them_sach_thanh_cong">Thêm sách thành công</string>
+    <string name="them_sach_khong_thanh_cong">Thêm sách không thành công</string>
+    <string name="da_xay_ra_loi_trong_qua_trinh_them_sach">Đã xảy ra lỗi trong quá trình thêm sách</string>
+
+    <string name="dang_ky_thanh_cong">Đăng ký thành công</string>
+    <string name="dang_ky_khong_thanh_cong">Đăng ký không thành công</string>
+    <string name="da_xay_ra_loi_trong_qua_trinh_dang_ky">Đã xảy ra lỗi trong quá trình đăng ký</string>
+
 </resources>

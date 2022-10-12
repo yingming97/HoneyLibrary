@@ -4,54 +4,54 @@ import android.content.Context
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import pham.hien.honeylibrary.Model.PhieuMuon
+import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 
-class PhieuMuonDAO {
+class UserDAO {
 
     private val db = Firebase.firestore
     private val TAG = "YingMing"
 
-    fun addPhieuMuon(context: Context, phieuMuon: PhieuMuon) {
-        db.collection(Constant.PHIEUMUON.TB_NAME)
-            .document((getListPhieuMuon().last().maPhieuMuon + 1).toString())
-            .set(phieuMuon)
+    fun addUser(context: Context, user: UserModel) {
+        db.collection(Constant.USER.TB_NAME)
+            .document(user.sdt)
+            .set(user)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.them_phieu_muon_thanh_cong), "")
+                SuccessDialog(context, context.getString(R.string.dang_ky_thanh_cong), "")
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
-                    context.getString(R.string.them_phieu_muon_khong_thanh_cong),
-                    context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_them_phieu_muon)
+                    context.getString(R.string.dang_ky_thanh_cong),
+                    context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_dang_ky)
                 )
             }
     }
 
-    fun checkPhieuMuonTrung(idPhieuMuon: Int, listPhieuMuon: ArrayList<PhieuMuon>): Boolean {
-        for (phieuMuon in listPhieuMuon) {
-            if (idPhieuMuon == phieuMuon.maPhieuMuon) {
+    fun checkUserTrung(sdt: String, listUser: ArrayList<UserModel>): Boolean {
+        for (user in listUser) {
+            if (sdt == user.sdt) {
                 return true
             }
         }
         return false
     }
 
-    fun getListPhieuMuon(): ArrayList<PhieuMuon> {
-        val listPhieuMuon = ArrayList<PhieuMuon>()
+    fun getListUser(): ArrayList<UserModel> {
+        val listUser = ArrayList<UserModel>()
         db.collection(Constant.PHIEUMUON.TB_NAME)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    listPhieuMuon.add(document.toObject(PhieuMuon::class.java))
+                    listUser.add(document.toObject(UserModel::class.java))
                     Log.d(TAG, "${document.id} => ${document.data}")
                 }
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
-        return listPhieuMuon
+        return listUser
     }
 }

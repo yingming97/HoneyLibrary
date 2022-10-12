@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import pham.hien.honeylibrary.Model.UserModel
 import kotlin.collections.ArrayList
 
-class SharedPreferencesUtils {
+class SharedPrefUtils {
 
     private val PREFERENCES_NAME = "HoneyLibrary"
 

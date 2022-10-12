@@ -7,15 +7,19 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 
-class UploadImage {
+class Images {
 
     private val storage = Firebase.storage
 
-    fun uploadImage(imv: ImageView, tableName: String, id: Int): String {
+    fun uploadImage(
+        imv: ImageView,
+        tableName: String,
+        id: Int,
+        callback: ((String) -> Unit)? = null
+    ) {
 
         val storageRef = storage.reference
         val mountainsRef = storageRef.child("$tableName/$id")
-        var downloadUri = ""
         imv.isDrawingCacheEnabled = true
         imv.buildDrawingCache()
         val bitmap = (imv.drawable as BitmapDrawable).bitmap
@@ -39,11 +43,9 @@ class UploadImage {
             mountainsRef.downloadUrl
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                downloadUri = task.result.toString()
-            } else {
-
+                val downloadUri = task.result.toString()
+                callback?.invoke(downloadUri)
             }
         }
-        return downloadUri
     }
 }

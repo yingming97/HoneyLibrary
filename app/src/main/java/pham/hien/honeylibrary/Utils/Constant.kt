@@ -33,4 +33,8 @@ class Constant {
         var hanTra: Long = 0
         var listSachThue: String = ""
     }
+
+    object USER {
+        const val TB_NAME = "TableUser"
+    }
 }
