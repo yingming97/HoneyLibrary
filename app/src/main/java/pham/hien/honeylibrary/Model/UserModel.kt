@@ -10,6 +10,7 @@ class UserModel {
     var sdt: String = ""
     var diaChi: String? = null
 
+    constructor()
     constructor(
         userId: Int,
         firebaseId: String,
