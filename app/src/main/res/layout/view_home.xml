@@ -39,7 +39,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:includeFontPadding="false"
                     android:text="TH3 11 OCT"
-                    android:textColor="#7265E3" />
+                    android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/tv_user_name"

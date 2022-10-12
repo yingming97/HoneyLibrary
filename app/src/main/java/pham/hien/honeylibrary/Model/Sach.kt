@@ -6,6 +6,7 @@ class Sach {
     var maLoai: Int = -1
     var soLuong = 0
     var giaThue = 0
+    var giaSach = 0
     var gioiThieu: String? = ""
     var anhBia: String? = ""
 
@@ -15,6 +16,7 @@ class Sach {
         maLoai: Int,
         soLuong: Int,
         giaThue: Int,
+        giaSach: Int,
         gioiThieu: String?,
         anhBia: String?
     ) {
@@ -23,6 +25,7 @@ class Sach {
         this.maLoai = maLoai
         this.soLuong = soLuong
         this.giaThue = giaThue
+        this.giaSach = giaSach
         this.gioiThieu = gioiThieu
         this.anhBia = anhBia
     }
