@@ -23,7 +23,7 @@ class SuccessDialog(context: Context, private val title: String, private val con
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.dialog_fail)
+        setContentView(R.layout.dialog_success)
         window!!.decorView.setBackgroundResource(R.color.transparent)
         window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
         val wlp = window!!.attributes
