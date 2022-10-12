@@ -49,6 +49,7 @@
                     android:layout_marginStart="@dimen/_30sdp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="Hi, Bùi Xuân Tiến"
+                    android:textColor="@color/text_color"
                     android:textSize="@dimen/_16sdp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -70,9 +71,10 @@
                 android:layout_below="@+id/layout_header"
                 android:layout_marginVertical="@dimen/_28sdp"
                 android:layout_marginStart="@dimen/_14sdp"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/roboto"
                 android:text="Top sách được mượn nhiều nhất"
-                android:textSize="@dimen/_18sdp" />
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_16sdp" />
 
             <ListView
                 android:id="@+id/lv_sach_muon_nhieu"

@@ -17,6 +17,7 @@ class OptionView : BaseView {
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
 
+    private lateinit var tool_bar: RelativeLayout
     private lateinit var tv_title: TextView
 
 
@@ -39,8 +40,10 @@ class OptionView : BaseView {
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_option, this)
 
+        tool_bar = rootView.findViewById(R.id.tool_bar)
         tv_title = rootView.findViewById(R.id.tv_title)
 
+        ScreenUtils().setMarginStatusBar(mContext, tool_bar)
     }
 
 

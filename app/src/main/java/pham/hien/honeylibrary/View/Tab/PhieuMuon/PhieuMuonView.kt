@@ -7,10 +7,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
@@ -21,8 +23,11 @@ class PhieuMuonView : BaseView {
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
 
-    private lateinit var tv_title: TextView
+    private lateinit var tool_bar: RelativeLayout
     private lateinit var imv_add_new_phieu_muon: ImageView
+    private lateinit var rcv_list_qua_han: RecyclerView
+    private lateinit var rcv_list_dang_muon: RecyclerView
+    private lateinit var rcv_list_da_tra: RecyclerView
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -43,8 +48,13 @@ class PhieuMuonView : BaseView {
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_phieu_muon, this)
 
-        tv_title = rootView.findViewById(R.id.tv_title)
+        tool_bar = rootView.findViewById(R.id.tool_bar)
         imv_add_new_phieu_muon = rootView.findViewById(R.id.imv_add_new_phieu_muon)
+        rcv_list_qua_han = rootView.findViewById(R.id.rcv_list_qua_han)
+        rcv_list_dang_muon = rootView.findViewById(R.id.rcv_list_dang_muon)
+        rcv_list_da_tra = rootView.findViewById(R.id.rcv_list_da_tra)
+
+        ScreenUtils().setMarginStatusBar(mContext, tool_bar)
 
         imv_add_new_phieu_muon.setOnClickListener(this)
     }

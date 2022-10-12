@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ class SachView : BaseView {
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
 
+    private lateinit var tool_bar: RelativeLayout
     private lateinit var tv_title: TextView
 
     constructor(context: Context?) : super(context) {
@@ -39,8 +41,10 @@ class SachView : BaseView {
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView = inflater.inflate(R.layout.view_sach, this)
 
+        tool_bar = rootView.findViewById(R.id.tool_bar)
         tv_title = rootView.findViewById(R.id.tv_title)
 
+        ScreenUtils().setMarginStatusBar(mContext, tool_bar)
     }
 
     override fun initDataDefault(activity: Activity?) {

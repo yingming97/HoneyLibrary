@@ -1,7 +1,7 @@
 package pham.hien.honeylibrary.Model
 
 class PhieuMuon {
-    var maPhieuMuon: String = ""
+    var maPhieuMuon: Int = 0
     var maDocGia: String = ""
     var maNhanVien: String = ""
     var soLuong = 0
@@ -11,7 +11,7 @@ class PhieuMuon {
     var listSachThue: String = ""
 
     constructor(
-        maPhieuMuon: String,
+        maPhieuMuon: Int,
         maDocGia: String,
         maNhanVien: String,
         soLuong: Int,

@@ -2,4 +2,7 @@
     <string name="app_name">HoneyLibrary</string>
     <string name="more">Xem thêm</string>
     <string name="less">Thu gọn</string>
+    <string name="them_phieu_muon_thanh_cong">Thêm phiếu mượn thành công</string>
+    <string name="them_phieu_muon_khong_thanh_cong">Thêm phiếu mượn không thành công</string>
+    <string name="da_xay_ra_loi_trong_qua_trinh_them_phieu_muon">Đã xảy ra lỗi trong quá trình thêm phiếu mượn</string>
 </resources>

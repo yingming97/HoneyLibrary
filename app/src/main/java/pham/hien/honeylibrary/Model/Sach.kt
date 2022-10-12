@@ -1,7 +1,7 @@
 package pham.hien.honeylibrary.Model
 
 class Sach {
-    var maSach: String = ""
+    var maSach: Int = 0
     var tenSach: String = ""
     var maLoai: Int = -1
     var soLuong = 0
@@ -10,7 +10,7 @@ class Sach {
     var anhBia: String? = ""
 
     constructor(
-        maSach: String,
+        maSach: Int,
         tenSach: String,
         maLoai: Int,
         soLuong: Int,

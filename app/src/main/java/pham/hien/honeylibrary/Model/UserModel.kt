@@ -6,7 +6,7 @@ class UserModel {
     private var avatar: String? = null
     private var name: String? = null
     private var email: String? = null
-    private var SDT: String? = null
+    private var sdt: String? = null
     private var diaChi: String? = null
 
     constructor()
@@ -24,7 +24,7 @@ class UserModel {
         this.name = name
         this.email = email
         this.avatar = avatar
-        this.SDT = sdt
+        this.sdt = sdt
         this.diaChi = diaChi
     }
 }

@@ -1,4 +1,4 @@
-package pham.hien.honeylibrary.FireStoreDataBase
+package pham.hien.honeylibrary.FireBase.FireStore
 
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore

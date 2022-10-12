@@ -23,6 +23,14 @@ class Constant {
     }
 
     object PHIEUMUON {
-
+        const val TB_NAME = "TablePhieuMuon"
+        var maPhieuMuon: String = ""
+        var maDocGia: String = ""
+        var maNhanVien: String = ""
+        var soLuong = 0
+        var tongTien = 0
+        var ngayThue: Long = 0
+        var hanTra: Long = 0
+        var listSachThue: String = ""
     }
 }
