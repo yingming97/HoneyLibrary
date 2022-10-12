@@ -8,6 +8,7 @@ class PhieuMuon {
     var tongTien = 0
     var ngayThue: Long = 0
     var hanTra: Long = 0
+    var trangThai = 0
     var listSachThue: String = ""
 
     constructor(
@@ -18,6 +19,7 @@ class PhieuMuon {
         tongTien: Int,
         ngayThue: Long,
         hanTra: Long,
+        trangThai: Int,
         listSachThue: String
     ) {
         this.maPhieuMuon = maPhieuMuon
@@ -27,6 +29,7 @@ class PhieuMuon {
         this.tongTien = tongTien
         this.ngayThue = ngayThue
         this.hanTra = hanTra
+        this.trangThai = trangThai
         this.listSachThue = listSachThue
     }
 }
