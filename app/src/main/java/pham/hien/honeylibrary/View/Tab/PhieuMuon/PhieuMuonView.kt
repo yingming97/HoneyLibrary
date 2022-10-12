@@ -3,6 +3,7 @@ package pham.hien.honeylibrary.View.Tab.PhieuMuon
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.AddPhieuMuonActivity
 import pham.yingming.honeylibrary.Dialog.XacNhanDialog
 
 class PhieuMuonView : BaseView {
@@ -57,6 +59,7 @@ class PhieuMuonView : BaseView {
         ScreenUtils().setMarginStatusBar(mContext, tool_bar)
 
         imv_add_new_phieu_muon.setOnClickListener(this)
+
     }
 
 
@@ -84,10 +87,11 @@ class PhieuMuonView : BaseView {
     override fun onClick(view: View) {
         when (view) {
             imv_add_new_phieu_muon -> {
-                XacNhanDialog(mContext, "Xán nhận xóa", "Dữ liệu đã xóa không thể khôi phục") {
-                    // Thực thi lệnh khi bấm nút xóa
-                    Toast.makeText(mContext, "Đã xóa", Toast.LENGTH_LONG).show()
-                }.show()
+//                XacNhanDialog(mContext, "Xán nhận xóa", "Dữ liệu đã xóa không thể khôi phục") {
+//                    // Thực thi lệnh khi bấm nút xóa
+//                    Toast.makeText(mContext, "Đã xóa", Toast.LENGTH_LONG).show()
+//                }.show()
+                mContext.startActivity(Intent(mContext, AddPhieuMuonActivity::class.java))
             }
         }
     }

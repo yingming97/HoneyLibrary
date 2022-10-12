@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/layout_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_alignParentTop="true"
+        android:background="@color/tool_bar"
+        android:elevation="@dimen/_2sdp">
+
+        <RelativeLayout
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:rotation="180"
+                android:src="@drawable/ic_arrow_right" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="Thêm phiếu mượn"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_16sdp" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_alignParentBottom="true"
+                android:background="#ccc" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_tool_bar"
+        android:background="@drawable/bg_tab_view">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/ed_sdt_email"
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="@dimen/_48sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/bg_ed_white_rd_8"
+                android:elevation="@dimen/_4sdp"
+                android:hint="Nhập SĐT/Email"
+                android:paddingLeft="@dimen/_16sdp"
+                android:singleLine="true"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/_14sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_doc_gia"
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_sdt_email"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:elevation="@dimen/_4sdp"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/layout_info_phieu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_sdt_email">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imv_avatar"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:src="@drawable/ic_user_photo_default"
+                    app:civ_border_color="@color/tool_bar"
+                    app:civ_border_width="@dimen/_2sdp" />
+
+                <LinearLayout
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:orientation="vertical"
+                    android:paddingEnd="@dimen/_8sdp">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="Phạm Văn Hiển"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_tong_sach"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_name"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Tông số lượng : 5"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_thanh_tien"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_tong_sach"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Thành tiền : 25,000 đ"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_ngay_muon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_thanh_tien"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Ngày mượn : 13/10/2022"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_han_tra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_ngay_muon"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Hạn trả : 20/10/2022"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_sach_thue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_info_phieu"
+                android:layout_marginHorizontal="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_14sdp" />
+
+            <ImageView
+                android:id="@+id/imv_add_sach_thue"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_below="@+id/list_sach_thue"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/_14sdp"
+                android:src="@drawable/ic_add_pink" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

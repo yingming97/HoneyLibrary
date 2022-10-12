@@ -38,7 +38,12 @@
         <activity
             android:name=".View.Main.MainActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".View.Tab.PhieuMuon.Activity.AddPhieuMuonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Tab.Option.Activity.NhanVienActivity"
+            android:exported="false" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
