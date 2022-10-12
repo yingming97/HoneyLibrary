@@ -85,6 +85,7 @@ class PhieuMuonView : BaseView {
         when (view) {
             imv_add_new_phieu_muon -> {
                 XacNhanDialog(mContext, "Xán nhận xóa", "Dữ liệu đã xóa không thể khôi phục") {
+                    // Thực thi lệnh khi bấm nút xóa
                     Toast.makeText(mContext, "Đã xóa", Toast.LENGTH_LONG).show()
                 }.show()
             }
