@@ -1,6 +1,7 @@
 package pham.hien.honeylibrary.View.Main
 
 import android.view.View
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import pham.hien.honeylibrary.Animation.closeViewToLeft
 import pham.hien.honeylibrary.Animation.closeViewToRight
@@ -8,14 +9,15 @@ import pham.hien.honeylibrary.Animation.openViewFromLeft
 import pham.hien.honeylibrary.Animation.openViewFromRight
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
+import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Menu.MenuBottomView
-import pham.hien.honeylibrary.View.Tab.TheLoai.TheLoaiView
 import pham.hien.honeylibrary.View.Tab.Home.HomeView
-import pham.hien.honeylibrary.View.Tab.Sach.SachView
 import pham.hien.honeylibrary.View.Tab.Option.OptionView
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.PhieuMuonView
+import pham.hien.honeylibrary.View.Tab.Sach.SachView
+import pham.hien.honeylibrary.View.Tab.TheLoai.TheLoaiView
 import pham.hien.honeylibrary.ViewModel.Main.*
 
 
@@ -44,6 +46,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
     }
 
     override fun initView() {
+
         this.layoutSachView = findViewById(R.id.layout_tab_sach)
         this.layoutPhieuMuonView = findViewById(R.id.layout_tab_phieu_muon)
         this.layoutHomeView = findViewById(R.id.layout_tab_home)
@@ -206,4 +209,9 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val user = SharedPrefUtils.getUserData(this)
+        layoutOptionView.updateUser(user)
+    }
 }

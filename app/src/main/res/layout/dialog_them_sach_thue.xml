@@ -33,8 +33,8 @@
             android:hint="Nhập mã sách/tên sách"
             android:paddingLeft="@dimen/_16sdp"
             android:singleLine="true"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/gray"
+            android:textColor="@color/text_color_1c4942"
+            android:textColorHint="@color/gray_ccc"
             android:textSize="@dimen/_14sdp" />
 
         <RelativeLayout
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
                 android:text="1 - Harry Potter và hòn đá phù thủy"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
@@ -64,7 +64,7 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/roboto"
                 android:text="Số lượng"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_12sdp" />
 
             <ImageView

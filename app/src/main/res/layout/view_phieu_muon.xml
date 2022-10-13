@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentTop="true"
-        android:background="@color/tool_bar"
+        android:background="@color/blue_b0efef"
         android:elevation="@dimen/_2sdp">
 
         <RelativeLayout
@@ -27,7 +27,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center_vertical"
                 android:text="Phiếu mượn"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp" />
 
             <ImageView
@@ -65,7 +65,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/roboto_medium"
             android:text="Danh sách phiếu mượn"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_1c4942"
             android:textSize="@dimen/_16sdp" />
 
         <ImageView
@@ -95,7 +95,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="Hiện tại không có phiếu mượn"
-                android:textColor="@color/text_no_data"
+                android:textColor="@color/orange_f4865a"
                 android:textSize="@dimen/_12sdp"
                 android:visibility="gone" />
 
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Phiếu quá hạn"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/text_color_1c4942"
                     android:textSize="@dimen/_14sdp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -131,7 +131,7 @@
                     android:layout_marginTop="@dimen/_16sdp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Phiếu đang mượn"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/text_color_1c4942"
                     android:textSize="@dimen/_14sdp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -149,7 +149,7 @@
                     android:layout_marginTop="@dimen/_16sdp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Phiếu đang mượn"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/text_color_1c4942"
                     android:textSize="@dimen/_14sdp" />
 
                 <androidx.recyclerview.widget.RecyclerView

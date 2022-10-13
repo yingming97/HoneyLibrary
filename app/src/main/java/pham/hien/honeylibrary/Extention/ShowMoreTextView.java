@@ -180,6 +180,8 @@ public class ShowMoreTextView extends AppCompatTextView {
         this.trimLines = trimLines;
     }
 
+
+
     private class ReadMoreClickableSpan extends ClickableSpan {
         @Override
         public void onClick(View widget) {
@@ -224,4 +226,6 @@ public class ShowMoreTextView extends AppCompatTextView {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -17,5 +17,14 @@
     <string name="dang_ky_thanh_cong">Đăng ký thành công</string>
     <string name="dang_ky_khong_thanh_cong">Đăng ký không thành công</string>
     <string name="da_xay_ra_loi_trong_qua_trinh_dang_ky">Đã xảy ra lỗi trong quá trình đăng ký</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 </resources>

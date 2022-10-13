@@ -1,7 +1,5 @@
 package pham.hien.honeylibrary.Model
 
-import com.google.gson.annotations.SerializedName
-
 class TheLoai {
     var maTheLoai: Int = 0
     var tenTheLoai: String = ""

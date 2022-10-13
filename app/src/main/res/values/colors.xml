@@ -15,12 +15,11 @@
     <color name="colorPrimaryDark">#D9FFFF</color>
     <color name="colorAccent">#D9FFFF</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorBackground">#319bd2</color>
-    <color name="colorBackground1">#319bd2</color>
-    <color name="colorSplash">#0F0D4E</color>
-    <color name="purple">#7265E3</color>
-    <color name="text_color">#1C4942</color>
-    <color name="text_no_data">#F4865A</color>
-    <color name="tool_bar">#B0EFEF</color>
-    <color name="gray">#ccc</color>
+    <color name="blue_319bd2">#319bd2</color>
+    <color name="blue_0f0d4e">#0F0D4E</color>
+    <color name="purple_7265e3">#7265E3</color>
+    <color name="text_color_1c4942">#1C4942</color>
+    <color name="orange_f4865a">#F4865A</color>
+    <color name="blue_b0efef">#B0EFEF</color>
+    <color name="gray_ccc">#ccc</color>
 </resources>

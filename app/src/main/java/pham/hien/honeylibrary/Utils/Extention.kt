@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -79,6 +80,15 @@ fun Calendar.startOfDay(): Calendar {
     this[Calendar.HOUR_OF_DAY] = 0
 
     return this
+}
+
+fun Date.date2String(pattern: String = "dd/MM/yyyy") : String{
+    return try {
+        val format = SimpleDateFormat(pattern,Locale.ENGLISH)
+        format.format(this.time)
+    } catch (e: Exception) {
+        ""
+    }
 }
 
 fun Calendar.endOfDay(): Calendar {

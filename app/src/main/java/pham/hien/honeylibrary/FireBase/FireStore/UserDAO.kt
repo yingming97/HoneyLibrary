@@ -41,7 +41,7 @@ class UserDAO {
 
     fun getListUser(): ArrayList<UserModel> {
         val listUser = ArrayList<UserModel>()
-        db.collection(Constant.PHIEUMUON.TB_NAME)
+        db.collection(Constant.USER.TB_NAME)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentTop="true"
-        android:background="@color/tool_bar"
+        android:background="@color/blue_b0efef"
         android:elevation="@dimen/_2sdp">
 
         <RelativeLayout
@@ -33,7 +33,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="Thêm phiếu mượn"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp" />
 
             <View
@@ -70,8 +70,8 @@
                 android:hint="Nhập SĐT/Email"
                 android:paddingLeft="@dimen/_16sdp"
                 android:singleLine="true"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/gray"
+                android:textColor="@color/text_color_1c4942"
+                android:textColorHint="@color/gray_ccc"
                 android:textSize="@dimen/_14sdp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -97,7 +97,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_30sdp"
                     android:src="@drawable/ic_user_photo_default"
-                    app:civ_border_color="@color/tool_bar"
+                    app:civ_border_color="@color/blue_b0efef"
                     app:civ_border_width="@dimen/_2sdp" />
 
                 <LinearLayout
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="Phạm Văn Hiển"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -124,7 +124,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/roboto"
                         android:text="Tông số lượng : 5"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -135,7 +135,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/roboto"
                         android:text="Thành tiền : 25,000 đ"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -146,7 +146,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/roboto"
                         android:text="Ngày mượn : 13/10/2022"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -157,7 +157,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/roboto"
                         android:text="Hạn trả : 20/10/2022"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_12sdp" />
                 </LinearLayout>
             </RelativeLayout>

@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import pham.hien.honeylibrary.Model.UserModel
 import kotlin.collections.ArrayList
 
-class SharedPrefUtils {
+object SharedPrefUtils {
 
     private val PREFERENCES_NAME = "HoneyLibrary"
 
@@ -146,4 +146,30 @@ class SharedPrefUtils {
      *Thêm các Shared theo mẫu trên
      */
 
+    fun setUserData(context: Context, userModel: UserModel) {
+        val pref = context.getSharedPreferences(
+            PREFERENCES_NAME,
+            Context.MODE_PRIVATE
+        )
+        val editor = pref.edit()
+        val gson = Gson()
+        val model = gson.toJson(userModel)
+        editor.putString("user_login", model)
+        editor.apply()
+    }
+
+    fun getUserData(context: Context): UserModel? {
+        val preferences = context.getSharedPreferences(
+            PREFERENCES_NAME,
+            Context.MODE_PRIVATE
+        )
+        val result = preferences.getString("user_login", null)
+        return if (result != null) {
+            val gson = Gson()
+            val type = object : TypeToken<UserModel?>() {}.type
+            gson.fromJson(result, type)
+        } else {
+            UserModel()
+        }
+    }
 }

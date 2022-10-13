@@ -33,34 +33,28 @@
                     android:id="@+id/tv_time_today"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/imv_sun"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_toEndOf="@+id/imv_sun"
                     android:fontFamily="@font/roboto_medium"
                     android:includeFontPadding="false"
                     android:text="TH3 11 OCT"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/text_color_1c4942" />
 
                 <TextView
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_below="@+id/tv_time_today"
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="@dimen/_30sdp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Hi, Bùi Xuân Tiến"
-                    android:textColor="@color/text_color"
+                    android:text="Hi, Admin"
+                    android:textColor="@color/text_color_1c4942"
                     android:textSize="@dimen/_16sdp" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imv_avatar"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/_30sdp"
-                    android:src="@drawable/ic_avatar_default"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="@dimen/_2sdp" />
             </RelativeLayout>
 
 
@@ -72,16 +66,19 @@
                 android:layout_marginVertical="@dimen/_28sdp"
                 android:layout_marginStart="@dimen/_14sdp"
                 android:fontFamily="@font/roboto"
+                android:textStyle="bold"
                 android:text="Top sách được mượn nhiều nhất"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp" />
 
-            <ListView
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/lv_sach_muon_nhieu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_top_sach"
-                android:layout_marginHorizontal="@dimen/_12sdp" />
+                android:layout_height="@dimen/_120sdp"
+                android:layout_below="@+id/tv_top_sach" />
+
+
         </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

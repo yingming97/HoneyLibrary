@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentTop="true"
-        android:background="@color/tool_bar"
+        android:background="@color/blue_b0efef"
         android:elevation="@dimen/_2sdp">
 
         <RelativeLayout
@@ -27,7 +27,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center_vertical"
                 android:text="Sách"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp" />
 
             <ImageView
@@ -65,7 +65,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/roboto_bold"
             android:text="Danh sách sách"
-            android:textColor="@color/text_color"
+            android:textColor="@color/text_color_1c4942"
             android:textSize="@dimen/_14sdp" />
 
         <ImageView

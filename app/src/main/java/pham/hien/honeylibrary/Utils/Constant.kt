@@ -37,4 +37,10 @@ class Constant {
     object USER {
         const val TB_NAME = "TableUser"
     }
+
+    object QUYEN{
+        const val DOC_GIA = 0
+        const val THU_THU = 1
+        const val ADMIN = 2
+    }
 }
