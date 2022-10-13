@@ -7,6 +7,7 @@ class MessengerModel {
     var time: Long = 0
     var avatar: String? = ""
 
+    constructor()
     constructor(noiDung: String?, uid: String, time: Long, avatar: String?) {
         this.noiDung = noiDung
         this.uid = uid

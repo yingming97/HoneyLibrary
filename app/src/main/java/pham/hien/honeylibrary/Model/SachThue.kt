@@ -7,6 +7,7 @@ class SachThue {
     var soLuong = 0
     var giaThue = 0
 
+    constructor()
     constructor(maSach: Int, tenSach: String, biaSach: String, soLuong: Int, giaThue: Int) {
         this.maSach = maSach
         this.tenSach = tenSach

@@ -10,6 +10,7 @@ class Sach {
     var gioiThieu: String? = ""
     var anhBia: String? = ""
 
+    constructor()
     constructor(
         maSach: Int,
         tenSach: String,

@@ -7,6 +7,7 @@ class TheLoai {
     var tenTheLoai: String = ""
     var viTri: String? = ""
 
+    constructor()
     constructor(maTheLoai: Int, tenTheLoai: String, viTri: String) {
         this.maTheLoai = maTheLoai
         this.tenTheLoai = tenTheLoai

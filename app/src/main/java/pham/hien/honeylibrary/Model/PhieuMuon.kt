@@ -11,6 +11,7 @@ class PhieuMuon {
     var trangThai = 0
     var listSachThue: String = ""
 
+    constructor()
     constructor(
         maPhieuMuon: Int,
         maDocGia: String,
