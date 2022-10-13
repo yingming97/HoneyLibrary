@@ -14,4 +14,8 @@ class MessengerModel {
         this.time = time
         this.avatar = avatar
     }
+
+    override fun toString(): String {
+        return "MessengerModel(noiDung=$noiDung, uid='$uid', time=$time, avatar=$avatar)"
+    }
 }

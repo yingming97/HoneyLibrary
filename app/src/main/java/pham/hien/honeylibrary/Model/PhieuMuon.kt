@@ -33,4 +33,9 @@ class PhieuMuon {
         this.trangThai = trangThai
         this.listSachThue = listSachThue
     }
+
+    override fun toString(): String {
+        return "PhieuMuon(maPhieuMuon=$maPhieuMuon, maDocGia='$maDocGia', maNhanVien='$maNhanVien', soLuong=$soLuong, tongTien=$tongTien, ngayThue=$ngayThue, hanTra=$hanTra, trangThai=$trangThai, listSachThue='$listSachThue')"
+    }
+
 }

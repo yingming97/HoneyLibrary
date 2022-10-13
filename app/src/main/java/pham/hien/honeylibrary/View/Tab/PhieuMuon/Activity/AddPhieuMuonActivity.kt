@@ -8,11 +8,14 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.FireBase.FireStore.SachDAO
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
+import pham.hien.honeylibrary.FireBase.Storage.Images
 import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.yingming.honeylibrary.Dialog.ThemSachMuonDialog
@@ -92,6 +95,9 @@ class AddPhieuMuonActivity : BaseActivity() {
     override fun initDataDefault() {
         mListSachLiveData.postValue(SachDAO().getListSach())
         mListUserLiveData.postValue(UserDAO().getListUser())
+
+        Log.d(TAG, "UserModel: ${UserModel(1,"abc",2,"name","email","123455","HD")}")
+        Log.d(TAG, "Sach: ${Sach(1,"ténach",1,23,35,56,"giơiThiwk")}")
     }
 
     override fun onClick(view: View?) {

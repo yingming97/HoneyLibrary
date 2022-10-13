@@ -13,4 +13,9 @@ class TheLoai {
         this.tenTheLoai = tenTheLoai
         this.viTri = viTri
     }
+
+    override fun toString(): String {
+        return "TheLoai(maTheLoai=$maTheLoai, tenTheLoai='$tenTheLoai', viTri=$viTri)"
+    }
+
 }
