@@ -18,11 +18,14 @@ import pham.hien.honeylibrary.R
 
 class ThemSachMuonDialog(
     context: Context,
+    private val tongSach: Int,
     private val listSach: ArrayList<Sach>,
-    private val callback: (() -> Unit)? = null
+    private val callback: ((SachThue) -> Unit)? = null
 ) :
     Dialog(context),
     View.OnClickListener {
+
+    private val mContext = context
 
     private lateinit var imvClose: ImageView
     private lateinit var tv_them_sach_thue: TextView
@@ -67,6 +70,7 @@ class ThemSachMuonDialog(
         tv_so_luong = findViewById(R.id.tv_so_luong)
 
         imvClose.setOnClickListener(this)
+        tv_them_sach_thue.setOnClickListener(this)
         imv_minus.setOnClickListener(this)
         imv_plus.setOnClickListener(this)
 
@@ -80,19 +84,31 @@ class ThemSachMuonDialog(
         when (v) {
             imvClose -> dismiss()
             tv_them_sach_thue -> {
-                callback?.invoke()
+                callback?.invoke(SachThue(1,"abc",2,30000))
                 dismiss()
             }
             imv_minus -> {
                 if (mSoLuong > 1) {
                     mSoLuong -= 1
                     tv_so_luong.text = mSoLuong.toString()
+                } else if (mSoLuong == 1) {
+                    FailDialog(
+                        mContext,
+                        mContext.getString(R.string.loi),
+                        mContext.getString(R.string.da_dat_toi_so_luong_nho_nhat)
+                    ).show()
                 }
             }
             imv_plus -> {
-                if (mSoLuong < 5) {
+                if (mSoLuong < tongSach) {
                     mSoLuong += 1
                     tv_so_luong.text = mSoLuong.toString()
+                } else if (mSoLuong == tongSach) {
+                    FailDialog(
+                        mContext,
+                        mContext.getString(R.string.loi),
+                        mContext.getString(R.string.da_dat_toi_so_luong_lon_nhat_cua_1_phieu_muon_)
+                    ).show()
                 }
             }
         }

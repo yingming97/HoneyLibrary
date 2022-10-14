@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HoneyLibrary</string>
+    <string name="app_name">Honey Library</string>
     <string name="more">Xem thêm</string>
     <string name="less">Thu gọn</string>
     <string name="them_phieu_muon_thanh_cong">Thêm phiếu mượn thành công</string>
@@ -26,5 +26,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
+    <string name="loi">Lỗi</string>
+    <string name="da_dat_toi_so_luong_nho_nhat">Đã đạt tới số lượng nhỏ nhất</string>
+    <string name="da_dat_toi_so_luong_lon_nhat_cua_1_phieu_muon_">Đã đạt tới số lượng lớn nhất của 1 phiếu mượn </string>
 </resources>

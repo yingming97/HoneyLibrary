@@ -19,6 +19,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/imv_close"
                 android:layout_width="56dp"
                 android:layout_height="match_parent"
                 android:padding="16dp"
@@ -59,12 +60,10 @@
 
             <EditText
                 android:id="@+id/ed_sdt_email"
-                android:layout_width="@dimen/_220sdp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_48sdp"
-                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
                 android:background="@drawable/bg_ed_white_rd_8"
                 android:elevation="@dimen/_4sdp"
                 android:hint="Nhập SĐT/Email"
@@ -74,15 +73,27 @@
                 android:textColorHint="@color/gray_ccc"
                 android:textSize="@dimen/_14sdp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_doc_gia"
-                android:layout_width="@dimen/_220sdp"
-                android:layout_height="wrap_content"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/ncv_doc_gia"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_160sdp"
                 android:layout_below="@+id/ed_sdt_email"
                 android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:elevation="@dimen/_4sdp"
-                android:visibility="gone" />
+                android:elevation="@dimen/_3sdp"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_doc_gia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ed_sdt_email"
+                    android:layout_alignParentEnd="true"
+                    android:elevation="@dimen/_3sdp"
+                    android:visibility="visible" />
+            </androidx.core.widget.NestedScrollView>
+
 
             <RelativeLayout
                 android:id="@+id/layout_info_phieu"
@@ -95,16 +106,18 @@
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
                     android:elevation="@dimen/_2sdp"
                     android:src="@drawable/ic_user_photo_default"
                     app:civ_border_color="@color/blue_b0efef"
                     app:civ_border_width="@dimen/_2sdp" />
 
                 <LinearLayout
-                    android:layout_width="@dimen/_180sdp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_toEndOf="@+id/imv_avatar"
                     android:orientation="vertical"
                     android:paddingEnd="@dimen/_8sdp">
 
@@ -112,6 +125,7 @@
                         android:id="@+id/tv_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/roboto"
                         android:text="Phạm Văn Hiển"
                         android:textColor="@color/text_color_1c4942"
@@ -122,9 +136,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_name"
-                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Tông số lượng : 5"
+                        android:text="Tổng số lượng : 0"
                         android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_12sdp" />
 
@@ -133,9 +147,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_tong_sach"
-                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/roboto"
-                        android:text="Thành tiền : 25,000 đ"
+                        android:text="Thành tiền : 0"
                         android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_12sdp" />
 
@@ -144,7 +158,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_thanh_tien"
-                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/roboto"
                         android:text="Ngày mượn : 13/10/2022"
                         android:textColor="@color/text_color_1c4942"
@@ -155,7 +169,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_ngay_muon"
-                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/roboto"
                         android:text="Hạn trả : 20/10/2022"
                         android:textColor="@color/text_color_1c4942"
