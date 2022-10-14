@@ -30,9 +30,9 @@ class UserDAO {
             }
     }
 
-    fun checkUserTrung(sdt: String, listUser: ArrayList<UserModel>): Boolean {
+    fun checkUserTrung(email: String, listUser: ArrayList<UserModel>): Boolean {
         for (user in listUser) {
-            if (sdt == user.sdt) {
+            if (email == user.email) {
                 return true
             }
         }

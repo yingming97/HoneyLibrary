@@ -1,5 +1,7 @@
 package pham.hien.honeylibrary.Model
 
+import pham.hien.honeylibrary.Utils.Constant
+
 class Sach {
     var maSach: Int = 0
     var tenSach: String = ""
@@ -8,9 +10,10 @@ class Sach {
     var giaThue = 0
     var giaSach = 0
     var gioiThieu: String? = ""
-    var anhBia: String? = ""
+    var anhBia: String = Constant.SACH.IMAGE_BOOK_DEFAULT
 
     constructor()
+
     constructor(
         maSach: Int,
         tenSach: String,
@@ -18,8 +21,7 @@ class Sach {
         soLuong: Int,
         giaThue: Int,
         giaSach: Int,
-        gioiThieu: String?,
-        anhBia: String?
+        gioiThieu: String?
     ) {
         this.maSach = maSach
         this.tenSach = tenSach
@@ -28,6 +30,10 @@ class Sach {
         this.giaThue = giaThue
         this.giaSach = giaSach
         this.gioiThieu = gioiThieu
-        this.anhBia = anhBia
     }
+
+    override fun toString(): String {
+        return "Sach(maSach=$maSach, tenSach='$tenSach', maLoai=$maLoai, soLuong=$soLuong, giaThue=$giaThue, giaSach=$giaSach, gioiThieu=$gioiThieu, anhBia='$anhBia')"
+    }
+
 }

@@ -96,6 +96,7 @@
                     android:layout_height="@dimen/_70sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_30sdp"
+                    android:elevation="@dimen/_2sdp"
                     android:src="@drawable/ic_user_photo_default"
                     app:civ_border_color="@color/blue_b0efef"
                     app:civ_border_width="@dimen/_2sdp" />
@@ -180,4 +181,21 @@
                 android:src="@drawable/ic_add_pink" />
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tv_them_phieu"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/bg_btn_blue_rd_8"
+        android:elevation="@dimen/_2sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_30sdp"
+        android:text="Thêm"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/_16sdp" />
 </RelativeLayout>
