@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.firestore.auth.User
 import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
 import pham.hien.honeylibrary.Model.PhieuMuon
 import pham.hien.honeylibrary.Model.Sach
@@ -39,6 +38,7 @@ class AddPhieuMuonActivity : BaseActivity() {
 
     private lateinit var layoutInfoPhieu: RelativeLayout
     private lateinit var imvAvatar: ImageView
+    private lateinit var tvNoData: TextView
     private lateinit var tvName: TextView
     private lateinit var tvTongSach: TextView
     private lateinit var tvThanhTien: TextView
@@ -82,6 +82,7 @@ class AddPhieuMuonActivity : BaseActivity() {
 
         layoutInfoPhieu = findViewById(R.id.layout_info_phieu)
         imvAvatar = findViewById(R.id.imv_avatar)
+        tvNoData = findViewById(R.id.tv_no_data)
         tvName = findViewById(R.id.tv_name)
         tvTongSach = findViewById(R.id.tv_tong_sach)
         tvThanhTien = findViewById(R.id.tv_thanh_tien)
@@ -273,9 +274,15 @@ class AddPhieuMuonActivity : BaseActivity() {
                 if (s.isEmpty()) {
                     mUserAdapter.setListUser(mListUser)
                     ncvDocGia.visibility = View.VISIBLE
+                    tvNoData.visibility = View.GONE
                 } else {
                     mUserAdapter.setListUser(listFilter)
                     ncvDocGia.visibility = View.VISIBLE
+                    if (listFilter.isEmpty()) {
+                        tvNoData.visibility = View.VISIBLE
+                    } else {
+                        tvNoData.visibility = View.GONE
+                    }
                 }
             }
         })
@@ -299,6 +306,8 @@ class AddPhieuMuonActivity : BaseActivity() {
     private fun themPhieuMuon() {
         mPhieuMuon.maPhieuMuon = mDocGia.firebaseId + "_" + mNhanVien.firebaseId + "_" + mNgayMuon
         mPhieuMuon.maDocGia = mDocGia.firebaseId
+        mPhieuMuon.tenDocGia = mDocGia.name
+        mPhieuMuon.photoDocGia = mDocGia.avatar
         mPhieuMuon.maNhanVien = mNhanVien.firebaseId
         mPhieuMuon.soLuong = mTongSach
         mPhieuMuon.tongTien = mThanhTien

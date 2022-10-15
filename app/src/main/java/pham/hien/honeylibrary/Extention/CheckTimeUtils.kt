@@ -4,7 +4,7 @@ import android.text.format.DateUtils
 import java.text.DecimalFormat
 import java.util.*
 
-object TimeUtils {
+object CheckTimeUtils {
     @JvmField
     var mDecimalFormat = DecimalFormat("00")
     fun getStringTime(timeMilLiSeconds: Long): String {

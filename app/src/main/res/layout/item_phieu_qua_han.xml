@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_item_phieu"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/_8sdp"
+    android:background="@drawable/bg_item_phieu_qua_han"
+    android:elevation="@dimen/_2sdp"
+    android:paddingHorizontal="@dimen/_14sdp"
+    android:paddingVertical="@dimen/_6sdp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imv_avatar"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_centerVertical="true"
+        android:elevation="2dp"
+        android:src="@drawable/ic_user_photo_default"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/_2sdp" />
+
+    <TextView
+        android:id="@+id/tv_ma_phieu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_toEndOf="@+id/imv_avatar"
+        android:fontFamily="@font/roboto"
+        android:maxLength="20"
+        android:text="Mã: XbyCdFDEeGShzqDIN7bsY92aNz92"
+        android:textColor="@color/white"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ma_phieu"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_toEndOf="@+id/imv_avatar"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Phạm Văn Hiển"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp" />
+
+
+    <TextView
+        android:id="@+id/tv_thanh_tien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_toEndOf="@+id/imv_avatar"
+        android:fontFamily="@font/roboto"
+        android:text="Thành tiền: 25,000đ"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp" />
+
+    <TextView
+        android:id="@+id/tv_so_luong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_thanh_tien"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_toEndOf="@+id/imv_avatar"
+        android:fontFamily="@font/roboto"
+        android:text="Số lượng : 5"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp" />
+
+    <TextView
+        android:id="@+id/tv_trang_thai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_so_luong"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_toEndOf="@+id/imv_avatar"
+        android:fontFamily="@font/roboto"
+        android:text="Trạng thái : Quá hạn"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_arrow_right" />
+</RelativeLayout>

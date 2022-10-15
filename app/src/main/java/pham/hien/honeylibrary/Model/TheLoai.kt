@@ -3,17 +3,14 @@ package pham.hien.honeylibrary.Model
 class TheLoai {
     var maTheLoai: Int = 0
     var tenTheLoai: String = ""
-    var viTri: String? = ""
 
     constructor()
-    constructor(maTheLoai: Int, tenTheLoai: String, viTri: String) {
+    constructor(maTheLoai: Int, tenTheLoai: String) {
         this.maTheLoai = maTheLoai
         this.tenTheLoai = tenTheLoai
-        this.viTri = viTri
     }
 
     override fun toString(): String {
-        return "TheLoai(maTheLoai=$maTheLoai, tenTheLoai='$tenTheLoai', viTri=$viTri)"
+        return "TheLoai(maTheLoai=$maTheLoai, tenTheLoai='$tenTheLoai')"
     }
-
 }

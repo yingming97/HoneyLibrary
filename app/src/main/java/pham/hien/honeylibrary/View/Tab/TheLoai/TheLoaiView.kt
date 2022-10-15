@@ -3,15 +3,23 @@ package pham.hien.honeylibrary.View.Tab.TheLoai
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import pham.hien.honeylibrary.Dialog.ThemTheLoaiDialog
+import pham.hien.honeylibrary.FireBase.FireStore.TheLoaiDAO
+import pham.hien.honeylibrary.Model.TheLoai
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
+import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
 
 class TheLoaiView : BaseView {
@@ -21,6 +29,11 @@ class TheLoaiView : BaseView {
 
     private lateinit var tool_bar: RelativeLayout
     private lateinit var tv_title: TextView
+    private lateinit var imv_add_new_the_loai: ImageView
+    private lateinit var rcv_list_the_loai:RecyclerView
+
+    private lateinit var mListTheLoaiViewModel: TheLoaiViewModel
+    private var mListTheLoai = ArrayList<TheLoai>()
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -43,20 +56,27 @@ class TheLoaiView : BaseView {
 
         tool_bar = rootView.findViewById(R.id.tool_bar)
         tv_title = rootView.findViewById(R.id.tv_title)
+        imv_add_new_the_loai = rootView.findViewById(R.id.imv_add_new_the_loai)
+        rcv_list_the_loai = rootView.findViewById(R.id.rcv_list_the_loai)
 
         ScreenUtils().setMarginStatusBar(mContext, tool_bar)
+        imv_add_new_the_loai.setOnClickListener(this)
     }
 
     override fun initViewModel(viewModel: ViewModel?) {
-
+        mListTheLoaiViewModel = viewModel as TheLoaiViewModel
     }
 
     override fun initObserver(owner: LifecycleOwner?) {
-
+        mListTheLoaiViewModel.mListTheLoaiLiveData.observe(owner!!){
+            mListTheLoai = it
+            Log.d("TAG", "initObserver: ${it.size}")
+        }
     }
 
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
+        mListTheLoaiViewModel.getListTheLoai()
     }
 
     override fun openForTheFirstTime(activity: Activity?) {
@@ -69,7 +89,11 @@ class TheLoaiView : BaseView {
 
     override fun onClick(view: View) {
         when (view) {
+            imv_add_new_the_loai -> {
+//                ThemTheLoaiDialog(mContext).show()
+                Log.d("TAG", "onClick: " + mListTheLoai.size)
 
+            }
         }
     }
 }
