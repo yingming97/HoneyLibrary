@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="@dimen/_24sdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_12sdp"
+    tools:ignore="MissingDefaultResource">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imv_close"
+            android:layout_width="@dimen/_56sdp"
+            android:layout_height="@dimen/_56sdp"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/_16sdp"
+            android:src="@drawable/ic_close" />
+
+        <EditText
+            android:id="@+id/ed_ten_the_loai"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:background="@drawable/bg_ed_white_rd_8"
+            android:elevation="@dimen/_4sdp"
+            android:hint="Nhập tên thể loại"
+            android:paddingLeft="@dimen/_16sdp"
+            android:singleLine="true"
+            android:textColor="@color/text_color_1c4942"
+            android:textColorHint="@color/gray_ccc"
+            android:textSize="@dimen/_14sdp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_them_the_loai"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_below="@+id/ed_ten_the_loai"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:background="@drawable/bg_btn_pink_rd_8"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:text="Thêm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

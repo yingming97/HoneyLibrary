@@ -14,7 +14,6 @@ class Constant {
         const val TB_NAME = "TableTheLoai"
         const val COL_MA = "maTheLoai"
         const val COL_TEN = "tenTheLoai"
-        const val COL_VI_TRI = "viTri"
     }
 
     object SACH {
