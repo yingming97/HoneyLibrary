@@ -33,7 +33,7 @@
                 android:layout_alignParentBottom="true"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:text="Thêm phiếu mượn"
+                android:text="Chi tiết phiếu mượn"
                 android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp" />
 

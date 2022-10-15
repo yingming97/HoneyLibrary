@@ -5,7 +5,7 @@ import pham.hien.honeylibrary.Utils.Constant
 class UserModel {
     var userId: Int = -1
     var firebaseId: String = ""
-    var type = 0
+    var type = -1
     var avatar: String = Constant.USER.AVATAR_DEFAULT
     var name: String = ""
     var email: String = ""

@@ -26,12 +26,13 @@ import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSach
 import pham.yingming.honeylibrary.Dialog.FailDialog
+import java.lang.Exception
 
 class ThemSachMuonDialog(
     context: Context,
     private val tongSach: Int,
     private val listSach: ArrayList<Sach>,
-    private val callback: ((SachThue) -> Unit)? = null
+    private val callback: ((SachThue) -> Unit)? = null,
 ) :
     Dialog(context),
     View.OnClickListener {
@@ -40,16 +41,17 @@ class ThemSachMuonDialog(
     private val mContext = context
 
     private lateinit var imvClose: ImageView
-    private lateinit var tv_them_sach_thue: TextView
-    private lateinit var ed_ma_sach: EditText
-    private lateinit var nsv_list_sach: NestedScrollView
-    private lateinit var rcv_list_sach: RecyclerView
-    private lateinit var layout_sach_chon: RelativeLayout
-    private lateinit var tv_sach_thue: TextView
-    private lateinit var imv_book: ImageView
-    private lateinit var imv_minus: ImageView
-    private lateinit var imv_plus: ImageView
-    private lateinit var tv_so_luong: TextView
+    private lateinit var tvThemSachThue: TextView
+    private lateinit var edMaSach: EditText
+    private lateinit var nsvListSach: NestedScrollView
+    private lateinit var rcvListSach: RecyclerView
+    private lateinit var layoutSachChon: RelativeLayout
+    private lateinit var tvSachThue: TextView
+    private lateinit var imvBook: ImageView
+    private lateinit var imvMinus: ImageView
+    private lateinit var imvPlus: ImageView
+    private lateinit var tvSoLuong: TextView
+    private lateinit var tvNoData: TextView
 
     private var mSoLuong = 1
 
@@ -79,33 +81,34 @@ class ThemSachMuonDialog(
 
     private fun initView() {
         imvClose = findViewById(R.id.imv_close)
-        tv_them_sach_thue = findViewById(R.id.tv_them_sach_thue)
-        ed_ma_sach = findViewById(R.id.ed_ma_sach)
-        nsv_list_sach = findViewById(R.id.nsv_list_sach)
-        rcv_list_sach = findViewById(R.id.rcv_list_sach)
-        layout_sach_chon = findViewById(R.id.layout_sach_chon)
-        tv_sach_thue = findViewById(R.id.tv_sach_thue)
-        imv_book = findViewById(R.id.imv_book)
-        imv_minus = findViewById(R.id.imv_minus)
-        imv_plus = findViewById(R.id.imv_plus)
-        tv_so_luong = findViewById(R.id.tv_so_luong)
+        tvThemSachThue = findViewById(R.id.tv_them_sach_thue)
+        edMaSach = findViewById(R.id.ed_ma_sach)
+        nsvListSach = findViewById(R.id.nsv_list_sach)
+        rcvListSach = findViewById(R.id.rcv_list_sach)
+        layoutSachChon = findViewById(R.id.layout_sach_chon)
+        tvSachThue = findViewById(R.id.tv_sach_thue)
+        imvBook = findViewById(R.id.imv_book)
+        imvMinus = findViewById(R.id.imv_minus)
+        imvPlus = findViewById(R.id.imv_plus)
+        tvSoLuong = findViewById(R.id.tv_so_luong)
+        tvNoData = findViewById(R.id.tv_no_data)
 
         imvClose.setOnClickListener(this)
-        tv_them_sach_thue.setOnClickListener(this)
-        imv_minus.setOnClickListener(this)
-        imv_plus.setOnClickListener(this)
+        tvThemSachThue.setOnClickListener(this)
+        imvMinus.setOnClickListener(this)
+        imvPlus.setOnClickListener(this)
 
         initRecycleView()
     }
 
     private fun initData() {
-        tv_so_luong.text = mSoLuong.toString()
+        tvSoLuong.text = mSoLuong.toString()
     }
 
     override fun onClick(v: View?) {
         when (v) {
             imvClose -> dismiss()
-            tv_them_sach_thue -> {
+            tvThemSachThue -> {
                 callback?.invoke(
                     SachThue(
                         mSach.maSach,
@@ -118,10 +121,10 @@ class ThemSachMuonDialog(
                 dismiss()
                 KeyBoardUtils.hideKeyboard(mContext as Activity)
             }
-            imv_minus -> {
+            imvMinus -> {
                 if (mSoLuong > 1) {
                     mSoLuong -= 1
-                    tv_so_luong.text = mSoLuong.toString()
+                    tvSoLuong.text = mSoLuong.toString()
                 } else if (mSoLuong == 1) {
                     FailDialog(
                         mContext,
@@ -130,10 +133,10 @@ class ThemSachMuonDialog(
                     ).show()
                 }
             }
-            imv_plus -> {
+            imvPlus -> {
                 if (mSoLuong < tongSach) {
                     mSoLuong += 1
-                    tv_so_luong.text = mSoLuong.toString()
+                    tvSoLuong.text = mSoLuong.toString()
                 } else if (mSoLuong == tongSach) {
                     FailDialog(
                         mContext,
@@ -149,48 +152,59 @@ class ThemSachMuonDialog(
     private fun initRecycleView() {
         Log.d(TAG, "initRecycleView: ${listSach.size}")
         mSachAdapter = AdapterListSach(mContext, listSach) {
-            layout_sach_chon.visibility = View.VISIBLE
+            layoutSachChon.visibility = View.VISIBLE
             Glide.with(mContext).load(it.anhBia).placeholder(R.drawable.ic_book_default)
-                .into(imv_book)
-            tv_sach_thue.text = "${it.maSach} - ${it.tenSach}"
+                .into(imvBook)
+            tvSachThue.text = "${it.maSach} - ${it.tenSach}"
             mSach = it
-            nsv_list_sach.visibility = View.GONE
-            tv_them_sach_thue.visibility = View.VISIBLE
-            tv_them_sach_thue.visibility = View.VISIBLE
+            nsvListSach.visibility = View.GONE
+            tvThemSachThue.visibility = View.VISIBLE
+            tvThemSachThue.visibility = View.VISIBLE
             KeyBoardUtils.hideKeyboard(mContext as Activity)
         }
-        rcv_list_sach.layoutManager = LinearLayoutManager(mContext)
-        rcv_list_sach.setHasFixedSize(false)
-        rcv_list_sach.isNestedScrollingEnabled = false
-        rcv_list_sach.adapter = mSachAdapter
+        rcvListSach.layoutManager = LinearLayoutManager(mContext)
+        rcvListSach.setHasFixedSize(false)
+        rcvListSach.isNestedScrollingEnabled = false
+        rcvListSach.adapter = mSachAdapter
     }
 
     private fun setNhapThongTin() {
-        ed_ma_sach.addTextChangedListener(object : TextWatcher {
+        edMaSach.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
-                count: Int, after: Int
+                count: Int, after: Int,
             ) {
             }
 
             override fun onTextChanged(
                 s: CharSequence, start: Int,
-                before: Int, count: Int
+                before: Int, count: Int,
             ) {
                 val str = s.toString()
+                val maSach = try {
+                    Integer.parseInt(str)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
                 val listFilter = ArrayList<Sach>()
                 for (sach in listSach) {
-                    if (sach.tenSach.contains(str, true) || sach.maSach == str?.toInt()) {
+                    if (sach.tenSach.contains(str, true) || sach.maSach == maSach) {
                         listFilter.add(sach)
                     }
                 }
                 if (s.isEmpty()) {
-                    nsv_list_sach.visibility = View.GONE
+                    nsvListSach.visibility = View.GONE
                     mSachAdapter.setListSach(listSach)
+                    tvNoData.visibility = View.GONE
                 } else {
-                    nsv_list_sach.visibility = View.VISIBLE
+                    nsvListSach.visibility = View.VISIBLE
                     mSachAdapter.setListSach(listFilter)
+                    if(listFilter.isNotEmpty()){
+                        tvNoData.visibility = View.GONE
+                    }else{
+                        tvNoData.visibility = View.VISIBLE
+                    }
                 }
             }
         })

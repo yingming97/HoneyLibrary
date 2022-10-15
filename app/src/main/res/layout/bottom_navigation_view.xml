@@ -140,6 +140,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_13sdp"
         android:background="@drawable/ic_circle_bdb6ff"
+        android:elevation="@dimen/_2sdp"
         android:padding="@dimen/_16sdp"
         android:src="@drawable/ic_menu_home" />
 

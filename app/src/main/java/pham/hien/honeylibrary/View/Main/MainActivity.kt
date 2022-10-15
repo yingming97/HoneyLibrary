@@ -7,6 +7,7 @@ import pham.hien.honeylibrary.Animation.closeViewToLeft
 import pham.hien.honeylibrary.Animation.closeViewToRight
 import pham.hien.honeylibrary.Animation.openViewFromLeft
 import pham.hien.honeylibrary.Animation.openViewFromRight
+import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
@@ -32,6 +33,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
 
     private lateinit var layoutMenuBottomView: MenuBottomView
 
+    private lateinit var mUser: UserModel
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var homeViewModel: HomeViewModel
@@ -84,6 +86,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
 
     override fun initDataDefault() {
         this.layoutHomeView.openForTheFirstTime(this)
+        mUser = SharedPrefUtils.getUserData(this)!!
     }
 
     override fun onClick(view: View?) {
@@ -112,6 +115,8 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
             }
             Constant.POSITION.VIEW_PHIEU_MUON -> {
                 layoutPhieuMuonView.openForTheFirstTime(this)
+                mUser = SharedPrefUtils.getUserData(this)!!
+                layoutPhieuMuonView.loadView(mUser.type)
                 if (BaseView.isOpening(layoutSachView)) {
                     openViewFromRight(layoutPhieuMuonView, layoutPhieuMuonView.width, 300)
                     closeViewToLeft(layoutSachView, layoutSachView.width, 300)
@@ -211,7 +216,8 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
 
     override fun onResume() {
         super.onResume()
-        val user = SharedPrefUtils.getUserData(this)
-        layoutOptionView.updateUser(user)
+        mUser = SharedPrefUtils.getUserData(this)!!
+        layoutOptionView.updateUser(mUser)
+        layoutPhieuMuonView.loadView(mUser.type)
     }
 }

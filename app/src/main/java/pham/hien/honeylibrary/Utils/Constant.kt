@@ -26,21 +26,19 @@ class Constant {
 
     object PHIEUMUON {
         const val TB_NAME = "TablePhieuMuon"
+        const val COL_MA_DOC_GIA = "maDocGia"
+        const val COL_MA_NHAN_VIEN = "maNhanVien"
+        const val COL_SO_LUONG = "soLuong"
+        const val COL_TONG_TIEN = "tongTien"
+        const val COL_NGAY_THUE = "ngayThue"
+        const val COL_HAN_TRA = "hanTra"
+        const val PHIEUMUON = "PHIEUMUON"
 
         object TRANGTHAI {
-            const val DANG_MUON = 0
-            const val DA_TRA = 1
-            const val QUA_HAN = 2
+            const val DANG_MUON = "Đang mượn"
+            const val DA_TRA = "Đã trả"
+            const val QUA_HAN = "Quá hạn"
         }
-//        var maPhieuMuon: String = ""
-//        var maDocGia: String = ""
-//        var maNhanVien: String = ""
-//        var soLuong = 0
-//        var tongTien = 0
-//        var ngayThue: Long = 0
-//        var hanTra: Long = 0
-//        var listSachThue: String = ""
-
     }
 
     object USER {
@@ -51,6 +49,7 @@ class Constant {
     }
 
     object QUYEN {
+        const val KHACH = -1
         const val DOC_GIA = 0
         const val THU_THU = 1
         const val ADMIN = 2

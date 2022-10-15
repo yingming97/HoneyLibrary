@@ -1,30 +1,38 @@
 package pham.hien.honeylibrary.Model
 
-class PhieuMuon {
+import java.io.Serializable
+
+class PhieuMuon : Serializable{
     var maPhieuMuon: String = ""
     var maDocGia: String = ""
+    var photoDocGia: String = ""
+    var tenDocGia: String = ""
     var maNhanVien: String = ""
     var soLuong = 0
     var tongTien = 0
     var ngayThue: Long = 0
     var hanTra: Long = 0
-    var trangThai = 0
+    var trangThai: String = ""
     var listSachThue: String = ""
 
     constructor()
     constructor(
         maPhieuMuon: String,
         maDocGia: String,
+        photoDocGia: String,
+        tenDocGia: String,
         maNhanVien: String,
         soLuong: Int,
         tongTien: Int,
         ngayThue: Long,
         hanTra: Long,
-        trangThai: Int,
+        trangThai: String,
         listSachThue: String,
     ) {
         this.maPhieuMuon = maPhieuMuon
         this.maDocGia = maDocGia
+        this.photoDocGia = photoDocGia
+        this.tenDocGia = tenDocGia
         this.maNhanVien = maNhanVien
         this.soLuong = soLuong
         this.tongTien = tongTien

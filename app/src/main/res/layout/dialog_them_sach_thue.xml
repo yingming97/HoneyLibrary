@@ -36,6 +36,18 @@
             android:textColor="@color/text_color_1c4942"
             android:textColorHint="@color/gray_ccc"
             android:textSize="@dimen/_14sdp" />
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_ma_sach"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:elevation="@dimen/_2sdp"
+            android:text="@string/khong_co_thong_tin"
+            android:textColor="@color/no_data_text"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/layout_sach_chon"

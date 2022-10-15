@@ -30,4 +30,8 @@
     <string name="da_dat_toi_so_luong_nho_nhat">Đã đạt tới số lượng nhỏ nhất</string>
     <string name="da_dat_toi_so_luong_lon_nhat_cua_1_phieu_muon_">Đã đạt tới số lượng lớn nhất của 1 phiếu mượn </string>
     <string name="hay_them_it_nhat_1_quyen_sach">Hãy thêm ít nhất 1 quyển sách</string>
+    <string name="khong_co_thong_tin">Không có thông tin</string>
+    <string name="khong_co_phieu_qua_han">Không có phiếu quá hạn</string>
+    <string name="khong_co_phieu_dang_muon">Không có phiếu đang mượn</string>
+    <string name="khong_co_phieu_da_tra">Không có phiếu đã trả</string>
 </resources>
