@@ -17,6 +17,7 @@ abstract class BaseView : RelativeLayout, View.OnClickListener {
     constructor(context: Context?) : super(context) {}
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
 
+
     open fun initView(context: Context?, attrs: AttributeSet?) {}
     open fun initViewModel(viewModel: ViewModel?) {}
     open fun initObserver(owner: LifecycleOwner?) {}

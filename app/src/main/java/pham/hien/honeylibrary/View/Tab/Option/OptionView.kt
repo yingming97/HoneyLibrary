@@ -19,11 +19,13 @@ import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Login.LoginActivity
+import pham.hien.honeylibrary.View.Tab.ChangePassword.ChangePasswordActivity
 
 class OptionView : BaseView {
 
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
+    private lateinit var mActivity: Activity
 
     private lateinit var btnLogin: Button
     private lateinit var lnlDoiMatKhau: LinearLayout
@@ -33,8 +35,6 @@ class OptionView : BaseView {
     private lateinit var lnlThongKe: LinearLayout
     private lateinit var lnlDangXuat: LinearLayout
     private lateinit var tvUserName: TextView
-
-    private var isLogin: Boolean = false
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -73,7 +73,6 @@ class OptionView : BaseView {
         lnlQuanLyNhanVien.setOnClickListener(this)
         btnLogin.setOnClickListener(this)
 
-//        ScreenUtils().setMarginStatusBar(mContext, tool_bar)
     }
 
 
@@ -86,26 +85,28 @@ class OptionView : BaseView {
 
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
-        updateUser(SharedPrefUtils.getUserData(mContext))
+        updateUser(SharedPrefUtils.getUserData(mContext)!!)
+
     }
 
     override fun openForTheFirstTime(activity: Activity?) {
         super.openForTheFirstTime(activity)
         if (!checkFirstLaunchView) {
             checkFirstLaunchView = true
+            mActivity = activity!!
             initDataDefault(activity)
         }
     }
 
     override fun onClick(view: View) {
-        if(isLogin){
+        if(SharedPrefUtils.getLogin(mContext)){
             when (view) {
                 btnLogin -> {
                     mContext.startActivity(Intent(mContext, LoginActivity::class.java))
                 }
 
                 lnlDoiMatKhau -> {
-
+                    mContext.startActivity(Intent(mContext, ChangePasswordActivity::class.java))
                 }
 
                 lnlQuanLyNhanVien -> {
@@ -158,10 +159,16 @@ class OptionView : BaseView {
         }
     }
 
-    fun updateUser(user: UserModel?) {
-        if(user?.type == -1 || user == null){
-            btnLogin.visibility = View.VISIBLE
+    fun updateUser(user: UserModel) {
+        if(SharedPrefUtils.getLogin(mContext)){
+            btnLogin.visibility = View.GONE
+            tvUserName.text = user.name
             tvUserName.visibility = View.VISIBLE
+            lnlDangXuat.visibility = View.VISIBLE
+            checkPermission(user)
+        }else{
+            btnLogin.visibility = View.VISIBLE
+            tvUserName.visibility = View.GONE
             lnlDangXuat.visibility = View.GONE
 
             lnlTroGiup.visibility = View.VISIBLE
@@ -169,23 +176,16 @@ class OptionView : BaseView {
             lnlThongKe.visibility = View.VISIBLE
             lnlQuanLyDocGia.visibility = View.VISIBLE
             lnlQuanLyNhanVien.visibility = View.VISIBLE
-            isLogin = false
-        }else{
-            isLogin = true
-            btnLogin.visibility = View.GONE
-            tvUserName.text = user.name
-            tvUserName.visibility = View.VISIBLE
-            lnlDangXuat.visibility = View.VISIBLE
-            checkPermission(user)
+            SharedPrefUtils.setLogin(mContext, false)
         }
     }
 
     private fun signOut(){
-        val auth = Firebase.auth
-        auth.signOut()
         SharedPrefUtils.setUserData(mContext, UserModel())
-        updateUser(null)
+        SharedPrefUtils.setLogin(mContext, false)
+        updateUser(UserModel())
         tvUserName.visibility = View.GONE
+        Firebase.auth.signOut()
     }
 
     private fun checkPermission(user: UserModel?){

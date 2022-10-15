@@ -172,4 +172,27 @@ object SharedPrefUtils {
             UserModel()
         }
     }
+
+    fun setLogin(context: Context, value: Boolean) {
+        val sharedPref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("user_login_status", value).apply()
+    }
+
+    fun getLogin(context: Context): Boolean {
+        val sharedPref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("user_login_status", false)
+    }
+
+    fun setPassword(context: Context, value: String) {
+        val sharedPref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("password_user", value).apply()
+    }
+
+    fun getPassword(context: Context): String? {
+        val sharedPref = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        return sharedPref.getString("password_user", "")
+    }
+
 }

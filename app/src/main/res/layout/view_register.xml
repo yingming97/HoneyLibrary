@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@color/blue_b0efef"
+        android:elevation="@dimen/_10sdp">
+
+        <RelativeLayout
+            android:id="@+id/rlt_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/roboto"
+                android:text="Đăng ký"
+                android:textColor="@color/text_color_1c4942"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imb_back"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_15sdp"
+                android:rotation="180"
+                android:src="@drawable/ic_arrow_right" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cv_toolbar">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_bg_ed_login" />
+
+            <EditText
+                android:id="@+id/ed_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_47sdp"
+                android:layout_marginTop="@dimen/_88sdp"
+                android:background="@android:color/transparent"
+                android:hint="Nhập email"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/ed_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_below="@+id/ed_email"
+                android:layout_marginStart="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
+                android:background="@drawable/bg_ed_white_rd_9"
+                android:elevation="@dimen/_2sdp"
+                android:hint="Nhập tên"
+                android:minHeight="48dp"
+                android:paddingHorizontal="@dimen/_11sdp" />
+
+            <EditText
+                android:id="@+id/ed_address"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_below="@+id/ed_name"
+                android:layout_marginStart="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
+                android:background="@drawable/bg_ed_white_rd_9"
+                android:elevation="@dimen/_2sdp"
+                android:hint="Nhập địa chỉ"
+                android:minHeight="48dp"
+                android:paddingHorizontal="@dimen/_11sdp" />
+
+            <EditText
+                android:id="@+id/ed_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_below="@+id/ed_address"
+                android:layout_marginStart="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
+                android:background="@drawable/bg_ed_white_rd_9"
+                android:elevation="@dimen/_2sdp"
+                android:hint="Nhập số điện thoại"
+                android:minHeight="48dp"
+                android:paddingHorizontal="@dimen/_11sdp" />
+
+            <EditText
+                android:id="@+id/ed_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_below="@+id/ed_phone_number"
+                android:layout_marginStart="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
+                android:background="@drawable/bg_ed_white_rd_9"
+                android:elevation="@dimen/_2sdp"
+                android:hint="Nhập mật khẩu"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:paddingHorizontal="@dimen/_11sdp" />
+
+            <EditText
+                android:id="@+id/ed_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_below="@+id/ed_password"
+                android:layout_marginStart="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_35sdp"
+                android:background="@drawable/bg_ed_white_rd_9"
+                android:elevation="@dimen/_2sdp"
+                android:hint="Xác nhận mật khẩu"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:paddingHorizontal="@dimen/_11sdp" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_42sdp"
+                android:layout_below="@+id/ed_confirm_password"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/bg_btn_blue_rd_9"
+                android:text="Đăng ký"
+                android:textColor="@color/text_color_1c4942"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

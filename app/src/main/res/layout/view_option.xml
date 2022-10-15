@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_height="@dimen/_60sdp"
         android:elevation="@dimen/_15sdp">
 
         <RelativeLayout
@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
                 android:fontFamily="@font/roboto"
                 android:text="Tùy chọn"
                 android:textColor="@color/text_color_1c4942"
@@ -43,6 +43,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:elevation="@dimen/_2sdp"
                 android:id="@+id/layout_info_user"
                 android:layout_width="match_parent"
                 android:background="@drawable/bg_view_user_profile"
@@ -51,7 +52,7 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imv_avatar"
-                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_centerVertical="true"
@@ -74,6 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
+                        android:textAllCaps="true"
                         android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/text_color_1c4942"
                         android:textSize="@dimen/_16sdp" />
@@ -107,13 +109,13 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_36sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
                         android:src="@drawable/ic_change_password" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto"
                         android:text="Đổi mật khẩu"
@@ -121,16 +123,16 @@
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:background="@color/gray_ccc" />
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:background="#E2E2E2" />
             </LinearLayout>
 
             <LinearLayout
@@ -146,13 +148,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_36sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+
                         android:src="@drawable/ic_people" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto"
                         android:text="Quản lý nhân viên"
@@ -160,16 +163,16 @@
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:background="@color/gray_ccc" />
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:background="#E2E2E2" />
 
             </LinearLayout>
 
@@ -187,13 +190,13 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_36sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
                         android:src="@drawable/ic_book_reader" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto"
                         android:text="Quản lý độc giả"
@@ -201,17 +204,18 @@
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:background="@color/gray_ccc" />
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+
+                    android:background="#E2E2E2" />
 
 
             </LinearLayout>
@@ -230,13 +234,13 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_36sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
                         android:src="@drawable/ic_chart" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto"
                         android:text="Thống kê"
@@ -244,17 +248,17 @@
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:background="@color/gray_ccc" />
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:background="#E2E2E2" />
 
             </LinearLayout>
 
@@ -272,13 +276,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_36sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+
                         android:src="@drawable/ic_message" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/roboto"
                         android:text="Trợ giúp"
@@ -286,17 +291,17 @@
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:background="@color/gray_ccc" />
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:background="#E2E2E2" />
 
             </LinearLayout>
 
@@ -313,17 +318,17 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_36sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:src="@drawable/ic_log_out" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:fontFamily="@font/roboto"
                     android:text="Đăng xuất"
-                    android:textColor="#ED0000"
+                    android:textColor="#F58FA6"
                     android:textSize="@dimen/_14sdp" />
             </LinearLayout>
 
