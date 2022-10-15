@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_item_sach"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_60sdp"
+    android:background="@drawable/bg_list_user_white_rd_10"
+    android:paddingHorizontal="@dimen/_14sdp"
+    android:paddingVertical="@dimen/_6sdp">
+
+    <ImageView
+        android:id="@+id/imv_book"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerVertical="true"
+        android:elevation="1dp"
+        android:src="@drawable/ic_book_default"
+        app:civ_border_color="#BCF2FA"
+        app:civ_border_width="@dimen/_2sdp" />
+
+    <TextView
+        android:id="@+id/tv_ten_sach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_toEndOf="@+id/imv_book"
+        android:fontFamily="@font/roboto"
+        android:paddingEnd="@dimen/_10sdp"
+        android:text="Harry Potter và hòn đá phù thủy"
+        android:textColor="@color/text_color_1c4942" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_ccc" />
+</RelativeLayout>

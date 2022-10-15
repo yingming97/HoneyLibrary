@@ -29,4 +29,5 @@
     <string name="loi">Lỗi</string>
     <string name="da_dat_toi_so_luong_nho_nhat">Đã đạt tới số lượng nhỏ nhất</string>
     <string name="da_dat_toi_so_luong_lon_nhat_cua_1_phieu_muon_">Đã đạt tới số lượng lớn nhất của 1 phiếu mượn </string>
+    <string name="hay_them_it_nhat_1_quyen_sach">Hãy thêm ít nhất 1 quyển sách</string>
 </resources>

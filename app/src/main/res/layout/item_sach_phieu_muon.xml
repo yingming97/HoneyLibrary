@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/layout_item_doc_gia"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/_60sdp"
     android:background="@drawable/bg_list_user_white_rd_10"
     android:paddingHorizontal="@dimen/_14sdp"
-    android:paddingVertical="@dimen/_6sdp"
-    >
+    android:elevation="@dimen/_2sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:paddingVertical="@dimen/_6sdp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imv_avatar"
+    <ImageView
+        android:id="@+id/imv_book"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:elevation="1dp"
-        android:src="@drawable/ic_user_photo_default"
+        android:src="@drawable/ic_book_default"
         app:civ_border_color="#BCF2FA"
         app:civ_border_width="@dimen/_2sdp" />
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
-        android:layout_toEndOf="@+id/imv_avatar"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Phạm Văn Hiển"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_toEndOf="@+id/imv_book"
+        android:fontFamily="@font/roboto"
+        android:lines="1"
+        android:text="Harry Potter và hòn đá phù thủy"
         android:textColor="@color/text_color_1c4942" />
 
     <TextView
-        android:id="@+id/tv_sdt"
+        android:id="@+id/tv_so_luong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_6sdp"
-        android:layout_toEndOf="@+id/imv_avatar"
+        android:layout_toEndOf="@+id/imv_book"
         android:fontFamily="@font/roboto"
-        android:text="0123456789"
+        android:text="Sô lượng : 2"
         android:textColor="@color/text_color_1c4942"
         android:textSize="@dimen/_10sdp" />
+
+    <ImageView
+        android:id="@+id/imv_remove_sach"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/_10sdp"
+        android:src="@drawable/ic_minus_circle" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
-        android:background="@color/gray_ccc"
         android:layout_alignParentBottom="true"
-        />
+        android:background="@color/gray_ccc" />
 </RelativeLayout>

@@ -16,21 +16,21 @@ class PhieuMuonDAO {
 
     fun addPhieuMuon(context: Context, phieuMuon: PhieuMuon) {
         db.collection(Constant.PHIEUMUON.TB_NAME)
-            .document((getListPhieuMuon().last().maPhieuMuon + 1).toString())
+            .document(phieuMuon.maPhieuMuon)
             .set(phieuMuon)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.them_phieu_muon_thanh_cong), "")
+                SuccessDialog(context, context.getString(R.string.them_phieu_muon_thanh_cong), "").show()
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     context.getString(R.string.them_phieu_muon_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_them_phieu_muon)
-                )
+                ).show()
             }
     }
 
-    fun checkPhieuMuonTrung(idPhieuMuon: Int, listPhieuMuon: ArrayList<PhieuMuon>): Boolean {
+    fun checkPhieuMuonTrung(idPhieuMuon: String, listPhieuMuon: ArrayList<PhieuMuon>): Boolean {
         for (phieuMuon in listPhieuMuon) {
             if (idPhieuMuon == phieuMuon.maPhieuMuon) {
                 return true

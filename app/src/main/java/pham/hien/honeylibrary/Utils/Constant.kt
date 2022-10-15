@@ -18,31 +18,39 @@ class Constant {
     }
 
     object SACH {
-        const val IMAGE_BOOK_DEFAULT = "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableSach%2F0?alt=media&token=3879a67c-11a6-474b-a4ed-917d3b124407"
+        const val IMAGE_BOOK_DEFAULT =
+            "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableSach%2F0?alt=media&token=3879a67c-11a6-474b-a4ed-917d3b124407"
         const val TB_NAME = "TableSach"
 
     }
 
     object PHIEUMUON {
         const val TB_NAME = "TablePhieuMuon"
-        var maPhieuMuon: String = ""
-        var maDocGia: String = ""
-        var maNhanVien: String = ""
-        var soLuong = 0
-        var tongTien = 0
-        var ngayThue: Long = 0
-        var hanTra: Long = 0
-        var listSachThue: String = ""
+
+        object TRANGTHAI {
+            const val DANG_MUON = 0
+            const val DA_TRA = 1
+            const val QUA_HAN = 2
+        }
+//        var maPhieuMuon: String = ""
+//        var maDocGia: String = ""
+//        var maNhanVien: String = ""
+//        var soLuong = 0
+//        var tongTien = 0
+//        var ngayThue: Long = 0
+//        var hanTra: Long = 0
+//        var listSachThue: String = ""
+
     }
 
     object USER {
-        const val AVATAR_DEFAULT=
+        const val AVATAR_DEFAULT =
             "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableUser%2F0?alt=media&token=bb543483-6a66-4f1d-b79b-52fbb44cfd63"
         const val TB_NAME = "TableUser"
         const val COL_TYPE = "type"
     }
 
-    object QUYEN{
+    object QUYEN {
         const val DOC_GIA = 0
         const val THU_THU = 1
         const val ADMIN = 2

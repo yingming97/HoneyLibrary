@@ -1,7 +1,7 @@
 package pham.hien.honeylibrary.Model
 
 class PhieuMuon {
-    var maPhieuMuon: Int = 0
+    var maPhieuMuon: String = ""
     var maDocGia: String = ""
     var maNhanVien: String = ""
     var soLuong = 0
@@ -13,7 +13,7 @@ class PhieuMuon {
 
     constructor()
     constructor(
-        maPhieuMuon: Int,
+        maPhieuMuon: String,
         maDocGia: String,
         maNhanVien: String,
         soLuong: Int,
@@ -21,7 +21,7 @@ class PhieuMuon {
         ngayThue: Long,
         hanTra: Long,
         trangThai: Int,
-        listSachThue: String
+        listSachThue: String,
     ) {
         this.maPhieuMuon = maPhieuMuon
         this.maDocGia = maDocGia
@@ -33,6 +33,7 @@ class PhieuMuon {
         this.trangThai = trangThai
         this.listSachThue = listSachThue
     }
+
 
     override fun toString(): String {
         return "PhieuMuon(maPhieuMuon=$maPhieuMuon, maDocGia='$maDocGia', maNhanVien='$maNhanVien', soLuong=$soLuong, tongTien=$tongTien, ngayThue=$ngayThue, hanTra=$hanTra, trangThai=$trangThai, listSachThue='$listSachThue')"

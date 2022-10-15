@@ -76,24 +76,23 @@
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/ncv_doc_gia"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_160sdp"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/ed_sdt_email"
-                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:background="@drawable/bg_list_user_white_rd_10"
                 android:elevation="@dimen/_3sdp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_doc_gia"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_below="@+id/ed_sdt_email"
-                    android:layout_alignParentEnd="true"
                     android:elevation="@dimen/_3sdp"
                     android:visibility="visible" />
             </androidx.core.widget.NestedScrollView>
-
 
             <RelativeLayout
                 android:id="@+id/layout_info_phieu"
@@ -185,6 +184,16 @@
                 android:layout_marginHorizontal="@dimen/_18sdp"
                 android:layout_marginTop="@dimen/_14sdp" />
 
+            <TextView
+                android:id="@+id/tv_khong_sach_muon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/imv_add_sach_thue"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/hay_them_it_nhat_1_quyen_sach"
+                android:textColor="@color/no_data_text" />
+
             <ImageView
                 android:id="@+id/imv_add_sach_thue"
                 android:layout_width="@dimen/_50sdp"
@@ -210,6 +219,13 @@
         android:gravity="center"
         android:paddingHorizontal="@dimen/_30sdp"
         android:text="Thêm"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_color_1c4942"
         android:textSize="@dimen/_16sdp" />
+
+    <ProgressBar
+        android:id="@+id/pg_load_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="@dimen/_10sdp" />
 </RelativeLayout>

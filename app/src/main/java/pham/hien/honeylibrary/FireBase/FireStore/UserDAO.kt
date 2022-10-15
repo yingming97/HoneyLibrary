@@ -46,9 +46,7 @@ class UserDAO {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     listUser.add(document.toObject(UserModel::class.java))
-//                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
-                return@addOnSuccessListener
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
@@ -56,40 +54,39 @@ class UserDAO {
         return listUser
     }
 
-    fun getListUserDocGia(): ArrayList<UserModel> {
+    fun getListUserDocGia(listDocGia: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
-            .whereArrayContains(Constant.USER.COL_TYPE, 0)
+            .whereEqualTo(Constant.USER.COL_TYPE, 0)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     listUser.add(document.toObject(UserModel::class.java))
-//                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
-                return@addOnSuccessListener
+                listDocGia(listUser)
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
-        return listUser
     }
+
     fun getListUserNhanVien(): ArrayList<UserModel> {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
-            .whereArrayContains(Constant.USER.COL_TYPE, 1)
+            .whereEqualTo(Constant.USER.COL_TYPE, 1)
+            .whereEqualTo(Constant.USER.COL_TYPE, 2)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     listUser.add(document.toObject(UserModel::class.java))
-//                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
-                return@addOnSuccessListener
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
         return listUser
     }
+
     fun getListUserAdmin(): ArrayList<UserModel> {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
@@ -98,9 +95,7 @@ class UserDAO {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     listUser.add(document.toObject(UserModel::class.java))
-//                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
-                return@addOnSuccessListener
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)

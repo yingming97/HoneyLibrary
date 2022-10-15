@@ -183,7 +183,7 @@ class OptionView : BaseView {
     private fun signOut(){
         val auth = Firebase.auth
         auth.signOut()
-        SharedPrefUtils.setUserData(mContext, UserModel(-1, "", -1, "", "", "", "", ""))
+        SharedPrefUtils.setUserData(mContext, UserModel())
         updateUser(null)
         tvUserName.visibility = View.GONE
     }

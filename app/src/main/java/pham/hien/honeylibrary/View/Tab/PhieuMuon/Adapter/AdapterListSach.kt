@@ -2,7 +2,6 @@ package pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,62 +10,58 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import pham.hien.honeylibrary.Model.UserModel
+import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.R
 
 class AdapterListSach(
     context: Context,
-    listUser: ArrayList<UserModel>,
-    callback: ((UserModel) -> Unit)
+    listSach: ArrayList<Sach>,
+    callback: ((Sach) -> Unit)
 ) :
-    RecyclerView.Adapter<AdapterListSach.ViewItemDocGia>() {
+    RecyclerView.Adapter<AdapterListSach.ViewItemSach>() {
 
-    private val TAG ="YingMing"
+    private val TAG = "YingMing"
     private var mContext: Context = context
-    private var mListUser: ArrayList<UserModel> = listUser
+    private var mListSach: ArrayList<Sach> = listSach
     private var call = callback
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setListUser(listUser: ArrayList<UserModel>) {
-        mListUser = listUser
+    fun setListSach(listSach: ArrayList<Sach>) {
+        mListSach = listSach
         notifyDataSetChanged()
-        Log.d(TAG, "setListUser: ${listUser.size}")
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewItemDocGia {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewItemSach {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_doc_gia, parent, false)
-        return ViewItemDocGia(view)
+            .inflate(R.layout.item_them_sach_dialog, parent, false)
+        return ViewItemSach(view)
     }
 
-    override fun onBindViewHolder(holder: ViewItemDocGia, position: Int) {
-        Log.d(TAG, "setListUser: ${mListUser.size}")
-        val user = mListUser[position]
-        Glide.with(mContext).load(user.avatar).placeholder(R.drawable.ic_avatar_default)
-            .into(holder.imvAvatar)
-        holder.tv_name.text = user.name
-        holder.tv_sdt.text = user.sdt
-        holder.layout_item_doc_gia.setOnClickListener {
-            call.invoke(user)
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(holder: ViewItemSach, position: Int) {
+        val sach = mListSach[position]
+        Glide.with(mContext).load(sach.anhBia).placeholder(R.drawable.ic_book_default)
+            .into(holder.imvBook)
+        holder.tvTenSach.text = "${sach.maSach} - ${sach.tenSach}"
+        holder.layoutItemSach.setOnClickListener {
+            call(sach)
         }
     }
 
     override fun getItemCount(): Int {
-        return mListUser.size
+        return mListSach.size
     }
 
-    class ViewItemDocGia(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imvAvatar: ImageView
-        val tv_name: TextView
-        val tv_sdt: TextView
-        val layout_item_doc_gia: RelativeLayout
+    class ViewItemSach(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imvBook: ImageView
+        val tvTenSach: TextView
+        val layoutItemSach: RelativeLayout
 
         init {
-            imvAvatar = itemView.findViewById(R.id.imv_avatar)
-            tv_name = itemView.findViewById(R.id.tv_name)
-            tv_sdt = itemView.findViewById(R.id.tv_sdt)
-            layout_item_doc_gia = itemView.findViewById(R.id.layout_item_doc_gia)
+            imvBook = itemView.findViewById(R.id.imv_book)
+            tvTenSach = itemView.findViewById(R.id.tv_ten_sach)
+            layoutItemSach = itemView.findViewById(R.id.layout_item_sach)
         }
     }
 }

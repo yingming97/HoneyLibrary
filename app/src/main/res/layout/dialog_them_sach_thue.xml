@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_300sdp"
     android:layout_gravity="center"
     android:layout_marginHorizontal="@dimen/_24sdp"
     app:cardBackgroundColor="@color/white"
@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical">
 
@@ -45,12 +45,20 @@
             android:layout_marginTop="@dimen/_14sdp"
             android:paddingStart="@dimen/_30sdp"
             android:paddingEnd="@dimen/_14sdp"
-            android:visibility="visible">
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imv_book"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_book_default" />
 
             <TextView
                 android:id="@+id/tv_sach_thue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imv_book"
                 android:fontFamily="@font/roboto"
                 android:text="1 - Harry Potter và hòn đá phù thủy"
                 android:textColor="@color/text_color_1c4942"
@@ -100,24 +108,36 @@
                 android:src="@drawable/ic_add_pink" />
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_list_sach"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_list_sach"
             android:layout_width="@dimen/_220sdp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ed_ma_sach"
             android:layout_centerHorizontal="true"
+            android:layout_marginVertical="@dimen/_2sdp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/bg_list_user_white_rd_10"
             android:elevation="@dimen/_2sdp"
-            android:visibility="gone" />
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_list_sach"
+                android:layout_width="@dimen/_220sdp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_ma_sach"
+                android:layout_centerHorizontal="true"
+                android:elevation="@dimen/_2sdp"
+                android:visibility="visible" />
+        </androidx.core.widget.NestedScrollView>
 
         <TextView
             android:id="@+id/tv_them_sach_thue"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_42sdp"
-            android:layout_below="@+id/layout_sach_chon"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:layout_marginBottom="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:background="@drawable/bg_btn_pink_rd_8"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
@@ -125,7 +145,8 @@
             android:text="Thêm"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_18sdp" />
+            android:textSize="@dimen/_18sdp"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

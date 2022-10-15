@@ -55,4 +55,18 @@ class SachDAO {
             }
         return listSach
     }
+    fun getListSach(listSach : ((ArrayList<Sach>) -> Unit)) {
+        val list = ArrayList<Sach>()
+        db.collection(Constant.SACH.TB_NAME)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    list.add(document.toObject(Sach::class.java))
+                }
+                listSach(list)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+    }
 }
