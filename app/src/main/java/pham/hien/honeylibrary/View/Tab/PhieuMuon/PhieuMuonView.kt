@@ -7,10 +7,7 @@ import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,22 +17,30 @@ import pham.hien.honeylibrary.Model.PhieuMuon
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
+import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Login.LoginActivity
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.AddPhieuMuonActivity
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.ChiTietPhieuMuon
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuDaTra
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuDangMuon
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuQuaHan
 import pham.hien.honeylibrary.ViewModel.Main.PhieuMuonViewModel
+
 
 class PhieuMuonView : BaseView {
 
     private lateinit var mContext: Context
+    private lateinit var mActivity: Activity
     private var checkFirstLaunchView: Boolean = false
 
     private lateinit var tool_bar: RelativeLayout
     private lateinit var imv_add_new_phieu_muon: ImageView
+    private lateinit var tv_title: TextView
+    private lateinit var imv_search: ImageView
+    private lateinit var ed_search_phieu_muon: EditText
     private lateinit var layout_phieu_muon: RelativeLayout
     private lateinit var layout_no_sign_in: RelativeLayout
     private lateinit var btn_dang_nhap: TextView
@@ -53,6 +58,8 @@ class PhieuMuonView : BaseView {
 
     private lateinit var mUser: UserModel
     private lateinit var mPhieuQuaHanAdapter: AdapterListPhieuQuaHan
+    private lateinit var mPhieuDangMuonAdapter: AdapterListPhieuDangMuon
+    private lateinit var mPhieuDaTraAdapter: AdapterListPhieuDaTra
     private var mListPhieuMuon = ArrayList<PhieuMuon>()
     private var mListPhieuMuonQuaHan = ArrayList<PhieuMuon>()
     private var mListPhieuMuonDangMuon = ArrayList<PhieuMuon>()
@@ -80,7 +87,10 @@ class PhieuMuonView : BaseView {
         val rootView: View = inflater.inflate(R.layout.view_phieu_muon, this)
 
         tool_bar = rootView.findViewById(R.id.tool_bar)
+        tv_title = rootView.findViewById(R.id.tv_title)
         imv_add_new_phieu_muon = rootView.findViewById(R.id.imv_add_new_phieu_muon)
+        imv_search = rootView.findViewById(R.id.imv_search)
+        ed_search_phieu_muon = rootView.findViewById(R.id.ed_search_phieu_muon)
         layout_no_sign_in = rootView.findViewById(R.id.layout_no_sign_in)
         btn_dang_nhap = rootView.findViewById(R.id.btn_dang_nhap)
 
@@ -92,6 +102,7 @@ class PhieuMuonView : BaseView {
         rcv_list_qua_han = rootView.findViewById(R.id.rcv_list_qua_han)
         rcv_list_dang_muon = rootView.findViewById(R.id.rcv_list_dang_muon)
         rcv_list_da_tra = rootView.findViewById(R.id.rcv_list_da_tra)
+
         pg_load_phieu_qua_han = rootView.findViewById(R.id.pg_load_phieu_qua_han)
         pg_load_phieu_dang_muon = rootView.findViewById(R.id.pg_load_phieu_dang_muon)
         pg_load_phieu_da_tra = rootView.findViewById(R.id.pg_load_phieu_da_tra)
@@ -100,6 +111,7 @@ class PhieuMuonView : BaseView {
 
         imv_add_new_phieu_muon.setOnClickListener(this)
         btn_dang_nhap.setOnClickListener(this)
+        tool_bar.setOnClickListener(this)
 
         initRecycleView()
     }
@@ -125,6 +137,7 @@ class PhieuMuonView : BaseView {
     @SuppressLint("SetTextI18n")
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
+        mActivity = activity!!
         mUser = SharedPrefUtils.getUserData(mContext)!!
         mPhieuMuonViewModel.getListPhieuMuon(mContext, mUser.type, mUser.firebaseId)
         loadView(mUser.type)
@@ -138,8 +151,15 @@ class PhieuMuonView : BaseView {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onClick(view: View) {
         when (view) {
+            tool_bar -> {
+                ed_search_phieu_muon.visibility = View.VISIBLE
+                ed_search_phieu_muon.requestFocus()
+                tv_title.visibility = View.GONE
+                KeyBoardUtils.showKeyboard(mActivity, ed_search_phieu_muon)
+            }
             imv_add_new_phieu_muon -> {
                 mContext.startActivity(Intent(mContext, AddPhieuMuonActivity::class.java))
             }
@@ -155,6 +175,8 @@ class PhieuMuonView : BaseView {
         pg_load_phieu_da_tra.visibility = View.VISIBLE
         layout_phieu_muon.visibility = View.GONE
         mPhieuQuaHanAdapter.setListPhieuMuon(ArrayList())
+        mPhieuDangMuonAdapter.setListPhieuMuon(ArrayList())
+        mPhieuDaTraAdapter.setListPhieuMuon(ArrayList())
         tv_no_data_qua_han.visibility = View.GONE
         tv_no_data_dang_muon.visibility = View.GONE
         tv_no_data_da_tra.visibility = View.GONE
@@ -201,13 +223,13 @@ class PhieuMuonView : BaseView {
             tv_no_data_dang_muon.visibility = View.VISIBLE
         } else {
             tv_no_data_dang_muon.visibility = View.GONE
-            mPhieuQuaHanAdapter.setListPhieuMuon(mListPhieuMuonQuaHan)
+            mPhieuDangMuonAdapter.setListPhieuMuon(mListPhieuMuonDangMuon)
         }
         if (mListPhieuMuonDaTra.isEmpty()) {
             tv_no_data_da_tra.visibility = View.VISIBLE
         } else {
             tv_no_data_da_tra.visibility = View.GONE
-            mPhieuQuaHanAdapter.setListPhieuMuon(mListPhieuMuonQuaHan)
+            mPhieuDaTraAdapter.setListPhieuMuon(mListPhieuMuonDaTra)
         }
     }
 
@@ -217,10 +239,32 @@ class PhieuMuonView : BaseView {
             intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, it)
             mContext.startActivity(intent)
         }
+
         rcv_list_qua_han.layoutManager = LinearLayoutManager(mContext)
         rcv_list_qua_han.setHasFixedSize(false)
         rcv_list_qua_han.isNestedScrollingEnabled = false
         rcv_list_qua_han.adapter = mPhieuQuaHanAdapter
-    }
 
+        mPhieuDangMuonAdapter = AdapterListPhieuDangMuon(mContext, mListPhieuMuonDangMuon) {
+            val intent = Intent(mContext, ChiTietPhieuMuon::class.java)
+            intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, it)
+            mContext.startActivity(intent)
+        }
+
+        rcv_list_dang_muon.layoutManager = LinearLayoutManager(mContext)
+        rcv_list_dang_muon.setHasFixedSize(false)
+        rcv_list_dang_muon.isNestedScrollingEnabled = false
+        rcv_list_dang_muon.adapter = mPhieuDangMuonAdapter
+
+        mPhieuDaTraAdapter = AdapterListPhieuDaTra(mContext, mListPhieuMuonQuaHan) {
+            val intent = Intent(mContext, ChiTietPhieuMuon::class.java)
+            intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, it)
+            mContext.startActivity(intent)
+        }
+
+        rcv_list_da_tra.layoutManager = LinearLayoutManager(mContext)
+        rcv_list_da_tra.setHasFixedSize(false)
+        rcv_list_da_tra.isNestedScrollingEnabled = false
+        rcv_list_da_tra.adapter = mPhieuDaTraAdapter
+    }
 }

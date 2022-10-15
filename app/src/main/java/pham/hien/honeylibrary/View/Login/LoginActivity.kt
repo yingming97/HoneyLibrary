@@ -79,7 +79,7 @@ class LoginActivity : BaseActivity() {
                             if (its) {
                                 SharedPrefUtils.setPassword(this, edPass.text.toString())
                                 KeyBoardUtils.hideKeyboard(this)
-                                startActivity(Intent(this, MainActivity::class.java))
+//                                startActivity(Intent(this, MainActivity::class.java))
                                 finish()
                             }
                         }

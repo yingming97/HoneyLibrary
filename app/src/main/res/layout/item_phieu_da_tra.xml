@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="@dimen/_8sdp"
-    android:background="@drawable/bg_item_phieu_qua_han"
+    android:background="@drawable/bg_item_phieu_da_tra"
     android:elevation="@dimen/_2sdp"
     android:paddingHorizontal="@dimen/_14sdp"
     android:paddingVertical="@dimen/_6sdp">

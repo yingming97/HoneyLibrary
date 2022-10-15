@@ -11,7 +11,7 @@
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentTop="true"
         android:background="@color/blue_b0efef"
-        android:elevation="@dimen/_2sdp">
+        android:elevation="@dimen/_4sdp">
 
         <RelativeLayout
             android:id="@+id/tool_bar"
@@ -29,23 +29,27 @@
                 android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp" />
 
+            <EditText
+                android:id="@+id/ed_search_phieu_muon"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_60sdp"
+                android:background="#00000000"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColor="@color/text_color_1c4942"
+                android:visibility="gone" />
+
             <ImageView
                 android:id="@+id/imv_search"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_60sdp"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="@dimen/_12sdp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_search"
-                android:visibility="visible" />
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_2sdp"
-                android:layout_alignParentBottom="true"
-                android:background="#ccc" />
+                android:visibility="gone" />
         </RelativeLayout>
 
 
@@ -87,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_26sdp"
-            android:layout_marginBottom="@dimen/_66sdp"
+            android:layout_marginBottom="@dimen/_80sdp"
             android:visibility="visible">
 
             <TextView
@@ -165,7 +169,7 @@
                 android:layout_below="@+id/rcv_list_dang_muon"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Phiếu đang mượn"
+                android:text="Phiếu đã trả"
                 android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_14sdp" />
 

@@ -30,7 +30,6 @@ class AdapterListUser(
     fun setListUser(listUser: ArrayList<UserModel>) {
         mListUser = listUser
         notifyDataSetChanged()
-        Log.d(TAG, "setListUser: ${listUser.size}")
     }
 
 

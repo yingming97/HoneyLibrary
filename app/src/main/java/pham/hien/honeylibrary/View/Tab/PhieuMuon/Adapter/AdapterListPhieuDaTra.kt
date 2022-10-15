@@ -12,17 +12,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.Model.PhieuMuon
-import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.moneyFormatter
-import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.ChiTietPhieuMuon
 
-class AdapterListPhieuQuaHan(
+class AdapterListPhieuDaTra(
     context: Context,
     listPhieuMuon: ArrayList<PhieuMuon>,
     callback: ((PhieuMuon) -> Unit),
 ) :
-    RecyclerView.Adapter<AdapterListPhieuQuaHan.ViewItemPhieuMuon>() {
+    RecyclerView.Adapter<AdapterListPhieuDaTra.ViewItemPhieuMuon>() {
 
     private val TAG = "YingMing"
     private var mContext: Context = context
@@ -38,7 +36,7 @@ class AdapterListPhieuQuaHan(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewItemPhieuMuon {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_phieu_qua_han, parent, false)
+            .inflate(R.layout.item_phieu_da_tra, parent, false)
         return ViewItemPhieuMuon(view)
     }
 

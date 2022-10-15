@@ -9,22 +9,22 @@
         android:id="@+id/cv_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:elevation="@dimen/_15sdp">
+        android:background="@color/blue_b0efef">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:fontFamily="@font/roboto"
+                android:background="@color/blue_b0efef"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_horizontal|bottom"
+                android:paddingBottom="@dimen/_10sdp"
                 android:text="Tùy chọn"
                 android:textColor="@color/text_color_1c4942"
-                android:textStyle="bold"
                 android:textSize="@dimen/_16sdp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -43,42 +43,43 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:elevation="@dimen/_2sdp"
                 android:id="@+id/layout_info_user"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/_90sdp"
                 android:background="@drawable/bg_view_user_profile"
-                android:gravity="center_vertical"
-                android:layout_height="@dimen/_90sdp">
+                android:elevation="@dimen/_2sdp"
+                android:gravity="center_vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imv_avatar"
-                    android:layout_marginStart="@dimen/_15sdp"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_15sdp"
                     android:elevation="@dimen/_5sdp"
                     android:src="@drawable/ic_avatar_default"
                     app:civ_border_color="@color/white"
                     app:civ_border_width="@dimen/_2sdp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/imv_avatar"
                     android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/imv_avatar"
                     android:gravity="center_vertical"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/_5sdp">
 
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/tv_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:textAllCaps="true"
                         android:fontFamily="@font/roboto_bold"
+                        android:textAllCaps="true"
                         android:textColor="@color/text_color_1c4942"
-                        android:textSize="@dimen/_16sdp" />
+                        android:textSize="@dimen/_16sdp"
+                        android:visibility="gone" />
 
                     <Button
                         android:id="@+id/btn_login"
@@ -90,8 +91,6 @@
                         android:paddingHorizontal="@dimen/_10sdp"
                         android:text="Đăng nhập"
                         android:textColor="@color/white" />
-
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -128,6 +127,7 @@
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -140,6 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -168,6 +169,7 @@
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -182,6 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -226,6 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -268,6 +272,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
@@ -304,9 +309,6 @@
                     android:background="#E2E2E2" />
 
             </LinearLayout>
-
-
-
 
 
             <LinearLayout

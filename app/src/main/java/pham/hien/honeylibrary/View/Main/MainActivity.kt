@@ -40,7 +40,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var sachViewModel: SachViewModel
     private lateinit var phieuMuonViewModel: PhieuMuonViewModel
-    private lateinit var theLoaViewModel: TheLoaViewModel
+    private lateinit var theLoaViewModel: TheLoaiViewModel
     private lateinit var optionViewModel: OptionViewModel
 
 
@@ -67,7 +67,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         this.homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         this.sachViewModel = ViewModelProvider(this)[SachViewModel::class.java]
         this.phieuMuonViewModel = ViewModelProvider(this)[PhieuMuonViewModel::class.java]
-        this.theLoaViewModel = ViewModelProvider(this)[TheLoaViewModel::class.java]
+        this.theLoaViewModel = ViewModelProvider(this)[TheLoaiViewModel::class.java]
         this.optionViewModel = ViewModelProvider(this)[OptionViewModel::class.java]
 
         this.layoutHomeView.initViewModel(homeViewModel)
@@ -217,9 +217,10 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
 
     override fun onResume() {
         super.onResume()
-        val user = SharedPrefUtils.getUserData(this)
-        layoutOptionView.updateUser(user!!)
+        mUser = SharedPrefUtils.getUserData(this)!!
+        layoutOptionView.updateUser(mUser)
         layoutOptionView.updateUser(mUser)
         layoutPhieuMuonView.loadView(mUser.type)
+        layoutPhieuMuonView.openForTheFirstTime(this)
     }
 }
