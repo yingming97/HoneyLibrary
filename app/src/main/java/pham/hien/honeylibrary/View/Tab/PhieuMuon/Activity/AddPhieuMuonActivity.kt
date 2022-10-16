@@ -11,11 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import pham.hien.honeylibrary.FireBase.FireStore.DoanhThuDAO
 import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
-import pham.hien.honeylibrary.Model.PhieuMuon
-import pham.hien.honeylibrary.Model.Sach
-import pham.hien.honeylibrary.Model.SachThue
-import pham.hien.honeylibrary.Model.UserModel
+import pham.hien.honeylibrary.Model.*
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.*
 import pham.hien.honeylibrary.View.Base.BaseActivity
@@ -147,8 +145,18 @@ class AddPhieuMuonActivity : BaseActivity() {
             tvThemPhieu -> {
                 themPhieuMuon()
                 loadView(null)
+                reset()
             }
         }
+    }
+
+    private fun reset() {
+        setHanTraSach()
+        mTongSach = 0
+        mListSachThue = ArrayList()
+        mThanhTien = 0
+        tvTongSach.text = "Tổng số sách : 0"
+        tvThanhTien.text = "Thành tiền : 0đ"
     }
 
     private fun loadView(user: UserModel?) {
@@ -290,16 +298,21 @@ class AddPhieuMuonActivity : BaseActivity() {
 
     private fun checkSachThue(sachThue: SachThue) {
         if (mListSachThue.isNotEmpty()) {
-            for (sach in mListSachThue) {
-                if (sachThue.maSach == sach.maSach) {
-                    sach.soLuong += sachThue.soLuong
-                } else {
-                    mListSachThue.add(sachThue)
+            var check = false
+            for (i in 0 until mListSachThue.size) {
+                if (sachThue.maSach == mListSachThue[i].maSach) {
+                    sachThue.soLuong += mListSachThue[i].soLuong
+                    mListSachThue[i] = sachThue
+                    check = true
                 }
+            }
+            if (!check) {
+                mListSachThue.add(sachThue)
             }
         } else {
             mListSachThue.add(sachThue)
         }
+        Log.e(TAG, "checkSachThue: $mListSachThue")
         mSachThueAdapter.setListSachThue(mListSachThue)
     }
 
@@ -316,6 +329,6 @@ class AddPhieuMuonActivity : BaseActivity() {
         mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DANG_MUON
         mPhieuMuon.listSachThue = convertListSachThueToString(mListSachThue)
         PhieuMuonDAO().addPhieuMuon(this, mPhieuMuon)
-        Log.d(TAG, "PhieuMuon: $mPhieuMuon")
+        DoanhThuDAO().addDoanhThu(DoanhThu(mThanhTien, mNgayMuon))
     }
 }

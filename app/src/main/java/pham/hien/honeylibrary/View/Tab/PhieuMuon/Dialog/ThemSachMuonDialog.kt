@@ -30,16 +30,16 @@ import pham.yingming.honeylibrary.Dialog.FailDialog
 import java.lang.Exception
 
 class ThemSachMuonDialog(
-    context: Context,
+    activity: Activity,
     private val tongSach: Int,
     private val listSach: ArrayList<Sach>,
     private val callback: ((SachThue) -> Unit)? = null,
 ) :
-    Dialog(context),
+    Dialog(activity),
     View.OnClickListener {
 
     private val TAG = "YingMing"
-    private val mContext = context
+    private val mActivity = activity
 
     private lateinit var imvClose: ImageView
     private lateinit var tvThemSachThue: TextView
@@ -118,11 +118,10 @@ class ThemSachMuonDialog(
                         mSoLuong,
                         mSach.giaThue,
                         mSach.giaSach,
-                        Constant.SACHTHUE.TRA_DU
                     )
                 )
                 dismiss()
-                KeyBoardUtils.hideKeyboard(mContext as Activity)
+                KeyBoardUtils.hideKeyboard(mActivity)
             }
             imvMinus -> {
                 if (mSoLuong > 1) {
@@ -130,9 +129,9 @@ class ThemSachMuonDialog(
                     tvSoLuong.text = mSoLuong.toString()
                 } else if (mSoLuong == 1) {
                     FailDialog(
-                        mContext,
-                        mContext.getString(R.string.loi),
-                        mContext.getString(R.string.da_dat_toi_so_luong_nho_nhat)
+                        mActivity,
+                        mActivity.getString(R.string.loi),
+                        mActivity.getString(R.string.da_dat_toi_so_luong_nho_nhat)
                     ).show()
                 }
             }
@@ -142,9 +141,9 @@ class ThemSachMuonDialog(
                     tvSoLuong.text = mSoLuong.toString()
                 } else if (mSoLuong == tongSach) {
                     FailDialog(
-                        mContext,
-                        mContext.getString(R.string.loi),
-                        mContext.getString(R.string.da_dat_toi_so_luong_lon_nhat_cua_1_phieu_muon_)
+                        mActivity,
+                        mActivity.getString(R.string.loi),
+                        mActivity.getString(R.string.da_dat_toi_so_luong_lon_nhat_cua_1_phieu_muon_)
                     ).show()
                 }
             }
@@ -153,19 +152,18 @@ class ThemSachMuonDialog(
 
     @SuppressLint("SetTextI18n")
     private fun initRecycleView() {
-        Log.d(TAG, "initRecycleView: ${listSach.size}")
-        mSachAdapter = AdapterListSach(mContext, listSach) {
+        mSachAdapter = AdapterListSach(mActivity, listSach) {
             layoutSachChon.visibility = View.VISIBLE
-            Glide.with(mContext).load(it.anhBia).placeholder(R.drawable.ic_book_default)
+            Glide.with(mActivity).load(it.anhBia).placeholder(R.drawable.ic_book_default)
                 .into(imvBook)
             tvSachThue.text = "${it.maSach} - ${it.tenSach}"
             mSach = it
             nsvListSach.visibility = View.GONE
             tvThemSachThue.visibility = View.VISIBLE
             tvThemSachThue.visibility = View.VISIBLE
-            KeyBoardUtils.hideKeyboard(mContext as Activity)
+            KeyBoardUtils.hideKeyboard(mActivity)
         }
-        rcvListSach.layoutManager = LinearLayoutManager(mContext)
+        rcvListSach.layoutManager = LinearLayoutManager(mActivity)
         rcvListSach.setHasFixedSize(false)
         rcvListSach.isNestedScrollingEnabled = false
         rcvListSach.adapter = mSachAdapter

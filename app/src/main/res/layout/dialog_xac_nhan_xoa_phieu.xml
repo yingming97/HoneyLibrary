@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="@dimen/_34sdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_12sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imv_dialog"
+            android:layout_width="@dimen/_126sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_xac_nhan" />
+
+        <ImageView
+            android:id="@+id/imv_close"
+            android:layout_width="@dimen/_56sdp"
+            android:layout_height="@dimen/_56sdp"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/_16sdp"
+            android:src="@drawable/ic_close" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imv_dialog"
+            android:layout_marginTop="@dimen/_26sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:text="Lý do xóa phiếu mượn ?"
+            android:textColor="#2D3142"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/_4sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="Bạn xóa phiếu mượn do tạo sai hay lý do khác"
+            android:textColor="#B4B7CC"
+            android:textSize="@dimen/_11sdp" />
+
+        <TextView
+            android:id="@+id/tv_xoa"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_below="@+id/tv_content"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:background="@drawable/bg_btn_pink_rd_8"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="Tạo sai"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp" />
+
+        <TextView
+            android:id="@+id/tv_huy"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_below="@+id/tv_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:background="@drawable/bg_btn_grey_rd_8"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_30sdp"
+            android:text="Khác"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

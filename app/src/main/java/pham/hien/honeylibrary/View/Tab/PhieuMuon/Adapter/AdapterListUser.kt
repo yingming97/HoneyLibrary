@@ -40,7 +40,6 @@ class AdapterListUser(
     }
 
     override fun onBindViewHolder(holder: ViewItemDocGia, position: Int) {
-        Log.d(TAG, "setListUser: ${mListUser.size}")
         val user = mListUser[position]
         Glide.with(mContext).load(user.avatar).placeholder(R.drawable.ic_avatar_default)
             .into(holder.imvAvatar)

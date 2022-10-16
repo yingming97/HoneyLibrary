@@ -69,4 +69,10 @@ class Constant {
         const val THU_THU = 1
         const val ADMIN = 2
     }
+
+    object DOANHTHU {
+        const val TB_NAME = "TableDoanhThu"
+        const val COL_SO_TIEN = "soTien"
+        const val COL_TIME = "time"
+    }
 }

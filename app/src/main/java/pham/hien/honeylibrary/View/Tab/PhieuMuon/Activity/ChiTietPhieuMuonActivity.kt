@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import pham.hien.honeylibrary.FireBase.FireStore.DoanhThuDAO
 import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
 import pham.hien.honeylibrary.Model.PhieuMuon
 import pham.hien.honeylibrary.Model.SachThue
@@ -19,6 +20,7 @@ import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachThue
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachThueChiTiet
 import pham.yingming.honeylibrary.Dialog.FailDialog
 import pham.yingming.honeylibrary.Dialog.XacNhanDialog
+import pham.yingming.honeylibrary.Dialog.XacNhanXoaPhieuDialog
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -116,17 +118,32 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
                 finish()
             }
             tvXoaPhieu -> {
-                XacNhanDialog(this,
-                    getString(R.string.ban_co_chac_chan_muon_xoa),
-                    getString(R.string.du_lieu_khong_the_phuc_hoi_sau_khi_xoa)) {
-                    if (mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
-                        FailDialog(this,
-                            getString(R.string.loi),
-                            getString(R.string.chi_co_the_xoa_phieu_muon_da_tra)).show()
-                    } else {
+//                XacNhanDialog(this,
+//                    getString(R.string.ban_co_chac_chan_muon_xoa),
+//                    getString(R.string.du_lieu_khong_the_phuc_hoi_sau_khi_xoa)) {
+//                    if (mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
+//                        FailDialog(this,
+//                            getString(R.string.loi),
+//                            getString(R.string.chi_co_the_xoa_phieu_muon_da_tra)).show()
+//                    } else {
+//                        PhieuMuonDAO().deletePhieuMuon(this, mPhieuMuon)
+//                    }
+//                }.show()
+                XacNhanXoaPhieuDialog(this,
+                    taoSai = {
                         PhieuMuonDAO().deletePhieuMuon(this, mPhieuMuon)
+                        DoanhThuDAO().deleteDoanhThu(mPhieuMuon.ngayThue)
+                    },
+                    khac = {
+                        if (mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
+                            FailDialog(this,
+                                getString(R.string.loi),
+                                getString(R.string.chi_co_the_xoa_phieu_muon_da_tra)).show()
+                        } else {
+                            PhieuMuonDAO().deletePhieuMuon(this, mPhieuMuon)
+                        }
                     }
-                }.show()
+                ).show()
             }
         }
     }

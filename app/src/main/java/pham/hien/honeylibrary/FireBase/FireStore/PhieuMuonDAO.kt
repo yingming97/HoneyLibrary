@@ -2,6 +2,7 @@ package pham.hien.honeylibrary.FireBase.FireStore
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -118,7 +119,7 @@ class PhieuMuonDAO {
             .delete()
             .addOnSuccessListener {
                 SuccessDialog(activity, activity.getString(R.string.da_xoa_phieu_muon), "").show()
-                activity.finish()
+                Handler().postDelayed({activity.finish()},2000)
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error deleting document", e)

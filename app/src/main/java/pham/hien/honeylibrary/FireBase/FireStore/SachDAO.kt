@@ -47,7 +47,6 @@ class SachDAO {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     listSach.add(document.toObject(Sach::class.java))
-                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
             }
             .addOnFailureListener { exception ->
@@ -62,7 +61,6 @@ class SachDAO {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     list.add(document.toObject(Sach::class.java))
-                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
                 listSach(list)
             }

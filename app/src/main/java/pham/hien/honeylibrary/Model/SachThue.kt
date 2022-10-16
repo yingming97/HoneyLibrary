@@ -9,7 +9,6 @@ class SachThue {
     var soLuong = 0
     var giaThue = 0
     var giaSach = 0
-    var traThaiTra: String = ""
 
     constructor()
     constructor(
@@ -19,7 +18,6 @@ class SachThue {
         soLuong: Int,
         giaThue: Int,
         giaSach: Int,
-        traThaiTra: String,
     ) {
         this.maSach = maSach
         this.tenSach = tenSach
@@ -27,7 +25,6 @@ class SachThue {
         this.soLuong = soLuong
         this.giaThue = giaThue
         this.giaSach = giaSach
-        this.traThaiTra = traThaiTra
     }
 
 
