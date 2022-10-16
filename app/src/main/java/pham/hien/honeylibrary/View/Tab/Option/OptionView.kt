@@ -19,7 +19,7 @@ import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Login.LoginActivity
-import pham.hien.honeylibrary.View.Tab.ChangePassword.ChangePasswordActivity
+import pham.hien.honeylibrary.View.Tab.Option.Activity.ChangePasswordActivity
 
 class OptionView : BaseView {
 

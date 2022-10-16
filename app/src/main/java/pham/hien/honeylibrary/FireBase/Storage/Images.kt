@@ -14,7 +14,7 @@ class Images {
     fun uploadImage(
         imv: ImageView,
         tableName: String,
-        id: Int,
+        id: String,
         callback: ((String) -> Unit)? = null
     ) {
 

@@ -1,6 +1,5 @@
 package pham.hien.honeylibrary.View.Login
 
-import android.content.Intent
 import android.util.Patterns
 import android.view.View
 import pham.hien.honeylibrary.Animation.AlphaAnimation
@@ -13,8 +12,7 @@ import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
-import pham.hien.honeylibrary.View.Main.MainActivity
-import pham.hien.honeylibrary.View.Tab.Register.RegisterView
+import pham.hien.honeylibrary.View.Tab.Option.CustomView.RegisterView
 import pham.yingming.honeylibrary.Dialog.FailDialog
 import java.util.regex.Pattern
 

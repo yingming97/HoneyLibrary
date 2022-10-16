@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yomaster.yogaforbeginner.View.Extention.CheckTimeUtils
+import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
 import pham.hien.honeylibrary.Model.PhieuMuon
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
@@ -23,7 +25,7 @@ import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Login.LoginActivity
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.AddPhieuMuonActivity
-import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.ChiTietPhieuMuon
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.ChiTietPhieuMuonActivity
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuDaTra
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuDangMuon
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuQuaHan
@@ -32,6 +34,7 @@ import pham.hien.honeylibrary.ViewModel.Main.PhieuMuonViewModel
 
 class PhieuMuonView : BaseView {
 
+    private val TAG = "YingMing"
     private lateinit var mContext: Context
     private lateinit var mActivity: Activity
     private var checkFirstLaunchView: Boolean = false
@@ -235,7 +238,7 @@ class PhieuMuonView : BaseView {
 
     private fun initRecycleView() {
         mPhieuQuaHanAdapter = AdapterListPhieuQuaHan(mContext, mListPhieuMuonQuaHan) {
-            val intent = Intent(mContext, ChiTietPhieuMuon::class.java)
+            val intent = Intent(mContext, ChiTietPhieuMuonActivity::class.java)
             intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, it)
             mContext.startActivity(intent)
         }
@@ -246,7 +249,7 @@ class PhieuMuonView : BaseView {
         rcv_list_qua_han.adapter = mPhieuQuaHanAdapter
 
         mPhieuDangMuonAdapter = AdapterListPhieuDangMuon(mContext, mListPhieuMuonDangMuon) {
-            val intent = Intent(mContext, ChiTietPhieuMuon::class.java)
+            val intent = Intent(mContext, ChiTietPhieuMuonActivity::class.java)
             intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, it)
             mContext.startActivity(intent)
         }
@@ -257,7 +260,7 @@ class PhieuMuonView : BaseView {
         rcv_list_dang_muon.adapter = mPhieuDangMuonAdapter
 
         mPhieuDaTraAdapter = AdapterListPhieuDaTra(mContext, mListPhieuMuonQuaHan) {
-            val intent = Intent(mContext, ChiTietPhieuMuon::class.java)
+            val intent = Intent(mContext, ChiTietPhieuMuonActivity::class.java)
             intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, it)
             mContext.startActivity(intent)
         }

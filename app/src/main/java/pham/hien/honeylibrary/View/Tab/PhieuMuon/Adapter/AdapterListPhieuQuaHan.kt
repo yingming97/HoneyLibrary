@@ -2,7 +2,6 @@ package pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.Model.PhieuMuon
-import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.moneyFormatter
-import pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity.ChiTietPhieuMuon
 
 class AdapterListPhieuQuaHan(
     context: Context,

@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.Model.SachThue
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSach
 import pham.yingming.honeylibrary.Dialog.FailDialog
@@ -115,7 +116,9 @@ class ThemSachMuonDialog(
                         mSach.tenSach,
                         mSach.anhBia,
                         mSoLuong,
-                        mSach.giaThue
+                        mSach.giaThue,
+                        mSach.giaSach,
+                        Constant.SACHTHUE.TRA_DU
                     )
                 )
                 dismiss()
@@ -200,9 +203,9 @@ class ThemSachMuonDialog(
                 } else {
                     nsvListSach.visibility = View.VISIBLE
                     mSachAdapter.setListSach(listFilter)
-                    if(listFilter.isNotEmpty()){
+                    if (listFilter.isNotEmpty()) {
                         tvNoData.visibility = View.GONE
-                    }else{
+                    } else {
                         tvNoData.visibility = View.VISIBLE
                     }
                 }

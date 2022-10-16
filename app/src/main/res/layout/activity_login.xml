@@ -97,7 +97,7 @@
 
     </RelativeLayout>
 
-    <pham.hien.honeylibrary.View.Tab.Register.RegisterView
+    <pham.hien.honeylibrary.View.Tab.Option.CustomView.RegisterView
         android:id="@+id/view_register"
         android:layout_width="match_parent"
         android:visibility="gone"

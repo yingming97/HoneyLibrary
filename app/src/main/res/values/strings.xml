@@ -42,4 +42,11 @@
     <string name="khong_co_phieu_qua_han">Không có phiếu quá hạn</string>
     <string name="khong_co_phieu_dang_muon">Không có phiếu đang mượn</string>
     <string name="khong_co_phieu_da_tra">Không có phiếu đã trả</string>
+    <string name="ban_co_chac_chan_muon_xoa">Bạn có chắc chắn muốn xóa ?</string>
+    <string name="du_lieu_khong_the_phuc_hoi_sau_khi_xoa">Dữ liệu không thể phục hồi sau khi xóa !!!</string>
+    <string name="chi_co_the_xoa_phieu_muon_da_tra">Chỉ có thể xóa phiếu mượn đã trả</string>
+    <string name="da_xoa_phieu_muon">Đã xóa phiếu mượn</string>
+    <string name="xoa_khong_thanh_cong">Xóa không thành công</string>
+    <string name="cap_nhap_phieu_muon_thanh_cong">Cập nhập phiếu mượn thành công</string>
+    <string name="cap_nhap_phieu_muon_khong_thanh_cong">Cập nhập phiếu mượn không thành công</string>
 </resources>

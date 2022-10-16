@@ -1,4 +1,4 @@
-package pham.hien.honeylibrary.View.Tab.Register
+package pham.hien.honeylibrary.View.Tab.Option.CustomView
 
 import android.annotation.SuppressLint
 import android.app.Activity
