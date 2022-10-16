@@ -65,6 +65,7 @@ class OptionView : BaseView {
         tvUserName = rootView.findViewById(R.id.tv_user_name)
 
 
+
         lnlThongKe.setOnClickListener(this)
         lnlDangXuat.setOnClickListener(this)
         lnlDoiMatKhau.setOnClickListener(this)

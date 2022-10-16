@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/roboto"
-                android:text="Đổi mật khẩú"
+                android:text="Đổi mật khẩu"
                 android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />

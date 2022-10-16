@@ -23,4 +23,6 @@
     <color name="no_data_text">#F4865A</color>
     <color name="blue_b0efef">#B0EFEF</color>
     <color name="gray_ccc">#ccc</color>
+    <color name="nocolor">#00FFFFFF</color>
+
 </resources>

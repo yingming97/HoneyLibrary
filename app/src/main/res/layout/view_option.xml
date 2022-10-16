@@ -45,21 +45,20 @@
             <RelativeLayout
                 android:id="@+id/layout_info_user"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_90sdp"
+                android:layout_height="@dimen/_80sdp"
                 android:background="@drawable/bg_view_user_profile"
                 android:elevation="@dimen/_2sdp"
                 android:gravity="center_vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imv_avatar"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:elevation="@dimen/_5sdp"
+                    android:elevation="@dimen/_2sdp"
                     android:src="@drawable/ic_avatar_default"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="@dimen/_2sdp" />
+                    app:civ_border_color="@color/white" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

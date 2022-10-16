@@ -17,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.Model.ViewFlipper
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.Utils.date2String
 import pham.hien.honeylibrary.View.Base.BaseView
 import java.lang.Math.abs
@@ -35,6 +37,7 @@ class HomeView : BaseView {
     private lateinit var viewpager2: ViewPager2
     private lateinit var handlers: Handler
     private lateinit var iconHours: ImageView
+    private lateinit var tvUserName: TextView
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -54,6 +57,7 @@ class HomeView : BaseView {
         super.initView(context, attrs)
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_home, this)
+        tvUserName = findViewById(R.id.tv_user_name)
         viewpager2 = findViewById(R.id.lv_sach_muon_nhieu)
         iconHours = findViewById(R.id.imv_sun)
         val tvTime = findViewById<TextView>(R.id.tv_time_today)
@@ -82,10 +86,12 @@ class HomeView : BaseView {
         when {
             calendar[Calendar.HOUR_OF_DAY] in 6..18 -> {
                 iconHours.setImageResource(R.drawable.ic_sun_home)
+                tvUserName.text = "Good morning,"
             }
 
             else->{
                 iconHours.setImageResource(R.drawable.icon_moon)
+                tvUserName.text = "Good evening,"
             }
         }
 
@@ -106,7 +112,15 @@ class HomeView : BaseView {
 
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
+        updateUserLogin(SharedPrefUtils.getUserData(mContext)!!)
+    }
 
+    private fun updateUserLogin(user: UserModel) {
+        if(SharedPrefUtils.getLogin(mContext)){
+            tvUserName.text = "${tvUserName.text} ${user.name}"
+        }else{
+            tvUserName.text = "${tvUserName.text} User"
+        }
     }
 
     override fun openForTheFirstTime(activity: Activity?) {

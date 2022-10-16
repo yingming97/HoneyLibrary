@@ -1,6 +1,7 @@
 package pham.hien.honeylibrary.View.Main
 
 import android.view.View
+import android.view.WindowManager
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import pham.hien.honeylibrary.Animation.closeViewToLeft
@@ -56,6 +57,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         this.layoutTheLoaiView = findViewById(R.id.layout_tab_hoa_don)
         this.layoutOptionView = findViewById(R.id.layout_tab_option)
         this.layoutMenuBottomView = findViewById(R.id.layoutMenuBottomView)
+
     }
 
     override fun initListener() {
