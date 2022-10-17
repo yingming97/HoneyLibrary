@@ -1,4 +1,4 @@
-package pham.hien.honeylibrary.Dialog
+package pham.hien.honeylibrary.View.Tab.TheLoai.Dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -21,7 +21,8 @@ import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
 class ThemTheLoaiDialog(
     context: Context,
-    maTheLoai: Int
+    maTheLoai: Int,
+    done: (() -> Unit),
 ) : Dialog(context),
     View.OnClickListener {
 
@@ -32,6 +33,7 @@ class ThemTheLoaiDialog(
     private lateinit var tv_them_the_loai: TextView
     private lateinit var mTheLoai: TheLoai
     private val mMaTheLoai = maTheLoai
+    private val mDone = done
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +73,7 @@ class ThemTheLoaiDialog(
                 TheLoaiDAO().addNewTheLoai(mContext, mTheLoai)
 //                Log.d("TAG", "onClick: " + TheLoaiDAO().getListTheLoai().size)
 //                Log.d("TAG", "onClick: " + TheLoaiDAO().mMaTheLoai)
+                mDone()
                 dismiss()
             }
         }

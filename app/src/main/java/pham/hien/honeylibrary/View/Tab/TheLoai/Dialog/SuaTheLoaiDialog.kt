@@ -1,4 +1,4 @@
-package pham.hien.honeylibrary.Dialog
+package pham.hien.honeylibrary.View.Tab.TheLoai.Dialog
 
 import android.app.Dialog
 import android.content.Context

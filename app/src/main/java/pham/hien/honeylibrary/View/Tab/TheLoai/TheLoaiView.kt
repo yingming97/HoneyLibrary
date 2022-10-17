@@ -11,13 +11,14 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import pham.hien.honeylibrary.Dialog.ThemTheLoaiDialog
-import pham.hien.honeylibrary.FireBase.FireStore.TheLoaiDAO
+import pham.hien.honeylibrary.View.Tab.TheLoai.Dialog.ThemTheLoaiDialog
 import pham.hien.honeylibrary.Model.TheLoai
+import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.ScreenUtils
+import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
@@ -25,16 +26,18 @@ import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 class TheLoaiView : BaseView {
 
     private lateinit var mContext: Context
+    private lateinit var mActivity: Activity
     private var checkFirstLaunchView: Boolean = false
 
     private lateinit var tool_bar: RelativeLayout
     private lateinit var tv_title: TextView
     private lateinit var imv_add_new_the_loai: ImageView
-    private lateinit var rcv_list_the_loai:RecyclerView
+    private lateinit var rcv_list_the_loai: RecyclerView
 
     private lateinit var mListTheLoaiViewModel: TheLoaiViewModel
     private var mListTheLoai = ArrayList<TheLoai>()
     private var mMaTheLoai = 0
+    private lateinit var mUser: UserModel
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -69,20 +72,25 @@ class TheLoaiView : BaseView {
     }
 
     override fun initObserver(owner: LifecycleOwner?) {
-        mListTheLoaiViewModel.mListTheLoaiLiveData.observe(owner!!){
-            mListTheLoai = it
-            mMaTheLoai = it.last().maTheLoai
-            Log.d("TAG", "initObserver: " + it.last().maTheLoai)
+        mListTheLoaiViewModel.mListTheLoaiLiveData.observe(owner!!) {
+            if (it.isNotEmpty()) {
+                mListTheLoai = it
+                mMaTheLoai = it.last().maTheLoai + 1
+                Log.d("TAG", "initObserver: " + it.last().maTheLoai)
+            }
         }
     }
 
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
         mListTheLoaiViewModel.getListTheLoai()
+        mUser = SharedPrefUtils.getUserData(mContext)!!
+        loadView(mUser)
     }
 
     override fun openForTheFirstTime(activity: Activity?) {
         super.openForTheFirstTime(activity)
+        mActivity = activity!!
         if (!checkFirstLaunchView) {
             checkFirstLaunchView = false
             initDataDefault(activity)
@@ -92,9 +100,20 @@ class TheLoaiView : BaseView {
     override fun onClick(view: View) {
         when (view) {
             imv_add_new_the_loai -> {
-                mListTheLoaiViewModel.getListTheLoai()
-//                Log.d(TAG, "onClick: ")
-                ThemTheLoaiDialog(mContext, mMaTheLoai+1).show()
+                ThemTheLoaiDialog(mContext, mMaTheLoai) {
+                    mListTheLoaiViewModel.getListTheLoai()
+                }.show()
+            }
+        }
+    }
+
+    private fun loadView(user: UserModel) {
+        when (user.type) {
+            Constant.QUYEN.ADMIN, Constant.QUYEN.THU_THU -> {
+                imv_add_new_the_loai.visibility = View.VISIBLE
+            }
+            else -> {
+                imv_add_new_the_loai.visibility = View.GONE
             }
         }
     }

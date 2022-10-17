@@ -8,6 +8,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.Model.PhieuMuon
 import pham.hien.honeylibrary.Model.Sach
+import pham.hien.honeylibrary.Model.SachThue
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
@@ -119,7 +120,7 @@ class PhieuMuonDAO {
             .delete()
             .addOnSuccessListener {
                 SuccessDialog(activity, activity.getString(R.string.da_xoa_phieu_muon), "").show()
-                Handler().postDelayed({activity.finish()},2000)
+                Handler().postDelayed({ activity.finish() }, 2000)
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error deleting document", e)
@@ -148,6 +149,18 @@ class PhieuMuonDAO {
                 FailDialog(activity,
                     activity.getString(R.string.cap_nhap_phieu_muon_khong_thanh_cong),
                     "").show()
+            }
+    }
+
+    fun updateSoLuongSachConLai(sach: Sach, sachThue: SachThue) {
+        db.collection(Constant.SACH.TB_NAME)
+            .document(sach.maSach.toString())
+            .update(Constant.SACH.COL_SO_LUONG_CON_LAI, sach.soLuongConLai - sachThue.soLuong)
+            .addOnSuccessListener {
+                Log.d(TAG, "update ${sach.soLuongConLai - sachThue.soLuong}")
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents.", exception)
             }
     }
 

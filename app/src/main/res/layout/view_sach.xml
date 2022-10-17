@@ -54,7 +54,7 @@
     <RelativeLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_66sdp"
+        android:layout_height="56dp"
         android:layout_below="@+id/layout_tool_bar">
 
         <TextView
@@ -69,10 +69,10 @@
 
         <ImageView
             android:id="@+id/imv_add_new_sach"
-            android:layout_width="@dimen/_66sdp"
-            android:layout_height="@dimen/_66sdp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_alignParentEnd="true"
-            android:padding="@dimen/_20sdp"
+            android:padding="10dp"
             android:src="@drawable/ic_add" />
     </RelativeLayout>
 
@@ -85,6 +85,24 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_list_sach"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_title"
+        android:gravity="center"
+        android:text="Danh sách trống"
+        android:textColor="@color/no_data_text"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/pg_load_sach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp" />
 </RelativeLayout>
