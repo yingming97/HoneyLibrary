@@ -101,6 +101,7 @@ class OptionView : BaseView {
 
     override fun onClick(view: View) {
         if(SharedPrefUtils.getLogin(mContext)){
+//            xu ly vao phan chuc nang o day
             when (view) {
                 btnLogin -> {
                     mContext.startActivity(Intent(mContext, LoginActivity::class.java))

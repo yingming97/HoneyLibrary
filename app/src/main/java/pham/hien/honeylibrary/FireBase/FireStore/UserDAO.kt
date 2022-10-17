@@ -48,6 +48,7 @@ class UserDAO {
                 for (document in result) {
                     listUser.add(document.toObject(UserModel::class.java))
                 }
+                listUser.sortBy {(it.userId)}
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
