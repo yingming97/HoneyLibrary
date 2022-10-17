@@ -34,6 +34,7 @@ class TheLoaiView : BaseView {
 
     private lateinit var mListTheLoaiViewModel: TheLoaiViewModel
     private var mListTheLoai = ArrayList<TheLoai>()
+    private var mMaTheLoai = 0
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -70,7 +71,8 @@ class TheLoaiView : BaseView {
     override fun initObserver(owner: LifecycleOwner?) {
         mListTheLoaiViewModel.mListTheLoaiLiveData.observe(owner!!){
             mListTheLoai = it
-            Log.d("TAG", "initObserver: ${it.size}")
+            mMaTheLoai = it.last().maTheLoai
+            Log.d("TAG", "initObserver: " + it.last().maTheLoai)
         }
     }
 
@@ -90,9 +92,9 @@ class TheLoaiView : BaseView {
     override fun onClick(view: View) {
         when (view) {
             imv_add_new_the_loai -> {
-//                ThemTheLoaiDialog(mContext).show()
-                Log.d("TAG", "onClick: " + mListTheLoai.size)
-
+                mListTheLoaiViewModel.getListTheLoai()
+//                Log.d(TAG, "onClick: ")
+                ThemTheLoaiDialog(mContext, mMaTheLoai+1).show()
             }
         }
     }

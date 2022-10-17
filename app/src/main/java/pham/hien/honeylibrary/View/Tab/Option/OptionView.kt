@@ -20,6 +20,7 @@ import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Login.LoginActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.ChangePasswordActivity
+import pham.hien.honeylibrary.View.Tab.Option.Activity.NhanVienActivity
 
 class OptionView : BaseView {
 
@@ -112,7 +113,7 @@ class OptionView : BaseView {
                 }
 
                 lnlQuanLyNhanVien -> {
-
+                    mContext.startActivity(Intent(mContext, NhanVienActivity::class.java))
                 }
 
                 lnlQuanLyDocGia -> {
@@ -132,7 +133,7 @@ class OptionView : BaseView {
                 }
 
             }
-        }else{
+        } else {
             when (view) {
                 btnLogin -> {
                     mContext.startActivity(Intent(mContext, LoginActivity::class.java))
@@ -143,7 +144,7 @@ class OptionView : BaseView {
                 }
 
                 lnlQuanLyNhanVien -> {
-                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
+                    mContext.startActivity(Intent(mContext, NhanVienActivity::class.java))
                 }
 
                 lnlQuanLyDocGia -> {
@@ -162,13 +163,13 @@ class OptionView : BaseView {
     }
 
     fun updateUser(user: UserModel) {
-        if(SharedPrefUtils.getLogin(mContext)){
+        if (SharedPrefUtils.getLogin(mContext)) {
             btnLogin.visibility = View.GONE
             tvUserName.text = user.name
             tvUserName.visibility = View.VISIBLE
             lnlDangXuat.visibility = View.VISIBLE
             checkPermission(user)
-        }else{
+        } else {
             btnLogin.visibility = View.VISIBLE
             tvUserName.visibility = View.GONE
             lnlDangXuat.visibility = View.GONE
@@ -182,7 +183,7 @@ class OptionView : BaseView {
         }
     }
 
-    private fun signOut(){
+    private fun signOut() {
         SharedPrefUtils.setUserData(mContext, UserModel())
         SharedPrefUtils.setLogin(mContext, false)
         updateUser(UserModel())
@@ -190,7 +191,7 @@ class OptionView : BaseView {
         Firebase.auth.signOut()
     }
 
-    private fun checkPermission(user: UserModel?){
+    private fun checkPermission(user: UserModel?) {
         when (user?.type) {
             Constant.QUYEN.DOC_GIA -> {
                 tvUserName.text = user.name

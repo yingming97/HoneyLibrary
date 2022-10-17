@@ -56,7 +56,7 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:elevation="@dimen/_2sdp"
+                    android:elevation="@dimen/_5sdp"
                     android:src="@drawable/ic_avatar_default"
                     app:civ_border_color="@color/white" />
 

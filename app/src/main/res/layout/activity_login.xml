@@ -40,39 +40,39 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cv_toolbar"
-            android:adjustViewBounds="true"
-            android:src="@drawable/img_bg_ed_login"
-            android:layout_marginTop="@dimen/_80sdp"
-            android:layout_marginHorizontal="@dimen/_20sdp"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_bg_ed_login"
+        android:layout_below="@id/cv_toolbar"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"/>
 
-        <EditText
-            android:layout_below="@+id/cv_toolbar"
-            android:id="@+id/ed_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_47sdp"
-            android:layout_marginTop="@dimen/_118sdp"
-            android:background="@android:color/transparent"
-            android:hint="Nhập email"
-            android:minHeight="48dp" />
+    <EditText
+        android:id="@+id/ed_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_toolbar"
+        android:layout_marginHorizontal="@dimen/_47sdp"
+        android:layout_marginTop="@dimen/_123sdp"
+        android:background="@android:color/transparent"
+        android:hint="Nhập email"
+        android:elevation="@dimen/_10sdp"
+        android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/ed_password"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_49sdp"
-            android:layout_below="@+id/ed_email"
-            android:layout_marginStart="@dimen/_36sdp"
-            android:layout_marginEnd="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/bg_ed_white_rd_9"
-            android:hint="Nhập mật khẩu"
-            android:inputType="textPassword"
-            android:paddingHorizontal="@dimen/_11sdp"
-            android:minHeight="48dp" />
+    <EditText
+        android:id="@+id/ed_password"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_49sdp"
+        android:layout_below="@+id/ed_email"
+        android:layout_marginStart="@dimen/_36sdp"
+        android:layout_marginEnd="@dimen/_35sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/bg_ed_white_rd_9"
+        android:hint="Nhập mật khẩu"
+        android:paddingHorizontal="@dimen/_11sdp"
+        android:minHeight="48dp" />
 
         <Button
             android:id="@+id/btn_login"

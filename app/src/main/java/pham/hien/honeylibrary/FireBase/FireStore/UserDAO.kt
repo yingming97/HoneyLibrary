@@ -7,7 +7,6 @@ import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
-import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 
 class UserDAO {
@@ -71,37 +70,52 @@ class UserDAO {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
+    fun getListUserNhanVienAndAdmin(listNhanVien: ((ArrayList<UserModel>) -> Unit)) {
+        val listUser = ArrayList<UserModel>()
+        db.collection(Constant.USER.TB_NAME)
+            .whereIn(Constant.USER.COL_TYPE, arrayListOf(1, 2))
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    listUser.add(document.toObject(UserModel::class.java))
+                }
+                listNhanVien(listUser)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+    }
 
-    fun getListUserNhanVien(): ArrayList<UserModel> {
+    fun getListUserNhanVien(listNhanVien: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
             .whereEqualTo(Constant.USER.COL_TYPE, 1)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    listUser.add(document.toObject(UserModel::class.java))
+                }
+                listNhanVien(listUser)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+    }
+
+    fun getListUserAdmin(listAdmin: ((ArrayList<UserModel>) -> Unit)) {
+        val listUser = ArrayList<UserModel>()
+        db.collection(Constant.USER.TB_NAME)
             .whereEqualTo(Constant.USER.COL_TYPE, 2)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     listUser.add(document.toObject(UserModel::class.java))
                 }
+                listAdmin(listUser)
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
-        return listUser
     }
 
-    fun getListUserAdmin(): ArrayList<UserModel> {
-        val listUser = ArrayList<UserModel>()
-        db.collection(Constant.USER.TB_NAME)
-            .whereArrayContains(Constant.USER.COL_TYPE, 2)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    listUser.add(document.toObject(UserModel::class.java))
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
-        return listUser
-    }
 }
