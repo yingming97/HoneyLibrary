@@ -36,13 +36,12 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cv_toolbar">
 
         <RelativeLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -143,15 +142,17 @@
                 android:layout_below="@+id/ed_confirm_password"
                 android:layout_marginHorizontal="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_90sdp"
                 android:background="@drawable/bg_btn_blue_rd_9"
                 android:text="Đăng ký"
                 android:textColor="@color/text_color_1c4942"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+
+                />
 
         </RelativeLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </RelativeLayout>

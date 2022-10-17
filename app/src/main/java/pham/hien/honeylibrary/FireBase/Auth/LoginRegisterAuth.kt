@@ -2,6 +2,7 @@ package pham.hien.honeylibrary.FireBase.Auth
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -30,7 +31,7 @@ class LoginRegisterAuth {
             if (task.isSuccessful) {
                 val user = auth.currentUser
                 for (mUser in arrUser) {
-                    if (mUser.email == user?.email) {
+                    if (mUser.firebaseId == user?.uid) {
                         SharedPrefUtils.setUserData(context, mUser)
                     }
                 }

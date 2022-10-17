@@ -1,5 +1,6 @@
 package pham.hien.honeylibrary.View.Login
 
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import pham.hien.honeylibrary.Animation.AlphaAnimation
@@ -21,7 +22,7 @@ class LoginActivity : BaseActivity() {
     private lateinit var btnLogin: Button
     private lateinit var edEmail: EditText
     private lateinit var edPass: EditText
-    private lateinit var arrUser: List<UserModel>
+    private var arrUser = ArrayList<UserModel>()
     private lateinit var rltToolbar: RelativeLayout
     private lateinit var imbBack: ImageView
     private lateinit var tvRegister: TextView
@@ -58,27 +59,29 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initDataDefault() {
-        arrUser = listOf()
-        arrUser = UserDAO().getListUser()
+//        UserDAO().getListUser {
+//            arrUser = it
+//        }
     }
 
     override fun onClick(view: View?) {
         when (view) {
             btnLogin -> {
-                isValidate(edEmail.text.toString(), edPass.text.toString()) {
-                    if (it) {
-                        LoginRegisterAuth().accountLogin(
-                            this,
-                            this,
-                            edEmail.text.toString(),
-                            edPass.text.toString(),
-                            arrUser
-                        ) { its ->
-                            if (its) {
-                                SharedPrefUtils.setPassword(this, edPass.text.toString())
-                                KeyBoardUtils.hideKeyboard(this)
-//                                startActivity(Intent(this, MainActivity::class.java))
-                                finish()
+                UserDAO().getListUser {listUser ->
+                    isValidate(edEmail.text.toString(), edPass.text.toString()) {
+                        if (it) {
+                            LoginRegisterAuth().accountLogin(
+                                this,
+                                this,
+                                edEmail.text.toString(),
+                                edPass.text.toString(),
+                                listUser
+                            ) { its ->
+                                if (its) {
+                                    SharedPrefUtils.setPassword(this, edPass.text.toString())
+                                    KeyBoardUtils.hideKeyboard(this)
+                                    finish()
+                                }
                             }
                         }
                     }
@@ -117,9 +120,9 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if(registerView.visibility == View.VISIBLE){
-           registerView.closeView()
-        }else{
+        if (registerView.visibility == View.VISIBLE) {
+            registerView.closeView()
+        } else {
             super.onBackPressed()
         }
     }

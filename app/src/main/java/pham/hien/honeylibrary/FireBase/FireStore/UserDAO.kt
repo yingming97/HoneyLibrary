@@ -16,7 +16,7 @@ class UserDAO {
 
     fun addUser(context: Context, user: UserModel) {
         db.collection(Constant.USER.TB_NAME)
-            .document((getListUser().last().userId + 1).toString())
+            .document(user.userId.toString())
             .set(user)
             .addOnSuccessListener {
                 SuccessDialog(context, context.getString(R.string.dang_ky_thanh_cong), "")
@@ -30,16 +30,7 @@ class UserDAO {
             }
     }
 
-    fun checkUserTrung(email: String, listUser: ArrayList<UserModel>): Boolean {
-        for (user in listUser) {
-            if (email == user.email) {
-                return true
-            }
-        }
-        return false
-    }
-
-    fun getListUser(): ArrayList<UserModel> {
+    fun getListUser(listDocGia: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
             .get()
@@ -47,12 +38,12 @@ class UserDAO {
                 for (document in result) {
                     listUser.add(document.toObject(UserModel::class.java))
                 }
-                listUser.sortBy {(it.userId)}
+                listUser.sortBy { it.userId }
+                listDocGia(listUser)
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
-        return listUser
     }
 
     fun getListUserDocGia(listDocGia: ((ArrayList<UserModel>) -> Unit)) {
@@ -70,6 +61,7 @@ class UserDAO {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
+
     fun getListUserNhanVienAndAdmin(listNhanVien: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
