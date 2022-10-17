@@ -3,7 +3,6 @@ package pham.hien.honeylibrary.View.Tab.Option.CustomView
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.util.AttributeSet
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -15,8 +14,6 @@ import android.widget.RelativeLayout
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.Animation.AlphaAnimation
 import pham.hien.honeylibrary.FireBase.Auth.LoginRegisterAuth
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
@@ -24,9 +21,7 @@ import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.ScreenUtils
-import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
-import pham.hien.honeylibrary.View.Main.MainActivity
 import pham.yingming.honeylibrary.Dialog.FailDialog
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 import java.util.regex.Pattern
@@ -66,16 +61,16 @@ class RegisterView : BaseView {
         super.initView(context, attrs)
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_register, this)
-        cvToolbar = findViewById(R.id.cv_toolbar)
-        btnRegister = findViewById(R.id.btn_register)
-        edEmail = findViewById(R.id.ed_email)
-        edName = findViewById(R.id.ed_name)
-        edAddress = findViewById(R.id.ed_address)
-        edPhoneNumber = findViewById(R.id.ed_phone_number)
-        edPassword = findViewById(R.id.ed_password)
-        edConfirmPassword = findViewById(R.id.ed_confirm_password)
-        btnBack = findViewById(R.id.imb_back)
-        rltToolbar = findViewById(R.id.rlt_toolbar)
+        cvToolbar = rootView.findViewById(R.id.cv_toolbar)
+        btnRegister = rootView.findViewById(R.id.btn_register)
+        edEmail = rootView.findViewById(R.id.ed_email)
+        edName = rootView.findViewById(R.id.ed_name)
+        edAddress = rootView.findViewById(R.id.ed_address)
+        edPhoneNumber = rootView.findViewById(R.id.ed_phone_number)
+        edPassword = rootView.findViewById(R.id.ed_password)
+        edConfirmPassword = rootView.findViewById(R.id.ed_confirm_password)
+        btnBack = rootView.findViewById(R.id.imb_back)
+        rltToolbar = rootView.findViewById(R.id.rlt_toolbar)
         ScreenUtils().setMarginStatusBar(mContext, rltToolbar)
 
 
@@ -124,25 +119,13 @@ class RegisterView : BaseView {
                 ) { check, user, pass ->
                     if (check) {
                         LoginRegisterAuth().registerNewAccount(
-                            mContext,
                             mActivity,
                             user,
                             pass
-                        ) { check, mUser ->
-                            if (check) {
+                        ) { checks, mUser ->
+                            if (checks) {
                                 SuccessDialog(mContext, "Đăng ký thành công", "").show()
-                                val auth = Firebase.auth
-                                auth.signInWithEmailAndPassword(
-                                    user.email,
-                                    pass
-                                ).addOnCompleteListener(mActivity) { task ->
-                                    if (task.isSuccessful) {
-                                        SharedPrefUtils.setPassword(mContext, pass)
-                                        SharedPrefUtils.setLogin(mContext, true)
-                                        SharedPrefUtils.setUserData(mContext, mUser)
-                                        mContext.startActivity(Intent(mContext, MainActivity::class.java))
-                                    }
-                                }
+                                LoginRegisterAuth().loginAfterRegister(mUser, pass, mActivity)
                             }
                         }
                     }
@@ -161,8 +144,7 @@ class RegisterView : BaseView {
         callback: (Boolean, UserModel, String) -> Unit
     ) {
         val passWordPattern = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$"
-        val phonePattern = "(84|0[3|5|7|8|9])+([0-9]{8,9})\\b"
-        var checkEmailAlreadyExist = false
+        val phonePattern = "(84|0[3|5789])+([0-9]{8,9})\\b"
 
         var title = ""
         var check = true
@@ -189,7 +171,7 @@ class RegisterView : BaseView {
         if (address.isNullOrEmpty()) {
             title += "\nĐịa chỉ không được bỏ trống"
             check = false
-        } else if (address.length!! < 6) {
+        } else if (address.length < 6) {
             title += "\nĐịa chỉ không dưới 6 ký tự"
             check = false
         }
