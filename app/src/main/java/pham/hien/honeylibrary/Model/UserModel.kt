@@ -31,6 +31,7 @@ class UserModel {
         this.sdt = sdt
         this.diaChi = diaChi
     }
+
     override fun toString(): String {
         return "UserModel(userId=$userId, firebaseId='$firebaseId', type=$type, avatar='$avatar', name='$name', email='$email', sdt='$sdt', diaChi=$diaChi)"
     }
