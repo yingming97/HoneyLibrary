@@ -14,11 +14,12 @@ class TheLoaiDAO {
 
     private val db = Firebase.firestore
     private val TAG = "YingMing"
+    public var mMaTheLoai:Int = 0
 
     fun addNewTheLoai(context: Context, theLoai: TheLoai) {
 
         db.collection(Constant.THELOAI.TB_NAME)
-            .document((getListTheLoai1().last().maTheLoai + 1).toString())
+            .document(theLoai.maTheLoai.toString())
             .set(theLoai)
             .addOnSuccessListener {
                 SuccessDialog(context, context.getString(R.string.them_the_loai_thanh_cong), "").show()
@@ -41,20 +42,7 @@ class TheLoaiDAO {
         return false
     }
 
-    fun getListTheLoai1() : ArrayList<TheLoai> {
-        val listTheLoai = ArrayList<TheLoai>()
-        db.collection(Constant.THELOAI.TB_NAME)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    listTheLoai.add(document.toObject(TheLoai::class.java))
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
-        return listTheLoai
-    }
+
 
     fun getListTheLoai(listTheLoai:((ArrayList<TheLoai>)-> Unit)){
         val listTheLoai1 = ArrayList<TheLoai>()
@@ -63,7 +51,6 @@ class TheLoaiDAO {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     listTheLoai1.add(document.toObject(TheLoai::class.java))
-                    Log.d(TAG, "${document.id} => ${document.data}")
                 }
                 listTheLoai(listTheLoai1)
             }

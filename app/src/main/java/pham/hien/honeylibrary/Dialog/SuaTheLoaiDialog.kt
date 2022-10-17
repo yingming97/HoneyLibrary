@@ -19,7 +19,7 @@ import pham.hien.honeylibrary.Model.TheLoai
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
-class ThemTheLoaiDialog(
+class SuaTheLoaiDialog(
     context: Context,
     maTheLoai: Int
 ) : Dialog(context),
@@ -68,7 +68,7 @@ class ThemTheLoaiDialog(
             tv_them_the_loai -> {
                 mTheLoai.tenTheLoai = ed_ten_the_loai.text.toString()
                 mTheLoai.maTheLoai = mMaTheLoai
-                TheLoaiDAO().addNewTheLoai(mContext, mTheLoai)
+                TheLoaiDAO().updateTheLoai(mContext, mTheLoai)
 //                Log.d("TAG", "onClick: " + TheLoaiDAO().getListTheLoai().size)
 //                Log.d("TAG", "onClick: " + TheLoaiDAO().mMaTheLoai)
                 dismiss()
