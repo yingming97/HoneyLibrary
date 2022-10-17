@@ -14,8 +14,11 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import pham.hien.honeylibrary.View.Tab.TheLoai.Dialog.ThemTheLoaiDialog
 import pham.hien.honeylibrary.Model.TheLoai
+import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.ScreenUtils
+import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
@@ -34,6 +37,7 @@ class TheLoaiView : BaseView {
     private lateinit var mListTheLoaiViewModel: TheLoaiViewModel
     private var mListTheLoai = ArrayList<TheLoai>()
     private var mMaTheLoai = 0
+    private lateinit var mUser: UserModel
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -80,6 +84,8 @@ class TheLoaiView : BaseView {
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
         mListTheLoaiViewModel.getListTheLoai()
+        mUser = SharedPrefUtils.getUserData(mContext)!!
+        loadView(mUser)
     }
 
     override fun openForTheFirstTime(activity: Activity?) {
@@ -94,9 +100,20 @@ class TheLoaiView : BaseView {
     override fun onClick(view: View) {
         when (view) {
             imv_add_new_the_loai -> {
-                ThemTheLoaiDialog(mContext, mMaTheLoai){
-                   mListTheLoaiViewModel.getListTheLoai()
-                } .show()
+                ThemTheLoaiDialog(mContext, mMaTheLoai) {
+                    mListTheLoaiViewModel.getListTheLoai()
+                }.show()
+            }
+        }
+    }
+
+    private fun loadView(user: UserModel) {
+        when (user.type) {
+            Constant.QUYEN.ADMIN, Constant.QUYEN.THU_THU -> {
+                imv_add_new_the_loai.visibility = View.VISIBLE
+            }
+            else -> {
+                imv_add_new_the_loai.visibility = View.GONE
             }
         }
     }
