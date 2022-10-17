@@ -22,6 +22,7 @@
                 android:padding="16dp"
                 android:rotation="180"
                 android:src="@drawable/ic_arrow_right" />
+
             <TextView
                 android:id="@+id/tvTitleNhanVien"
                 android:layout_width="match_parent"

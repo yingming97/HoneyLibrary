@@ -69,6 +69,22 @@ class UserDAO {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
+    fun getListUserNhanVienAndAdmin(listNhanVien: ((ArrayList<UserModel>) -> Unit)) {
+        val listUser = ArrayList<UserModel>()
+        db.collection(Constant.USER.TB_NAME)
+            .whereIn(Constant.USER.COL_TYPE, arrayListOf(1, 2))
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    listUser.add(document.toObject(UserModel::class.java))
+                }
+                listNhanVien(listUser)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+    }
+
     fun getListUserNhanVien(listNhanVien: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
@@ -84,6 +100,7 @@ class UserDAO {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
+
     fun getListUserAdmin(listAdmin: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)

@@ -15,11 +15,13 @@ import pham.hien.honeylibrary.ViewModel.NhanVienViewModel
 
 class NhanVienActivity : BaseActivity() {
 
+    private val TAG = "YingMing"
+
     private lateinit var imgThemNv: ImageView
     private lateinit var recyclerView: RecyclerView
     private lateinit var mViewModel: NhanVienViewModel
     private var quanLyList = ArrayList<UserModel>()
-    private lateinit var mUser: AdapterListQuanLy
+    private lateinit var mUserAdapter: AdapterListQuanLy
 
     override fun getLayout(): Int {
         return R.layout.activity_nhan_vien
@@ -41,24 +43,26 @@ class NhanVienActivity : BaseActivity() {
 
     override fun initObserver() {
         mViewModel.nhanvienModel.observe(this) {
-            mUser.setListQuanLy(it)
+            mUserAdapter.setListQuanLy(it)
             quanLyList = it
+            Log.d(TAG, "lít" + it.size)
+
         }
     }
 
     override fun initDataDefault() {
-        mViewModel.getAll()
+        mViewModel.getListNhanVien()
         Log.e("tuvm", "lít" + quanLyList.size)
     }
 
     private fun recyclerViewNhanVien() {
-        mUser = AdapterListQuanLy(this, quanLyList) {
+        mUserAdapter = AdapterListQuanLy(this, quanLyList) {
 
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(false)
         recyclerView.isNestedScrollingEnabled = false
-        recyclerView.adapter = mUser
+        recyclerView.adapter = mUserAdapter
     }
 
     override fun onClick(view: View?) {

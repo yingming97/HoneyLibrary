@@ -9,7 +9,7 @@ import pham.hien.honeylibrary.Utils.launch
 
 class NhanVienViewModel : ViewModel() {
     val nhanvienModel = MutableLiveData<ArrayList<UserModel>>()
-    fun getAll() {
+    fun getListNhanVien() {
         viewModelScope.launch(
             onPreExecute = {},
             doInBackground = {
