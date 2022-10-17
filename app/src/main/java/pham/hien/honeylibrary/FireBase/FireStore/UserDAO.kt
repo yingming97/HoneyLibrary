@@ -87,7 +87,7 @@ class UserDAO {
     fun getListUserAdmin(listAdmin: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
-            .whereEqualTo(Constant.USER.COL_TYPE, 0)
+            .whereEqualTo(Constant.USER.COL_TYPE, 2)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
