@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.FireBase.FireStore.DoanhThuDAO
 import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
+import pham.hien.honeylibrary.FireBase.FireStore.SachDAO
 import pham.hien.honeylibrary.Model.*
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.*
@@ -330,5 +331,18 @@ class AddPhieuMuonActivity : BaseActivity() {
         mPhieuMuon.listSachThue = convertListSachThueToString(mListSachThue)
         PhieuMuonDAO().addPhieuMuon(this, mPhieuMuon)
         DoanhThuDAO().addDoanhThu(DoanhThu(mThanhTien, mNgayMuon))
+        for (sachThue in mListSachThue) {
+            val sachUpdate = getSachUpdate(sachThue)
+            sachUpdate?.let { PhieuMuonDAO().updateSoLuongSachConLai(sachUpdate, sachThue) }
+        }
+    }
+
+    private fun getSachUpdate(sachThue: SachThue): Sach? {
+        for (sach in mListSach) {
+            if (sachThue.maSach == sach.maSach) {
+                return sach
+            }
+        }
+        return null
     }
 }

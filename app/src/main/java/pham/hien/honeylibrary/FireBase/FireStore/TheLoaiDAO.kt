@@ -14,15 +14,16 @@ class TheLoaiDAO {
 
     private val db = Firebase.firestore
     private val TAG = "YingMing"
-    public var mMaTheLoai:Int = 0
 
     fun addNewTheLoai(context: Context, theLoai: TheLoai) {
-
+        Log.d(TAG, "addNewTheLoai: ${theLoai.maTheLoai}")
         db.collection(Constant.THELOAI.TB_NAME)
             .document(theLoai.maTheLoai.toString())
             .set(theLoai)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.them_the_loai_thanh_cong), "").show()
+                SuccessDialog(context,
+                    context.getString(R.string.them_the_loai_thanh_cong),
+                    "").show()
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
@@ -43,8 +44,7 @@ class TheLoaiDAO {
     }
 
 
-
-    fun getListTheLoai(listTheLoai:((ArrayList<TheLoai>)-> Unit)){
+    fun getListTheLoai(listTheLoai: ((ArrayList<TheLoai>) -> Unit)) {
         val listTheLoai1 = ArrayList<TheLoai>()
         db.collection(Constant.THELOAI.TB_NAME)
             .get()
@@ -52,6 +52,7 @@ class TheLoaiDAO {
                 for (document in result) {
                     listTheLoai1.add(document.toObject(TheLoai::class.java))
                 }
+                listTheLoai1.sortBy { it.maTheLoai }
                 listTheLoai(listTheLoai1)
             }
             .addOnFailureListener { exception ->
@@ -59,7 +60,7 @@ class TheLoaiDAO {
             }
     }
 
-    fun updateTheLoai(context: Context, theLoai: TheLoai){
+    fun updateTheLoai(context: Context, theLoai: TheLoai) {
         db.collection(Constant.THELOAI.TB_NAME)
             .document(theLoai.maTheLoai.toString())
             .update(theLoai.maTheLoai.toString(), true)
@@ -75,7 +76,7 @@ class TheLoaiDAO {
             }
     }
 
-    fun deleteTheLoai(context: Context, theLoai: TheLoai){
+    fun deleteTheLoai(context: Context, theLoai: TheLoai) {
         db.collection(Constant.THELOAI.TB_NAME)
             .document(theLoai.maTheLoai.toString())
             .delete()

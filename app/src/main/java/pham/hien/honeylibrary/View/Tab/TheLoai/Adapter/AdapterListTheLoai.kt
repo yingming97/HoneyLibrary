@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import pham.hien.honeylibrary.Dialog.SuaTheLoaiDialog
+import pham.hien.honeylibrary.View.Tab.TheLoai.Dialog.SuaTheLoaiDialog
 import pham.hien.honeylibrary.Model.TheLoai
 import pham.hien.honeylibrary.R
 

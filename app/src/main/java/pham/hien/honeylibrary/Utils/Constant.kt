@@ -22,6 +22,7 @@ class Constant {
         const val TB_NAME = "TableSach"
         const val COL_MA_SACH = "maSach"
         const val COL_SO_LUONG = "soLuong"
+        const val COL_SO_LUONG_CON_LAI= "soLuongConLai"
     }
 
     object SACHTHUE {
