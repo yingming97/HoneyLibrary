@@ -2,6 +2,7 @@ package pham.hien.honeylibrary.FireBase.Auth
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -10,6 +11,7 @@ import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
+import pham.hien.honeylibrary.View.Main.MainActivity
 import pham.yingming.honeylibrary.Dialog.FailDialog
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 
@@ -51,7 +53,6 @@ class LoginRegisterAuth {
 
 
     fun registerNewAccount(
-        context: Context,
         activity: Activity,
         mUser: UserModel,
         pass: String,
@@ -69,14 +70,14 @@ class LoginRegisterAuth {
                         .set(userC)
                         .addOnSuccessListener {
                             SuccessDialog(
-                                context,
-                                context.getString(R.string.dang_ky_thanh_cong),
+                                activity.applicationContext,
+                                activity.applicationContext.getString(R.string.dang_ky_thanh_cong),
                                 ""
                             )
                         }
                         .addOnFailureListener { e ->
                             FailDialog(
-                                context,
+                                activity.applicationContext,
                                 "Đăng ký thất bại",
                                 "Vui lòng kiểm tra lại kết nối internet của bạn"
                             ).show()
@@ -86,6 +87,21 @@ class LoginRegisterAuth {
                     callback(false, userC)
                 }
             }
+    }
+
+    fun loginAfterRegister(mUser: UserModel, pass: String, activity: Activity){
+        val auth = Firebase.auth
+        auth.signInWithEmailAndPassword(
+            mUser.email,
+            pass
+        ).addOnCompleteListener(activity) { task ->
+            if (task.isSuccessful) {
+                SharedPrefUtils.setPassword(activity.applicationContext, pass)
+                SharedPrefUtils.setLogin(activity.applicationContext, true)
+                SharedPrefUtils.setUserData(activity.applicationContext, mUser)
+                activity.applicationContext.startActivity(Intent(activity.applicationContext, MainActivity::class.java))
+            }
+        }
     }
 
 }

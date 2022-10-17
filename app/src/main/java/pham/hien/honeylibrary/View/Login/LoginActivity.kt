@@ -98,24 +98,29 @@ class LoginActivity : BaseActivity() {
 
     private fun isValidate(email: String?, pass: String?, callback: (Boolean) -> Unit) {
         val passWordPattern = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$"
+        var check = false
+        var content = ""
         if (email.isNullOrEmpty()) {
-            callback(false)
-            FailDialog(this, "Sai Email", "Email không được bỏ trống").show()
+            check = false
+            content += "Email không được bỏ trống"
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            FailDialog(this, "Sai Email", "Email không đúng định dạng").show()
+            check = false
+            content += "\nEmail không đúng định dạng"
         } else if (pass.isNullOrEmpty()) {
-            FailDialog(this, "Sai mật khẩu", "Mật khẩu không được bỏ trống").show()
-            callback(false)
+            check = false
+            content += "\nMật khẩu không được bỏ trống"
         } else if (!Pattern.compile(passWordPattern).matcher(pass).matches() && pass.length < 6) {
-            FailDialog(
-                this,
-                "Sai mật khẩu",
-                "Mật khẩu không đúng định dạng:\nKhông chứa ký tự đặc biệt và phải từ 6 ký tự trở lên"
-            ).show()
-            callback(false)
-
+            check = false
+            content += "\nMật khẩu Không chứa ký tự đặc biệt và phải từ 6 ký tự trở lên"
         } else {
+            check = true
+        }
+
+        if(check){
             callback(true)
+        }else{
+            callback(false)
+            FailDialog(this, "Đăng nhập thất bại", content).show()
         }
     }
 
