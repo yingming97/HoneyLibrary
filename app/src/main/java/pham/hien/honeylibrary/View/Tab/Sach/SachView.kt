@@ -1,7 +1,9 @@
 package pham.hien.honeylibrary.View.Tab.Sach
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +11,22 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import org.w3c.dom.Text
 import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
+import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSach
+import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListSachQuanLy
 import pham.hien.honeylibrary.ViewModel.Main.SachViewModel
 
 class SachView : BaseView {
@@ -29,11 +38,18 @@ class SachView : BaseView {
     private lateinit var tv_title: TextView
 
     private lateinit var imv_add_new_sach: ImageView
+    private lateinit var ncv_quan_ly_sach: NestedScrollView
     private lateinit var rcv_list_sach: RecyclerView
+    private lateinit var layout_sach_thu_hoi: RelativeLayout
+    private lateinit var rcv_list_sach_thu_hoi: RecyclerView
     private lateinit var tv_no_data: TextView
     private lateinit var pg_load_sach: ProgressBar
 
+    private lateinit var mSach: Sach
+    private lateinit var mSachAdapter: AdapterListSachQuanLy
+    private lateinit var mSachThuHoiAdapter: AdapterListSachQuanLy
     private var mListSach = ArrayList<Sach>()
+    private var mListSachThuHoi = ArrayList<Sach>()
 
     private lateinit var mSachViewModel: SachViewModel
 
@@ -59,7 +75,10 @@ class SachView : BaseView {
         tool_bar = rootView.findViewById(R.id.tool_bar)
         tv_title = rootView.findViewById(R.id.tv_title)
         imv_add_new_sach = rootView.findViewById(R.id.imv_add_new_sach)
+        ncv_quan_ly_sach = rootView.findViewById(R.id.ncv_quan_ly_sach)
         rcv_list_sach = rootView.findViewById(R.id.rcv_list_sach)
+        layout_sach_thu_hoi = rootView.findViewById(R.id.layout_sach_thu_hoi)
+        rcv_list_sach_thu_hoi = rootView.findViewById(R.id.rcv_list_sach_thu_hoi)
         tv_no_data = rootView.findViewById(R.id.tv_no_data)
         pg_load_sach = rootView.findViewById(R.id.pg_load_sach)
 
@@ -72,19 +91,44 @@ class SachView : BaseView {
 
     override fun initObserver(owner: LifecycleOwner?) {
         mSachViewModel.mListSachLiveData.observe(owner!!) {
-            mListSach = it
+            if (it.isNotEmpty()) {
+                mListSach = it
+                tv_no_data.visibility = View.GONE
+                pg_load_sach.visibility = View.GONE
+                mSachAdapter.setListSach(it)
+                rcv_list_sach.visibility = View.VISIBLE
+                ncv_quan_ly_sach.visibility =View.VISIBLE
+            } else {
+                tv_no_data.visibility = View.VISIBLE
+                ncv_quan_ly_sach.visibility =View.VISIBLE
+            }
+        }
+        mSachViewModel.mListSachThuHoiLiveData.observe(owner) {
+            if (it.isEmpty()) {
+                layout_sach_thu_hoi.visibility = View.GONE
+                ncv_quan_ly_sach.visibility =View.VISIBLE
+            } else {
+                layout_sach_thu_hoi.visibility = View.VISIBLE
+                ncv_quan_ly_sach.visibility =View.VISIBLE
+                mListSachThuHoi = it
+                mSachThuHoiAdapter.setListSach(it)
+            }
         }
     }
 
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
+        ncv_quan_ly_sach.visibility =View.GONE
+        pg_load_sach.visibility = View.VISIBLE
         mSachViewModel.getListSach()
+        initRecycleViewSach()
+        initRecycleViewSachThuHoi()
     }
 
     override fun openForTheFirstTime(activity: Activity?) {
         super.openForTheFirstTime(activity)
         if (!checkFirstLaunchView) {
-            checkFirstLaunchView = true
+            checkFirstLaunchView = false
             initDataDefault(activity)
         }
     }
@@ -94,6 +138,30 @@ class SachView : BaseView {
         super.onClick(view)
         when (view) {
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initRecycleViewSach() {
+        mSachAdapter = AdapterListSachQuanLy(mContext, mListSach) {
+//         val intent = Intent()
+//            intent.putExtra(Constant.SACH.SACH,it)
+        }
+        rcv_list_sach.layoutManager = LinearLayoutManager(mContext)
+        rcv_list_sach.setHasFixedSize(false)
+        rcv_list_sach.isNestedScrollingEnabled = false
+        rcv_list_sach.adapter = mSachAdapter
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initRecycleViewSachThuHoi() {
+        mSachThuHoiAdapter = AdapterListSachQuanLy(mContext, mListSach) {
+//         val intent = Intent()
+//            intent.putExtra(Constant.SACH.SACH,it)
+        }
+        rcv_list_sach_thu_hoi.layoutManager = LinearLayoutManager(mContext)
+        rcv_list_sach_thu_hoi.setHasFixedSize(false)
+        rcv_list_sach_thu_hoi.isNestedScrollingEnabled = false
+        rcv_list_sach_thu_hoi.adapter = mSachThuHoiAdapter
     }
 
 }

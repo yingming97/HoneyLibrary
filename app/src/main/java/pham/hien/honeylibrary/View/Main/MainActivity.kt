@@ -1,15 +1,12 @@
 package pham.hien.honeylibrary.View.Main
 
 import android.view.View
-import android.view.WindowManager
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import pham.hien.honeylibrary.Animation.closeViewToLeft
 import pham.hien.honeylibrary.Animation.closeViewToRight
 import pham.hien.honeylibrary.Animation.openViewFromLeft
 import pham.hien.honeylibrary.Animation.openViewFromRight
 import pham.hien.honeylibrary.Model.UserModel
-import pham.hien.honeylibrary.Animation.*
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
@@ -155,7 +152,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
                     closeViewToRight(layoutOptionView, layoutOptionView.width, 300)
                 }
             }
-            Constant.POSITION.VIEW_HOA_DON -> {
+            Constant.POSITION.VIEW_THE_LOAI -> {
                 layoutTheLoaiView.openForTheFirstTime(this)
                 if (BaseView.isOpening(layoutSachView)) {
                     openViewFromRight(layoutTheLoaiView, layoutTheLoaiView.width, 300)

@@ -17,7 +17,7 @@ class SachDAO {
 
     fun addSach(context: Context, sach: Sach) {
         db.collection(Constant.SACH.TB_NAME)
-            .document((getListSach().last().maSach + 1).toString())
+            .document(sach.maSach.toString())
             .set(sach)
             .addOnSuccessListener {
                 SuccessDialog(context, context.getString(R.string.them_sach_thanh_cong), "")
@@ -31,37 +31,32 @@ class SachDAO {
             }
     }
 
-    fun checkSachTrung(idSach: Int, listSach: ArrayList<Sach>): Boolean {
-        for (sach in listSach) {
-            if (idSach == sach.maSach) {
-                return true
-            }
-        }
-        return false
-    }
-
-    fun getListSach(): ArrayList<Sach> {
-        val listSach = ArrayList<Sach>()
-        db.collection(Constant.SACH.TB_NAME)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    listSach.add(document.toObject(Sach::class.java))
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
-        return listSach
-    }
-    fun getListSach(listSach : ((ArrayList<Sach>) -> Unit)) {
+    fun getListSachChuaThuHoi(listSach: ((ArrayList<Sach>) -> Unit)) {
         val list = ArrayList<Sach>()
         db.collection(Constant.SACH.TB_NAME)
+            .whereEqualTo(Constant.SACH.COL_THU_HOI, false)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     list.add(document.toObject(Sach::class.java))
                 }
+                list.sortBy { it.maSach }
+                listSach(list)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+    }
+    fun getListSachDaThuHoi(listSach: ((ArrayList<Sach>) -> Unit)) {
+        val list = ArrayList<Sach>()
+        db.collection(Constant.SACH.TB_NAME)
+            .whereEqualTo(Constant.SACH.COL_THU_HOI, true)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    list.add(document.toObject(Sach::class.java))
+                }
+                list.sortBy { it.maSach }
                 listSach(list)
             }
             .addOnFailureListener { exception ->

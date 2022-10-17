@@ -96,10 +96,10 @@ class LoginRegisterAuth {
             pass
         ).addOnCompleteListener(activity) { task ->
             if (task.isSuccessful) {
-                SharedPrefUtils.setPassword(activity.applicationContext, pass)
-                SharedPrefUtils.setLogin(activity.applicationContext, true)
-                SharedPrefUtils.setUserData(activity.applicationContext, mUser)
-                activity.applicationContext.startActivity(Intent(activity.applicationContext, MainActivity::class.java))
+                SharedPrefUtils.setPassword(activity, pass)
+                SharedPrefUtils.setLogin(activity, true)
+                SharedPrefUtils.setUserData(activity, mUser)
+                activity.finish()
             }
         }
     }

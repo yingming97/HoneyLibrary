@@ -12,6 +12,7 @@ class Sach {
     var giaSach = 0
     var gioiThieu: String? = ""
     var anhBia: String = Constant.SACH.IMAGE_BOOK_DEFAULT
+    var thuHoi = false
 
     constructor()
     constructor(

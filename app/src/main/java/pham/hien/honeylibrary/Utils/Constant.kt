@@ -6,7 +6,7 @@ class Constant {
         const val VIEW_SACH = 0
         const val VIEW_PHIEU_MUON = 1
         const val VIEW_HOME = 2
-        const val VIEW_HOA_DON = 3
+        const val VIEW_THE_LOAI = 3
         const val VIEW_OPTION = 4
     }
 
@@ -17,12 +17,14 @@ class Constant {
     }
 
     object SACH {
+        const val SACH = "SACH"
         const val IMAGE_BOOK_DEFAULT =
             "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableSach%2F0?alt=media&token=3879a67c-11a6-474b-a4ed-917d3b124407"
         const val TB_NAME = "TableSach"
         const val COL_MA_SACH = "maSach"
         const val COL_SO_LUONG = "soLuong"
-        const val COL_SO_LUONG_CON_LAI= "soLuongConLai"
+        const val COL_SO_LUONG_CON_LAI = "soLuongConLai"
+        const val COL_THU_HOI = "thuHoi"
     }
 
     object SACHTHUE {
