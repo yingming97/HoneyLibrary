@@ -29,7 +29,7 @@
                 android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_16sdp" />
 
-            <ImageView
+            <SearchView
                 android:id="@+id/imv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -37,7 +37,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_search"
                 android:visibility="visible" />
 
             <View

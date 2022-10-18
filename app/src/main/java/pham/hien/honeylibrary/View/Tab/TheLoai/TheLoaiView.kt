@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,11 +37,13 @@ class TheLoaiView : BaseView {
     private lateinit var tv_title: TextView
     private lateinit var imv_add_new_the_loai: ImageView
     private lateinit var rcv_list_the_loai: RecyclerView
+    private lateinit var imv_search_view: android.widget.SearchView
 
     private lateinit var mListTheLoaiViewModel: TheLoaiViewModel
     private var mListTheLoai = ArrayList<TheLoai>()
     private var mMaTheLoai = 0
     private lateinit var mUser: UserModel
+    private var mListTenTheLoai = ArrayList<String>()
 
     private lateinit var mTheLoaiAdapter: AdapterListTheLoai
 
@@ -67,10 +70,33 @@ class TheLoaiView : BaseView {
         tv_title = rootView.findViewById(R.id.tv_title)
         imv_add_new_the_loai = rootView.findViewById(R.id.imv_add_new_the_loai)
         rcv_list_the_loai = rootView.findViewById(R.id.rcv_list_the_loai)
+        imv_search_view = rootView.findViewById(R.id.imv_search)
 
         ScreenUtils().setMarginStatusBar(mContext, tool_bar)
         imv_add_new_the_loai.setOnClickListener(this)
+
         initRecycleViewTheLoai()
+        initSearchView()
+    }
+
+    private fun initSearchView() {
+        imv_search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                mTheLoaiAdapter.filter.filter(query)
+                tv_title.visibility = View.INVISIBLE
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mTheLoaiAdapter.filter.filter(newText)
+                tv_title.visibility = View.INVISIBLE
+                return true
+            }
+
+        })
+
+
     }
 
     override fun initViewModel(viewModel: ViewModel?) {
@@ -84,6 +110,9 @@ class TheLoaiView : BaseView {
                 mMaTheLoai = it.last().maTheLoai + 1
                 Log.d("TAG", "initObserver: " + it.last().maTheLoai)
                 mTheLoaiAdapter.setList(it)
+                for (theLoai in mListTheLoai) {
+                    mListTenTheLoai.add(theLoai.tenTheLoai)
+                }
             }
         }
     }
@@ -116,8 +145,8 @@ class TheLoaiView : BaseView {
     }
 
     private fun initRecycleViewTheLoai() {
-        mTheLoaiAdapter = AdapterListTheLoai(mContext, mListTheLoai){
-            SuaTheLoaiDialog(mContext, it, mListTheLoai){
+        mTheLoaiAdapter = AdapterListTheLoai(mContext, mListTheLoai) {
+            SuaTheLoaiDialog(mContext, it, mListTheLoai) {
                 mListTheLoaiViewModel.getListTheLoai()
             }.show()
         }
@@ -137,4 +166,5 @@ class TheLoaiView : BaseView {
             }
         }
     }
+
 }
