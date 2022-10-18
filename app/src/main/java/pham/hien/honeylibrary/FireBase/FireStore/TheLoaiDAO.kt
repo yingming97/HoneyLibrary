@@ -34,16 +34,6 @@ class TheLoaiDAO {
             }
     }
 
-    fun checkTheLoaiTrung(idTheLoai: Int, listTheLoai: ArrayList<TheLoai>): Boolean {
-        for (theLoai in listTheLoai) {
-            if (idTheLoai == theLoai.maTheLoai) {
-                return true
-            }
-        }
-        return false
-    }
-
-
     fun getListTheLoai(listTheLoai: ((ArrayList<TheLoai>) -> Unit)) {
         val listTheLoai1 = ArrayList<TheLoai>()
         db.collection(Constant.THELOAI.TB_NAME)

@@ -22,6 +22,7 @@ import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Tab.TheLoai.Adapter.AdapterListTheLoai
+import pham.hien.honeylibrary.View.Tab.TheLoai.Dialog.SuaTheLoaiDialog
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
 
@@ -106,7 +107,8 @@ class TheLoaiView : BaseView {
     override fun onClick(view: View) {
         when (view) {
             imv_add_new_the_loai -> {
-                ThemTheLoaiDialog(mContext, mMaTheLoai) {
+                ThemTheLoaiDialog(mContext, mMaTheLoai, mListTheLoai) {
+                    Log.d("gggg", "onClick: ${mListTheLoai}}")
                     mListTheLoaiViewModel.getListTheLoai()
                 }.show()
             }
@@ -114,7 +116,11 @@ class TheLoaiView : BaseView {
     }
 
     private fun initRecycleViewTheLoai() {
-        mTheLoaiAdapter = AdapterListTheLoai(mContext, mListTheLoai)
+        mTheLoaiAdapter = AdapterListTheLoai(mContext, mListTheLoai){
+            SuaTheLoaiDialog(mContext, it, mListTheLoai){
+                mListTheLoaiViewModel.getListTheLoai()
+            }.show()
+        }
         rcv_list_the_loai.layoutManager = LinearLayoutManager(mContext)
         rcv_list_the_loai.setHasFixedSize(false)
         rcv_list_the_loai.isNestedScrollingEnabled = false

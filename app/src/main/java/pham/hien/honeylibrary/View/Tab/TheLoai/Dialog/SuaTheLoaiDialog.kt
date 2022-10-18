@@ -18,10 +18,13 @@ import pham.hien.honeylibrary.Model.SachThue
 import pham.hien.honeylibrary.Model.TheLoai
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
+import pham.yingming.honeylibrary.Dialog.FailDialog
 
 class SuaTheLoaiDialog(
     context: Context,
-    theLoai: TheLoai
+    theLoai: TheLoai,
+    listTheLoai: ArrayList<TheLoai>,
+    done: (()->Unit)
 ) : Dialog(context),
     View.OnClickListener {
 
@@ -31,6 +34,8 @@ class SuaTheLoaiDialog(
     private lateinit var ed_sua_the_loai: EditText
     private lateinit var tv_sua_the_loai: TextView
     private var mTheLoai = theLoai
+    private var mListTheLoai = listTheLoai
+    private val mDone = done
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +69,19 @@ class SuaTheLoaiDialog(
         when (v) {
             imvClose -> dismiss()
             tv_sua_the_loai -> {
+                if(ed_sua_the_loai.text.toString().isEmpty()){
+                    FailDialog(mContext, "Sửa thể loại thất bại", "Không để trống tên thể loại").show()
+                    return
+                }
+                for (theLoai in mListTheLoai){
+                    if(ed_sua_the_loai.text.toString() == theLoai.tenTheLoai) {
+                        FailDialog(mContext, "Sửa thể loại thất bại", "Thể loại đã tồn tại").show()
+                        return
+                    }
+                }
                 mTheLoai.tenTheLoai = ed_sua_the_loai.text.toString()
                 TheLoaiDAO().updateTheLoai(mContext, mTheLoai)
+                mDone()
                 dismiss()
             }
         }

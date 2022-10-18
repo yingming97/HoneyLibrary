@@ -14,11 +14,13 @@ import pham.hien.honeylibrary.R
 
 class AdapterListTheLoai(
     context: Context,
-    listTheLoai: ArrayList<TheLoai>
+    listTheLoai: ArrayList<TheLoai>,
+    click: ((TheLoai)-> Unit)
 ): RecyclerView.Adapter<AdapterListTheLoai.ViewItemTheLoai>() {
 
     private val mContext = context
     private var mListTheLoai:ArrayList<TheLoai> = listTheLoai
+    private val onClickTheLoai= click
 
     fun setList(list: ArrayList<TheLoai>){
         mListTheLoai = list
@@ -36,8 +38,7 @@ class AdapterListTheLoai(
         val theLoai = mListTheLoai[position]
 
         holder.layoutItemTheLoai.setOnClickListener{
-            SuaTheLoaiDialog(mContext, theLoai, ).show()
-            notifyDataSetChanged()
+            onClickTheLoai(theLoai)
         }
         holder.tvTenTheLoai.text = theLoai.tenTheLoai
         holder.tvSttTheLoai.text = theLoai.maTheLoai.toString()
