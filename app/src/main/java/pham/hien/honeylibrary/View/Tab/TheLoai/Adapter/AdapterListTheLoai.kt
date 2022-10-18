@@ -18,7 +18,12 @@ class AdapterListTheLoai(
 ): RecyclerView.Adapter<AdapterListTheLoai.ViewItemTheLoai>() {
 
     private val mContext = context
-    private val mListTheLoai:ArrayList<TheLoai> = listTheLoai
+    private var mListTheLoai:ArrayList<TheLoai> = listTheLoai
+
+    fun setList(list: ArrayList<TheLoai>){
+        mListTheLoai = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewItemTheLoai {
         val view = LayoutInflater.from(parent.context)
@@ -31,8 +36,11 @@ class AdapterListTheLoai(
         val theLoai = mListTheLoai[position]
 
         holder.layoutItemTheLoai.setOnClickListener{
-            SuaTheLoaiDialog(mContext, theLoai.maTheLoai)
+            SuaTheLoaiDialog(mContext, theLoai, ).show()
+            notifyDataSetChanged()
         }
+        holder.tvTenTheLoai.text = theLoai.tenTheLoai
+        holder.tvSttTheLoai.text = theLoai.maTheLoai.toString()
     }
 
     override fun getItemCount(): Int {

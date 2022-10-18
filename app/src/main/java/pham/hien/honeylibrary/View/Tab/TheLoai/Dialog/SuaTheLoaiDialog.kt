@@ -21,22 +21,21 @@ import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
 class SuaTheLoaiDialog(
     context: Context,
-    maTheLoai: Int
+    theLoai: TheLoai
 ) : Dialog(context),
     View.OnClickListener {
 
     private val mContext = context
 
     private lateinit var imvClose: ImageView
-    private lateinit var ed_ten_the_loai: EditText
-    private lateinit var tv_them_the_loai: TextView
-    private lateinit var mTheLoai: TheLoai
-    private val mMaTheLoai = maTheLoai
+    private lateinit var ed_sua_the_loai: EditText
+    private lateinit var tv_sua_the_loai: TextView
+    private var mTheLoai = theLoai
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.dialog_them_the_loai)
+        setContentView(R.layout.dialog_sua_the_loai)
         window!!.decorView.setBackgroundResource(R.color.transparent)
         window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
         val wlp = window!!.attributes
@@ -49,28 +48,24 @@ class SuaTheLoaiDialog(
         )
         setCancelable(true)
         initView()
-        mTheLoai = TheLoai()
     }
 
     private fun initView() {
         imvClose = findViewById(R.id.imv_close)
-        ed_ten_the_loai = findViewById(R.id.ed_ten_the_loai)
-        tv_them_the_loai = findViewById(R.id.tv_them_the_loai)
+        ed_sua_the_loai = findViewById(R.id.ed_sua_the_loai)
+        tv_sua_the_loai = findViewById(R.id.tv_sua_the_loai)
 
         imvClose.setOnClickListener(this)
-        tv_them_the_loai.setOnClickListener(this)
-
+        tv_sua_the_loai.setOnClickListener(this)
+        ed_sua_the_loai.setText(mTheLoai.tenTheLoai)
     }
 
     override fun onClick(v: View?) {
         when (v) {
             imvClose -> dismiss()
-            tv_them_the_loai -> {
-                mTheLoai.tenTheLoai = ed_ten_the_loai.text.toString()
-                mTheLoai.maTheLoai = mMaTheLoai
+            tv_sua_the_loai -> {
+                mTheLoai.tenTheLoai = ed_sua_the_loai.text.toString()
                 TheLoaiDAO().updateTheLoai(mContext, mTheLoai)
-//                Log.d("TAG", "onClick: " + TheLoaiDAO().getListTheLoai().size)
-//                Log.d("TAG", "onClick: " + TheLoaiDAO().mMaTheLoai)
                 dismiss()
             }
         }

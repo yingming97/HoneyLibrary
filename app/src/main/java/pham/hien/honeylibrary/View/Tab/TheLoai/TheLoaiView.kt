@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pham.hien.honeylibrary.View.Tab.TheLoai.Dialog.ThemTheLoaiDialog
 import pham.hien.honeylibrary.Model.TheLoai
@@ -20,6 +21,7 @@ import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
+import pham.hien.honeylibrary.View.Tab.TheLoai.Adapter.AdapterListTheLoai
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 
 
@@ -38,6 +40,8 @@ class TheLoaiView : BaseView {
     private var mListTheLoai = ArrayList<TheLoai>()
     private var mMaTheLoai = 0
     private lateinit var mUser: UserModel
+
+    private lateinit var mTheLoaiAdapter: AdapterListTheLoai
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -65,6 +69,7 @@ class TheLoaiView : BaseView {
 
         ScreenUtils().setMarginStatusBar(mContext, tool_bar)
         imv_add_new_the_loai.setOnClickListener(this)
+        initRecycleViewTheLoai()
     }
 
     override fun initViewModel(viewModel: ViewModel?) {
@@ -77,6 +82,7 @@ class TheLoaiView : BaseView {
                 mListTheLoai = it
                 mMaTheLoai = it.last().maTheLoai + 1
                 Log.d("TAG", "initObserver: " + it.last().maTheLoai)
+                mTheLoaiAdapter.setList(it)
             }
         }
     }
@@ -105,6 +111,14 @@ class TheLoaiView : BaseView {
                 }.show()
             }
         }
+    }
+
+    private fun initRecycleViewTheLoai() {
+        mTheLoaiAdapter = AdapterListTheLoai(mContext, mListTheLoai)
+        rcv_list_the_loai.layoutManager = LinearLayoutManager(mContext)
+        rcv_list_the_loai.setHasFixedSize(false)
+        rcv_list_the_loai.isNestedScrollingEnabled = false
+        rcv_list_the_loai.adapter = mTheLoaiAdapter
     }
 
     private fun loadView(user: UserModel) {
