@@ -22,6 +22,7 @@ import pham.hien.honeylibrary.View.Login.LoginActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.ChangePasswordActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.DocGiaActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.NhanVienActivity
+import pham.hien.honeylibrary.View.Tab.Option.Activity.TroGiupActivity
 
 class OptionView : BaseView {
 
@@ -126,7 +127,7 @@ class OptionView : BaseView {
                 }
 
                 lnlTroGiup -> {
-
+                    mContext.startActivity(Intent(mContext,TroGiupActivity::class.java))
                 }
 
                 lnlDangXuat -> {
