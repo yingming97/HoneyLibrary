@@ -20,6 +20,7 @@ import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Login.LoginActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.ChangePasswordActivity
+import pham.hien.honeylibrary.View.Tab.Option.Activity.DocGiaActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.NhanVienActivity
 
 class OptionView : BaseView {
@@ -117,7 +118,7 @@ class OptionView : BaseView {
                 }
 
                 lnlQuanLyDocGia -> {
-
+                    mContext.startActivity(Intent(mContext, DocGiaActivity::class.java))
                 }
 
                 lnlThongKe -> {
@@ -144,7 +145,7 @@ class OptionView : BaseView {
                 }
 
                 lnlQuanLyNhanVien -> {
-                    mContext.startActivity(Intent(mContext, NhanVienActivity::class.java))
+                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
                 }
 
                 lnlQuanLyDocGia -> {

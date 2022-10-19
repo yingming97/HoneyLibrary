@@ -30,4 +30,6 @@ class CreateNewAccount {
                 Log.d(TAG, "getFirebaseId: error")
             }
     }
+
+
 }

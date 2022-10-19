@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="pham.hien.honeylibrary">
+    package="pham.hien.honeylibrary"
+    >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,6 +22,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeHome"
         android:usesCleartextTraffic="true">
+<!--        <activity-->
+<!--            android:name=".ListTheLoaiActivity"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".AddTheLoaiActivity"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".View.Tab.ChangePassword.ChangePasswordActivity"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
         <activity
             android:name=".ChiTietActivity"
             android:exported="false" />
@@ -54,18 +76,19 @@
         <activity
             android:name=".View.Tab.Option.Activity.NhanVienActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".View.Tab.PhieuMuon.Activity.ChiTietPhieuMuon"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".View.Tab.PhieuMuon.Activity.ChiTietPhieuMuonActivity"
+            android:name=".View.Base.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Tab.PhieuMuon.Activity.SuaPhieuMuonActivity"
+            android:name=".View.Tab.Option.Activity.DocGiaActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Tab.Option.Activity.ChangePasswordActivity"
+            android:name=".View.Tab.Option.Activity.AddDocGiaActivity"
             android:exported="false" />
-        <activity
-            android:name=".View.Tab.Option.Activity.ThemNhanVienActivity"
-            android:exported="false" />
+
 
         <meta-data
             android:name="preloaded_fonts"
