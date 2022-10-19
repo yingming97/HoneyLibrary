@@ -16,7 +16,7 @@ class UserModel {
 
     constructor(
         userId: Int,
-        firebaseId: String,
+        firebaseId: String?,
         type: Int,
         name: String,
         email: String,
@@ -24,7 +24,7 @@ class UserModel {
         diaChi: String?
     ) {
         this.userId = userId
-        this.firebaseId = firebaseId
+        this.firebaseId = firebaseId!!
         this.type = type
         this.name = name
         this.email = email

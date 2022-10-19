@@ -20,6 +20,7 @@ class NhanVienActivity : BaseActivity() {
     private lateinit var imgThemNv: ImageView
     private lateinit var recyclerView: RecyclerView
     private lateinit var mViewModel: NhanVienViewModel
+    private lateinit var back: ImageView
     private var quanLyList = ArrayList<UserModel>()
     private lateinit var mUserAdapter: AdapterListQuanLy
 
@@ -30,10 +31,12 @@ class NhanVienActivity : BaseActivity() {
     override fun initView() {
         imgThemNv = findViewById(R.id.image_ThemNhanVien)
         recyclerView = findViewById(R.id.recyclerNhanVien)
+        back = findViewById(R.id.image_Back)
     }
 
     override fun initListener() {
         imgThemNv.setOnClickListener(this)
+        back.setOnClickListener(this)
         recyclerViewNhanVien()
     }
 
@@ -56,8 +59,9 @@ class NhanVienActivity : BaseActivity() {
     }
 
     private fun recyclerViewNhanVien() {
-        mUserAdapter = AdapterListQuanLy(this, quanLyList) {
-
+        mUserAdapter = AdapterListQuanLy(applicationContext, quanLyList) {
+            var intent = Intent(applicationContext, ChiTietNhanVienActivity::class.java)
+            startActivity(intent)
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(false)
@@ -69,5 +73,14 @@ class NhanVienActivity : BaseActivity() {
         imgThemNv.setOnClickListener {
             startActivity(Intent(applicationContext, ThemNhanVienActivity::class.java))
         }
+        back.setOnClickListener {
+            Log.e("tuvm", "onclick")
+            finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mViewModel.getListNhanVien()
     }
 }

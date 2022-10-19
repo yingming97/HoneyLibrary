@@ -1,12 +1,15 @@
 package pham.hien.honeylibrary.FireBase.FireStore
 
+import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
+import pham.yingming.honeylibrary.Dialog.FailDialog
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 
 class UserDAO {
@@ -16,7 +19,7 @@ class UserDAO {
 
     fun addUser(context: Context, user: UserModel) {
         db.collection(Constant.USER.TB_NAME)
-            .document(user.userId.toString())
+            .document((user.userId + 1).toString())
             .set(user)
             .addOnSuccessListener {
                 SuccessDialog(context, context.getString(R.string.dang_ky_thanh_cong), "")
@@ -61,7 +64,6 @@ class UserDAO {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
-
     fun getListUserNhanVienAndAdmin(listNhanVien: ((ArrayList<UserModel>) -> Unit)) {
         val listUser = ArrayList<UserModel>()
         db.collection(Constant.USER.TB_NAME)
@@ -109,5 +111,4 @@ class UserDAO {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
-
 }
