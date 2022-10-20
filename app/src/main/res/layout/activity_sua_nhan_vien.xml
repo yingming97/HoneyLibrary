@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_them_nhanvien"
+    android:background="@drawable/bg_splash"
     android:orientation="vertical"
     tools:context=".View.Tab.Option.Activity.ThemNhanVienActivity">
 
@@ -18,13 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/roboto"
-            android:text="Thêm Nhân Viên"
+            android:text="Sửa Nhân Viên"
             android:textColor="@color/text_color_1c4942"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imb_backThemNhanVien"
+            android:id="@+id/imb_backSuaNhanVien"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
             android:padding="@dimen/_15sdp"
@@ -95,7 +95,6 @@
         android:textColor="@color/black" />
 
     <EditText
-        android:inputType="number"
         android:id="@+id/ed_SdtNhanVien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,6 +103,7 @@
         android:layout_marginEnd="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:background="@drawable/bg_btn_grey_rd_8"
+        android:inputType="number"
         android:padding="10dp" />
 
     <RadioGroup
@@ -130,17 +130,17 @@
     </RadioGroup>
 
     <TextView
-        android:elevation="@dimen/_5sdp"
-        android:textColor="@color/text_color_1c4942"
-        android:fontFamily="@font/roboto_bold"
-        android:gravity="center"
-        android:padding="@dimen/_10sdp"
         android:id="@+id/tv_themNhanvien"
-        android:background="@drawable/bg_btn_blue_rd_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_20sdp"
-        android:text="Thêm" />
+        android:background="@drawable/background_button_them"
+        android:elevation="@dimen/_5sdp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="Lưu"
+        android:textColor="@color/text_color_1c4942" />
 
 
 </LinearLayout>

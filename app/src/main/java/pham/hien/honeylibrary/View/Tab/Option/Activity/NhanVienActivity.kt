@@ -31,7 +31,7 @@ class NhanVienActivity : BaseActivity() {
     override fun initView() {
         imgThemNv = findViewById(R.id.image_ThemNhanVien)
         recyclerView = findViewById(R.id.recyclerNhanVien)
-        back = findViewById(R.id.image_Back)
+        back = findViewById(R.id.imb_backNhanVien)
     }
 
     override fun initListener() {
@@ -75,7 +75,7 @@ class NhanVienActivity : BaseActivity() {
         }
         back.setOnClickListener {
             Log.e("tuvm", "onclick")
-            finish()
+            onBackPressed()
         }
     }
 

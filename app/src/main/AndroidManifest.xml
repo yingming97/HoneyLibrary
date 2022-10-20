@@ -22,13 +22,18 @@
         android:theme="@style/AppThemeHome"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.Tab.Option.Activity.ThemNhanVienActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Tab.Option.Activity.SuaNhanVienActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.Tab.Option.Activity.MessageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-        <!-- <activity -->
+        </activity> <!-- <activity -->
         <!-- android:name=".ListTheLoaiActivity" -->
         <!-- android:exported="false"> -->
         <!-- <meta-data -->
@@ -42,13 +47,13 @@
         <!-- android:name="android.app.lib_name" -->
         <!-- android:value="" /> -->
         <!-- </activity> -->
-         <activity
-         android:name=".View.Tab.Option.Activity.ChangePasswordActivity"
-         android:exported="false">
-         <meta-data
-         android:name="android.app.lib_name"
-         android:value="" />
-         </activity>
+        <activity
+            android:name=".View.Tab.Option.Activity.ChangePasswordActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".View.Tab.Option.Activity.TroGiupActivity"
             android:exported="false">
@@ -56,7 +61,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".View.Tab.Option.Activity.ChiTietNhanVienActivity"
             android:exported="false" />

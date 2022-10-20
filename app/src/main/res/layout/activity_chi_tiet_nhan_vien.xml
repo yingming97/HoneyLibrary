@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/roboto"
-            android:text="Đăng nhập"
+            android:text="Quản Lý Nhân Viên"
             android:textColor="@color/text_color_1c4942"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />
@@ -35,22 +35,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlt_toolbar"
-        android:layout_margin="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
         android:fontFamily="@font/roboto_bold"
         android:text="Thông Tin Chi Tiết"
         android:textColor="@color/black"
         android:textSize="@dimen/_20sdp" />
 
     <ImageView
-        android:id="@+id/tv_imageSuaNhanVien"
+        android:id="@+id/imageSuaNhanVien"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
         android:layout_below="@id/rlt_toolbar"
         android:layout_alignEnd="@id/tv_Thongtin"
-        android:layout_marginStart="@dimen/_18sdp"
         android:layout_marginTop="@dimen/_18sdp"
-        android:layout_marginEnd="@dimen/_18sdp"
-        android:layout_marginBottom="@dimen/_18sdp"
         android:src="@drawable/ic_edit" />
 
     <ImageView

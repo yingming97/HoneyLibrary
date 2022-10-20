@@ -3,6 +3,7 @@ package pham.hien.honeylibrary.View.Tab.Option.Activity
 import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import pham.hien.honeylibrary.FireBase.Auth.LoginRegisterAuth
@@ -12,10 +13,10 @@ import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.yingming.honeylibrary.Dialog.FailDialog
-import pham.yingming.honeylibrary.Dialog.SuccessDialog
 import java.util.regex.Pattern
 
 class ThemNhanVienActivity : BaseActivity() {
+    private lateinit var backThemNhanVien: ImageView
     private lateinit var hoTen: EditText
     private lateinit var email: EditText
     private lateinit var diaChi: EditText
@@ -33,6 +34,7 @@ class ThemNhanVienActivity : BaseActivity() {
     }
 
     override fun initView() {
+        backThemNhanVien = findViewById(R.id.imb_backThemNhanVien)
         hoTen = findViewById(R.id.ed_HotenNhanvien)
         email = findViewById(R.id.ed_EmailNhanVien)
         diaChi = findViewById(R.id.ed_DiachiNhanVien)
@@ -46,6 +48,8 @@ class ThemNhanVienActivity : BaseActivity() {
         them.setOnClickListener {
             addNhanVien()
         }
+        backThemNhanVien.setOnClickListener(this)
+        backThemNV()
     }
 
     override fun initViewModel() {
@@ -59,6 +63,7 @@ class ThemNhanVienActivity : BaseActivity() {
     override fun initDataDefault() {
         UserDAO().getListUser {
             arrUser = it
+            user = UserModel()
         }
     }
 
@@ -74,19 +79,13 @@ class ThemNhanVienActivity : BaseActivity() {
         } else {
             thuthu = Constant.QUYEN.ADMIN
         }
-        checkForm(hoten, mail, diachi, sdt) { check, user, sdt ->
+        checkForm(hoten, mail, diachi, sdt, thuthu) { check, user, sdt ->
             if (check) {
-                LoginRegisterAuth().registerNewAccount(this, user, sdt) { check, users ->
-                    if (check) {
-                        SuccessDialog(this, "Đăng ký thành công", "").show()
-                        LoginRegisterAuth().loginAfterRegister(user, sdt, this)
+                LoginRegisterAuth().registerNewAccount(this, user!!, sdt) { checks, users ->
+                    if (checks) {
+                        UserDAO().addUser(this, users)
                     }
                 }
-            }
-            if (check) {
-                val mUser = UserModel(user.userId, "", thuthu, hoten, mail, sdt, diachi)
-                UserDAO().addUser(this, mUser)
-                SuccessDialog(this, "Thêm Thành Công", "").show()
             }
         }
     }
@@ -96,46 +95,57 @@ class ThemNhanVienActivity : BaseActivity() {
         email: String,
         diachi: String,
         sdt: String,
-        callback: (Boolean, UserModel, String) -> Unit
+        quyen: Int,
+        callback: (Boolean, UserModel?, String) -> Unit
     ) {
         val phonePattern = "(84|0[3|5|7|8|9])+([0-9]{8,9})\\b"
         var title = ""
-        var check = true
+        var haveError = false
         if (hoten.isNullOrEmpty()) {
             title += "\nTên không được bỏ trống"
-            check = false
+            haveError = true
         } else if (email.isNullOrEmpty()) {
             title += "\nEmail không được trống"
-            check = false
+            haveError = true
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             title += "\nEmail sai định dạng"
-            check = false
+            haveError = true
         } else if (diachi.isNullOrEmpty()) {
             title += "\nĐịa chỉ không được bỏ trống"
-            check = false
+            haveError = true
         } else if (diachi.length!! < 6) {
             title += "\nĐịa chỉ không dưới 6 ký tự"
-            check = false
+            haveError = true
         } else if (sdt.isNullOrEmpty()) {
             for (user in arrUser) {
                 if (user.sdt == sdt) {
                     title += "\n SDT đã tồn tại"
-                    check = false
+                    haveError = true
                     break
                 }
             }
             title += "\nSố điện thoại không được bỏ trống"
-            check = false
+            haveError = true
 
         } else if (!Pattern.compile(phonePattern).matcher(sdt).matches()) {
             title += "\nSai định dạng số điện thoại"
-            check = false
+            haveError = true
         }
-        if (!check) {
-            callback(false, UserModel(), sdt!!)
+
+
+        if (haveError) {
+            callback(false, null, sdt)
             FailDialog(this, "Thêm Thất Bại", title).show()
         } else {
-            callback(true, UserModel(), sdt!!)
+            val userModel =
+                UserModel(arrUser[arrUser.size - 1].userId, "", quyen, hoten, email, sdt, diachi)
+            callback(true, userModel, sdt)
+        }
+    }
+
+    private fun backThemNV() {
+        backThemNhanVien.setOnClickListener {
+            onBackPressed()
         }
     }
 }
