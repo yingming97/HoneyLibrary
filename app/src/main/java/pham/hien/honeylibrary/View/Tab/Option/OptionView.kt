@@ -137,27 +137,7 @@ class OptionView : BaseView {
             }
         } else {
             when (view) {
-                btnLogin -> {
-                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
-                }
-
-                lnlDoiMatKhau -> {
-                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
-                }
-
-                lnlQuanLyNhanVien -> {
-                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
-                }
-
-                lnlQuanLyDocGia -> {
-                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
-                }
-
-                lnlThongKe -> {
-                    mContext.startActivity(Intent(mContext, LoginActivity::class.java))
-                }
-
-                lnlTroGiup -> {
+                btnLogin, lnlDoiMatKhau,lnlQuanLyDocGia, lnlThongKe, lnlQuanLyNhanVien, lnlTroGiup -> {
                     mContext.startActivity(Intent(mContext, LoginActivity::class.java))
                 }
             }
