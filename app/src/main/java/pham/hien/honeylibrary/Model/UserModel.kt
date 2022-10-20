@@ -1,8 +1,9 @@
 package pham.hien.honeylibrary.Model
 
 import pham.hien.honeylibrary.Utils.Constant
+import java.io.Serializable
 
-class UserModel {
+class UserModel : Serializable {
     var userId: Int = -1
     var firebaseId: String = ""
     var type = -1

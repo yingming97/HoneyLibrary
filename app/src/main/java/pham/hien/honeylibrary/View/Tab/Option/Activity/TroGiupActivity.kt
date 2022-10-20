@@ -51,7 +51,13 @@ class TroGiupActivity : BaseActivity() {
 
     fun initRecyclerView(){
         troGiupAdapter = AdapterTroGiup(this, listNhanVien){
-            startActivity(Intent(this, MessageActivity::class.java))
+            var intent: Intent = Intent(this,MessageActivity::class.java)
+            var bundle: Bundle = Bundle()
+            bundle.putSerializable("user", it)
+            Log.d("cccc", "initRecyclerView: bundle: ${bundle}")
+            intent.putExtras(bundle)
+            startActivity(intent)
+            Log.d("cccc", "initRecyclerView: ${it.toString()}")
         }
         rcvListDocGia.layoutManager = LinearLayoutManager(this)
         rcvListDocGia.setHasFixedSize(false)

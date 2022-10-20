@@ -56,7 +56,6 @@ class AdapterTroGiup (
         holder.tvName.text = user.name
         holder.tvSdt.text = user.sdt
         holder.layout_itemquanly.setOnClickListener {
-            Log.e("tuvm", "success")
             onClick(user)
         }
     }
