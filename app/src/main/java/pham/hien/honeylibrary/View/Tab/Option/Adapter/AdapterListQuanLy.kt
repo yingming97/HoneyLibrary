@@ -2,6 +2,7 @@ package pham.hien.honeylibrary.View.Tab.Option.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,7 @@ class AdapterListQuanLy(
         holder.tvName.text = user.name
         holder.tvSdt.text = user.sdt
         holder.layout_itemquanly.setOnClickListener {
+            Log.e("tuvm", "success")
             call.invoke(user)
         }
     }

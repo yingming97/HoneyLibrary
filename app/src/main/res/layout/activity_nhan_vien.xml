@@ -2,18 +2,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/rlt_qlNhanvien"
+    >
 
-    <include
-        android:id="@+id/include_heard"
-        layout="@layout/layout_hearder"
+    <RelativeLayout
+        android:id="@+id/rlt_nhanvien"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/_70sdp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto"
+            android:text="Quản Lý Nhân Viên"
+            android:textColor="@color/text_color_1c4942"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imb_backNhanVien"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_15sdp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_right" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/include_heard"
+        android:layout_below="@+id/rlt_nhanvien"
         android:background="@drawable/bg_tab_view">
 
         <RelativeLayout

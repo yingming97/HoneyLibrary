@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="@dimen/_24sdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_12sdp"
+    tools:ignore="MissingDefaultResource">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="549dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:paddingTop="@dimen/_10sdp"
+            android:text="Sửa Độc Giả"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="@dimen/_45sdp"
+            android:text="Họ Tên"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/ed_sua_name_doc_gia"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:background="@drawable/bg_ed_white_rd_8"
+            android:elevation="@dimen/_4sdp"
+            android:hint="Họ Tên"
+            android:paddingLeft="@dimen/_16sdp"
+            android:singleLine="true"
+            android:textColor="@color/text_color_1c4942"
+            android:textColorHint="@color/gray_ccc"
+            android:textSize="@dimen/_14sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="@dimen/_115sdp"
+            android:text="Email"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/ed_sua_email_doc_gia"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_130sdp"
+            android:background="@drawable/bg_ed_white_rd_8"
+            android:elevation="@dimen/_4sdp"
+            android:hint="Email"
+            android:paddingLeft="@dimen/_16sdp"
+            android:singleLine="true"
+            android:textColor="@color/text_color_1c4942"
+            android:textColorHint="@color/gray_ccc"
+            android:textSize="@dimen/_14sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="@dimen/_185sdp"
+            android:text="Địa Chỉ"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/ed_sua_dia_chi_doc_gia"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_200sdp"
+            android:background="@drawable/bg_ed_white_rd_8"
+            android:elevation="@dimen/_4sdp"
+            android:hint="Địa Chỉ"
+            android:paddingLeft="@dimen/_16sdp"
+            android:singleLine="true"
+            android:textColor="@color/text_color_1c4942"
+            android:textColorHint="@color/gray_ccc"
+            android:textSize="@dimen/_14sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="@dimen/_255sdp"
+            android:text="Số Điện Thoại"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/ed_sua_sdt_doc_gia"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_270sdp"
+            android:background="@drawable/bg_ed_white_rd_8"
+            android:elevation="@dimen/_4sdp"
+            android:hint="Số Điện Thoại"
+            android:paddingLeft="@dimen/_16sdp"
+            android:singleLine="true"
+            android:textColor="@color/text_color_1c4942"
+            android:textColorHint="@color/gray_ccc"
+            android:textSize="@dimen/_14sdp" />
+
+        <TextView
+            android:id="@+id/tv_update_doc_gia"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/bg_btn_blue_rd_9"
+            android:gravity="center"
+            android:text="Thêm"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

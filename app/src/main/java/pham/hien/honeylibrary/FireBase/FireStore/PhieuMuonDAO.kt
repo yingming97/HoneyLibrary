@@ -13,6 +13,8 @@ import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
+import pham.hien.honeylibrary.Utils.convertListSachThueToString
+import pham.hien.honeylibrary.Utils.convertStringToListSachThue
 import pham.yingming.honeylibrary.Dialog.FailDialog
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 
@@ -49,8 +51,11 @@ class PhieuMuonDAO {
                         val phieuMuon = document.toObject(PhieuMuon::class.java)
                         phieuMuon.photoDocGia = getTenDocGia(phieuMuon.maDocGia, it) {
                             phieuMuon.tenDocGia = it
+                            Log.d(TAG, "tenDocGia: $it")
                         }
+                        updateListSachThue(phieuMuon)
                         list.add(phieuMuon)
+                        updatePhieuMuonDoNothing(phieuMuon)
                     }
                     listPhieuMuon(list)
                 }
@@ -76,6 +81,8 @@ class PhieuMuonDAO {
                     val phieuMuon = document.toObject(PhieuMuon::class.java)
                     phieuMuon.tenDocGia = user.name
                     phieuMuon.photoDocGia = user.avatar
+                    updateListSachThue(phieuMuon)
+                    updatePhieuMuonDoNothing(phieuMuon)
                     list.add(phieuMuon)
                 }
                 listPhieuMuon(list)
@@ -128,12 +135,31 @@ class PhieuMuonDAO {
             }
     }
 
+    fun updatePhieuMuonDoNothing(phieuMuon: PhieuMuon) {
+        val phieuMap: MutableMap<String, Any> = HashMap()
+        phieuMap[Constant.PHIEUMUON.COL_SO_LUONG] = phieuMuon.soLuong
+        phieuMap[Constant.PHIEUMUON.COL_TONG_TIEN] = phieuMuon.tongTien
+        phieuMap[Constant.PHIEUMUON.COL_PHOTO_DOC_GIA] = phieuMuon.photoDocGia
+        phieuMap[Constant.PHIEUMUON.COL_TEN_DOC_GIA] = phieuMuon.tenDocGia
+        phieuMap[Constant.PHIEUMUON.COL_LIST_SACH_THUE] = phieuMuon.listSachThue
+        phieuMap[Constant.PHIEUMUON.COL_TRANG_THAI] = phieuMuon.trangThai
+
+        db.collection(Constant.PHIEUMUON.TB_NAME)
+            .document(phieuMuon.maPhieuMuon)
+            .update(phieuMap)
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener {
+            }
+    }
+
     fun updatePhieuMuon(activity: Activity, phieuMuon: PhieuMuon) {
         val phieuMap: MutableMap<String, Any> = HashMap()
         phieuMap[Constant.PHIEUMUON.COL_SO_LUONG] = phieuMuon.soLuong
         phieuMap[Constant.PHIEUMUON.COL_TONG_TIEN] = phieuMuon.tongTien
         phieuMap[Constant.PHIEUMUON.COL_PHOTO_DOC_GIA] = phieuMuon.photoDocGia
         phieuMap[Constant.PHIEUMUON.COL_TEN_DOC_GIA] = phieuMuon.tenDocGia
+        phieuMap[Constant.PHIEUMUON.COL_LIST_SACH_THUE] = phieuMuon.listSachThue
         phieuMap[Constant.PHIEUMUON.COL_TRANG_THAI] = phieuMuon.trangThai
 
         db.collection(Constant.PHIEUMUON.TB_NAME)
@@ -150,6 +176,14 @@ class PhieuMuonDAO {
                     activity.getString(R.string.cap_nhap_phieu_muon_khong_thanh_cong),
                     "").show()
             }
+    }
+
+    fun updateTrangThaiPhieuMuon(trangThai: String) {
+        db.collection(Constant.PHIEUMUON.TB_NAME)
+            .document(Constant.PHIEUMUON.COL_TRANG_THAI)
+            .update(Constant.PHIEUMUON.COL_TRANG_THAI, trangThai)
+            .addOnCompleteListener { }
+            .addOnFailureListener {}
     }
 
     fun updateSoLuongSachConLai(sach: Sach, sachThue: SachThue) {
@@ -176,18 +210,6 @@ class PhieuMuonDAO {
             }
     }
 
-    fun checkSachTraThieu(idSach: Int, check: (Boolean) -> Unit) {
-        db.collection(Constant.SACH.TB_NAME)
-            .document(idSach.toString())
-            .get()
-            .addOnSuccessListener {
-                check(it.exists())
-            }
-            .addOnFailureListener {
-                Log.d(TAG, "error")
-            }
-    }
-
     fun addSachTraThieu(context: Context, sach: Sach) {
         db.collection(Constant.SACHTRATHIEU.TB_NAME)
             .document(sach.maSach.toString())
@@ -210,5 +232,23 @@ class PhieuMuonDAO {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
+    }
+
+    private fun updateListSachThue(phieuMuon: PhieuMuon) {
+        val list = convertStringToListSachThue(phieuMuon.listSachThue)
+        SachDAO().getListSachChuaThuHoi {
+            for (i in 0 until list.size) {
+                val sachThue = list[i]
+                for (sach in it) {
+                    if (sach.maSach == sachThue.maSach) {
+                        sachThue.tenSach = sach.tenSach
+                        sachThue.biaSach = sach.anhBia
+                        sachThue.giaSach = sach.giaSach
+                        list[i] = sachThue
+                    }
+                }
+            }
+            phieuMuon.listSachThue = convertListSachThueToString(list)
+        }
     }
 }

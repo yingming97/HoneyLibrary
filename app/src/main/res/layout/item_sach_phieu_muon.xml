@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_item_doc_gia"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_60sdp"
-    android:background="@drawable/bg_list_user_white_rd_10"
-    android:paddingHorizontal="@dimen/_14sdp"
-    android:elevation="@dimen/_2sdp"
+    android:layout_height="@dimen/_70sdp"
     android:layout_marginVertical="@dimen/_5sdp"
+    android:background="@drawable/bg_list_user_white_rd_10"
+    android:elevation="@dimen/_2sdp"
+    android:paddingHorizontal="@dimen/_14sdp"
     android:paddingVertical="@dimen/_6sdp">
 
     <ImageView
         android:id="@+id/imv_book"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
+        android:layout_centerVertical="true"
         android:elevation="1dp"
         android:src="@drawable/ic_book_default"
         app:civ_border_color="#BCF2FA"
@@ -27,7 +28,7 @@
         android:layout_marginEnd="@dimen/_40sdp"
         android:layout_toEndOf="@+id/imv_book"
         android:fontFamily="@font/roboto"
-        android:lines="1"
+        android:lines="2"
         android:text="Harry Potter và hòn đá phù thủy"
         android:textColor="@color/text_color_1c4942" />
 

@@ -13,7 +13,7 @@ class NhanVienViewModel : ViewModel() {
         viewModelScope.launch(
             onPreExecute = {},
             doInBackground = {
-                UserDAO().getListUserNhanVien() {
+                UserDAO().getListUserNhanVienAndAdmin {
                     nhanvienModel.value = it
                 }
             },

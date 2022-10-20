@@ -34,16 +34,6 @@ class TheLoaiDAO {
             }
     }
 
-    fun checkTheLoaiTrung(idTheLoai: Int, listTheLoai: ArrayList<TheLoai>): Boolean {
-        for (theLoai in listTheLoai) {
-            if (idTheLoai == theLoai.maTheLoai) {
-                return true
-            }
-        }
-        return false
-    }
-
-
     fun getListTheLoai(listTheLoai: ((ArrayList<TheLoai>) -> Unit)) {
         val listTheLoai1 = ArrayList<TheLoai>()
         db.collection(Constant.THELOAI.TB_NAME)
@@ -54,6 +44,7 @@ class TheLoaiDAO {
                 }
                 listTheLoai1.sortBy { it.maTheLoai }
                 listTheLoai(listTheLoai1)
+                listTheLoai1.sortBy {(it.maTheLoai)}
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
@@ -63,7 +54,7 @@ class TheLoaiDAO {
     fun updateTheLoai(context: Context, theLoai: TheLoai) {
         db.collection(Constant.THELOAI.TB_NAME)
             .document(theLoai.maTheLoai.toString())
-            .update(theLoai.maTheLoai.toString(), true)
+            .set(theLoai)
             .addOnSuccessListener {
                 SuccessDialog(context, context.getString(R.string.sua_the_loai_thanh_cong), "")
             }
@@ -72,22 +63,6 @@ class TheLoaiDAO {
                     context,
                     context.getString(R.string.sua_the_loai_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_sua_the_loai)
-                )
-            }
-    }
-
-    fun deleteTheLoai(context: Context, theLoai: TheLoai) {
-        db.collection(Constant.THELOAI.TB_NAME)
-            .document(theLoai.maTheLoai.toString())
-            .delete()
-            .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.xoa_the_loai_thanh_cong), "")
-            }
-            .addOnFailureListener { e ->
-                SuccessDialog(
-                    context,
-                    context.getString(R.string.xoa_the_loai_khong_thanh_cong),
-                    context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_xoa_the_loai)
                 )
             }
     }

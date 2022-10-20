@@ -313,7 +313,6 @@ class AddPhieuMuonActivity : BaseActivity() {
         } else {
             mListSachThue.add(sachThue)
         }
-        Log.e(TAG, "checkSachThue: $mListSachThue")
         mSachThueAdapter.setListSachThue(mListSachThue)
     }
 

@@ -22,6 +22,49 @@
         android:theme="@style/AppThemeHome"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.Tab.Option.Activity.ThemNhanVienActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Tab.Option.Activity.SuaNhanVienActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Tab.Option.Activity.MessageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- <activity -->
+        <!-- android:name=".ListTheLoaiActivity" -->
+        <!-- android:exported="false"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.app.lib_name" -->
+        <!-- android:value="" /> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name=".AddTheLoaiActivity" -->
+        <!-- android:exported="false"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.app.lib_name" -->
+        <!-- android:value="" /> -->
+        <!-- </activity> -->
+        <activity
+            android:name=".View.Tab.Option.Activity.ChangePasswordActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.Tab.Option.Activity.TroGiupActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.Tab.Option.Activity.ChiTietNhanVienActivity"
+            android:exported="false" />
+        <activity
             android:name="pham.hien.honeylibrary.View.Main.SplashActivity"
             android:exported="true"
             android:launchMode="singleTop"
@@ -44,18 +87,17 @@
             android:exported="false" />
         <activity
             android:name=".View.Tab.Option.Activity.NhanVienActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".View.Tab.PhieuMuon.Activity.ChiTietPhieuMuon" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".View.Base.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Tab.PhieuMuon.Activity.ChiTietPhieuMuonActivity"
+            android:name=".View.Tab.Option.Activity.DocGiaActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Tab.PhieuMuon.Activity.SuaPhieuMuonActivity"
-            android:exported="false" />
-        <activity
-            android:name=".View.Tab.Option.Activity.ChangePasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".View.Tab.Option.Activity.ThemNhanVienActivity"
+            android:name=".View.Tab.Option.Activity.AddDocGiaActivity"
             android:exported="false" />
 
         <meta-data

@@ -49,4 +49,9 @@
     <string name="xoa_khong_thanh_cong">Xóa không thành công</string>
     <string name="cap_nhap_phieu_muon_thanh_cong">Cập nhập phiếu mượn thành công</string>
     <string name="cap_nhap_phieu_muon_khong_thanh_cong">Cập nhập phiếu mượn không thành công</string>
+    <string name="action_search">Tìm kiếm</string>
+    <string name="thong_ke_luot_muon">Lượt mượn</string>
+    <string name="thong_ke__tong_so_sach">Tổng số sách</string>
+    <string name="thong_ke_thanh_vien">Thành viên</string>
+    <string name="thong_ke_sach_moi">Sách mới về</string>
 </resources>

@@ -90,8 +90,9 @@ class RegisterView : BaseView {
     @SuppressLint("SetTextI18n")
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
-        arrUser = UserDAO().getListUser()
-
+        UserDAO().getListUser{
+            arrUser = it
+        }
     }
 
     override fun openForTheFirstTime(activity: Activity?) {
