@@ -61,6 +61,7 @@ class NhanVienActivity : BaseActivity() {
     private fun recyclerViewNhanVien() {
         mUserAdapter = AdapterListQuanLy(applicationContext, quanLyList) {
             var intent = Intent(applicationContext, ChiTietNhanVienActivity::class.java)
+            intent.putExtra("chitiet",it)
             startActivity(intent)
         }
         recyclerView.layoutManager = LinearLayoutManager(this)

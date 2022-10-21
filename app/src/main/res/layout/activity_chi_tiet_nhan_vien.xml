@@ -62,7 +62,7 @@
         android:src="@drawable/ic_user_photo_default" />
 
     <TextView
-        android:id="@+id/tv_idNhanvien"
+        android:id="@+id/tv_idNV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/image_anhNhanvien"
@@ -77,7 +77,7 @@
         android:id="@+id/tv_hoTen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_idNhanvien"
+        android:layout_below="@id/tv_idNV"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/roboto"
@@ -86,7 +86,7 @@
         android:textSize="@dimen/_13sdp" />
 
     <TextView
-        android:id="@+id/tv_Sdt"
+        android:id="@+id/tv_diaChiNV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_hoTen"
@@ -96,22 +96,24 @@
         android:text="Địa Chỉ: 299 Cầu Giấy, Hà Nội"
         android:textColor="@color/black"
         android:textSize="@dimen/_13sdp" />
+
     <TextView
-        android:id="@+id/tv_diaChiNhanVien"
+        android:id="@+id/tv_sdtNV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_Sdt"
+        android:layout_below="@id/tv_diaChiNV"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/roboto"
         android:text="SĐT: 012345678"
         android:textColor="@color/black"
         android:textSize="@dimen/_13sdp" />
+
     <TextView
-        android:id="@+id/tv_emailNhanVien"
+        android:id="@+id/tv_emailNV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_diaChiNhanVien"
+        android:layout_below="@id/tv_sdtNV"
         android:layout_marginStart="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/roboto"

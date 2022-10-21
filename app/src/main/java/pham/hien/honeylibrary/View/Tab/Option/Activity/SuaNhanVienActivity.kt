@@ -6,7 +6,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
-import pham.hien.honeylibrary.FireBase.Auth.LoginRegisterAuth
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
@@ -25,7 +24,7 @@ class SuaNhanVienActivity : BaseActivity() {
     private lateinit var suathuThu: RadioButton
     private lateinit var suaquanLy: RadioButton
     private lateinit var sua: TextView
-    private lateinit var user: UserModel
+    private lateinit var users: UserModel
     private lateinit var userModel: ArrayList<UserModel>
     private lateinit var arrUser: List<UserModel>
 
@@ -48,9 +47,10 @@ class SuaNhanVienActivity : BaseActivity() {
     override fun initListener() {
         backSuaNhanVien.setOnClickListener(this)
         backSuaNV()
-        sua.setOnClickListener{
+        sua.setOnClickListener {
             suaNhanVien()
         }
+        setData()
     }
 
     override fun initViewModel() {
@@ -64,13 +64,25 @@ class SuaNhanVienActivity : BaseActivity() {
     override fun initDataDefault() {
         UserDAO().getListUser {
             arrUser = it
-            user = UserModel()
         }
     }
 
     private fun backSuaNV() {
         backSuaNhanVien.setOnClickListener {
             onBackPressed()
+        }
+    }
+
+    private fun setData() {
+        users = intent.getSerializableExtra("suaNV") as UserModel
+        suahoTen.setText(users.name)
+        suasdt.setText(users.sdt)
+        suadiaChi.setText(users.diaChi)
+        suaemail.setText(users.email)
+        if (users.type == Constant.QUYEN.THU_THU) {
+            suathuThu.isChecked
+        } else {
+            suaquanLy.isChecked
         }
     }
 
@@ -86,14 +98,9 @@ class SuaNhanVienActivity : BaseActivity() {
         } else {
             thuthu = Constant.QUYEN.ADMIN
         }
-        checkForm(hoten, mail, diachi, sdt, thuthu) { check, user, sdt ->
+        checkForm(hoten, mail, diachi, sdt, thuthu) { check, user ->
             if (check) {
-//                LoginRegisterAuth().registerNewAccount(this, user!!, sdt) { checks, users ->
-//                    if (checks) {
-//                        UserDAO().addUser(this, users)
-//                    }
-//                }
-                SuccessDialog(this,"Sửa Thành Công","").show()
+                UserDAO().updateNhanVien(this, user!!)
             }
         }
     }
@@ -104,7 +111,7 @@ class SuaNhanVienActivity : BaseActivity() {
         diachi: String,
         sdt: String,
         quyen: Int,
-        callback: (Boolean, UserModel?, String) -> Unit
+        callback: (Boolean, UserModel?) -> Unit
     ) {
         val phonePattern = "(84|0[3|5|7|8|9])+([0-9]{8,9})\\b"
         var title = ""
@@ -142,12 +149,15 @@ class SuaNhanVienActivity : BaseActivity() {
 
 
         if (haveError) {
-            callback(false, null, sdt)
+            callback(false, null)
             FailDialog(this, "Thêm Thất Bại", title).show()
         } else {
-            val userModel =
-                UserModel(arrUser[arrUser.size - 1].userId, "", quyen, hoten, email, sdt, diachi)
-            callback(true, userModel, sdt)
+            users.name = hoten
+            users.sdt = sdt
+            users.email = email
+            users.diaChi = diachi
+            users.type = quyen
+            callback(true, users)
         }
     }
 }

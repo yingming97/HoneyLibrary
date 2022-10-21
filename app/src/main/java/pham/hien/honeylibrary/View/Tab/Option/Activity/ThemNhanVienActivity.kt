@@ -132,7 +132,6 @@ class ThemNhanVienActivity : BaseActivity() {
             haveError = true
         }
 
-
         if (haveError) {
             callback(false, null, sdt)
             FailDialog(this, "Thêm Thất Bại", title).show()
