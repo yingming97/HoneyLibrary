@@ -33,7 +33,6 @@ class AddDocGiaActivity : BaseActivity() {
 
     override fun initView() {
 
-        toolBar = findViewById(R.id.tool_bar)
         edNameDocGia = findViewById(R.id.ed_name_doc_gia)
         edEmail = findViewById(R.id.ed_email_doc_gia)
         edDiaChi = findViewById(R.id.ed_dia_chi_doc_gia)
@@ -41,8 +40,6 @@ class AddDocGiaActivity : BaseActivity() {
 
         tvAddDocGia = findViewById(R.id.tv_add_doc_gia)
 
-
-        ScreenUtils().setMarginStatusBar(this, toolBar)
     }
 
     override fun initListener() {

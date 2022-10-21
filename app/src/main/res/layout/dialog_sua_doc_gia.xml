@@ -127,7 +127,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/bg_btn_blue_rd_9"
             android:gravity="center"
-            android:text="Thêm"
+            android:text="Cập Nhật"
             android:textColor="@color/white"
             android:textSize="25sp" />
     </RelativeLayout>

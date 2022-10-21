@@ -53,7 +53,7 @@ class DialogSuaDocGia(
     }
 
     private fun initView() {
-       // toolBar = findViewById(R.id.tool_bar)
+
         edNameDocGia = findViewById(R.id.ed_sua_name_doc_gia)
         edEmail = findViewById(R.id.ed_sua_email_doc_gia)
         edDiaChi = findViewById(R.id.ed_sua_dia_chi_doc_gia)

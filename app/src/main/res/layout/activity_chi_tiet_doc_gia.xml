@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Tab.Option.Activity.ChiTietNhanVienActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlt_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/roboto"
+            android:text="Quản Lý Độc Giả"
+            android:textColor="@color/text_color_1c4942"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imb_back_chitiet"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_15sdp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_right" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_Thongtin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlt_toolbar"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Thông Tin Chi Tiết"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20sdp" />
+
+    <ImageView
+        android:id="@+id/imv_suaDocGia"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_below="@id/rlt_toolbar"
+        android:layout_alignEnd="@id/tv_Thongtin"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:src="@drawable/ic_edit" />
+
+    <ImageView
+        android:id="@+id/imv_anhDocGia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_Thongtin"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_user_photo_default" />
+
+    <TextView
+        android:id="@+id/tv_idDocGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imv_anhDocGia"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/roboto"
+        android:text="ID:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp" />
+
+    <TextView
+        android:id="@+id/tv_hoTenDocGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_idDocGia"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto"
+        android:text="Họ Tên:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp" />
+
+    <TextView
+        android:id="@+id/tv_sdtDocGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_hoTenDocGia"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto"
+        android:text="Địa Chỉ:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp" />
+    <TextView
+        android:id="@+id/tv_diaChiDocGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_sdtDocGia"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto"
+        android:text="SĐT: "
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp" />
+    <TextView
+        android:id="@+id/tv_emailDocGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_diaChiDocGia"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/roboto"
+        android:text="Email: "
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp" />
+
+
+
+</RelativeLayout>

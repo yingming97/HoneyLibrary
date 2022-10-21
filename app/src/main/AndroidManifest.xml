@@ -22,6 +22,14 @@
         android:theme="@style/AppThemeHome"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.Tab.Option.Activity.ChiTietDocGiaActivity"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ChiTietDocGiaActivity"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/title_activity_chi_tiet_doc_gia"-->
+<!--            android:theme="@style/AppThemeHome.NoActionBar" />-->
+        <activity
             android:name=".View.Tab.Option.Activity.ThemNhanVienActivity"
             android:exported="false" />
         <activity

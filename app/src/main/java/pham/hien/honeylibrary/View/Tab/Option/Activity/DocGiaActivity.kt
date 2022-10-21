@@ -1,6 +1,7 @@
 package pham.hien.honeylibrary.View.Tab.Option.Activity
 
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -21,9 +22,7 @@ class DocGiaActivity : BaseActivity() {
     private var mIdUser: Int = 0
     private lateinit var toolBar: RelativeLayout
     private lateinit var imvAddDocGia: ImageView
-//    private lateinit var tvName: TextView
-//    private lateinit var tvSdt: TextView
-//    private lateinit var avtDocGia: CircleImageView
+    private lateinit var imvBack: ImageView
     private lateinit var rcvListDocGia: RecyclerView
     private lateinit var mUserAdapter: AdapterListUser
     private lateinit var mListUser: ArrayList<UserModel>
@@ -39,17 +38,16 @@ class DocGiaActivity : BaseActivity() {
 
         toolBar = findViewById(R.id.tool_bar)
         imvAddDocGia = findViewById(R.id.imv_add_doc_gia)
+        imvBack = findViewById(R.id.imv_back)
         rcvListDocGia = findViewById(R.id.rcv_list_doc_gia)
-//
         ScreenUtils().setMarginStatusBar(this, toolBar)
     }
 
     override fun initListener() {
         imvAddDocGia.setOnClickListener(this)
+        imvBack.setOnClickListener(this)
         initRecycleViewDocGia()
-
     }
-
     override fun initViewModel() {
         mDocGiaViewModel = ViewModelProvider(this)[DocGiaViewModel::class.java]
     }
@@ -77,9 +75,19 @@ class DocGiaActivity : BaseActivity() {
         mListUser = ArrayList()
         mUserAdapter = AdapterListUser(this, mListUser) { user ->
             // ở đây trả về user khi click vào item trên recycleview
-            DialogSuaDocGia(this,user){
-                mDocGiaViewModel.getListDocGia()
-            }.show()
+            var intent: Intent = Intent(this,ChiTietDocGiaActivity::class.java)
+            var bundle: Bundle = Bundle()
+            bundle.putSerializable("user", user)
+
+            intent.putExtras(bundle)
+            startActivity(intent)
+
+
+//            DialogSuaDocGia(this,user){
+//                mDocGiaViewModel.getListDocGia()
+//            }.show()
+
+
         }
         rcvListDocGia.layoutManager = LinearLayoutManager(this)
         rcvListDocGia.setHasFixedSize(false)
@@ -94,6 +102,10 @@ class DocGiaActivity : BaseActivity() {
                 intent.putExtra("idUser",mIdUser)
                 Log.d("zzz", mIdUser.toString())
                 startActivity(intent)
+            }
+
+            imvBack ->{
+                onBackPressed()
             }
         }
     }
