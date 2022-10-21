@@ -38,8 +38,6 @@ class RegisterView : BaseView {
     private lateinit var edPhoneNumber: EditText
     private lateinit var edPassword: EditText
     private lateinit var edConfirmPassword: EditText
-    private lateinit var btnBack: ImageView
-    private lateinit var rltToolbar: RelativeLayout
     private lateinit var arrUser: List<UserModel>
     private lateinit var mActivity: Activity
 
@@ -61,7 +59,6 @@ class RegisterView : BaseView {
         super.initView(context, attrs)
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_register, this)
-        cvToolbar = rootView.findViewById(R.id.cv_toolbar)
         btnRegister = rootView.findViewById(R.id.btn_register)
         edEmail = rootView.findViewById(R.id.ed_email)
         edName = rootView.findViewById(R.id.ed_name)
@@ -69,13 +66,9 @@ class RegisterView : BaseView {
         edPhoneNumber = rootView.findViewById(R.id.ed_phone_number)
         edPassword = rootView.findViewById(R.id.ed_password)
         edConfirmPassword = rootView.findViewById(R.id.ed_confirm_password)
-        btnBack = rootView.findViewById(R.id.imb_back)
-        rltToolbar = rootView.findViewById(R.id.rlt_toolbar)
-        ScreenUtils().setMarginStatusBar(mContext, rltToolbar)
 
 
         btnRegister.setOnClickListener(this)
-        btnBack.setOnClickListener(this)
     }
 
 
@@ -106,9 +99,7 @@ class RegisterView : BaseView {
 
     override fun onClick(view: View) {
         when (view) {
-            btnBack -> {
-                closeView()
-            }
+
             btnRegister -> {
                 isValidate(
                     edEmail.text.toString(),

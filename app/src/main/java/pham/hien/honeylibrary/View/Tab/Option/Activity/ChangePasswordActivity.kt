@@ -23,29 +23,22 @@ class ChangePasswordActivity : BaseActivity() {
     private lateinit var edPassword: EditText
     private lateinit var edConfirmPassword: EditText
     private lateinit var edOlderPass: EditText
-    private lateinit var btnBack: ImageView
-    private lateinit var rltToolbar: RelativeLayout
 
     override fun getLayout(): Int {
         return R.layout.activity_changepass
     }
 
     override fun initView() {
-        cvToolbar = findViewById(R.id.cv_toolbar)
         btnChangePass = findViewById(R.id.btn_changepass)
         edPassword = findViewById(R.id.ed_password)
         edOlderPass = findViewById(R.id.ed_old_pass)
         edConfirmPassword = findViewById(R.id.ed_confirm_password)
-        btnBack = findViewById(R.id.imb_back)
-        rltToolbar = findViewById(R.id.rlt_toolbar)
-        ScreenUtils().setMarginStatusBar(this, rltToolbar)
 
 
     }
 
     override fun initListener() {
         btnChangePass.setOnClickListener(this)
-        btnBack.setOnClickListener(this)
     }
 
     override fun initViewModel() {
@@ -59,9 +52,7 @@ class ChangePasswordActivity : BaseActivity() {
 
     override fun onClick(view: View?) {
         when (view) {
-            btnBack -> {
-                finish()
-            }
+
             btnChangePass -> {
                 isValidate(
                     edPassword.text.toString(),

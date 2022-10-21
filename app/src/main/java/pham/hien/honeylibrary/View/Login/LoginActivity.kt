@@ -23,8 +23,6 @@ class LoginActivity : BaseActivity() {
     private lateinit var edEmail: EditText
     private lateinit var edPass: EditText
     private var arrUser = ArrayList<UserModel>()
-    private lateinit var rltToolbar: RelativeLayout
-    private lateinit var imbBack: ImageView
     private lateinit var tvRegister: TextView
     private lateinit var registerView: RegisterView
 
@@ -33,21 +31,17 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initView() {
-        rltToolbar = findViewById(R.id.rlt_toolbar)
         btnLogin = findViewById(R.id.btn_login)
         edEmail = findViewById(R.id.ed_email)
         edPass = findViewById(R.id.ed_password)
-        imbBack = findViewById(R.id.imb_back)
         tvRegister = findViewById(R.id.tv_register)
         registerView = findViewById(R.id.view_register)
-        ScreenUtils().setMarginStatusBar(this, rltToolbar)
 
         registerView.openForTheFirstTime(this)
     }
 
     override fun initListener() {
         btnLogin.setOnClickListener(this)
-        imbBack.setOnClickListener(this)
         tvRegister.setOnClickListener(this)
     }
 
@@ -87,9 +81,7 @@ class LoginActivity : BaseActivity() {
                     }
                 }
             }
-            imbBack -> {
-                finish()
-            }
+
             tvRegister -> {
                 AlphaAnimation().visibleAnimation(registerView, 300)
             }

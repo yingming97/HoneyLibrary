@@ -3,117 +3,219 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:ignore="MissingDefaultResource">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_toolbar"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp"
-        android:background="@color/blue_b0efef"
-        android:elevation="@dimen/_10sdp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login" />
 
-        <RelativeLayout
-            android:id="@+id/rlt_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/roboto"
-                android:text="Đổi mật khẩu"
-                android:textColor="@color/text_color_1c4942"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imb_back"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="match_parent"
-                android:padding="@dimen/_15sdp"
-                android:rotation="180"
-                android:src="@drawable/ic_arrow_right" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/layout_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cv_toolbar">
+        android:paddingHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <RelativeLayout
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_book_app" />
+        <TextView
+            android:id="@+id/tv_nameapp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:text="Honey Library"
+            android:textAllCaps="false"
+            android:textColor="@color/white_F1F1F1"
+            android:textSize="@dimen/_25sdp"/>
+    </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_logo"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_centerHorizontal="true"
+
+        >
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white_F1F1F1"
+            app:cardCornerRadius="15dp">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/img_bg_ed_login" />
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="@dimen/_10sdp">
 
-            <EditText
-                android:id="@+id/ed_old_pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_47sdp"
-                android:layout_marginTop="@dimen/_88sdp"
-                android:background="@android:color/transparent"
-                android:hint="Nhập mật khẩu cũ"
-                android:inputType="textPassword"
-                android:minHeight="48dp" />
+                <LinearLayout
+                    android:id="@+id/layout_dangnhap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/ed_password"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_49sdp"
-                android:layout_below="@id/ed_old_pass"
-                android:layout_marginHorizontal="@dimen/_47sdp"
-                android:layout_marginStart="@dimen/_36sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_35sdp"
-                android:background="@drawable/bg_ed_white_rd_9"
-                android:elevation="@dimen/_2sdp"
-                android:hint="Nhập mật khẩu"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:paddingHorizontal="@dimen/_11sdp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đổi mật khẩu"
+                        android:textColor="@color/gray_595F66"
+                        android:textSize="@dimen/_24sdp" />
 
-            <EditText
-                android:id="@+id/ed_confirm_password"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_49sdp"
-                android:layout_below="@+id/ed_password"
-                android:layout_marginStart="@dimen/_36sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_35sdp"
-                android:background="@drawable/bg_ed_white_rd_9"
-                android:elevation="@dimen/_2sdp"
-                android:hint="Xác nhận mật khẩu"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:paddingHorizontal="@dimen/_11sdp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:background="@color/purple_7265e3" />
+                </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_changepass"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
-                android:layout_below="@+id/ed_confirm_password"
-                android:layout_marginHorizontal="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/bg_btn_blue_rd_9"
-                android:text="Đổi mật khẩu"
-                android:textColor="@color/text_color_1c4942"
-                android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="vertical">
 
-        </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-    </ScrollView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Mật khẩu cũ"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
 
+                        <EditText
+                            android:id="@+id/ed_old_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:inputType="textPassword"
+                            android:hint="Nhập mật khẩu cũ"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Mật khẩu mới"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <EditText
+                            android:id="@+id/ed_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:hint="Nhập mật khẩu mới"
+                            android:inputType="textPassword"
+
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Mật khẩu"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <EditText
+                            android:id="@+id/ed_confirm_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:inputType="textPassword"
+                            android:hint="Nhập lại mật khẩu"
+                            android:textSize="@dimen/_12sdp"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_changepass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="@drawable/bg_btn_blue_rd_5"
+                    android:fontFamily="@font/roboto_medium"
+                    android:paddingVertical="@dimen/_7sdp"
+                    android:text="Đổi mật khẩu"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sdp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
 </RelativeLayout>
