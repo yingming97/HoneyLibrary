@@ -13,6 +13,7 @@ class SachViewModel : ViewModel() {
 
     val mListSachLiveData = MutableLiveData<ArrayList<Sach>>()
     val mListSachThuHoiLiveData = MutableLiveData<ArrayList<Sach>>()
+    val mListAllSachLiveData = MutableLiveData<ArrayList<Sach>>()
 
     fun getListSach() {
         viewModelScope.launch(onPreExecute = {},
@@ -23,6 +24,17 @@ class SachViewModel : ViewModel() {
                 SachDAO().getListSachDaThuHoi {
                     mListSachThuHoiLiveData.value = it
                 }
+            },
+            onPostExecute = { })
+    }
+
+    fun getListAllSach() {
+        viewModelScope.launch(onPreExecute = {},
+            doInBackground = {
+                SachDAO().getListAllSach {
+                    mListAllSachLiveData.value = it
+                }
+
             },
             onPostExecute = { })
     }

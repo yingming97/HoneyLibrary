@@ -1,31 +1,27 @@
 package pham.hien.honeylibrary.View.Tab.Option.Activity
 
-import android.content.Intent
 import android.view.View
 import android.widget.EditText
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import pham.hien.honeylibrary.FireBase.Auth.CreateNewAccount
-import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
-import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.hien.honeylibrary.ViewModel.DocGiaViewModel
 
 
 class AddDocGiaActivity : BaseActivity() {
-    private var mIdUser : Int = 0
+
     private lateinit var edNameDocGia: EditText
     private lateinit var edEmail: EditText
     private lateinit var edDiaChi: EditText
     private lateinit var edSdt: EditText
-    private lateinit var toolBar: RelativeLayout
     private lateinit var tvAddDocGia: TextView
-    private lateinit var mDocGiaViewModel: DocGiaViewModel
 
     private lateinit var mDocGia: UserModel
+    private var mListDocGia = ArrayList<UserModel>()
+    private lateinit var mDocGiaViewModel: DocGiaViewModel
 
     override fun getLayout(): Int {
         return R.layout.activity_add_doc_gia
@@ -44,8 +40,6 @@ class AddDocGiaActivity : BaseActivity() {
 
     override fun initListener() {
         tvAddDocGia.setOnClickListener(this)
-        val intent = intent
-        mIdUser = intent.getIntExtra("idUser",0)
 
     }
 
@@ -54,27 +48,29 @@ class AddDocGiaActivity : BaseActivity() {
     }
 
     override fun initObserver() {
-
+        mDocGiaViewModel.mListDocGiaLiveData.observe(this) {
+            mListDocGia = it
+        }
     }
 
     override fun initDataDefault() {
-        mDocGiaViewModel.getListDocGia()//Load list DocGia
+        mDocGiaViewModel.getListDocGia()
     }
 
     override fun onClick(view: View?) {
         when (view) {
             tvAddDocGia -> {
-                mDocGia.userId = mIdUser
+                mDocGia = UserModel()
+                mDocGia.userId = mListDocGia.last().userId + 1
+                mDocGia.type = 0
                 mDocGia.name = edNameDocGia.text.toString()
                 mDocGia.email = edEmail.text.toString()
                 mDocGia.sdt = edSdt.text.toString()
                 mDocGia.diaChi = edDiaChi.text.toString()
-                CreateNewAccount().createNewUser(this, mDocGia)
-               //
-            }
-            }
+                CreateNewAccount().createNewUser(this, mDocGia) {
 
+                }
+            }
         }
-
-
+    }
 }

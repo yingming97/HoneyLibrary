@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.Model.SachThue
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.moneyFormatter
 
 class AdapterListSachThueChiTiet(
     context: Context,
@@ -43,7 +44,8 @@ class AdapterListSachThueChiTiet(
         Glide.with(mContext).load(sachThue.biaSach).placeholder(R.drawable.ic_book_default)
             .into(holder.imv_book)
         holder.tv_name.text = sachThue.tenSach
-        holder.tv_so_luong.text = "Số lượng ${sachThue.soLuong}"
+        holder.tv_so_luong.text = "Số lượng: ${sachThue.soLuong}"
+        holder.tv_gia_thue.text = "Giá thuê: ${moneyFormatter(sachThue.giaThue)}"
     }
 
     override fun getItemCount(): Int {
@@ -53,11 +55,13 @@ class AdapterListSachThueChiTiet(
     class ViewItemSachThue(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imv_book: ImageView
         val tv_name: TextView
+        val tv_gia_thue: TextView
         val tv_so_luong: TextView
 
         init {
             imv_book = itemView.findViewById(R.id.imv_book)
             tv_name = itemView.findViewById(R.id.tv_name)
+            tv_gia_thue = itemView.findViewById(R.id.tv_gia_thue)
             tv_so_luong = itemView.findViewById(R.id.tv_so_luong)
         }
     }

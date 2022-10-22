@@ -48,6 +48,7 @@ class DocGiaActivity : BaseActivity() {
         imvBack.setOnClickListener(this)
         initRecycleViewDocGia()
     }
+
     override fun initViewModel() {
         mDocGiaViewModel = ViewModelProvider(this)[DocGiaViewModel::class.java]
     }
@@ -57,8 +58,8 @@ class DocGiaActivity : BaseActivity() {
             mListUser = it
             mIdUser = mListUser.last().userId + 1
             var mListDocGia = ArrayList<UserModel>()
-            for(user in it ){
-                if (user.type == Constant.QUYEN.DOC_GIA){
+            for (user in it) {
+                if (user.type == Constant.QUYEN.DOC_GIA) {
                     mListDocGia.add(user)
                 }
             }
@@ -75,19 +76,9 @@ class DocGiaActivity : BaseActivity() {
         mListUser = ArrayList()
         mUserAdapter = AdapterListUser(this, mListUser) { user ->
             // ở đây trả về user khi click vào item trên recycleview
-            var intent: Intent = Intent(this,ChiTietDocGiaActivity::class.java)
-            var bundle: Bundle = Bundle()
-            bundle.putSerializable("user", user)
-
-            intent.putExtras(bundle)
+            val intent = Intent(this, ChiTietDocGiaActivity::class.java)
+            intent.putExtra(Constant.USER.USER, user)
             startActivity(intent)
-
-
-//            DialogSuaDocGia(this,user){
-//                mDocGiaViewModel.getListDocGia()
-//            }.show()
-
-
         }
         rcvListDocGia.layoutManager = LinearLayoutManager(this)
         rcvListDocGia.setHasFixedSize(false)
@@ -96,15 +87,12 @@ class DocGiaActivity : BaseActivity() {
     }
 
     override fun onClick(view: View?) {
-        when(view){
+        when (view) {
             imvAddDocGia -> {
-                var intent : Intent = Intent(this,AddDocGiaActivity::class.java)
-                intent.putExtra("idUser",mIdUser)
-                Log.d("zzz", mIdUser.toString())
+                val intent = Intent(this, AddDocGiaActivity::class.java)
                 startActivity(intent)
             }
-
-            imvBack ->{
+            imvBack -> {
                 onBackPressed()
             }
         }

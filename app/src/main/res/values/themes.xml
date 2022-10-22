@@ -17,7 +17,7 @@
     <style name="AppThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">
 
 
-        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowBackground">@drawable/img_bg_splash</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

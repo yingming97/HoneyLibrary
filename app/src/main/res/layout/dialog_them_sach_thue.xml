@@ -14,6 +14,15 @@
         android:background="@color/white"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:gravity="center"
+            android:text="Thêm sách phiếu mượn"
+            android:textColor="@color/text_color_72708E"
+            android:textSize="@dimen/_16sdp" />
+
         <ImageView
             android:id="@+id/imv_close"
             android:layout_width="@dimen/_56sdp"
@@ -27,15 +36,16 @@
             android:layout_width="@dimen/_220sdp"
             android:layout_height="@dimen/_48sdp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_60sdp"
             android:background="@drawable/bg_ed_white_rd_8"
             android:elevation="@dimen/_4sdp"
             android:hint="Nhập mã sách/tên sách"
             android:paddingLeft="@dimen/_16sdp"
             android:singleLine="true"
-            android:textColor="@color/text_color_1c4942"
+            android:textColor="@color/text_color_72708E"
             android:textColorHint="@color/gray_ccc"
             android:textSize="@dimen/_14sdp" />
+
         <TextView
             android:id="@+id/tv_no_data"
             android:layout_width="match_parent"
@@ -43,8 +53,8 @@
             android:layout_below="@+id/ed_ma_sach"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@color/white"
-            android:gravity="center"
             android:elevation="@dimen/_2sdp"
+            android:gravity="center"
             android:text="@string/khong_co_thong_tin"
             android:textColor="@color/no_data_text"
             android:visibility="gone" />
@@ -95,7 +105,7 @@
                 android:layout_marginStart="@dimen/_14sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_toEndOf="@+id/tv_sl"
-                android:src="@drawable/ic_minus_circle" />
+                android:src="@drawable/ic_minus_circle_7c92ef" />
 
             <TextView
                 android:id="@+id/tv_so_luong"
@@ -117,7 +127,7 @@
                 android:layout_marginStart="@dimen/_14sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_toEndOf="@+id/tv_so_luong"
-                android:src="@drawable/ic_add_pink" />
+                android:src="@drawable/ic_add_7c92ef" />
         </RelativeLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -144,22 +154,20 @@
 
         <TextView
             android:id="@+id/tv_them_sach_thue"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_42sdp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/bg_btn_pink_rd_8"
-            android:fontFamily="@font/roboto_bold"
+            android:background="@drawable/bg_btn_blue_rd_5"
+            android:fontFamily="@font/roboto"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/_30sdp"
             android:text="Thêm"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_18sdp"
-            android:visibility="gone" />
-
+            android:visibility="visible" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

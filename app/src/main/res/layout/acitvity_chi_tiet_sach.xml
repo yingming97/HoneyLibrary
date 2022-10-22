@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_bg_splash">
+
+    <RelativeLayout
+        android:id="@+id/layout_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_alignParentTop="true"
+        android:elevation="@dimen/_4sdp">
+
+        <RelativeLayout
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imv_close"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:padding="16dp"
+                android:rotation="180"
+                android:src="@drawable/ic_arrow_right_white" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/roboto"
+                android:text="Chi tiết sách"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_tool_bar"
+        android:background="#EEF0FD">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/layout_book_photo"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imv_book"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_140sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_book_default" />
+
+                <ImageView
+                    android:id="@+id/imv_change_photo"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_change_images"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_toEndOf="@+id/layout_book_photo">
+
+                <RelativeLayout
+                    android:id="@+id/layout_gia_thue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_26sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Giá thuê"
+                        android:textColor="@color/text_color_84A3FD"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_gia_thue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_60sdp"
+                        android:background="@color/no_color"
+                        android:gravity="right|center_vertical"
+                        android:inputType="number"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_5F5C7F"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/tv_gia_thue"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/color_7D91F0" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_gia_sach"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_gia_thue"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_2sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Giá sách"
+                        android:textColor="@color/text_color_84A3FD"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_gia_sach"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_60sdp"
+                        android:background="@color/no_color"
+                        android:gravity="right|center_vertical"
+                        android:inputType="number"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_5F5C7F"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/tv_gia_sach"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/color_7D91F0" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_so_luong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_gia_sach"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_50sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Số lượng"
+                        android:textColor="@color/text_color_84A3FD"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_so_luong"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_70sdp"
+                        android:background="@color/no_color"
+                        android:gravity="right|center_vertical"
+                        android:inputType="number"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_5F5C7F"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/tv_so_luong"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/color_7D91F0" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_ten_sach"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_top">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Tên sách"
+                    android:textColor="@color/text_color_84A3FD"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/tv_ten_sach"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_70sdp"
+                    android:background="@color/no_color"
+                    android:gravity="right|center_vertical"
+                    android:inputType="number"
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_5F5C7F"
+                    android:textSize="@dimen/_14sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@+id/tv_ten_sach"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:background="@color/color_7D91F0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_the_loai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_ten_sach"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:paddingVertical="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Thể loại"
+                    android:textColor="@color/text_color_84A3FD"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/tv_the_loai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="@dimen/_70sdp"
+                    android:background="@color/no_color"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:textColor="@color/text_color_5F5C7F"
+                    android:textSize="@dimen/_14sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@+id/tv_the_loai"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:background="@color/color_7D91F0" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_gioi_thieu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_the_loai"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:background="@drawable/bg_ed_gioi_thieu"
+                android:minHeight="@dimen/_100sdp">
+
+                <TextView
+                    android:id="@+id/tv_gioi_thieu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Giới thiệu"
+                    android:textColor="@color/text_color_84A3FD"
+                    android:textSize="@dimen/_14sdp" />
+
+                <pham.hien.honeylibrary.View.Custom.ShowMoreTextView
+                    android:id="@+id/tv_content_gioi_thieu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_gioi_thieu"
+                    android:minLines="4"
+                    android:padding="@dimen/_10sdp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_thu_hoi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_gioi_thieu"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:padding="@dimen/_16sdp">
+
+                <TextView
+                    android:id="@+id/tv_thu_hoi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:includeFontPadding="false"
+                    android:text="Thu hồi"
+                    android:textColor="#9893F5"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/tv_thu_hoi"
+                    android:src="@drawable/ic_thu_hoi" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_chinh_sua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_gioi_thieu"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:padding="@dimen/_16sdp">
+
+                <TextView
+                    android:id="@+id/tv_chinh_sua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:includeFontPadding="false"
+                    android:text="Chỉnh sửa"
+                    android:textColor="#9893F5"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/tv_chinh_sua"
+                    android:src="@drawable/ic_chinh_sua" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

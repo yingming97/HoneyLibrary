@@ -16,9 +16,7 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_centerVertical="true"
         android:elevation="1dp"
-        android:src="@drawable/ic_book_default"
-        app:civ_border_color="#BCF2FA"
-        app:civ_border_width="@dimen/_2sdp" />
+        android:src="@drawable/ic_book_default" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -30,7 +28,20 @@
         android:fontFamily="@font/roboto"
         android:lines="2"
         android:text="Harry Potter và hòn đá phù thủy"
-        android:textColor="@color/text_color_1c4942" />
+        android:textColor="@color/gray_595F66" />
+
+    <TextView
+        android:id="@+id/tv_gia_thue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_toEndOf="@+id/imv_book"
+        android:fontFamily="@font/roboto"
+        android:text="Giá thuê: 250000"
+        android:textColor="@color/gray_595F66"
+        android:textSize="@dimen/_10sdp" />
 
     <TextView
         android:id="@+id/tv_so_luong"
@@ -39,15 +50,9 @@
         android:layout_below="@+id/tv_name"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_6sdp"
-        android:layout_toEndOf="@+id/imv_book"
+        android:layout_toEndOf="@+id/tv_gia_thue"
         android:fontFamily="@font/roboto"
         android:text="Sô lượng : 2"
-        android:textColor="@color/text_color_1c4942"
+        android:textColor="@color/gray_595F66"
         android:textSize="@dimen/_10sdp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/gray_ccc" />
 </RelativeLayout>

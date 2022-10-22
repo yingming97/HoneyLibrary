@@ -5,10 +5,15 @@
 
         <shape android:shape="rectangle">
             <corners android:radius="3dp" />
-            <solid android:color="#D9FFDF" />
+            <solid android:color="#FFFFFF" />
             <size
-                android:width="15dp"
-                android:height="15dp" />
+                android:width="18dp"
+                android:height="18dp" />
+            <padding
+                android:bottom="@dimen/_2sdp"
+                android:left="@dimen/_2sdp"
+                android:right="@dimen/_2sdp"
+                android:top="@dimen/_2sdp" />
         </shape>
     </item>
 
@@ -18,7 +23,7 @@
         <scale android:scaleWidth="100%">
             <shape android:shape="rectangle">
                 <corners android:radius="3dp" />
-                <solid android:color="#f4ada6" />
+                <solid android:color="#9498F3" />
             </shape>
         </scale>
 

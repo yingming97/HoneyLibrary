@@ -41,10 +41,11 @@
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:elevation="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
+                    android:elevation="@dimen/_5sdp"
                     android:src="@drawable/ic_avatar_default"
-                    app:civ_border_color="@color/white" />
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="@dimen/_1sdp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -66,25 +67,25 @@
                     android:textSize="@dimen/_14sdp"
                     android:visibility="gone" />
 
-                    <Button
-                        android:id="@+id/btn_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_below="@id/imv_avatar"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:background="@drawable/bg_btn_blue_rd_15"
-                        android:paddingHorizontal="@dimen/_10sdp"
-                        android:text="Đăng nhập"
-                        android:textColor="@color/white" />
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_below="@id/imv_avatar"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:background="@drawable/bg_btn_blue_rd_15"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="Đăng nhập"
+                    android:textColor="@color/white" />
             </RelativeLayout>
 
             <LinearLayout
-                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:id="@+id/lnl_doi_mat_khau"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_ed_white_rd_5"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_ed_white_rd_5"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -114,9 +115,9 @@
                 android:id="@+id/lnl_quan_ly_nhan_vien"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_ed_white_rd_5"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_ed_white_rd_5"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -154,10 +155,10 @@
                 android:id="@+id/lnl_quan_ly_doc_gia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_ed_white_rd_5"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp">
+                android:background="@drawable/bg_ed_white_rd_5"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -172,7 +173,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:text="Quản lý độc giả"
                         android:textColor="@color/black"
-                        android:textSize= "@dimen/_13sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <ImageView
                         android:layout_width="20dp"
@@ -196,10 +197,10 @@
                 android:id="@+id/lnl_thong_ke"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_ed_white_rd_5"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp">
+                android:background="@drawable/bg_ed_white_rd_5"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -236,10 +237,10 @@
                 android:id="@+id/lnl_tro_giup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_ed_white_rd_5"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp">
+                android:background="@drawable/bg_ed_white_rd_5"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -276,9 +277,9 @@
                 android:id="@+id/lnl_dang_xuat"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/bg_ed_white_rd_5"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_ed_white_rd_5"
                 android:gravity="center_vertical">
 
                 <TextView

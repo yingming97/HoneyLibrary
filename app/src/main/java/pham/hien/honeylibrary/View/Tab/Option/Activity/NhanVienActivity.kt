@@ -1,14 +1,19 @@
 package pham.hien.honeylibrary.View.Tab.Option.Activity
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
+import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.hien.honeylibrary.View.Tab.Option.Adapter.AdapterListQuanLy
 import pham.hien.honeylibrary.ViewModel.NhanVienViewModel
@@ -17,71 +22,85 @@ class NhanVienActivity : BaseActivity() {
 
     private val TAG = "YingMing"
 
-    private lateinit var imgThemNv: ImageView
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var mViewModel: NhanVienViewModel
-    private lateinit var back: ImageView
-    private var quanLyList = ArrayList<UserModel>()
+    private lateinit var toolBar: RelativeLayout
+    private lateinit var edSearchNhanVien: EditText
+    private lateinit var imvClose: ImageView
+    private lateinit var imvSearch: ImageView
+    private lateinit var imvEmpty: ImageView
+    private lateinit var imvAddNewNhanVien: ImageView
+    private lateinit var ncvQuanLyNhanVien: NestedScrollView
+    private lateinit var rcvListNhanVien: RecyclerView
+    private lateinit var tvNoData: TextView
+
+    private var mListNhanVien = ArrayList<UserModel>()
     private lateinit var mUserAdapter: AdapterListQuanLy
+    private lateinit var mNhanVienViewModel: NhanVienViewModel
 
     override fun getLayout(): Int {
         return R.layout.activity_nhan_vien
     }
 
     override fun initView() {
-        imgThemNv = findViewById(R.id.image_ThemNhanVien)
-        recyclerView = findViewById(R.id.recyclerNhanVien)
-        back = findViewById(R.id.imb_backNhanVien)
+        toolBar = findViewById(R.id.tool_bar)
+        edSearchNhanVien = findViewById(R.id.ed_search_nhan_vien)
+        imvClose = findViewById(R.id.imv_close)
+        imvSearch = findViewById(R.id.imv_search)
+        imvEmpty = findViewById(R.id.imv_empty)
+        imvAddNewNhanVien = findViewById(R.id.imv_add_new_nhan_vien)
+        ncvQuanLyNhanVien = findViewById(R.id.ncv_quan_ly_nhan_vien)
+        rcvListNhanVien = findViewById(R.id.rcv_list_nhan_vien)
+        tvNoData = findViewById(R.id.tv_no_data)
+
+        ScreenUtils().setMarginStatusBar(this, toolBar)
     }
 
     override fun initListener() {
-        imgThemNv.setOnClickListener(this)
-        back.setOnClickListener(this)
+        imvAddNewNhanVien.setOnClickListener(this)
+        imvEmpty.setOnClickListener(this)
         recyclerViewNhanVien()
     }
 
     override fun initViewModel() {
-        mViewModel = ViewModelProvider(this)[NhanVienViewModel::class.java]
+        mNhanVienViewModel = ViewModelProvider(this)[NhanVienViewModel::class.java]
     }
 
     override fun initObserver() {
-        mViewModel.nhanvienModel.observe(this) {
+        mNhanVienViewModel.nhanvienModel.observe(this) {
             mUserAdapter.setListQuanLy(it)
-            quanLyList = it
-            Log.d(TAG, "lít" + it.size)
-
+            mListNhanVien = it
         }
     }
 
     override fun initDataDefault() {
-        mViewModel.getListNhanVien()
-        Log.e("tuvm", "lít" + quanLyList.size)
-    }
-
-    private fun recyclerViewNhanVien() {
-        mUserAdapter = AdapterListQuanLy(applicationContext, quanLyList) {
-            var intent = Intent(applicationContext, ChiTietNhanVienActivity::class.java)
-            intent.putExtra("chitiet",it)
-            startActivity(intent)
-        }
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(false)
-        recyclerView.isNestedScrollingEnabled = false
-        recyclerView.adapter = mUserAdapter
+        mNhanVienViewModel.getListNhanVien()
     }
 
     override fun onClick(view: View?) {
-        imgThemNv.setOnClickListener {
-            startActivity(Intent(applicationContext, ThemNhanVienActivity::class.java))
+        when (view) {
+            imvAddNewNhanVien -> {
+                startActivity(Intent(this, ThemNhanVienActivity::class.java))
+
+            }
+            imvClose -> {
+                finish()
+            }
         }
-        back.setOnClickListener {
-            Log.e("tuvm", "onclick")
-            onBackPressed()
+    }
+
+    private fun recyclerViewNhanVien() {
+        mUserAdapter = AdapterListQuanLy(this, mListNhanVien) {
+            val intent = Intent(applicationContext, ChiTietNhanVienActivity::class.java)
+            intent.putExtra(Constant.USER.USER, it)
+            startActivity(intent)
         }
+        rcvListNhanVien.layoutManager = LinearLayoutManager(this)
+        rcvListNhanVien.setHasFixedSize(false)
+        rcvListNhanVien.isNestedScrollingEnabled = false
+        rcvListNhanVien.adapter = mUserAdapter
     }
 
     override fun onResume() {
         super.onResume()
-        mViewModel.getListNhanVien()
+        mNhanVienViewModel.getListNhanVien()
     }
 }

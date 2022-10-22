@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/img_bg_add_phieu_muon">
 
     <RelativeLayout
         android:id="@+id/layout_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentTop="true"
-        android:background="@color/blue_b0efef"
         android:elevation="@dimen/_2sdp">
 
         <RelativeLayout
@@ -24,114 +23,158 @@
                 android:layout_height="match_parent"
                 android:padding="16dp"
                 android:rotation="180"
-                android:src="@drawable/ic_arrow_right" />
+                android:src="@drawable/ic_arrow_right_white" />
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/roboto"
                 android:gravity="center"
                 android:text="Thêm phiếu mượn"
-                android:textColor="@color/text_color_1c4942"
-                android:textSize="@dimen/_16sdp" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sdp" />
 
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_2sdp"
-                android:layout_alignParentBottom="true"
-                android:background="#ccc" />
         </RelativeLayout>
 
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_tool_bar"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:elevation="@dimen/_20sdp">
+
+        <EditText
+            android:id="@+id/ed_sdt_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:background="@drawable/bg_ed_white_rd_8"
+            android:elevation="@dimen/_2sdp"
+            android:padding="@dimen/_5sdp"
+            android:textColor="@color/text_color_72708E" />
+
+        <ImageView
+            android:id="@+id/imv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/ic_search"
+            android:elevation="@dimen/_2sdp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imv_empty"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/ic_close"
+            android:elevation="@dimen/_2sdp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ed_sdt_email"
+            android:gravity="center"
+            android:text="Không có thông tin phù hợp"
+            android:textColor="@color/no_data_text"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/ncv_doc_gia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginVertical="@dimen/_2sdp"
+        android:background="@drawable/bg_list_user_white_rd_10"
+        android:elevation="@dimen/_3sdp"
+        android:visibility="visible">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_doc_gia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ed_sdt_email"
+            android:elevation="@dimen/_3sdp"
+            android:visibility="visible" />
+    </androidx.core.widget.NestedScrollView>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layout_tool_bar"
-        android:background="@drawable/bg_tab_view">
+        android:layout_marginTop="@dimen/_50sdp"
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/ed_sdt_email"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_48sdp"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:background="@drawable/bg_ed_white_rd_8"
-                android:elevation="@dimen/_4sdp"
-                android:hint="Nhập SĐT/Email"
-                android:paddingLeft="@dimen/_16sdp"
-                android:singleLine="true"
-                android:textColor="@color/text_color_1c4942"
-                android:textColorHint="@color/gray_ccc"
-                android:textSize="@dimen/_14sdp" />
-
-            <TextView
-                android:id="@+id/tv_no_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ed_sdt_email"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/white"
-                android:elevation="@dimen/_2sdp"
-                android:gravity="center"
-                android:text="@string/khong_co_thong_tin"
-                android:textColor="@color/no_data_text"
-                android:visibility="gone" />
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/ncv_doc_gia"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/ed_sdt_email"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginVertical="@dimen/_2sdp"
-                android:background="@drawable/bg_list_user_white_rd_10"
-                android:elevation="@dimen/_3sdp"
-                android:visibility="visible">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_doc_gia"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/ed_sdt_email"
-                    android:elevation="@dimen/_3sdp"
-                    android:visibility="visible" />
-            </androidx.core.widget.NestedScrollView>
-
             <RelativeLayout
                 android:id="@+id/layout_info_phieu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ed_sdt_email"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_50sdp"
                 android:background="@drawable/bg_list_user_white_rd_10"
-                android:elevation="@dimen/_1sdp"
-                android:paddingVertical="@dimen/_10sdp">
+                android:elevation="@dimen/_2sdp">
+
+                <RelativeLayout
+                    android:id="@+id/layout_tv_doc_gia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Độc giả"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_7896EE"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <View
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_2sdp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/color_7896EE" />
+                </RelativeLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imv_avatar"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
-                    android:layout_centerVertical="true"
+                    android:layout_below="@+id/layout_tv_doc_gia"
                     android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_30sdp"
                     android:elevation="@dimen/_2sdp"
                     android:src="@drawable/ic_user_photo_default"
-                    app:civ_border_color="@color/blue_b0efef"
+                    app:civ_border_color="@color/text_color_7396FD"
                     app:civ_border_width="@dimen/_2sdp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_toEndOf="@+id/imv_avatar"
                     android:orientation="vertical"
@@ -204,45 +247,59 @@
                 android:id="@+id/tv_khong_sach_muon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/imv_add_sach_thue"
+                android:layout_below="@+id/layout_info_phieu"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center"
                 android:text="@string/hay_them_it_nhat_1_quyen_sach"
                 android:textColor="@color/no_data_text" />
 
-            <ImageView
-                android:id="@+id/imv_add_sach_thue"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+            <RelativeLayout
+                android:id="@+id/layout_add_sach_thue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
                 android:layout_below="@+id/list_sach_thue"
-                android:layout_centerHorizontal="true"
-                android:padding="@dimen/_14sdp"
-                android:src="@drawable/ic_add_pink" />
+                android:layout_marginHorizontal="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_btn_add_sach_thue_rd_5">
+
+                <ImageView
+                    android:id="@+id/imv_add_sach_thue"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/_14sdp"
+                    android:src="@drawable/ic_add_sach_thue" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_add_phieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_add_sach_thue"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:padding="@dimen/_20sdp">
+
+                <TextView
+                    android:id="@+id/tv_them_phieu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:elevation="@dimen/_2sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="Thêm"
+                    android:textColor="@color/text_color_5F5C7F"
+                    android:textSize="@dimen/_16sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_direct_up" />
+            </LinearLayout>
+
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/tv_them_phieu"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:background="@drawable/bg_btn_blue_rd_8"
-        android:elevation="@dimen/_2sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:gravity="center"
-        android:paddingHorizontal="@dimen/_30sdp"
-        android:text="Thêm"
-        android:textColor="@color/text_color_1c4942"
-        android:textSize="@dimen/_16sdp" />
-
-    <ProgressBar
-        android:id="@+id/pg_load_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:elevation="@dimen/_10sdp" />
-
 </RelativeLayout>

@@ -209,7 +209,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
             layoutMenuBottomView.onClickItemHomeView()
             openViewFromLeft(layoutHomeView, layoutHomeView.width, 300)
             closeViewToRight(layoutOptionView, layoutOptionView.width, 300)
-        } else{
+        } else {
             finish()
         }
     }
@@ -221,5 +221,7 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         layoutOptionView.updateUser(mUser)
         layoutPhieuMuonView.loadView(mUser.type)
         layoutPhieuMuonView.openForTheFirstTime(this)
+        layoutSachView.openForTheFirstTime(this)
+        layoutHomeView.openForTheFirstTime(this)
     }
 }

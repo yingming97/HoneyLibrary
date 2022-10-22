@@ -15,9 +15,9 @@
 
 
 
-    <color name="colorPrimary">#D9FFFF</color>
-    <color name="colorPrimaryDark">#D9FFFF</color>
-    <color name="colorAccent">#D9FFFF</color>
+    <color name="colorPrimary">#80B4FF</color>
+    <color name="colorPrimaryDark">#80B4FF</color>
+    <color name="colorAccent">#80B4FF</color>
     <color name="colorBlack">#000000</color>
     <color name="blue_319bd2">#319bd2</color>
     <color name="blue_0f0d4e">#0F0D4E</color>
@@ -27,6 +27,14 @@
     <color name="no_data_text">#F4865A</color>
     <color name="blue_b0efef">#B0EFEF</color>
     <color name="gray_ccc">#ccc</color>
-    <color name="nocolor">#00FFFFFF</color>
+    <color name="no_color">#00FFFFFF</color>
+    <color name="text_color_72708E">#72708E</color>
+    <color name="text_color_84A3FD">#84A3FD</color>
+    <color name="text_color_5F5C7F">#5F5C7F</color>
+    <color name="text_color_7396FD">#7396FD</color>
+    <color name="color_7D91F0">#7D91F0</color>
+    <color name="color_9696F4">#9696F4</color>
+    <color name="color_80B4FF">#80B4FF</color>
+    <color name="color_7896EE">#7896EE</color>
 
 </resources>

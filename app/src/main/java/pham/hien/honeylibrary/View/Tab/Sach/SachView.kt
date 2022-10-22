@@ -19,13 +19,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import org.w3c.dom.Text
+import pham.hien.honeylibrary.Dialog.ProgressBarLoading
 import pham.hien.honeylibrary.Model.Sach
+import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.Utils.ScreenUtils
+import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSach
+import pham.hien.honeylibrary.View.Tab.Sach.Activity.AddSachActivity
+import pham.hien.honeylibrary.View.Tab.Sach.Activity.ChiTietSachActivity
 import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListSachQuanLy
 import pham.hien.honeylibrary.ViewModel.Main.SachViewModel
 
@@ -43,9 +48,8 @@ class SachView : BaseView {
     private lateinit var layout_sach_thu_hoi: RelativeLayout
     private lateinit var rcv_list_sach_thu_hoi: RecyclerView
     private lateinit var tv_no_data: TextView
-    private lateinit var pg_load_sach: ProgressBar
 
-    private lateinit var mSach: Sach
+    private lateinit var mProgressBarLoading: ProgressBarLoading
     private lateinit var mSachAdapter: AdapterListSachQuanLy
     private lateinit var mSachThuHoiAdapter: AdapterListSachQuanLy
     private var mListSach = ArrayList<Sach>()
@@ -80,9 +84,10 @@ class SachView : BaseView {
         layout_sach_thu_hoi = rootView.findViewById(R.id.layout_sach_thu_hoi)
         rcv_list_sach_thu_hoi = rootView.findViewById(R.id.rcv_list_sach_thu_hoi)
         tv_no_data = rootView.findViewById(R.id.tv_no_data)
-        pg_load_sach = rootView.findViewById(R.id.pg_load_sach)
 
         ScreenUtils().setMarginStatusBar(mContext, tool_bar)
+
+        imv_add_new_sach.setOnClickListener(this)
     }
 
     override fun initViewModel(viewModel: ViewModel?) {
@@ -94,22 +99,22 @@ class SachView : BaseView {
             if (it.isNotEmpty()) {
                 mListSach = it
                 tv_no_data.visibility = View.GONE
-                pg_load_sach.visibility = View.GONE
+                mProgressBarLoading.hideLoading()
                 mSachAdapter.setListSach(it)
                 rcv_list_sach.visibility = View.VISIBLE
-                ncv_quan_ly_sach.visibility =View.VISIBLE
+                ncv_quan_ly_sach.visibility = View.VISIBLE
             } else {
                 tv_no_data.visibility = View.VISIBLE
-                ncv_quan_ly_sach.visibility =View.VISIBLE
+                ncv_quan_ly_sach.visibility = View.VISIBLE
             }
         }
         mSachViewModel.mListSachThuHoiLiveData.observe(owner) {
             if (it.isEmpty()) {
                 layout_sach_thu_hoi.visibility = View.GONE
-                ncv_quan_ly_sach.visibility =View.VISIBLE
+                ncv_quan_ly_sach.visibility = View.VISIBLE
             } else {
                 layout_sach_thu_hoi.visibility = View.VISIBLE
-                ncv_quan_ly_sach.visibility =View.VISIBLE
+                ncv_quan_ly_sach.visibility = View.VISIBLE
                 mListSachThuHoi = it
                 mSachThuHoiAdapter.setListSach(it)
             }
@@ -118,8 +123,11 @@ class SachView : BaseView {
 
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
-        ncv_quan_ly_sach.visibility =View.GONE
-        pg_load_sach.visibility = View.VISIBLE
+        val user = SharedPrefUtils.getUserData(mContext)!!
+        loadView(user)
+        ncv_quan_ly_sach.visibility = View.GONE
+        mProgressBarLoading = ProgressBarLoading(mContext)
+        mProgressBarLoading.showLoading()
         mSachViewModel.getListSach()
         initRecycleViewSach()
         initRecycleViewSachThuHoi()
@@ -137,14 +145,18 @@ class SachView : BaseView {
     override fun onClick(view: View) {
         super.onClick(view)
         when (view) {
+            imv_add_new_sach -> {
+                mContext.startActivity(Intent(mContext, AddSachActivity::class.java))
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun initRecycleViewSach() {
         mSachAdapter = AdapterListSachQuanLy(mContext, mListSach) {
-//         val intent = Intent()
-//            intent.putExtra(Constant.SACH.SACH,it)
+            val intent = Intent(mContext, ChiTietSachActivity::class.java)
+            intent.putExtra(Constant.SACH.SACH, it)
+            mContext.startActivity(intent)
         }
         rcv_list_sach.layoutManager = LinearLayoutManager(mContext)
         rcv_list_sach.setHasFixedSize(false)
@@ -155,8 +167,9 @@ class SachView : BaseView {
     @SuppressLint("SetTextI18n")
     private fun initRecycleViewSachThuHoi() {
         mSachThuHoiAdapter = AdapterListSachQuanLy(mContext, mListSach) {
-//         val intent = Intent()
-//            intent.putExtra(Constant.SACH.SACH,it)
+            val intent = Intent(mContext, ChiTietSachActivity::class.java)
+            intent.putExtra(Constant.SACH.SACH, it)
+            mContext.startActivity(intent)
         }
         rcv_list_sach_thu_hoi.layoutManager = LinearLayoutManager(mContext)
         rcv_list_sach_thu_hoi.setHasFixedSize(false)
@@ -164,4 +177,16 @@ class SachView : BaseView {
         rcv_list_sach_thu_hoi.adapter = mSachThuHoiAdapter
     }
 
+    private fun loadView(user: UserModel) {
+        when (user.type) {
+            Constant.QUYEN.ADMIN, Constant.QUYEN.THU_THU -> {
+                imv_add_new_sach.visibility = View.VISIBLE
+                layout_sach_thu_hoi.visibility = View.VISIBLE
+            }
+            else -> {
+                imv_add_new_sach.visibility = View.INVISIBLE
+                layout_sach_thu_hoi.visibility = View.GONE
+            }
+        }
+    }
 }

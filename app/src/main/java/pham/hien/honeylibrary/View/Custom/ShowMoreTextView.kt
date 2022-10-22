@@ -17,10 +17,10 @@ class ShowMoreTextView @kotlin.jvm.JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
-    private var showingLine = 1
+    private var showingLine = 4
 
-    private var showMore = "Show more"
-    private var showLess = "Show less"
+    private var showMore = " Xem thêm"
+    private var showLess = " Thu gọn"
     private val threeDot = "…"
 
     private var showMoreTextColor = Color.RED

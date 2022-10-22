@@ -1,8 +1,9 @@
 package pham.hien.honeylibrary.Model
 
 import pham.hien.honeylibrary.Utils.Constant
+import java.io.Serializable
 
-class Sach {
+class Sach : Serializable{
     var maSach: Int = 0
     var tenSach: String = ""
     var maLoai: Int = -1

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="@dimen/_8sdp"
-    android:background="@drawable/bg_item_phieu_dang_muon"
+    android:background="@drawable/img_bg_phieu_dang_muon"
     android:elevation="@dimen/_2sdp"
     android:paddingHorizontal="@dimen/_14sdp"
     android:paddingVertical="@dimen/_6sdp">
@@ -29,7 +29,7 @@
         android:fontFamily="@font/roboto"
         android:maxLength="20"
         android:text="Mã: XbyCdFDEeGShzqDIN7bsY92aNz92"
-        android:textColor="@color/text_color_1c4942"
+        android:textColor="@color/white"
         android:textSize="10sp" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_toEndOf="@+id/imv_avatar"
         android:fontFamily="@font/roboto_medium"
         android:text="Phạm Văn Hiển"
-        android:textColor="@color/text_color_1c4942"
+        android:textColor="@color/white"
         android:textSize="@dimen/_12sdp" />
 
 
@@ -55,7 +55,7 @@
         android:layout_toEndOf="@+id/imv_avatar"
         android:fontFamily="@font/roboto"
         android:text="Thành tiền: 25,000đ"
-        android:textColor="@color/text_color_1c4942"
+        android:textColor="@color/white"
         android:textSize="@dimen/_10sdp" />
 
     <TextView
@@ -68,7 +68,7 @@
         android:layout_toEndOf="@+id/imv_avatar"
         android:fontFamily="@font/roboto"
         android:text="Số lượng : 5"
-        android:textColor="@color/text_color_1c4942"
+        android:textColor="@color/white"
         android:textSize="@dimen/_10sdp" />
 
     <TextView
@@ -81,7 +81,7 @@
         android:layout_toEndOf="@+id/imv_avatar"
         android:fontFamily="@font/roboto"
         android:text="Trạng thái : Quá hạn"
-        android:textColor="@color/text_color_1c4942"
+        android:textColor="@color/white"
         android:textSize="@dimen/_10sdp" />
 
     <ImageView
@@ -89,5 +89,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_arrow_right" />
+        android:src="@drawable/ic_arrow_right_white" />
 </RelativeLayout>

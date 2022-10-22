@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/img_bg_splash">
 
     <RelativeLayout
         android:id="@+id/layout_tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/blue_b0efef"
         android:elevation="@dimen/_4sdp">
 
         <RelativeLayout
@@ -20,14 +18,14 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="Phiếu mượn"
-                android:textColor="@color/text_color_1c4942"
-                android:textSize="@dimen/_16sdp" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp" />
 
             <EditText
                 android:id="@+id/ed_search_phieu_muon"
@@ -40,57 +38,70 @@
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:textColor="@color/text_color_1c4942"
                 android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tool_bar"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <EditText
+                android:id="@+id/ed_search_sach"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:background="@drawable/bg_ed_white_rd_8"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/text_color_72708E" />
 
             <ImageView
                 android:id="@+id/imv_search"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_search"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/ic_search"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/imv_empty"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/ic_close"
                 android:visibility="gone" />
         </RelativeLayout>
-
-
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/layout_title"
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/imv_add_new_phieu_muon"
+        android:layout_width="@dimen/_66sdp"
         android:layout_height="@dimen/_66sdp"
-        android:layout_below="@+id/layout_tool_bar">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Danh sách phiếu mượn"
-            android:textColor="@color/text_color_1c4942"
-            android:textSize="@dimen/_16sdp" />
-
-        <ImageView
-            android:id="@+id/imv_add_new_phieu_muon"
-            android:layout_width="@dimen/_66sdp"
-            android:layout_height="@dimen/_66sdp"
-            android:layout_alignParentEnd="true"
-            android:padding="@dimen/_20sdp"
-            android:src="@drawable/ic_add" />
-    </RelativeLayout>
+        android:layout_below="@+id/layout_tool_bar"
+        android:layout_alignParentEnd="true"
+        android:elevation="@dimen/_2sdp"
+        android:padding="@dimen/_16sdp"
+        android:src="@drawable/ic_add_sach" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/layout_title"
-        android:background="@drawable/bg_tab_view">
+        android:layout_below="@+id/layout_tool_bar"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:background="@color/white">
 
         <RelativeLayout
             android:id="@+id/layout_phieu_muon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_26sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_80sdp"
             android:visibility="visible">
 
@@ -100,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Phiếu quá hạn"
-                android:textColor="@color/text_color_1c4942"
+                android:textColor="@color/text_color_72708E"
                 android:textSize="@dimen/_14sdp" />
 
             <ProgressBar
@@ -135,7 +146,7 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Phiếu đang mượn"
-                android:textColor="@color/text_color_1c4942"
+                android:textColor="@color/text_color_72708E"
                 android:textSize="@dimen/_14sdp" />
 
             <ProgressBar
@@ -170,7 +181,7 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Phiếu đã trả"
-                android:textColor="@color/text_color_1c4942"
+                android:textColor="@color/text_color_72708E"
                 android:textSize="@dimen/_14sdp" />
 
             <ProgressBar

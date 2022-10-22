@@ -1,4 +1,4 @@
-package pham.hien.honeylibrary.View.Tab.Home
+package pham.hien.honeylibrary.View.Tab.Home.Adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater

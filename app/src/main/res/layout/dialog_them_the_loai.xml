@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="@dimen/_24sdp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/_12sdp"
     tools:ignore="MissingDefaultResource">
@@ -16,6 +15,17 @@
         android:background="@color/white"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Thêm thể loại"
+            android:textColor="@color/text_color_72708E"
+            android:textSize="@dimen/_20sdp" />
+
         <ImageView
             android:id="@+id/imv_close"
             android:layout_width="@dimen/_56sdp"
@@ -24,41 +34,63 @@
             android:padding="@dimen/_16sdp"
             android:src="@drawable/ic_close" />
 
-        <EditText
-            android:id="@+id/ed_ten_the_loai"
-            android:layout_width="@dimen/_220sdp"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:background="@drawable/bg_ed_white_rd_8"
-            android:elevation="@dimen/_4sdp"
-            android:hint="Nhập tên thể loại"
-            android:paddingLeft="@dimen/_16sdp"
-            android:singleLine="true"
-            android:textColor="@color/text_color_1c4942"
-            android:textColorHint="@color/gray_ccc"
-            android:textSize="@dimen/_14sdp" />
+        <RelativeLayout
+            android:id="@+id/layout_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_marginTop="@dimen/_50sdp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:elevation="@dimen/_4sdp"
+                android:paddingStart="@dimen/_16sdp"
+                android:singleLine="true"
+                android:text="Tên thể loại"
+                android:textColor="@color/text_color_84A3FD"
+                android:textSize="@dimen/_14sdp" />
+
+            <EditText
+                android:id="@+id/ed_ten_the_loai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:background="@color/no_color"
+                android:gravity="right|center_vertical"
+                android:maxLines="1"
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_16sdp"
+                android:singleLine="true"
+                android:textColor="@color/text_color_1c4942"
+                android:textSize="@dimen/_14sdp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_below="@+id/ed_ten_the_loai"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:background="@color/color_7D91F0" />
+        </RelativeLayout>
 
 
         <TextView
             android:id="@+id/tv_them_the_loai"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_42sdp"
-            android:layout_below="@+id/ed_ten_the_loai"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:layout_below="@+id/layout_input"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:layout_marginBottom="@dimen/_50sdp"
-            android:background="@drawable/bg_btn_pink_rd_8"
-            android:fontFamily="@font/roboto_bold"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginVertical="@dimen/_50sdp"
+            android:background="@drawable/bg_btn_9696f4_rd_5"
+            android:fontFamily="@font/roboto"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Thêm"
+            android:text="Lưu"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_18sdp" />
-
-
+            android:textSize="@dimen/_20sdp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

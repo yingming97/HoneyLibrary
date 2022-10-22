@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home_view"
+    android:background="@drawable/img_bg_splash"
     android:clickable="true"
     android:focusable="true">
 
@@ -41,7 +41,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:includeFontPadding="false"
                     android:text="TH3 11 OCT"
-                    android:textColor="@color/text_color_1c4942" />
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/tv_user_name"
@@ -53,7 +53,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="Hi, Admin"
-                    android:textColor="@color/text_color_1c4942"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_16sdp" />
 
             </RelativeLayout>
@@ -64,9 +64,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout_header"
                 android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/_10sdp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="36dp"
-                android:background="@drawable/bg_ed_white_rd_9">
+                android:background="@drawable/bg_ed_white_rd_9"
+                android:elevation="@dimen/_20sdp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -86,7 +88,8 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
                             android:text="@string/thong_ke_luot_muon"
-                            android:textSize="18dp" />
+                            android:textColor="@color/text_color_72708E"
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/tv_thong_ke_luot_muon"
@@ -95,10 +98,10 @@
                             android:layout_below="@+id/tv_luot_muon"
                             android:layout_centerInParent="true"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/roboto"
+                            android:fontFamily="@font/roboto_bold"
                             android:text="100"
-                            android:textSize="30dp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/text_color_7396FD"
+                            android:textSize="30dp" />
 
                     </RelativeLayout>
 
@@ -127,7 +130,8 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
                             android:text="@string/thong_ke__tong_so_sach"
-                            android:textSize="18dp" />
+                            android:textColor="@color/text_color_72708E"
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/tv_thong_ke_tong_so_sach"
@@ -138,6 +142,7 @@
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/roboto"
                             android:text="100"
+                            android:textColor="@color/text_color_7396FD"
                             android:textSize="30dp"
                             android:textStyle="bold" />
                     </RelativeLayout>
@@ -167,7 +172,8 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
                             android:text="@string/thong_ke_thanh_vien"
-                            android:textSize="18dp" />
+                            android:textColor="@color/text_color_72708E"
+                            android:textSize="14dp" />
 
                         <TextView
                             android:id="@+id/tv_thong_ke_thanh_vien"
@@ -178,6 +184,7 @@
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/roboto"
                             android:text="100"
+                            android:textColor="@color/text_color_7396FD"
                             android:textSize="30dp"
                             android:textStyle="bold" />
 
@@ -194,16 +201,15 @@
                 android:layout_below="@+id/layout_thong_ke"
                 android:layout_marginVertical="@dimen/_28sdp"
                 android:layout_marginStart="@dimen/_14sdp"
-                android:fontFamily="@font/roboto"
+                android:fontFamily="@font/roboto_medium"
                 android:text="Top sách được mượn nhiều nhất"
-                android:textColor="@color/text_color_1c4942"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/lv_sach_muon_nhieu"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_120sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_below="@+id/tv_top_sach" />
 
             <TextView
@@ -211,11 +217,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lv_sach_muon_nhieu"
-                android:layout_marginVertical="@dimen/_28sdp"
                 android:layout_marginStart="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:fontFamily="@font/roboto"
-                android:text="Top sách mới về"
-                android:textColor="@color/text_color_1c4942"
+                android:text="Sách mới"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
 
@@ -223,9 +229,10 @@
                 android:id="@+id/top_sach_moi_ve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_sach_moi"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginBottom="100dp"
-                android:paddingHorizontal="16dp"
-                android:layout_below="@+id/tv_sach_moi" />
+                android:paddingHorizontal="16dp" />
 
         </RelativeLayout>
 

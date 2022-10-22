@@ -25,6 +25,7 @@ class Constant {
         const val COL_SO_LUONG = "soLuong"
         const val COL_SO_LUONG_CON_LAI = "soLuongConLai"
         const val COL_THU_HOI = "thuHoi"
+        const val COL_MA_THE_LOAI = "maLoai"
     }
 
     object SACHTHUE {
@@ -60,6 +61,7 @@ class Constant {
     }
 
     object USER {
+        const val USER = "USER"
         const val AVATAR_DEFAULT =
             "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableUser%2F0?alt=media&token=bb543483-6a66-4f1d-b79b-52fbb44cfd63"
         const val TB_NAME = "TableUser"

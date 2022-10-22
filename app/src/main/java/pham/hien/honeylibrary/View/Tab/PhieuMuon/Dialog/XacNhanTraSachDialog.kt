@@ -1,4 +1,4 @@
-package pham.yingming.honeylibrary.Dialog
+package pham.hien.honeylibrary.View.Tab.PhieuMuon.Dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -11,24 +11,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import pham.hien.honeylibrary.R
 
-class XacNhanXoaPhieuDialog(
+class XacNhanTraSachDialog(
     context: Context,
-    private val taoSai: (() -> Unit)? = null,
-    private val khac: (() -> Unit)? = null,
+    private val traDu: (() -> Unit),
+    private val traThieu: (() -> Unit),
+    private val huy: () -> Unit,
 ) :
     Dialog(context),
     View.OnClickListener {
 
-    private lateinit var tvTitle: TextView
-    private lateinit var tvContent: TextView
-    private lateinit var tvXoa: TextView
-    private lateinit var tvHuy: TextView
+    private lateinit var tvTraThieu: TextView
+    private lateinit var tvTraDu: TextView
     private lateinit var imvClose: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.dialog_xac_nhan_xoa_phieu)
+        setContentView(R.layout.dialog_xac_nhan_tra_sach)
         window!!.decorView.setBackgroundResource(R.color.transparent)
         window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
         val wlp = window!!.attributes
@@ -44,24 +43,27 @@ class XacNhanXoaPhieuDialog(
     }
 
     private fun initView() {
-        tvXoa = findViewById(R.id.tv_xoa)
-        tvHuy = findViewById(R.id.tv_huy)
+        tvTraThieu = findViewById(R.id.tv_tra_thieu)
+        tvTraDu = findViewById(R.id.tv_tra_du)
         imvClose = findViewById(R.id.imv_close)
 
         imvClose.setOnClickListener(this)
-        tvXoa.setOnClickListener(this)
-        tvHuy.setOnClickListener(this)
+        tvTraThieu.setOnClickListener(this)
+        tvTraDu.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            imvClose -> dismiss()
-            tvXoa -> {
-                taoSai?.invoke()
+            imvClose -> {
+                huy()
                 dismiss()
             }
-            tvHuy -> {
-                khac?.invoke()
+            tvTraThieu -> {
+                traThieu
+                dismiss()
+            }
+            tvTraDu -> {
+                traDu
                 dismiss()
             }
         }

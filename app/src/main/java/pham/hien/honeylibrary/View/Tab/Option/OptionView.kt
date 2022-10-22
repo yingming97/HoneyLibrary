@@ -6,11 +6,10 @@ import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.Model.UserModel
@@ -38,6 +37,7 @@ class OptionView : BaseView {
     private lateinit var lnlThongKe: LinearLayout
     private lateinit var lnlDangXuat: LinearLayout
     private lateinit var tvUserName: TextView
+    private lateinit var imv_avatar: ImageView
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -66,6 +66,7 @@ class OptionView : BaseView {
         lnlQuanLyNhanVien = rootView.findViewById(R.id.lnl_quan_ly_nhan_vien)
         btnLogin = rootView.findViewById(R.id.btn_login)
         tvUserName = rootView.findViewById(R.id.tv_user_name)
+        imv_avatar = rootView.findViewById(R.id.imv_avatar)
 
 
 
@@ -76,6 +77,7 @@ class OptionView : BaseView {
         lnlQuanLyDocGia.setOnClickListener(this)
         lnlQuanLyNhanVien.setOnClickListener(this)
         btnLogin.setOnClickListener(this)
+        imv_avatar.setOnClickListener(this)
 
     }
 
@@ -96,14 +98,14 @@ class OptionView : BaseView {
     override fun openForTheFirstTime(activity: Activity?) {
         super.openForTheFirstTime(activity)
         if (!checkFirstLaunchView) {
-            checkFirstLaunchView = true
+            checkFirstLaunchView = false
             mActivity = activity!!
             initDataDefault(activity)
         }
     }
 
     override fun onClick(view: View) {
-        if(SharedPrefUtils.getLogin(mContext)){
+        if (SharedPrefUtils.getLogin(mContext)) {
 //            xu ly vao phan chuc nang o day
             when (view) {
                 btnLogin -> {
@@ -123,13 +125,16 @@ class OptionView : BaseView {
                 }
 
                 lnlThongKe -> {
-
+                    Toast.makeText(mContext, "Đang được phát triển.", Toast.LENGTH_LONG).show()
                 }
 
                 lnlTroGiup -> {
-                    mContext.startActivity(Intent(mContext,TroGiupActivity::class.java))
+//                    mContext.startActivity(Intent(mContext, TroGiupActivity::class.java))
+                    Toast.makeText(mContext, "Đang được phát triển.", Toast.LENGTH_LONG).show()
                 }
+                imv_avatar -> {
 
+                }
                 lnlDangXuat -> {
                     signOut()
                 }
@@ -137,7 +142,7 @@ class OptionView : BaseView {
             }
         } else {
             when (view) {
-                btnLogin, lnlDoiMatKhau,lnlQuanLyDocGia, lnlThongKe, lnlQuanLyNhanVien, lnlTroGiup -> {
+                btnLogin, lnlDoiMatKhau, lnlQuanLyDocGia, lnlThongKe, lnlQuanLyNhanVien, lnlTroGiup, imv_avatar -> {
                     mContext.startActivity(Intent(mContext, LoginActivity::class.java))
                 }
             }
@@ -147,10 +152,12 @@ class OptionView : BaseView {
     fun updateUser(user: UserModel) {
         if (SharedPrefUtils.getLogin(mContext)) {
             btnLogin.visibility = View.GONE
-            tvUserName.text = user.name
             tvUserName.visibility = View.VISIBLE
             lnlDangXuat.visibility = View.VISIBLE
             checkPermission(user)
+            tvUserName.text = user.name
+            Glide.with(this).load(user.avatar).placeholder(R.drawable.ic_user_photo_default)
+                .into(imv_avatar)
         } else {
             btnLogin.visibility = View.VISIBLE
             tvUserName.visibility = View.GONE
@@ -176,7 +183,6 @@ class OptionView : BaseView {
     private fun checkPermission(user: UserModel?) {
         when (user?.type) {
             Constant.QUYEN.DOC_GIA -> {
-                tvUserName.text = user.name
                 tvUserName.visibility = View.VISIBLE
                 lnlTroGiup.visibility = View.VISIBLE
                 lnlDoiMatKhau.visibility = View.VISIBLE
@@ -185,7 +191,6 @@ class OptionView : BaseView {
                 lnlQuanLyNhanVien.visibility = View.GONE
             }
             Constant.QUYEN.THU_THU -> {
-                tvUserName.text = user.name
                 tvUserName.visibility = View.VISIBLE
                 lnlTroGiup.visibility = View.VISIBLE
                 lnlDoiMatKhau.visibility = View.VISIBLE
@@ -194,7 +199,6 @@ class OptionView : BaseView {
                 lnlQuanLyNhanVien.visibility = View.GONE
             }
             Constant.QUYEN.ADMIN -> {
-                tvUserName.text = user.name
                 tvUserName.visibility = View.VISIBLE
                 lnlTroGiup.visibility = View.VISIBLE
                 lnlDoiMatKhau.visibility = View.VISIBLE

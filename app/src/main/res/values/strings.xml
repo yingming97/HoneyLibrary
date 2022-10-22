@@ -19,7 +19,9 @@
     <string name="da_xay_ra_loi_trong_qua_trinh_xoa_the_loai">Đã xảy ra lỗi trong quá trình xóa thể loại</string>
 
     <string name="them_sach_thanh_cong">Thêm sách thành công</string>
+    <string name="them_nhan_vien_thanh_cong">Thêm nhân viên thành công</string>
     <string name="them_sach_khong_thanh_cong">Thêm sách không thành công</string>
+    <string name="them_nhan_vien_khong_thanh_cong">Thêm nhân viên không thành công</string>
     <string name="da_xay_ra_loi_trong_qua_trinh_them_sach">Đã xảy ra lỗi trong quá trình thêm sách</string>
 
     <string name="dang_ky_thanh_cong">Đăng ký thành công</string>

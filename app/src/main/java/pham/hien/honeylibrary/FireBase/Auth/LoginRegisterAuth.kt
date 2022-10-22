@@ -73,7 +73,7 @@ class LoginRegisterAuth {
                                 activity.applicationContext,
                                 activity.applicationContext.getString(R.string.dang_ky_thanh_cong),
                                 ""
-                            )
+                            ).show()
                         }
                         .addOnFailureListener { e ->
                             FailDialog(

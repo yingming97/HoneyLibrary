@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/img_bg_splash">
 
     <RelativeLayout
         android:id="@+id/layout_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
         android:layout_alignParentTop="true"
-        android:background="@color/blue_b0efef"
         android:elevation="@dimen/_2sdp">
 
         <RelativeLayout
@@ -20,37 +19,28 @@
 
             <ImageView
                 android:id="@+id/imv_close"
-                android:layout_width="56dp"
+                android:layout_width="@dimen/_60sdp"
                 android:layout_height="match_parent"
-                android:padding="16dp"
+                android:padding="@dimen/_20sdp"
                 android:rotation="180"
-                android:src="@drawable/ic_arrow_right" />
+                android:src="@drawable/ic_arrow_right_white" />
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentBottom="true"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/roboto"
                 android:gravity="center"
                 android:text="Chi tiết phiếu mượn"
-                android:textColor="@color/text_color_1c4942"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp" />
-
-            <View
-                android:id="@+id/line"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_2sdp"
-                android:layout_alignParentBottom="true"
-                android:background="#ccc" />
         </RelativeLayout>
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/layout_tool_bar"
-        android:background="@drawable/bg_tab_view">
+        android:layout_below="@+id/layout_tool_bar">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,107 +49,113 @@
             <RelativeLayout
                 android:id="@+id/layout_info_phieu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/bg_list_user_white_rd_10"
-                android:elevation="@dimen/_1sdp"
-                android:paddingVertical="@dimen/_10sdp">
+                android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imv_avatar"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:elevation="@dimen/_2sdp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_45sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:elevation="@dimen/_5sdp"
                     android:src="@drawable/ic_user_photo_default"
-                    app:civ_border_color="@color/blue_b0efef"
+                    app:civ_border_color="@color/white"
                     app:civ_border_width="@dimen/_2sdp" />
 
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/imv_delete_phieu"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_alignParentEnd="true"
+                    android:padding="@dimen/_16sdp"
+                    android:src="@drawable/ic_delete" />
+
+                <ImageView
+                    android:id="@+id/imv_edit_phieu"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_alignParentStart="true"
+                    android:padding="@dimen/_16sdp"
+                    android:src="@drawable/ic_chinh_sua_white" />
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_toEndOf="@+id/imv_avatar"
-                    android:orientation="vertical"
-                    android:paddingEnd="@dimen/_4sdp">
+                    android:layout_below="@+id/imv_avatar"
+                    android:layout_marginTop="@dimen/_20sdp">
 
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
+                        android:gravity="center"
                         android:text="Phạm Văn Hiển"
-                        android:textColor="@color/text_color_1c4942"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp" />
 
-                    <TextView
-                        android:id="@+id/tv_tong_sach"
+                    <LinearLayout
+                        android:id="@+id/layout_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_name"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Tổng số lượng : 0"
-                        android:textColor="@color/text_color_1c4942"
-                        android:textSize="@dimen/_12sdp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_ngay_muon"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="Ngày mượn: \n13/10/2022"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_tong_sach"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="Số lượng:\n0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_han_tra"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:text="Hạn trả: \n20/10/2022"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/tv_thanh_tien"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_tong_sach"
+                        android:layout_below="@+id/layout_time"
+                        android:layout_marginVertical="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:fontFamily="@font/roboto"
+                        android:gravity="center"
                         android:text="Thành tiền : 0"
-                        android:textColor="@color/text_color_1c4942"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/tv_ngay_muon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_thanh_tien"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Ngày mượn : 13/10/2022"
-                        android:textColor="@color/text_color_1c4942"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/tv_han_tra"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_ngay_muon"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Hạn trả : 20/10/2022"
-                        android:textColor="@color/no_data_text"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/tv_trang_thai"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_ngay_muon"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:fontFamily="@font/roboto"
-                        android:text="Hạn trả : 20/10/2022"
-                        android:textColor="@color/no_data_text"
-                        android:textSize="@dimen/_12sdp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imv_edit_phieu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:src="@drawable/ic_edit" />
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -169,23 +165,56 @@
                 android:layout_below="@+id/layout_info_phieu"
                 android:layout_marginHorizontal="@dimen/_18sdp"
                 android:layout_marginTop="@dimen/_14sdp" />
+
+            <RelativeLayout
+                android:id="@+id/layout_trang_thai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_sach_thue"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/_20sdp">
+
+                <TextView
+                    android:id="@+id/tv_trang_thai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto"
+                    android:includeFontPadding="false"
+                    android:text="Đang mượn"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_tra_sach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:layout_toEndOf="@+id/tv_trang_thai"
+                    android:checked="false"
+                    android:elevation="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:thumb="@drawable/ic_switch_thumb"
+                    app:track="@drawable/ic_switch_track" />
+
+                <TextView
+                    android:id="@+id/tv_da_tra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/switch_tra_sach"
+                    android:fontFamily="@font/roboto"
+                    android:includeFontPadding="false"
+                    android:text="Trả sách"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+            </RelativeLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/tv_xoa_phieu"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:background="@drawable/bg_btn_pink_rd_8"
-        android:elevation="@dimen/_2sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:gravity="center"
-        android:paddingHorizontal="@dimen/_30sdp"
-        android:text="Xóa"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sdp" />
 </RelativeLayout>

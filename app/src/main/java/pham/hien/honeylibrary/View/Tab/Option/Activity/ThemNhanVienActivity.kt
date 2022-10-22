@@ -6,6 +6,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import pham.hien.honeylibrary.FireBase.Auth.CreateNewAccount
 import pham.hien.honeylibrary.FireBase.Auth.LoginRegisterAuth
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
@@ -17,6 +20,9 @@ import java.util.regex.Pattern
 
 class ThemNhanVienActivity : BaseActivity() {
     private lateinit var backThemNhanVien: ImageView
+
+    private val TAG = "YingMing"
+
     private lateinit var hoTen: EditText
     private lateinit var email: EditText
     private lateinit var diaChi: EditText
@@ -24,9 +30,8 @@ class ThemNhanVienActivity : BaseActivity() {
     private lateinit var thuThu: RadioButton
     private lateinit var quanLy: RadioButton
     private lateinit var them: TextView
-    private lateinit var user: UserModel
-    private lateinit var userModel: ArrayList<UserModel>
     private lateinit var arrUser: List<UserModel>
+    private lateinit var mListUser: ArrayList<UserModel>
 
 
     override fun getLayout(): Int {
@@ -63,23 +68,23 @@ class ThemNhanVienActivity : BaseActivity() {
     override fun initDataDefault() {
         UserDAO().getListUser {
             arrUser = it
-            user = UserModel()
+            val user = UserModel()
         }
     }
 
     private fun addNhanVien() {
-        var hoten = hoTen.text.toString()
-        var mail = email.text.toString()
+        val hoten = hoTen.text.toString()
+        val mail = email.text.toString()
         var diachi = diaChi.text.toString()
         var sdt = sdt.text.toString()
-        var thuthu: Int
+        var quyen: Int
         if (thuThu.isChecked) {
-            thuthu = Constant.QUYEN.THU_THU
-            Log.e("tuvm", "check$thuthu")
+            quyen = Constant.QUYEN.THU_THU
+            Log.e("tuvm", "check$quyen")
         } else {
-            thuthu = Constant.QUYEN.ADMIN
+            quyen = Constant.QUYEN.ADMIN
         }
-        checkForm(hoten, mail, diachi, sdt, thuthu) { check, user, sdt ->
+        checkForm(hoten, mail, diachi, sdt, quyen) { check, user, sdt ->
             if (check) {
                 LoginRegisterAuth().registerNewAccount(this, user!!, sdt) { checks, users ->
                     if (checks) {
@@ -96,7 +101,7 @@ class ThemNhanVienActivity : BaseActivity() {
         diachi: String,
         sdt: String,
         quyen: Int,
-        callback: (Boolean, UserModel?, String) -> Unit
+        callback: (Boolean, UserModel?, String) -> Unit,
     ) {
         val phonePattern = "(84|0[3|5|7|8|9])+([0-9]{8,9})\\b"
         var title = ""

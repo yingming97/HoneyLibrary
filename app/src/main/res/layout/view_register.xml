@@ -15,10 +15,9 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -41,11 +40,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="700dp"
-                android:orientation="vertical"
-                android:background="@color/white"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:paddingHorizontal="@dimen/_15sdp"
-                >
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_15sdp">
 
                 <LinearLayout
                     android:id="@+id/layout_dangnhap"
@@ -95,8 +93,8 @@
                             android:background="@color/white"
                             android:gravity="right"
                             android:hint="Nhập email"
-                            android:textSize="@dimen/_12sdp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <View
@@ -132,8 +130,8 @@
                             android:background="@color/white"
                             android:gravity="right"
                             android:hint="Nhập họ tên"
-                            android:textSize="@dimen/_12sdp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <View
@@ -169,8 +167,8 @@
                             android:background="@color/white"
                             android:gravity="right"
                             android:hint="Nhập địa chỉ"
-                            android:textSize="@dimen/_12sdp"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <View
@@ -205,10 +203,10 @@
                             android:layout_height="match_parent"
                             android:background="@color/white"
                             android:gravity="right"
-                            android:inputType="number"
                             android:hint="Nhập số điện thoại"
-                            android:textSize="@dimen/_12sdp"
-                            android:textColor="@color/black" />
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <View
@@ -244,8 +242,9 @@
                             android:background="@color/white"
                             android:gravity="right"
                             android:hint="Nhập nhập mật khẩu"
-                            android:textSize="@dimen/_12sdp"
-                            android:textColor="@color/black" />
+                            android:inputType="textPassword"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <View
@@ -281,8 +280,9 @@
                             android:background="@color/white"
                             android:gravity="right"
                             android:hint="Nhập lại mật khẩu"
-                            android:textSize="@dimen/_12sdp"
-                            android:textColor="@color/black" />
+                            android:inputType="textPassword"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <View
@@ -297,11 +297,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
                     android:background="@drawable/bg_btn_blue_rd_5"
                     android:fontFamily="@font/roboto_medium"
                     android:paddingVertical="@dimen/_7sdp"
                     android:text="Đăng ký"
-                    android:layout_marginBottom="@dimen/_50sdp"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sdp" />

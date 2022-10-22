@@ -17,11 +17,11 @@ import pham.hien.honeylibrary.R
 class AdapterListUser(
     context: Context,
     listUser: ArrayList<UserModel>,
-    callback: ((UserModel) -> Unit)
+    callback: ((UserModel) -> Unit),
 ) :
     RecyclerView.Adapter<AdapterListUser.ViewItemDocGia>() {
 
-    private val TAG ="YingMing"
+    private val TAG = "YingMing"
     private var mContext: Context = context
     private var mListUser: ArrayList<UserModel> = listUser
     private var call = callback
@@ -44,7 +44,7 @@ class AdapterListUser(
         Glide.with(mContext).load(user.avatar).placeholder(R.drawable.ic_avatar_default)
             .into(holder.imvAvatar)
         holder.tv_name.text = user.name
-        holder.tv_sdt.text = user.sdt
+        holder.tv_sdt.text = "SĐT: ${user.sdt}"
         holder.layout_item_doc_gia.setOnClickListener {
             call.invoke(user)
         }

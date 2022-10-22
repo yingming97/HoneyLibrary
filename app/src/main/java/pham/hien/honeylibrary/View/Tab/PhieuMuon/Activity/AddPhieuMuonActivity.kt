@@ -3,7 +3,6 @@ package pham.hien.honeylibrary.View.Tab.PhieuMuon.Activity
 import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.widget.NestedScrollView
@@ -13,12 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.FireBase.FireStore.DoanhThuDAO
 import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
-import pham.hien.honeylibrary.FireBase.FireStore.SachDAO
 import pham.hien.honeylibrary.Model.*
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.*
 import pham.hien.honeylibrary.View.Base.BaseActivity
-import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachThue
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachPhieuMuon
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListUser
 import pham.hien.honeylibrary.ViewModel.Main.PhieuMuonViewModel
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Dialog.ThemSachMuonDialog
@@ -34,6 +32,8 @@ class AddPhieuMuonActivity : BaseActivity() {
     private lateinit var imvClose: ImageView
     private lateinit var toolBar: RelativeLayout
     private lateinit var edSdtEmail: EditText
+    private lateinit var imv_search: ImageView
+    private lateinit var imv_empty: ImageView
 
     private lateinit var layoutInfoPhieu: RelativeLayout
     private lateinit var imvAvatar: ImageView
@@ -43,14 +43,13 @@ class AddPhieuMuonActivity : BaseActivity() {
     private lateinit var tvThanhTien: TextView
     private lateinit var tvNgayMuon: TextView
     private lateinit var tvHanTra: TextView
-    private lateinit var tvThemPhieu: TextView
     private lateinit var tvKhongSachMuon: TextView
+    private lateinit var layout_add_sach_thue: RelativeLayout
+    private lateinit var layout_add_phieu: LinearLayout
 
     private lateinit var rcvListDocGia: RecyclerView
     private lateinit var ncvDocGia: NestedScrollView
     private lateinit var rcvListSachThue: RecyclerView
-    private lateinit var imvAddSachThue: ImageView
-    private lateinit var pgLoadUser: ProgressBar
 
     private var mTongSach: Int = 0
     private var mThanhTien: Int = 0
@@ -62,7 +61,7 @@ class AddPhieuMuonActivity : BaseActivity() {
     private lateinit var mNhanVien: UserModel
     private lateinit var mPhieuMuon: PhieuMuon
     private lateinit var mUserAdapter: AdapterListUser
-    private lateinit var mSachThueAdapter: AdapterListSachThue
+    private lateinit var mSachThueAdapter: AdapterListSachPhieuMuon
     private var mListSach = ArrayList<Sach>()
     private var mListSachThue = ArrayList<SachThue>()
     private lateinit var mListUser: ArrayList<UserModel>
@@ -78,6 +77,8 @@ class AddPhieuMuonActivity : BaseActivity() {
         imvClose = findViewById(R.id.imv_close)
         toolBar = findViewById(R.id.tool_bar)
         edSdtEmail = findViewById(R.id.ed_sdt_email)
+        imv_search = findViewById(R.id.imv_search)
+        imv_empty = findViewById(R.id.imv_empty)
 
         layoutInfoPhieu = findViewById(R.id.layout_info_phieu)
         imvAvatar = findViewById(R.id.imv_avatar)
@@ -87,22 +88,23 @@ class AddPhieuMuonActivity : BaseActivity() {
         tvThanhTien = findViewById(R.id.tv_thanh_tien)
         tvNgayMuon = findViewById(R.id.tv_ngay_muon)
         tvHanTra = findViewById(R.id.tv_han_tra)
-        tvThemPhieu = findViewById(R.id.tv_them_phieu)
         tvKhongSachMuon = findViewById(R.id.tv_khong_sach_muon)
+        layout_add_sach_thue = findViewById(R.id.layout_add_sach_thue)
+        layout_add_phieu = findViewById(R.id.layout_add_phieu)
 
         rcvListDocGia = findViewById(R.id.list_doc_gia)
         ncvDocGia = findViewById(R.id.ncv_doc_gia)
         rcvListSachThue = findViewById(R.id.list_sach_thue)
-        imvAddSachThue = findViewById(R.id.imv_add_sach_thue)
-        pgLoadUser = findViewById(R.id.pg_load_user)
 
         ScreenUtils().setMarginStatusBar(this, toolBar)
     }
 
     override fun initListener() {
         imvClose.setOnClickListener(this)
-        imvAddSachThue.setOnClickListener(this)
-        tvThemPhieu.setOnClickListener(this)
+        layout_add_sach_thue.setOnClickListener(this)
+        layout_add_phieu.setOnClickListener(this)
+        imv_search.setOnClickListener(this)
+        imv_empty.setOnClickListener(this)
         initRecycleViewDocGia()
         initRecycleViewSachThue()
         setNhapThongTin()
@@ -120,13 +122,11 @@ class AddPhieuMuonActivity : BaseActivity() {
         mPhieuMuonViewModel.mListDocGiaLiveData.observe(this) {
             mUserAdapter.setListUser(it)
             mListUser = it
-            pgLoadUser.visibility = View.GONE
         }
     }
 
     override fun initDataDefault() {
         mNhanVien = SharedPrefUtils.getUserData(this)!!
-        pgLoadUser.visibility = View.VISIBLE
         mPhieuMuonViewModel.getListDocGia()
         mPhieuMuonViewModel.getListSach()
         setHanTraSach()
@@ -137,16 +137,19 @@ class AddPhieuMuonActivity : BaseActivity() {
     override fun onClick(view: View?) {
         when (view) {
             imvClose -> finish()
-            imvAddSachThue -> {
+            layout_add_sach_thue -> {
                 ThemSachMuonDialog(this, 5 - mTongSach, mListSach) {
                     loadPhieuMuonThem(it)
                     checkSachThue(it)
                 }.show()
             }
-            tvThemPhieu -> {
+            layout_add_phieu -> {
                 themPhieuMuon()
                 loadView(null)
                 reset()
+            }
+            imv_empty -> {
+                edSdtEmail.setText("")
             }
         }
     }
@@ -163,14 +166,14 @@ class AddPhieuMuonActivity : BaseActivity() {
     private fun loadView(user: UserModel?) {
         if (user == null) {
             layoutInfoPhieu.visibility = View.GONE
-            imvAddSachThue.visibility = View.GONE
-            tvThemPhieu.visibility = View.GONE
+            layout_add_sach_thue.visibility = View.GONE
+            layout_add_phieu.visibility = View.GONE
             mSachThueAdapter.setListSachThue(ArrayList())
             tvKhongSachMuon.visibility = View.GONE
             edSdtEmail.setText("")
         } else {
             layoutInfoPhieu.visibility = View.VISIBLE
-            imvAddSachThue.visibility = View.VISIBLE
+            layout_add_sach_thue.visibility = View.VISIBLE
             ncvDocGia.visibility = View.GONE
             tvName.text = user.name
             Glide.with(this).load(user.avatar).placeholder(R.drawable.ic_avatar_default)
@@ -190,14 +193,14 @@ class AddPhieuMuonActivity : BaseActivity() {
         tvTongSach.text = "Tống số sách: $mTongSach"
         tvThanhTien.text = "Thành tiền: " + moneyFormatter(mThanhTien)
         if (mTongSach == 0) {
-            tvThemPhieu.visibility = View.GONE
+            layout_add_phieu.visibility = View.GONE
             tvKhongSachMuon.visibility = View.VISIBLE
         }
         if (mTongSach == 5) {
-            imvAddSachThue.visibility = View.GONE
+            layout_add_sach_thue.visibility = View.GONE
         }
         if (mTongSach != 0) {
-            tvThemPhieu.visibility = View.VISIBLE
+            layout_add_phieu.visibility = View.VISIBLE
             tvKhongSachMuon.visibility = View.GONE
         }
     }
@@ -209,13 +212,13 @@ class AddPhieuMuonActivity : BaseActivity() {
         tvTongSach.text = "Tống số sách: $mTongSach"
         tvThanhTien.text = "Thành tiền: " + moneyFormatter(mThanhTien)
         if (mTongSach == 0) {
-            tvThemPhieu.visibility = View.GONE
+            layout_add_phieu.visibility = View.GONE
             tvKhongSachMuon.visibility = View.VISIBLE
-            imvAddSachThue.visibility = View.VISIBLE
+            layout_add_sach_thue.visibility = View.VISIBLE
         } else if (mTongSach < 5) {
-            imvAddSachThue.visibility = View.VISIBLE
+            layout_add_sach_thue.visibility = View.VISIBLE
         } else {
-            tvThemPhieu.visibility = View.VISIBLE
+            layout_add_phieu.visibility = View.VISIBLE
             tvKhongSachMuon.visibility = View.GONE
         }
     }
@@ -246,7 +249,7 @@ class AddPhieuMuonActivity : BaseActivity() {
     }
 
     private fun initRecycleViewSachThue() {
-        mSachThueAdapter = AdapterListSachThue(this, mListSachThue) {
+        mSachThueAdapter = AdapterListSachPhieuMuon(this, mListSachThue) {
             loadPhieuMuonTru(it)
             mListSachThue.remove(it)
             mSachThueAdapter.setListSachThue(mListSachThue)
@@ -284,7 +287,11 @@ class AddPhieuMuonActivity : BaseActivity() {
                     mUserAdapter.setListUser(mListUser)
                     ncvDocGia.visibility = View.VISIBLE
                     tvNoData.visibility = View.GONE
+                    imv_search.visibility = View.VISIBLE
+                    imv_empty.visibility = View.GONE
                 } else {
+                    imv_search.visibility = View.GONE
+                    imv_empty.visibility = View.VISIBLE
                     mUserAdapter.setListUser(listFilter)
                     ncvDocGia.visibility = View.VISIBLE
                     if (listFilter.isEmpty()) {

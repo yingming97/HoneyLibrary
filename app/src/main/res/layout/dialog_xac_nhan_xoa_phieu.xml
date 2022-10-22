@@ -69,7 +69,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_16sdp"
-            android:background="@drawable/bg_btn_pink_rd_8"
+            android:background="@drawable/bg_btn_blue_rd_5"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Tạo sai"
@@ -87,12 +87,12 @@
             android:layout_marginVertical="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:background="@drawable/bg_btn_grey_rd_8"
+            android:background="@drawable/bg_btn_grey_rd_5"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
             android:text="Khác"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/_18sdp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

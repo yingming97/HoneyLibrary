@@ -15,7 +15,7 @@ import pham.hien.honeylibrary.ViewModel.SplashViewModel
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
 
-    private lateinit var animSplash: LottieAnimationView
+//    private lateinit var animSplash: LottieAnimationView
     private lateinit var tv_app_name: TextView
     private lateinit var progressBarSplashDefault: ProgressBar
     private lateinit var tvProgressBarSplashDefault: TextView
@@ -24,11 +24,11 @@ class SplashActivity : BaseActivity() {
 
 
     override fun getLayout(): Int {
-        return R.layout.activity_splash
+        return R.layout.activity_splash_new
     }
 
     override fun initView() {
-        animSplash = findViewById(R.id.anim_splash)
+//        animSplash = findViewById(R.id.anim_splash)
         tv_app_name = findViewById(R.id.tv_app_name)
         progressBarSplashDefault = findViewById(R.id.progressBarSplashDefault)
         tvProgressBarSplashDefault = findViewById(R.id.tvProgressBarSplashDefault)
@@ -49,7 +49,7 @@ class SplashActivity : BaseActivity() {
         splashViewModel.loadProgressBarSplashDefault()
         splashViewModel.loadingSplashDefaultLiveData.observe(this) {
             progressBarSplashDefault.progress = it
-            tvProgressBarSplashDefault.text = (it * 100 / 200).toString() + "%"
+            tvProgressBarSplashDefault.text = "Loading ... ${(it * 100 / 200)}%"
             if (it == progressBarSplashDefault.max) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

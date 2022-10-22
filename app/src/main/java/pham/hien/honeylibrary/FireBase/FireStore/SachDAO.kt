@@ -15,19 +15,21 @@ class SachDAO {
     private val db = Firebase.firestore
     private val TAG = "YingMing"
 
-    fun addSach(context: Context, sach: Sach) {
+    fun addSach(context: Context, sach: Sach, addSuccess: (Boolean) -> Unit) {
         db.collection(Constant.SACH.TB_NAME)
             .document(sach.maSach.toString())
             .set(sach)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.them_sach_thanh_cong), "")
+                SuccessDialog(context, context.getString(R.string.them_sach_thanh_cong), "").show()
+                addSuccess(true)
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     context.getString(R.string.them_sach_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_them_sach)
-                )
+                ).show()
+                addSuccess(false)
             }
     }
 
@@ -47,6 +49,7 @@ class SachDAO {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
+
     fun getListSachDaThuHoi(listSach: ((ArrayList<Sach>) -> Unit)) {
         val list = ArrayList<Sach>()
         db.collection(Constant.SACH.TB_NAME)
@@ -62,5 +65,27 @@ class SachDAO {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
+    }
+
+    fun getListAllSach(listSach: ((ArrayList<Sach>) -> Unit)) {
+        val list = ArrayList<Sach>()
+        db.collection(Constant.SACH.TB_NAME)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    list.add(document.toObject(Sach::class.java))
+                }
+                list.sortBy { it.maSach }
+                listSach(list)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+    }
+
+    fun updateTheLoaiSach(sach: Sach) {
+        db.collection(Constant.SACH.TB_NAME)
+            .document(sach.maSach.toString())
+            .update(Constant.SACH.COL_MA_THE_LOAI, sach.maLoai)
     }
 }

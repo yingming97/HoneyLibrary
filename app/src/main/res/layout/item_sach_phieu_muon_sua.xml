@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_item_doc_gia"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_70sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:background="@drawable/img_bg_phieu_dang_muon"
+    android:elevation="@dimen/_2sdp"
+    android:paddingHorizontal="@dimen/_14sdp"
+    android:paddingVertical="@dimen/_6sdp">
+
+    <ImageView
+        android:id="@+id/imv_book"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerVertical="true"
+        android:elevation="1dp"
+        android:src="@drawable/ic_book_default" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_toEndOf="@+id/imv_book"
+        android:fontFamily="@font/roboto"
+        android:lines="2"
+        android:text="Harry Potter và hòn đá phù thủy"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_t_so_luong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_toEndOf="@+id/imv_book"
+        android:text="Số lượng: "
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp" />
+
+    <ImageView
+        android:id="@+id/imv_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_toEndOf="@+id/tv_t_so_luong"
+        android:src="@drawable/ic_minus_circle" />
+
+    <ImageView
+        android:id="@+id/imv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_toEndOf="@+id/tv_so_luong"
+        android:src="@drawable/ic_add_white" />
+
+    <TextView
+        android:id="@+id/tv_so_luong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_toEndOf="@+id/imv_minus"
+        android:fontFamily="@font/roboto"
+        android:includeFontPadding="false"
+        android:text="2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp" />
+</RelativeLayout>

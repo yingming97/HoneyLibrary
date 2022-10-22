@@ -31,7 +31,7 @@ class DoanhThuDAO {
 
     fun getListDoanhThu(listDoanhThu: ((ArrayList<DoanhThu>) -> Unit)) {
         val list = ArrayList<DoanhThu>()
-        db.collection(Constant.SACH.TB_NAME)
+        db.collection(Constant.DOANHTHU.TB_NAME)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/layout_item_doc_gia"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/_60sdp"
     android:background="@drawable/bg_list_user_white_rd_10"
     android:paddingHorizontal="@dimen/_14sdp"
-    android:paddingVertical="@dimen/_6sdp"
-    >
+    android:paddingVertical="@dimen/_6sdp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imv_avatar"
@@ -15,7 +14,7 @@
         android:layout_height="@dimen/_40sdp"
         android:elevation="1dp"
         android:src="@drawable/ic_user_photo_default"
-        app:civ_border_color="#BCF2FA"
+        app:civ_border_color="#7C92EF"
         app:civ_border_width="@dimen/_2sdp" />
 
     <TextView
@@ -37,13 +36,13 @@
         android:layout_marginTop="@dimen/_6sdp"
         android:layout_toEndOf="@+id/imv_avatar"
         android:fontFamily="@font/roboto"
-        android:text="0123456789"
+        android:text="SDT: 0123456789"
         android:textColor="@color/text_color_1c4942"
         android:textSize="@dimen/_10sdp" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
-        android:background="@color/gray_ccc"
         android:layout_alignParentBottom="true"
-        />
+        android:background="@color/gray_ccc" />
 </RelativeLayout>

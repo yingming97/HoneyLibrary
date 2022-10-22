@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_item_the_loai"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_40sdp"
+    android:background="@drawable/bg_list_user_white_rd_5"
+    android:elevation="@dimen/_2sdp"
+    android:paddingHorizontal="@dimen/_10sdp">
+
+    <TextView
+        android:id="@+id/tv_stt_the_loai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="1"
+        android:textColor="#7396FD"
+        android:textSize="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/tv_ten_the_loai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_toEndOf="@id/tv_stt_the_loai"
+        android:fontFamily="@font/roboto"
+        android:lines="1"
+        android:paddingEnd="@dimen/_10sdp"
+        android:text="Harry Potter và hòn đá phù thủy"
+        android:textColor="#72708E"
+        android:textSize="@dimen/_12sdp" />
+</RelativeLayout>

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,16 +17,15 @@ import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.*
 import pham.hien.honeylibrary.View.Base.BaseActivity
-import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachThue
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachThueChiTiet
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Dialog.XacNhanTraSachDialog
 import pham.yingming.honeylibrary.Dialog.FailDialog
-import pham.yingming.honeylibrary.Dialog.XacNhanDialog
-import pham.yingming.honeylibrary.Dialog.XacNhanXoaPhieuDialog
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Dialog.XacNhanXoaPhieuDialog
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ChiTietPhieuMuonActivity : BaseActivity() {
+class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeListener {
 
     private val TAG = "YingMing"
 
@@ -33,19 +33,22 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
     private lateinit var toolBar: RelativeLayout
 
     private lateinit var layoutInfoPhieu: RelativeLayout
+    private lateinit var layout_trang_thai: RelativeLayout
     private lateinit var imvAvatar: ImageView
     private lateinit var imv_edit_phieu: ImageView
+    private lateinit var imv_delete_phieu: ImageView
     private lateinit var tvName: TextView
     private lateinit var tvTongSach: TextView
     private lateinit var tvThanhTien: TextView
     private lateinit var tvNgayMuon: TextView
     private lateinit var tvHanTra: TextView
     private lateinit var tv_trang_thai: TextView
-    private lateinit var tvXoaPhieu: TextView
+    private lateinit var tv_da_tra: TextView
+    private lateinit var switch_tra_sach: SwitchCompat
 
     private lateinit var rcvListSachThue: RecyclerView
 
-    private val formatter = SimpleDateFormat("EEE, d MMM y", Locale("vi"))
+    private val formatter = SimpleDateFormat("dd/mm/yyyy", Locale("vi"))
     private lateinit var mPhieuMuon: PhieuMuon
     private var mListSachThue = ArrayList<SachThue>()
     private lateinit var mSachThueAdapter: AdapterListSachThueChiTiet
@@ -59,6 +62,7 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
         toolBar = findViewById(R.id.tool_bar)
 
         layoutInfoPhieu = findViewById(R.id.layout_info_phieu)
+        layout_trang_thai = findViewById(R.id.layout_trang_thai)
         imvAvatar = findViewById(R.id.imv_avatar)
         imv_edit_phieu = findViewById(R.id.imv_edit_phieu)
         tvName = findViewById(R.id.tv_name)
@@ -67,7 +71,9 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
         tvNgayMuon = findViewById(R.id.tv_ngay_muon)
         tvHanTra = findViewById(R.id.tv_han_tra)
         tv_trang_thai = findViewById(R.id.tv_trang_thai)
-        tvXoaPhieu = findViewById(R.id.tv_xoa_phieu)
+        imv_delete_phieu = findViewById(R.id.imv_delete_phieu)
+        switch_tra_sach = findViewById(R.id.switch_tra_sach)
+        tv_da_tra = findViewById(R.id.tv_da_tra)
 
         rcvListSachThue = findViewById(R.id.list_sach_thue)
 
@@ -78,8 +84,9 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
 
     override fun initListener() {
         imvClose.setOnClickListener(this)
-        tvXoaPhieu.setOnClickListener(this)
+        imv_delete_phieu.setOnClickListener(this)
         imv_edit_phieu.setOnClickListener(this)
+        switch_tra_sach.setOnCheckedChangeListener(this)
     }
 
     override fun initViewModel() {
@@ -97,11 +104,12 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
         Glide.with(this).load(mPhieuMuon.photoDocGia).placeholder(R.drawable.ic_user_photo_default)
             .into(imvAvatar)
         tvName.text = mPhieuMuon.tenDocGia
-        tvTongSach.text = "Số lượng : ${mPhieuMuon.soLuong}"
+        tvTongSach.text = "Số lượng:\n0${mPhieuMuon.soLuong}"
         tvThanhTien.text = "Thành tiền ${moneyFormatter(mPhieuMuon.tongTien)}"
-        tvNgayMuon.text = "Ngày mượn : ${formatter.format(mPhieuMuon.ngayThue)}"
-        tvHanTra.text = "Hạn trả : ${formatter.format(mPhieuMuon.hanTra)}"
-        tv_trang_thai.text = "Trạng thái : ${mPhieuMuon.trangThai}"
+        tvNgayMuon.text = "Ngày mượn:\n${formatter.format(mPhieuMuon.ngayThue)}"
+        tvHanTra.text = "Hạn trả:\n${formatter.format(mPhieuMuon.hanTra)}"
+        tv_trang_thai.text = mPhieuMuon.trangThai
+        switch_tra_sach.isChecked = mPhieuMuon.trangThai == Constant.PHIEUMUON.TRANGTHAI.DA_TRA
         mListSachThue = convertStringToListSachThue(mPhieuMuon.listSachThue)
         mSachThueAdapter.setListSachThue(mListSachThue)
     }
@@ -117,7 +125,7 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
                 startActivity(intent)
                 finish()
             }
-            tvXoaPhieu -> {
+            imv_delete_phieu -> {
 //                XacNhanDialog(this,
 //                    getString(R.string.ban_co_chac_chan_muon_xoa),
 //                    getString(R.string.du_lieu_khong_the_phuc_hoi_sau_khi_xoa)) {
@@ -159,13 +167,37 @@ class ChiTietPhieuMuonActivity : BaseActivity() {
     private fun loadView(user: UserModel) {
         when (user.type) {
             Constant.QUYEN.ADMIN, Constant.QUYEN.THU_THU -> {
-                tvXoaPhieu.visibility = View.VISIBLE
+                imv_delete_phieu.visibility = View.VISIBLE
                 imv_edit_phieu.visibility = View.VISIBLE
+                layout_trang_thai.visibility = View.VISIBLE
             }
             Constant.QUYEN.DOC_GIA -> {
-                tvXoaPhieu.visibility = View.GONE
+                layout_trang_thai.visibility = View.GONE
+                imv_delete_phieu.visibility = View.GONE
                 imv_edit_phieu.visibility = View.GONE
             }
+        }
+    }
+
+    override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+        if (p1) {
+            XacNhanTraSachDialog(this,
+                traThieu = {
+                    switch_tra_sach.isChecked = true
+                    val intent = Intent(this, SuaPhieuMuonActivity::class.java)
+                    intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, mPhieuMuon)
+                    startActivity(intent)
+                },
+                traDu = {
+                    switch_tra_sach.isChecked = true
+                    mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DA_TRA
+                    tv_trang_thai.text = mPhieuMuon.trangThai
+                },
+                huy = {
+                    switch_tra_sach.isChecked = false
+                    tv_trang_thai.text = mPhieuMuon.trangThai
+                }
+            ).show()
         }
     }
 }

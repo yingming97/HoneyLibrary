@@ -68,7 +68,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="@dimen/_12sdp"
-            android:background="@drawable/bg_btn_pink_rd_8"
+            android:background="@drawable/bg_btn_blue_rd_5"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:paddingStart="@dimen/_42sdp"

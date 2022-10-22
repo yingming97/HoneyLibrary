@@ -3,10 +3,10 @@ package pham.hien.honeylibrary.View.Tab.Home
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -19,21 +19,21 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.google.firebase.firestore.auth.User
 import pham.hien.honeylibrary.Model.*
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.Utils.date2String
 import pham.hien.honeylibrary.View.Base.BaseView
+import pham.hien.honeylibrary.View.Tab.Home.Adapter.AdapterListSachHome
+import pham.hien.honeylibrary.View.Tab.Home.Adapter.HomeAdapter
+import pham.hien.honeylibrary.View.Tab.Sach.Activity.ChiTietSachActivity
 import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListSachQuanLy
-import pham.hien.honeylibrary.ViewModel.DoanhThuViewModel
 import pham.hien.honeylibrary.ViewModel.Main.HomeViewModel
-import pham.hien.honeylibrary.ViewModel.Main.PhieuMuonViewModel
-import pham.hien.honeylibrary.ViewModel.Main.SachViewModel
 import java.lang.Math.abs
-import java.time.Duration
-import java.util.Calendar
-import java.util.Date
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeView : BaseView {
@@ -48,12 +48,15 @@ class HomeView : BaseView {
     private lateinit var tvThongKeLuotMuon: TextView
     private lateinit var tvThongKeTongSoSach: TextView
     private lateinit var tvThongKeThanhVien: TextView
+
+    private val formatter = SimpleDateFormat("EEE, d MMM y", Locale("vi"))
+    private lateinit var rcvListSachThue: RecyclerView
+    private lateinit var adapterSachThue: AdapterListSachHome
     private var listLuotMuon = ArrayList<DoanhThu>()
     private var listThanhVien = ArrayList<UserModel>()
     private var listSach = ArrayList<Sach>()
+
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var rcvListSachThue: RecyclerView
-    private lateinit var adapterSachThue: AdapterListSachQuanLy
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -83,8 +86,10 @@ class HomeView : BaseView {
         val tvTime = findViewById<TextView>(R.id.tv_time_today)
         handlers = Handler(Looper.myLooper()!!)
         val arrFlipData: ArrayList<ViewFlipper> = arrayListOf()
-        arrFlipData.add(ViewFlipper(R.drawable.img_sach_demo, "Đắc nhân tâm là quyển sách nổi tiếng nhất, bán chạy nhất và có tầm ảnh hưởng nhất của mọi thời đại."))
-        arrFlipData.add(ViewFlipper(R.drawable.img_sach_demo, "Đắc nhân tâm là quyển sách nổi tiếng nhất, bán chạy nhất và có tầm ảnh hưởng nhất của mọi thời đại."))
+        arrFlipData.add(ViewFlipper(R.drawable.img_sach_demo,
+            "Đắc nhân tâm là quyển sách nổi tiếng nhất, bán chạy nhất và có tầm ảnh hưởng nhất của mọi thời đại."))
+        arrFlipData.add(ViewFlipper(R.drawable.img_sach_demo,
+            "Đắc nhân tâm là quyển sách nổi tiếng nhất, bán chạy nhất và có tầm ảnh hưởng nhất của mọi thời đại."))
 
         val homeAdapter = HomeAdapter(arrFlipData, viewpager2)
         viewpager2.adapter = homeAdapter
@@ -93,7 +98,7 @@ class HomeView : BaseView {
         viewpager2.clipToPadding = false
         viewpager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         setupTransform()
-        viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 handlers.removeCallbacks(runnable)
@@ -102,14 +107,17 @@ class HomeView : BaseView {
         })
 
         val calendar = Calendar.getInstance()
-        tvTime.text = calendar.time.date2String("E, d MMM")
-        when {
-            calendar[Calendar.HOUR_OF_DAY] in 6..18 -> {
+        tvTime.text = formatter.format(calendar.timeInMillis)
+        when (calendar[Calendar.HOUR_OF_DAY]) {
+            in 0..12 -> {
                 iconHours.setImageResource(R.drawable.ic_sun_home)
                 tvUserName.text = "Good morning,"
             }
-
-            else->{
+            in 12..17 -> {
+                iconHours.setImageResource(R.drawable.ic_sun_home)
+                tvUserName.text = "Good afternoon,"
+            }
+            in 17..24 -> {
                 iconHours.setImageResource(R.drawable.icon_moon)
                 tvUserName.text = "Good evening,"
             }
@@ -124,28 +132,28 @@ class HomeView : BaseView {
 
     @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun initObserver(owner: LifecycleOwner?) {
-        homeViewModel.mListSachLiveData.observe(owner !!){
-            if(it.isNotEmpty()) {
+        homeViewModel.mListSachLiveData.observe(owner!!) {
+            if (it.isNotEmpty()) {
                 listSach = it
                 adapterSachThue.setListSach(it)
-                tvThongKeLuotMuon.text = it.size.toString()
-            }
-        }
-        homeViewModel.mListDoanhThuLiveData.observe(owner!!) {
-            if(it.isNotEmpty()) {
-                listLuotMuon = it
                 tvThongKeTongSoSach.text = it.size.toString()
             }
         }
+        homeViewModel.mListDoanhThuLiveData.observe(owner!!) {
+            if (it.isNotEmpty()) {
+                listLuotMuon = it
+                tvThongKeLuotMuon.text = it.size.toString()
+            }
+        }
         homeViewModel.mListDocGiaLiveData.observe(owner!!) {
-            if(it.isNotEmpty()) {
+            if (it.isNotEmpty()) {
                 listThanhVien = it
                 tvThongKeThanhVien.text = it.size.toString()
             }
         }
-        if(!isOpening){
+        if (!isOpening) {
             handlers.removeCallbacks(runnable)
-        }else{
+        } else {
             handlers.postDelayed(runnable, 5000)
         }
     }
@@ -158,10 +166,11 @@ class HomeView : BaseView {
         updateUserLogin(SharedPrefUtils.getUserData(mContext)!!)
     }
 
-    fun initRecycleViewSachThue(){
-        adapterSachThue = AdapterListSachQuanLy(mContext, listSach) {
-//         val intent = Intent()
-//            intent.putExtra(Constant.SACH.SACH,it)
+    fun initRecycleViewSachThue() {
+        adapterSachThue = AdapterListSachHome(mContext, listSach) {
+            val intent = Intent(mContext, ChiTietSachActivity::class.java)
+            intent.putExtra(Constant.SACH.SACH,it)
+            mContext.startActivity(intent)
         }
         rcvListSachThue.layoutManager = LinearLayoutManager(mContext)
         rcvListSachThue.setHasFixedSize(false)
@@ -170,10 +179,10 @@ class HomeView : BaseView {
     }
 
     private fun updateUserLogin(user: UserModel) {
-        if(SharedPrefUtils.getLogin(mContext)){
+        if (SharedPrefUtils.getLogin(mContext)) {
             tvUserName.text = "${tvUserName.text} ${user.name}"
-        }else{
-            tvUserName.text = "${tvUserName.text} User"
+        } else {
+            tvUserName.text = "${tvUserName.text}"
         }
     }
 
@@ -191,11 +200,11 @@ class HomeView : BaseView {
         }
     }
 
-    private fun setupTransform(){
+    private fun setupTransform() {
         val transform = CompositePageTransformer()
         transform.addTransformer(MarginPageTransformer(40))
-        transform.addTransformer{ page, position ->
-            val r = 1- abs(position)
+        transform.addTransformer { page, position ->
+            val r = 1 - abs(position)
             page.scaleY = 0.85f + r * 0.14f
         }
         viewpager2.setPageTransformer(transform)

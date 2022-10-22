@@ -1,44 +1,47 @@
 package pham.hien.honeylibrary.View.Tab.Option.Activity
 
+import android.annotation.SuppressLint
+import android.view.View
 import android.content.Intent
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 
 class ChiTietNhanVienActivity : BaseActivity() {
+
+    private lateinit var imb_backchitiet: ImageView
+    private lateinit var imv_avatar: ImageView
+    private lateinit var imv_sua_nhan_vien: ImageView
+    private lateinit var tv_name: TextView
+    private lateinit var tv_email: TextView
+    private lateinit var tv_id: TextView
+    private lateinit var tv_dia_chi: TextView
+    private lateinit var tv_sdt: TextView
+
     private lateinit var userModels: UserModel
-    private lateinit var back: ImageView
-    private lateinit var updateNhanVien: ImageView
-    private lateinit var idNhanvien: TextView
-    private lateinit var anhNhanvien: ImageView
-    private lateinit var tenNhanVien: TextView
-    private lateinit var diachiNhanvien: TextView
-    private lateinit var sdtNhanvien: TextView
-    private lateinit var emailNhanvien: TextView
+
     override fun getLayout(): Int {
         return R.layout.activity_chi_tiet_nhan_vien
     }
 
     override fun initView() {
-        back = findViewById(R.id.imb_backchitiet)
-        updateNhanVien = findViewById(R.id.imageSuaNhanVien)
-        idNhanvien = findViewById(R.id.tv_idNV)
-        anhNhanvien = findViewById(R.id.image_anhNhanvien)
-        tenNhanVien = findViewById(R.id.tv_hoTen)
-        diachiNhanvien = findViewById(R.id.tv_diaChiNV)
-        sdtNhanvien = findViewById(R.id.tv_sdtNV)
-        emailNhanvien = findViewById(R.id.tv_emailNV)
+        imb_backchitiet = findViewById(R.id.imb_backchitiet)
+        imv_avatar = findViewById(R.id.imv_avatar)
+        imv_sua_nhan_vien = findViewById(R.id.imv_sua_nhan_vien)
+        tv_name = findViewById(R.id.tv_name)
+        tv_email = findViewById(R.id.tv_email)
+        tv_id = findViewById(R.id.tv_id)
+        tv_dia_chi = findViewById(R.id.tv_dia_chi)
+        tv_sdt = findViewById(R.id.tv_sdt)
     }
 
     override fun initListener() {
-        back.setOnClickListener(this)
-        updateNhanVien.setOnClickListener(this)
-        onBack()
-        nextUpdate()
-        setData()
+        imb_backchitiet.setOnClickListener(this)
+        imv_sua_nhan_vien.setOnClickListener(this)
     }
 
     override fun initViewModel() {
@@ -50,32 +53,38 @@ class ChiTietNhanVienActivity : BaseActivity() {
     }
 
     override fun initDataDefault() {
+        userModels = intent.getSerializableExtra(Constant.USER.USER) as UserModel
+        setData()
     }
 
-    fun onBack() {
-        back.setOnClickListener {
-            onBackPressed()
+    override fun onClick(view: View?) {
+        when (view) {
+            imv_sua_nhan_vien -> {
+                val intent = Intent(this, SuaNhanVienActivity::class.java)
+                intent.putExtra(Constant.USER.USER, userModels)
+                startActivity(intent)
+                finish()
+            }
+            imb_backchitiet -> {
+                onBackPressed()
+            }
         }
     }
 
-    fun nextUpdate() {
-        updateNhanVien.setOnClickListener {
-            intent = Intent(this, SuaNhanVienActivity::class.java)
-            intent.putExtra("suaNV", userModels)
-            startActivity(intent)
-            finish()
-        }
-    }
-
+    @SuppressLint("SetTextI18n")
     private fun setData() {
-        userModels = intent.getSerializableExtra("chitiet") as UserModel
         Glide.with(this).load(userModels.avatar).placeholder(R.drawable.ic_avatar_default)
-            .into(anhNhanvien)
-        idNhanvien.setText("ID: " + userModels.userId.toString())
-        tenNhanVien.setText("Họ Tên: " + userModels.name)
-        diachiNhanvien.setText("Địa Chỉ: " + userModels.diaChi)
-        sdtNhanvien.setText("Số Điện Thoại: " + userModels.sdt)
-        emailNhanvien.setText("Email: " + userModels.email)
-    }
+            .into(imv_avatar)
+        tv_name.text = userModels.name
+        tv_email.text = userModels.email
+        tv_id.text = userModels.userId.toString()
+        tv_dia_chi.text = userModels.diaChi
+        tv_sdt.text = userModels.sdt
 
+        tv_name = findViewById(R.id.tv_name)
+        tv_email = findViewById(R.id.tv_email)
+        tv_id = findViewById(R.id.tv_id)
+        tv_dia_chi = findViewById(R.id.tv_dia_chi)
+        tv_sdt = findViewById(R.id.tv_sdt)
+    }
 }
