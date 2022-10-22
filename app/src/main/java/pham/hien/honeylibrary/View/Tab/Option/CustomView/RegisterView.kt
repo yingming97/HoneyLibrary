@@ -7,10 +7,7 @@ import android.util.AttributeSet
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RelativeLayout
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
@@ -99,7 +96,6 @@ class RegisterView : BaseView {
 
     override fun onClick(view: View) {
         when (view) {
-
             btnRegister -> {
                 isValidate(
                     edEmail.text.toString(),
@@ -116,7 +112,7 @@ class RegisterView : BaseView {
                             pass
                         ) { checks, mUser ->
                             if (checks) {
-                                SuccessDialog(mContext, "Đăng ký thành công", "").show()
+                                Toast.makeText(context,"Đăng ký thành công", Toast.LENGTH_SHORT).show()
                                 LoginRegisterAuth().loginAfterRegister(mUser, pass, mActivity)
                             }
                         }
@@ -210,6 +206,5 @@ class RegisterView : BaseView {
         edPhoneNumber.setText("")
         edPassword.setText("")
         edConfirmPassword.setText("")
-
     }
 }

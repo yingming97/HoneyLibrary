@@ -18,7 +18,7 @@ class SuaNhanVienActivity : BaseActivity() {
     private lateinit var imb_backchitiet: ImageView
 
     private lateinit var rlt_toolbar: RelativeLayout
-    private lateinit var layout_luu: RelativeLayout
+    private lateinit var layout_luu: LinearLayout
     private lateinit var imv_avatar: ImageView
     private lateinit var tv_name: TextView
     private lateinit var tv_email: TextView
@@ -48,6 +48,7 @@ class SuaNhanVienActivity : BaseActivity() {
         layout_luu = findViewById(R.id.layout_luu)
         radioThuThu = findViewById(R.id.rd_suaThuthu)
         radioQuanLy = findViewById(R.id.rdQuanLy)
+        imb_backchitiet = findViewById(R.id.imb_backchitiet)
     }
 
     override fun initListener() {

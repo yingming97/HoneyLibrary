@@ -16,7 +16,6 @@ import pham.yingming.honeylibrary.Dialog.FailDialog
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 
 class LoginRegisterAuth {
-
     fun accountLogin(
         context: Context,
         activity: Activity,
@@ -69,11 +68,6 @@ class LoginRegisterAuth {
                         .document((mUser.userId).toString())
                         .set(userC)
                         .addOnSuccessListener {
-                            SuccessDialog(
-                                activity.applicationContext,
-                                activity.applicationContext.getString(R.string.dang_ky_thanh_cong),
-                                ""
-                            ).show()
                         }
                         .addOnFailureListener { e ->
                             FailDialog(
@@ -99,9 +93,8 @@ class LoginRegisterAuth {
                 SharedPrefUtils.setPassword(activity, pass)
                 SharedPrefUtils.setLogin(activity, true)
                 SharedPrefUtils.setUserData(activity, mUser)
-                activity.finish()
             }
         }
+        activity.startActivity(Intent(activity.applicationContext, MainActivity::class.java))
     }
-
 }

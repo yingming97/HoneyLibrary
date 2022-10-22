@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     app:cardBackgroundColor="@color/white"
+    android:layout_marginHorizontal="@dimen/_20sdp"
     app:cardCornerRadius="@dimen/_12sdp"
     tools:ignore="MissingDefaultResource">
 
