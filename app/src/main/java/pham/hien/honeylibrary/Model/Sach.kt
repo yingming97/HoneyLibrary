@@ -11,7 +11,7 @@ class Sach : Serializable{
     var soLuongConLai = 0
     var giaThue = 0
     var giaSach = 0
-    var gioiThieu: String? = ""
+    var gioiThieu: String = ""
     var anhBia: String = Constant.SACH.IMAGE_BOOK_DEFAULT
     var thuHoi = false
 
@@ -24,7 +24,7 @@ class Sach : Serializable{
         soLuongConLai: Int,
         giaThue: Int,
         giaSach: Int,
-        gioiThieu: String?,
+        gioiThieu: String,
     ) {
         this.maSach = maSach
         this.tenSach = tenSach

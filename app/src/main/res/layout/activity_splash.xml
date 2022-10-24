@@ -6,27 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".View.Main.SplashActivity">
 
+    <ImageView
+        android:id="@+id/imv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_140sdp"
+        android:src="@drawable/ic_logo" />
+
     <TextView
         android:id="@+id/tv_app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_100sdp"
-        android:fontFamily="@font/potta_one"
+        android:layout_below="@+id/imv_logo"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/roboto"
         android:gravity="center"
         android:text="Honey Library"
-        android:textColor="#f4ada6"
+        android:textColor="@color/white"
         android:textSize="@dimen/_34sdp" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/anim_splash"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_app_name"
-        android:adjustViewBounds="true"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/anim_splash" />
-
+        android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:text="Phần mềm quản lý thư viện"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp" />
 
     <LinearLayout
         android:id="@+id/ll_progress"
@@ -38,25 +46,24 @@
         android:paddingBottom="24dp">
 
         <TextView
-            android:fontFamily="@font/roboto_bold"
             android:id="@+id/tvProgressBarSplashDefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
             android:gravity="center"
-            android:text="0%"
-            android:textAllCaps="false"
-            android:textColor="#FFC107"
+            android:text="Đang tải ... 0%"
+            android:textColor="@color/white"
             android:textSize="@dimen/_17sdp" />
 
         <ProgressBar
             android:id="@+id/progressBarSplashDefault"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_marginHorizontal="36dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="56dp"
             android:layout_marginTop="16dp"
             android:max="200"
-            android:progress="0"
+            android:progress="50"
             android:progressDrawable="@drawable/custom_progress_bar_bg" />
 
         <TextView

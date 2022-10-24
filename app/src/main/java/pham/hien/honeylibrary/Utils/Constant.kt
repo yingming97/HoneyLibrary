@@ -17,13 +17,20 @@ class Constant {
     }
 
     object SACH {
+        const val CHON_ANH_BIA = "CHON_ANH_BIA"
+
         const val SACH = "SACH"
         const val IMAGE_BOOK_DEFAULT =
             "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableSach%2F0?alt=media&token=3879a67c-11a6-474b-a4ed-917d3b124407"
         const val TB_NAME = "TableSach"
         const val COL_MA_SACH = "maSach"
+        const val COL_TEN_SACH = "tenSach"
+        const val COL_ANH_BIA = "anhBia"
+        const val COL_GIA_THUE = "giaThue"
+        const val COL_GIA_SACH = "giaSach"
         const val COL_SO_LUONG = "soLuong"
         const val COL_SO_LUONG_CON_LAI = "soLuongConLai"
+        const val COL_GIOI_THIEU = "gioiThieu"
         const val COL_THU_HOI = "thuHoi"
         const val COL_MA_THE_LOAI = "maLoai"
     }
@@ -66,6 +73,7 @@ class Constant {
             "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableUser%2F0?alt=media&token=bb543483-6a66-4f1d-b79b-52fbb44cfd63"
         const val TB_NAME = "TableUser"
         const val COL_TYPE = "type"
+        const val COL_HOAT_DONG = "hoatDong"
     }
 
     object QUYEN {

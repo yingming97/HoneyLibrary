@@ -15,6 +15,7 @@ class UserDAO {
     private val TAG = "YingMing"
 
     fun addUser(context: Context, user: UserModel) {
+        Log.d(TAG, "addUser:$user ")
         db.collection(Constant.USER.TB_NAME)
             .document(user.userId.toString())
             .set(user)
@@ -63,7 +64,7 @@ class UserDAO {
             }
     }
 
-    fun updateNhanVien(context: Context,user: UserModel) {
+    fun updateNhanVien(context: Context, user: UserModel) {
         db.collection(Constant.USER.TB_NAME)
             .document(user.userId.toString())
             .set(user)

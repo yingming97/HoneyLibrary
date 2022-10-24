@@ -17,17 +17,35 @@ class CreateNewAccount {
 
     private val TAG = "YingMing"
     private val mAuth = Firebase.auth
+    private val db = Firebase.firestore
 
     // user : userId đã đc + 1 so với userId của phần tử cuối cùng ListUser
     // user : đã qua được validate
 
     fun createNewUser(activity: Activity, user: UserModel, getUID: ((String) -> Unit)) {
+        Log.d(TAG, "createNewUser: $user")
         mAuth.createUserWithEmailAndPassword(user.email, user.sdt)
             .addOnSuccessListener {
-                val currentUser = Firebase.auth.currentUser
+                val currentUser = mAuth.currentUser
                 user.firebaseId = currentUser?.uid.toString()
-                UserDAO().addUser(activity, user)
-                mAuth.signOut()
+                Log.d(TAG, "createNewUser: $user")
+
+                db.collection(Constant.USER.TB_NAME)
+                    .document(user.userId.toString())
+                    .set(user)
+                    .addOnSuccessListener {
+                        Log.d(TAG, "addOnSuccessListener: $user")
+                        SuccessDialog(activity, activity.getString(R.string.dang_ky_thanh_cong), "").show()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.d(TAG, "addOnFailureListener: $user")
+                        SuccessDialog(
+                            activity,
+                            activity.getString(R.string.dang_ky_thanh_cong),
+                            activity.getString(R.string.da_xay_ra_loi_trong_qua_trinh_dang_ky)
+                        ).show()
+                    }
+//                mAuth.signOut()
             }
             .addOnFailureListener {
                 Log.d(TAG, "getFirebaseId: error $it")

@@ -40,7 +40,7 @@ class AdapterListTheLoai(
         val theLoai = mListTheLoai[position]
         val user = SharedPrefUtils.getUserData(mContext)
         holder.layoutItemTheLoai.setOnClickListener {
-            if (user?.type == Constant.QUYEN.ADMIN || user?.type == Constant.QUYEN.DOC_GIA) {
+            if (user?.type == Constant.QUYEN.ADMIN || user?.type == Constant.QUYEN.THU_THU) {
                 onClickTheLoai(theLoai)
             } else {
                 return@setOnClickListener

@@ -83,9 +83,26 @@ class SachDAO {
             }
     }
 
-    fun updateTheLoaiSach(sach: Sach) {
+    fun updateSach(sach: Sach) {
+        val sachMap: MutableMap<String, Any> = HashMap()
+        sachMap[Constant.SACH.COL_TEN_SACH] = sach.tenSach
+        sachMap[Constant.SACH.COL_ANH_BIA] = sach.anhBia
+        sachMap[Constant.SACH.COL_GIA_SACH] = sach.giaSach
+        sachMap[Constant.SACH.COL_GIA_THUE] = sach.giaThue
+        sachMap[Constant.SACH.COL_SO_LUONG] = sach.soLuong
+        sachMap[Constant.SACH.COL_SO_LUONG_CON_LAI] = sach.soLuongConLai
+        sachMap[Constant.SACH.COL_GIOI_THIEU] = sach.gioiThieu
+        sachMap[Constant.SACH.COL_MA_THE_LOAI] = sach.maLoai
+        sachMap[Constant.SACH.COL_THU_HOI] = sach.thuHoi
+
         db.collection(Constant.SACH.TB_NAME)
             .document(sach.maSach.toString())
-            .update(Constant.SACH.COL_MA_THE_LOAI, sach.maLoai)
+            .update(sachMap)
+    }
+
+    fun updateThuHoiSach(sach: Sach) {
+        db.collection(Constant.SACH.TB_NAME)
+            .document(sach.maSach.toString())
+            .update(Constant.SACH.COL_THU_HOI, sach.thuHoi)
     }
 }

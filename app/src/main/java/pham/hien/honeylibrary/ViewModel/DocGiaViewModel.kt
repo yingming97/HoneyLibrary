@@ -14,7 +14,7 @@ class DocGiaViewModel : ViewModel(){
         viewModelScope.launch(
             onPreExecute = {},
             doInBackground = {
-                UserDAO().getListUserDocGia {
+                UserDAO().getListUser {
                     mListDocGiaLiveData.value = it
                 }
             },

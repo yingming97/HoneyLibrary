@@ -1,34 +1,40 @@
 package pham.hien.honeylibrary.View.Tab.Sach.Activity
 
-import android.content.Intent
-import android.text.Editable
-import android.text.TextWatcher
+import android.Manifest
+import android.content.Context
+import android.database.Cursor
+import android.graphics.*
+import android.net.Uri
+import android.provider.DocumentsContract
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.core.widget.NestedScrollView
+import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.w3c.dom.Text
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.normal.TedPermission
+import gun0912.tedimagepicker.builder.TedImagePicker
 import pham.hien.honeylibrary.FireBase.FireStore.SachDAO
 import pham.hien.honeylibrary.FireBase.Storage.Images
 import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.Model.TheLoai
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
+import pham.hien.honeylibrary.Utils.ImagesUtils
 import pham.hien.honeylibrary.Utils.ScreenUtils
-import pham.hien.honeylibrary.Utils.moneyFormatter
+import pham.hien.honeylibrary.Utils.URIPathHelper
 import pham.hien.honeylibrary.View.Base.BaseActivity
-import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListSachQuanLy
 import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListTheLoaiAddSach
 import pham.hien.honeylibrary.ViewModel.Main.SachViewModel
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
 import pham.yingming.honeylibrary.Dialog.FailDialog
+import java.io.IOException
+
 
 class AddSachActivity : BaseActivity() {
 
@@ -115,13 +121,14 @@ class AddSachActivity : BaseActivity() {
         initRecycleViewTheLoai()
         rcv_list_the_loai.visibility = View.GONE
         nsv_list_the_loai.visibility = View.GONE
-//        formatterMoney()
     }
 
     override fun onClick(view: View?) {
         when (view) {
             imvClose -> finish()
-            imv_book, imv_change_photo -> {}
+            imv_book, imv_change_photo -> {
+                ImagesUtils().checkPermissionChonAnh(this, imv_book)
+            }
             layout_the_loai -> {
                 isShowListTheLoai = true
                 rcv_list_the_loai.visibility = View.VISIBLE
@@ -227,32 +234,4 @@ class AddSachActivity : BaseActivity() {
         }
     }
 
-    private fun formatterMoney() {
-        ed_gia_sach.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 ->
-            Log.d(TAG, "formatterMoney: $p1")
-            if (!p1) {
-                if (ed_gia_sach.text.toString().isNotEmpty()) {
-                    ed_gia_sach.setText(moneyFormatter(ed_gia_sach.text.toString().toInt()))
-                }
-            } else {
-                if (ed_gia_sach.text.toString().isNotEmpty()) {
-                    ed_gia_sach.setText(ed_gia_sach.text.toString().replace(",", ""))
-                    ed_gia_sach.setText(ed_gia_sach.text.toString().replace("đ", ""))
-                }
-            }
-        }
-        ed_gia_thue.onFocusChangeListener = View.OnFocusChangeListener { p0, p2 ->
-            Log.d(TAG, "formatterMoney2: $p2")
-            if (!p2) {
-                if (ed_gia_thue.text.toString().isNotEmpty()) {
-                    ed_gia_thue.setText(moneyFormatter(ed_gia_thue.text.toString().toInt()))
-                }
-            } else {
-                if (ed_gia_thue.text.toString().isNotEmpty()) {
-                    ed_gia_thue.setText(ed_gia_sach.text.toString().replace(",", ""))
-                    ed_gia_thue.setText(ed_gia_sach.text.toString().replace("đ", ""))
-                }
-            }
-        }
-    }
 }

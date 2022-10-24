@@ -6,20 +6,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 
 
 class ChiTietDocGiaActivity : BaseActivity() {
-    private lateinit var imvSua : ImageView
-    private lateinit var imvAnh : ImageView
-    private lateinit var imvBack : ImageView
+    private lateinit var imvSua: ImageView
+    private lateinit var imvAnh: ImageView
+    private lateinit var imvBack: ImageView
     private lateinit var tvId: TextView
-    private lateinit var tvHoTen : TextView
-    private lateinit var tvDiaChi : TextView
-    private lateinit var tvEmail : TextView
-    private lateinit var tvSdt : TextView
+    private lateinit var tvHoTen: TextView
+    private lateinit var tvDiaChi: TextView
+    private lateinit var tvEmail: TextView
+    private lateinit var tvSdt: TextView
 
-    private lateinit var  mUser : UserModel
+    private lateinit var mUser: UserModel
     override fun getLayout(): Int {
         return R.layout.activity_chi_tiet_doc_gia
     }
@@ -36,12 +37,12 @@ class ChiTietDocGiaActivity : BaseActivity() {
         tvSdt = findViewById(R.id.tv_sdtDocGia)
 
 
-        var user: UserModel = intent.extras?.get("user") as UserModel
-        tvId.text = "ID: "+user.userId.toString()
-        tvHoTen.text = "Họ Tên: "+user.name
-        tvSdt.text ="Số Điện Thoại: " +user.sdt
-        tvDiaChi.text ="Địa Chỉ: " +user.diaChi
-        tvEmail.text ="Email: "+user.email
+        val user: UserModel = intent.getSerializableExtra(Constant.USER.USER) as UserModel
+        tvId.text = "ID: " + user.userId.toString()
+        tvHoTen.text = "Họ Tên: " + user.name
+        tvSdt.text = "Số Điện Thoại: " + user.sdt
+        tvDiaChi.text = "Địa Chỉ: " + user.diaChi
+        tvEmail.text = "Email: " + user.email
 
     }
 
@@ -64,7 +65,7 @@ class ChiTietDocGiaActivity : BaseActivity() {
     override fun onClick(view: View?) {
         when (view) {
 
-            imvBack ->{
+            imvBack -> {
                 onBackPressed()
             }
         }

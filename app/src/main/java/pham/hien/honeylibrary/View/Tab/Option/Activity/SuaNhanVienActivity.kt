@@ -39,12 +39,13 @@ class SuaNhanVienActivity : BaseActivity() {
 
     override fun initView() {
         rlt_toolbar = findViewById(R.id.rlt_toolbar)
+        imb_backchitiet = findViewById(R.id.imb_backchitiet)
         imv_avatar = findViewById(R.id.imv_avatar)
         tv_name = findViewById(R.id.tv_name)
         tv_dia_chi = findViewById(R.id.tv_dia_chi)
         tv_sdt = findViewById(R.id.tv_sdt)
         tv_id = findViewById(R.id.tv_id)
-        tv_id = findViewById(R.id.tv_id)
+        tv_email = findViewById(R.id.tv_email)
         layout_luu = findViewById(R.id.layout_luu)
         radioThuThu = findViewById(R.id.rd_suaThuthu)
         radioQuanLy = findViewById(R.id.rdQuanLy)

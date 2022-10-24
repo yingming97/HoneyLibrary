@@ -6,10 +6,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.FireBase.Auth.CreateNewAccount
-import pham.hien.honeylibrary.FireBase.Auth.LoginRegisterAuth
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
@@ -35,18 +32,18 @@ class ThemNhanVienActivity : BaseActivity() {
 
 
     override fun getLayout(): Int {
-        return R.layout.activity_them_nhan_vien
+        return R.layout.activity_them_nhan_vien_new
     }
 
     override fun initView() {
-        backThemNhanVien = findViewById(R.id.imb_backThemNhanVien)
-        hoTen = findViewById(R.id.ed_HotenNhanvien)
-        email = findViewById(R.id.ed_EmailNhanVien)
-        diaChi = findViewById(R.id.ed_DiachiNhanVien)
-        sdt = findViewById(R.id.ed_SdtNhanVien)
-        thuThu = findViewById(R.id.rd_Thuthu)
+        backThemNhanVien = findViewById(R.id.imb_backchitiet)
+        hoTen = findViewById(R.id.ed_name)
+        email = findViewById(R.id.ed_email)
+        diaChi = findViewById(R.id.ed_address)
+        sdt = findViewById(R.id.ed_phone_number)
+        thuThu = findViewById(R.id.rd_suaThuthu)
         quanLy = findViewById(R.id.rdQuanLy)
-        them = findViewById(R.id.tv_themNhanvien)
+        them = findViewById(R.id.tv_them_nhan_vien)
     }
 
     override fun initListener() {
@@ -68,16 +65,15 @@ class ThemNhanVienActivity : BaseActivity() {
     override fun initDataDefault() {
         UserDAO().getListUser {
             arrUser = it
-            val user = UserModel()
         }
     }
 
     private fun addNhanVien() {
         val hoten = hoTen.text.toString()
         val mail = email.text.toString()
-        var diachi = diaChi.text.toString()
-        var sdt = sdt.text.toString()
-        var quyen: Int
+        val diachi = diaChi.text.toString()
+        val sdt = sdt.text.toString()
+        val quyen: Int
         if (thuThu.isChecked) {
             quyen = Constant.QUYEN.THU_THU
             Log.e("tuvm", "check$quyen")
@@ -86,10 +82,8 @@ class ThemNhanVienActivity : BaseActivity() {
         }
         checkForm(hoten, mail, diachi, sdt, quyen) { check, user, sdt ->
             if (check) {
-                LoginRegisterAuth().registerNewAccount(this, user!!, sdt) { checks, users ->
-                    if (checks) {
-                        UserDAO().addUser(this, users)
-                    }
+                CreateNewAccount().createNewUser(this, user) {
+                    finish()
                 }
             }
         }
@@ -101,7 +95,7 @@ class ThemNhanVienActivity : BaseActivity() {
         diachi: String,
         sdt: String,
         quyen: Int,
-        callback: (Boolean, UserModel?, String) -> Unit,
+        callback: (Boolean, UserModel, String) -> Unit,
     ) {
         val phonePattern = "(84|0[3|5|7|8|9])+([0-9]{8,9})\\b"
         var title = ""
@@ -138,11 +132,11 @@ class ThemNhanVienActivity : BaseActivity() {
         }
 
         if (haveError) {
-            callback(false, null, sdt)
+            callback(false, UserModel(), sdt)
             FailDialog(this, "Thêm Thất Bại", title).show()
         } else {
             val userModel =
-                UserModel(arrUser[arrUser.size - 1].userId, "", quyen, hoten, email, sdt, diachi)
+                UserModel(arrUser.last().userId, "", quyen, hoten, email, sdt, diachi)
             callback(true, userModel, sdt)
         }
     }

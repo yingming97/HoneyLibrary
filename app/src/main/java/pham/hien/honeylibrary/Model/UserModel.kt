@@ -12,6 +12,7 @@ class UserModel : Serializable {
     var email: String = ""
     var sdt: String = ""
     var diaChi: String? = null
+    val hoatDong = true
 
     constructor()
 
@@ -22,7 +23,7 @@ class UserModel : Serializable {
         name: String,
         email: String,
         sdt: String,
-        diaChi: String?
+        diaChi: String?,
     ) {
         this.userId = userId
         this.firebaseId = firebaseId!!

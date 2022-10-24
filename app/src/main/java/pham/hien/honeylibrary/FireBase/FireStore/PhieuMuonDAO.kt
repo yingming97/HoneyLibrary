@@ -51,7 +51,6 @@ class PhieuMuonDAO {
                         val phieuMuon = document.toObject(PhieuMuon::class.java)
                         phieuMuon.photoDocGia = getTenDocGia(phieuMuon.maDocGia, it) {
                             phieuMuon.tenDocGia = it
-                            Log.d(TAG, "tenDocGia: $it")
                         }
                         updateListSachThue(phieuMuon)
                         list.add(phieuMuon)

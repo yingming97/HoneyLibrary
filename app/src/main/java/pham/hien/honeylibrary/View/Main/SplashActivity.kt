@@ -3,19 +3,19 @@ package pham.hien.honeylibrary.View.Main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.airbnb.lottie.LottieAnimationView
 import pham.hien.honeylibrary.R
-import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.hien.honeylibrary.ViewModel.SplashViewModel
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity() {
 
-//    private lateinit var animSplash: LottieAnimationView
+    private lateinit var imv_logo: ImageView
     private lateinit var tv_app_name: TextView
     private lateinit var progressBarSplashDefault: ProgressBar
     private lateinit var tvProgressBarSplashDefault: TextView
@@ -24,16 +24,15 @@ class SplashActivity : BaseActivity() {
 
 
     override fun getLayout(): Int {
-        return R.layout.activity_splash_new
+        return R.layout.activity_splash
     }
 
     override fun initView() {
-//        animSplash = findViewById(R.id.anim_splash)
+        imv_logo = findViewById(R.id.imv_logo)
         tv_app_name = findViewById(R.id.tv_app_name)
         progressBarSplashDefault = findViewById(R.id.progressBarSplashDefault)
         tvProgressBarSplashDefault = findViewById(R.id.tvProgressBarSplashDefault)
 
-//        ScreenUtils().setMarginStatusBar(this, tv_app_name)
     }
 
     override fun initListener() {
@@ -58,6 +57,8 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun initDataDefault() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
+        imv_logo.startAnimation(animation)
     }
 
 

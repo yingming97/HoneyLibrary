@@ -85,7 +85,7 @@
                     android:id="@+id/layout_gia_thue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_26sdp">
+                    android:layout_marginTop="@dimen/_6sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -164,8 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_gia_sach"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_50sdp">
+                    android:layout_marginTop="@dimen/_10sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -198,6 +197,46 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:background="@color/color_7D91F0" />
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_so_luong_con_lai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_so_luong"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_50sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Số lượng còn lại"
+                        android:textColor="@color/text_color_5F5C7F"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <EditText
+                        android:id="@+id/ed_so_luong_con_lai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_120sdp"
+                        android:background="@color/no_color"
+                        android:gravity="right|center_vertical"
+                        android:inputType="number"
+                        android:paddingVertical="@dimen/_6sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_5F5C7F"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/ed_so_luong_con_lai"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/color_7D91F0" />
+                </RelativeLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -223,7 +262,6 @@
                     android:layout_marginStart="@dimen/_70sdp"
                     android:background="@color/no_color"
                     android:gravity="right|center_vertical"
-                    android:inputType="number"
                     android:paddingVertical="@dimen/_6sdp"
                     android:paddingEnd="@dimen/_20sdp"
                     android:singleLine="true"

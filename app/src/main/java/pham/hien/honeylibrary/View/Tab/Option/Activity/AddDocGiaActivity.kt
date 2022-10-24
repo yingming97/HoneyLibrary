@@ -9,6 +9,7 @@ import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.hien.honeylibrary.ViewModel.DocGiaViewModel
+import pham.yingming.honeylibrary.Dialog.FailDialog
 
 
 class AddDocGiaActivity : BaseActivity() {
@@ -60,16 +61,37 @@ class AddDocGiaActivity : BaseActivity() {
     override fun onClick(view: View?) {
         when (view) {
             tvAddDocGia -> {
-                mDocGia = UserModel()
-                mDocGia.userId = mListDocGia.last().userId + 1
-                mDocGia.type = 0
-                mDocGia.name = edNameDocGia.text.toString()
-                mDocGia.email = edEmail.text.toString()
-                mDocGia.sdt = edSdt.text.toString()
-                mDocGia.diaChi = edDiaChi.text.toString()
-                CreateNewAccount().createNewUser(this, mDocGia) {
+                checkValidate()
+            }
+        }
+    }
 
-                }
+    private fun checkValidate() {
+        var strError = ""
+        if (edNameDocGia.text.toString().isEmpty()) {
+            strError += "Bạn chưa nhập tên.\n"
+        }
+        if (edEmail.text.toString().isEmpty()) {
+            strError += "Bạn chưa nhập email.\n"
+        }
+        if (edSdt.text.toString().isEmpty()) {
+            strError += "Bạn chưa nhập số điện thoại.\n"
+        }
+        if (edDiaChi.text.toString().isEmpty()) {
+            strError += "Bạn chưa nhập địa chỉ.\n"
+        }
+        if (strError.isNotEmpty()) {
+            FailDialog(this, "Lỗi", strError).show()
+        } else {
+            mDocGia = UserModel()
+            mDocGia.userId = mListDocGia.last().userId + 1
+            mDocGia.type = 0
+            mDocGia.name = edNameDocGia.text.toString()
+            mDocGia.email = edEmail.text.toString()
+            mDocGia.sdt = edSdt.text.toString()
+            mDocGia.diaChi = edDiaChi.text.toString()
+            CreateNewAccount().createNewUser(this, mDocGia) {
+
             }
         }
     }
