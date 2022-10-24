@@ -49,7 +49,6 @@ class SachView : BaseView {
     private lateinit var rcv_list_sach_thu_hoi: RecyclerView
     private lateinit var tv_no_data: TextView
 
-    private lateinit var mProgressBarLoading: ProgressBarLoading
     private lateinit var mSachAdapter: AdapterListSachQuanLy
     private lateinit var mSachThuHoiAdapter: AdapterListSachQuanLy
     private var mListSach = ArrayList<Sach>()
@@ -84,7 +83,6 @@ class SachView : BaseView {
         layout_sach_thu_hoi = rootView.findViewById(R.id.layout_sach_thu_hoi)
         rcv_list_sach_thu_hoi = rootView.findViewById(R.id.rcv_list_sach_thu_hoi)
         tv_no_data = rootView.findViewById(R.id.tv_no_data)
-
         ScreenUtils().setMarginStatusBar(mContext, tool_bar)
 
         imv_add_new_sach.setOnClickListener(this)
@@ -99,7 +97,6 @@ class SachView : BaseView {
             if (it.isNotEmpty()) {
                 mListSach = it
                 tv_no_data.visibility = View.GONE
-                mProgressBarLoading.hideLoading()
                 mSachAdapter.setListSach(it)
                 rcv_list_sach.visibility = View.VISIBLE
                 ncv_quan_ly_sach.visibility = View.VISIBLE
@@ -126,8 +123,6 @@ class SachView : BaseView {
         val user = SharedPrefUtils.getUserData(mContext)!!
         loadView(user)
         ncv_quan_ly_sach.visibility = View.GONE
-        mProgressBarLoading = ProgressBarLoading(mContext)
-        mProgressBarLoading.showLoading()
         mSachViewModel.getListSach()
         initRecycleViewSach()
         initRecycleViewSachThuHoi()
@@ -140,7 +135,6 @@ class SachView : BaseView {
             initDataDefault(activity)
         }
     }
-
 
     override fun onClick(view: View) {
         super.onClick(view)

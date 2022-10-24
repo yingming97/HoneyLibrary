@@ -1,64 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_item_nhanvien"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_80sdp"
     android:layout_marginVertical="@dimen/_5sdp"
     android:background="@drawable/img_bg_phieu_dang_muon"
-    android:elevation="@dimen/_2sdp"
-    android:padding="@dimen/_5sdp">
+    android:gravity="center_vertical"
+    android:elevation="@dimen/_2sdp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_Nhanvien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:src="@drawable/ic_avatar_default"
         app:civ_border_color="@color/white"
         app:civ_border_width="@dimen/_2sdp" />
 
-    <TextView
-        android:id="@+id/tv_tenNhanvien"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_toEndOf="@+id/image_Nhanvien"
-        android:fontFamily="@font/roboto"
-        android:text="Ta Thu Phuong"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sdp" />
+        android:orientation="vertical"
+        android:layout_marginStart="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_tenNhanvien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/image_Nhanvien"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Ta Thu Phuong"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
 
-    <TextView
-        android:id="@+id/tv_quyen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:background="@drawable/bg_ed_white_rd_5"
-        android:elevation="@dimen/_2sdp"
-        android:fontFamily="@font/roboto"
-        android:paddingHorizontal="@dimen/_10sdp"
-        android:paddingVertical="@dimen/_2sdp"
-        android:text="Thủ thư"
-        android:textColor="@color/color_7896EE" />
+            <TextView
+                android:id="@+id/tv_quyen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="@drawable/bg_ed_white_rd_5"
+                android:elevation="@dimen/_2sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_2sdp"
+                android:text="Thủ thư"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/color_7896EE" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_sdtNhanvien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_tenNhanvien"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_toEndOf="@+id/image_Nhanvien"
-        android:text="SDT: 012345678"
-        android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/tv_sdtNhanvien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_tenNhanvien"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/image_Nhanvien"
+            android:textSize="@dimen/_10sdp"
+            android:text="SDT: 012345678"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_trang_thai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+</LinearLayout>

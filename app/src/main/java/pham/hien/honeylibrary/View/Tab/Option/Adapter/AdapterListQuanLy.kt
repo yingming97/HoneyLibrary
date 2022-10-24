@@ -37,7 +37,7 @@ class AdapterListQuanLy(
         val tvName: TextView
         val tvSdt: TextView
         val tv_quyen: TextView
-        val layout_item_nhanvien: RelativeLayout
+        val layout_item_nhanvien: LinearLayout
 
         init {
             imvAvatar = itemView.findViewById(R.id.image_Nhanvien)

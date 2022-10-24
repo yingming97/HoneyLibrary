@@ -24,13 +24,14 @@ class NhanVienActivity : BaseActivity() {
 
     private lateinit var toolBar: RelativeLayout
     private lateinit var edSearchNhanVien: EditText
-    private lateinit var imvClose: ImageView
     private lateinit var imvSearch: ImageView
     private lateinit var imvEmpty: ImageView
     private lateinit var imvAddNewNhanVien: ImageView
     private lateinit var ncvQuanLyNhanVien: NestedScrollView
     private lateinit var rcvListNhanVien: RecyclerView
     private lateinit var tvNoData: TextView
+    private lateinit var btnBack: ImageView
+
 
     private var mListNhanVien = ArrayList<UserModel>()
     private lateinit var mUserAdapter: AdapterListQuanLy
@@ -43,19 +44,20 @@ class NhanVienActivity : BaseActivity() {
     override fun initView() {
         toolBar = findViewById(R.id.tool_bar)
         edSearchNhanVien = findViewById(R.id.ed_search_nhan_vien)
-        imvClose = findViewById(R.id.imv_close)
         imvSearch = findViewById(R.id.imv_search)
         imvEmpty = findViewById(R.id.imv_empty)
         imvAddNewNhanVien = findViewById(R.id.imv_add_new_nhan_vien)
         ncvQuanLyNhanVien = findViewById(R.id.ncv_quan_ly_nhan_vien)
         rcvListNhanVien = findViewById(R.id.rcv_list_nhan_vien)
         tvNoData = findViewById(R.id.tv_no_data)
+        btnBack = findViewById(R.id.imv_close)
 
         ScreenUtils().setMarginStatusBar(this, toolBar)
     }
 
     override fun initListener() {
         imvAddNewNhanVien.setOnClickListener(this)
+        btnBack.setOnClickListener(this)
         imvEmpty.setOnClickListener(this)
         recyclerViewNhanVien()
     }
@@ -81,7 +83,7 @@ class NhanVienActivity : BaseActivity() {
                 startActivity(Intent(this, ThemNhanVienActivity::class.java))
 
             }
-            imvClose -> {
+            btnBack -> {
                 finish()
             }
         }
