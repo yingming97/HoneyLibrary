@@ -1,109 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_them_nhanvien"
-    android:orientation="vertical"
-    >
+    android:background="@drawable/img_bg_splash"
+    tools:context=".View.Tab.Option.Activity.ChiTietNhanVienActivity">
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/rlt_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:fontFamily="@font/roboto_bold"
-            android:gravity="center"
-            android:text="Thêm Độc Giả"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_23sdp" />
+            android:layout_height="@dimen/_80sdp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Họ Tên"
-            android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto"
+                    android:text="Thêm độc giả"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/ed_name_doc_gia"
+                <ImageView
+                    android:id="@+id/imb_backchitiet"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_15sdp"
+                    android:rotation="180"
+                    android:src="@drawable/ic_arrow_right_white" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/bg_btn_grey_rd_8"
-            android:padding="10dp" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:background="@drawable/bg_white_top_rd_8"
+            android:paddingHorizontal="@dimen/_20sdp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:text="Email"
-            android:textColor="@color/black" />
+                <LinearLayout
+                    android:id="@+id/layout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_ho_ten"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/ed_email_doc_gia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:background="@drawable/bg_btn_grey_rd_8"
-            android:padding="10dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:text="Địa Chỉ"
-            android:textColor="@color/black" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Email"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
 
-        <EditText
-            android:id="@+id/ed_dia_chi_doc_gia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:background="@drawable/bg_btn_grey_rd_8"
-            android:padding="10dp" />
+                                <EditText
+                                    android:id="@+id/ed_email_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập email"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:text="Số Điện Thoại"
-            android:textColor="@color/black" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
 
-        <EditText
-            android:inputType="number"
-            android:id="@+id/ed_sdt_doc_gia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:background="@drawable/bg_btn_grey_rd_8"
-            android:padding="10dp" />
+                <LinearLayout
+                    android:id="@+id/layout_ho_ten"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Họ tên"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
 
-        <TextView
-            android:elevation="@dimen/_5sdp"
-            android:textColor="@color/text_color_1c4942"
-            android:fontFamily="@font/roboto_bold"
-            android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:id="@+id/tv_add_doc_gia"
-            android:background="@drawable/bg_btn_blue_rd_8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_20sdp"
-            android:text="Thêm" />
+                                <EditText
+                                    android:id="@+id/ed_name_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập họ tên"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
 
-</LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_dia_chi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_sdt"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Địa chỉ"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/ed_dia_chi_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập địa chỉ"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_sdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_email"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Số điện thoại"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/ed_sdt_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập số điện thoại"
+                                    android:inputType="number"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_add_doc_gia"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/bg_btn_them_sach_rd_5"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="Thêm"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp" />
+        </RelativeLayout>
+</RelativeLayout>

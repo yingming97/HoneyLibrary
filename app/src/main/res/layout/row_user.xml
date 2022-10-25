@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_btn_9696f4_rd_5"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16sdp"
+        android:textColor="@color/white_F1F1F1"
+        android:textSize="@dimen/_14sdp"
+        android:fontFamily="@font/roboto"
+        android:text="abc" />
+</RelativeLayout>

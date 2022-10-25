@@ -5,130 +5,191 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="@dimen/_24sdp"
     app:cardBackgroundColor="@color/white"
+    android:layout_marginHorizontal="@dimen/_20sdp"
     app:cardCornerRadius="@dimen/_12sdp"
     tools:ignore="MissingDefaultResource">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="549dp"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center"
-            android:paddingTop="@dimen/_10sdp"
-            android:text="Sửa Độc Giả"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16sdp" />
+            android:orientation="vertical"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="30dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_20sdp"
+                    android:textColor="@color/text_color_5F5C7F"
+                    android:text="Sửa độc giả"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="@dimen/_45sdp"
-            android:text="Họ Tên"
-            android:textSize="16dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/ed_sua_name_doc_gia"
-            android:layout_width="@dimen/_220sdp"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_60sdp"
-            android:background="@drawable/bg_ed_white_rd_8"
-            android:elevation="@dimen/_4sdp"
-            android:hint="Họ Tên"
-            android:paddingLeft="@dimen/_16sdp"
-            android:singleLine="true"
-            android:textColor="@color/text_color_1c4942"
-            android:textColorHint="@color/gray_ccc"
-            android:textSize="@dimen/_14sdp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="@dimen/_115sdp"
-            android:text="Email"
-            android:textSize="16dp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Name"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
 
-        <EditText
-            android:id="@+id/ed_sua_email_doc_gia"
-            android:layout_width="@dimen/_220sdp"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_130sdp"
-            android:background="@drawable/bg_ed_white_rd_8"
-            android:elevation="@dimen/_4sdp"
-            android:hint="Email"
-            android:paddingLeft="@dimen/_16sdp"
-            android:singleLine="true"
-            android:textColor="@color/text_color_1c4942"
-            android:textColorHint="@color/gray_ccc"
-            android:textSize="@dimen/_14sdp" />
+                                <EditText
+                                    android:id="@+id/ed_sua_name_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập tên"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textColor="@color/black" />
+                        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="@dimen/_185sdp"
-            android:text="Địa Chỉ"
-            android:textSize="16dp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
 
-        <EditText
-            android:id="@+id/ed_sua_dia_chi_doc_gia"
-            android:layout_width="@dimen/_220sdp"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_200sdp"
-            android:background="@drawable/bg_ed_white_rd_8"
-            android:elevation="@dimen/_4sdp"
-            android:hint="Địa Chỉ"
-            android:paddingLeft="@dimen/_16sdp"
-            android:singleLine="true"
-            android:textColor="@color/text_color_1c4942"
-            android:textColorHint="@color/gray_ccc"
-            android:textSize="@dimen/_14sdp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="@dimen/_255sdp"
-            android:text="Số Điện Thoại"
-            android:textSize="16dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/ed_sua_sdt_doc_gia"
-            android:layout_width="@dimen/_220sdp"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_270sdp"
-            android:background="@drawable/bg_ed_white_rd_8"
-            android:elevation="@dimen/_4sdp"
-            android:hint="Số Điện Thoại"
-            android:paddingLeft="@dimen/_16sdp"
-            android:singleLine="true"
-            android:textColor="@color/text_color_1c4942"
-            android:textColorHint="@color/gray_ccc"
-            android:textSize="@dimen/_14sdp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Email"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
 
-        <TextView
-            android:id="@+id/tv_update_doc_gia"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/bg_btn_blue_rd_9"
-            android:gravity="center"
-            android:text="Cập Nhật"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
-    </RelativeLayout>
+                                <EditText
+                                    android:id="@+id/ed_sua_email_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập email"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textColor="@color/black" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Địa chỉ"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/ed_sua_dia_chi_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập địa chỉ"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textColor="@color/black" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
+                                    android:text="Số điện thoại"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <EditText
+                                    android:id="@+id/ed_sua_sdt_doc_gia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white"
+                                    android:gravity="right"
+                                    android:hint="Nhập số điện thoại"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textColor="@color/black" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:background="@color/purple_7265e3" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_update_doc_gia"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_42sdp"
+                    android:layout_below="@+id/layout_input"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:background="@drawable/bg_btn_9696f4_rd_5"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="Lưu"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_18sdp" />
+        </LinearLayout>
+
 </androidx.cardview.widget.CardView>

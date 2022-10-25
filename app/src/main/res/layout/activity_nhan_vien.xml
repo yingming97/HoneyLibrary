@@ -33,7 +33,7 @@
                 android:id="@+id/imv_close"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:padding="@dimen/_20sdp"
+                android:padding="@dimen/_23sdp"
                 android:rotation="180"
                 android:src="@drawable/ic_arrow_right_white" />
         </RelativeLayout>

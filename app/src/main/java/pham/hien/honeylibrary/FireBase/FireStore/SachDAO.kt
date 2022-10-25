@@ -20,7 +20,7 @@ class SachDAO {
             .document(sach.maSach.toString())
             .set(sach)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.them_sach_thanh_cong), "").show()
+                SuccessDialog(context, context.getString(R.string.them_sach_thanh_cong), ""){}.show()
                 addSuccess(true)
             }
             .addOnFailureListener { e ->
@@ -28,7 +28,7 @@ class SachDAO {
                     context,
                     context.getString(R.string.them_sach_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_them_sach)
-                ).show()
+                ){}.show()
                 addSuccess(false)
             }
     }

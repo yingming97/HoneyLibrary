@@ -22,8 +22,6 @@ import pham.hien.honeylibrary.ViewModel.NhanVienViewModel
 
 class NhanVienActivity : BaseActivity() {
 
-    private val TAG = "YingMing"
-
     private lateinit var toolBar: RelativeLayout
     private lateinit var edSearchNhanVien: EditText
     private lateinit var imvSearch: ImageView
@@ -113,12 +111,11 @@ class NhanVienActivity : BaseActivity() {
     private fun initSearchNhanVien() {
         edSearchNhanVien.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                var str = s.toString()
-                var idNhanvien = try {
+                val str = s.toString()
+                val idNhanvien = try {
                     Integer.parseInt(str)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -147,7 +144,6 @@ class NhanVienActivity : BaseActivity() {
 
             override fun afterTextChanged(s: Editable?) {
             }
-
         })
     }
 

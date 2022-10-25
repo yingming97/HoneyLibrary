@@ -18,10 +18,10 @@ import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Login.LoginActivity
+import pham.hien.honeylibrary.View.Support.SupportActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.ChangePasswordActivity
-import pham.hien.honeylibrary.View.Tab.Option.Activity.DocGiaActivity
+import pham.hien.honeylibrary.View.Tab.Option.Activity.DocGia.DocGiaActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.NhanVienActivity
-import pham.hien.honeylibrary.View.Tab.Option.Activity.TroGiupActivity
 
 class OptionView : BaseView {
 
@@ -129,8 +129,7 @@ class OptionView : BaseView {
                 }
 
                 lnlTroGiup -> {
-//                    mContext.startActivity(Intent(mContext, TroGiupActivity::class.java))
-                    Toast.makeText(mContext, "Đang được phát triển.", Toast.LENGTH_LONG).show()
+                    mContext.startActivity(Intent(mContext, SupportActivity::class.java))
                 }
                 imv_avatar -> {
 

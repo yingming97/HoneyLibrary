@@ -23,14 +23,14 @@ class TheLoaiDAO {
             .addOnSuccessListener {
                 SuccessDialog(context,
                     context.getString(R.string.them_the_loai_thanh_cong),
-                    "").show()
+                    ""){}.show()
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     context.getString(R.string.them_the_loai_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_them_the_loai)
-                ).show()
+                ){}.show()
             }
     }
 
@@ -56,14 +56,14 @@ class TheLoaiDAO {
             .document(theLoai.maTheLoai.toString())
             .set(theLoai)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.sua_the_loai_thanh_cong), "")
+                SuccessDialog(context, context.getString(R.string.sua_the_loai_thanh_cong), ""){}
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     context.getString(R.string.sua_the_loai_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_sua_the_loai)
-                )
+                ){}
             }
     }
 }

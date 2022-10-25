@@ -1,5 +1,6 @@
 package pham.hien.honeylibrary.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,8 +15,9 @@ class DocGiaViewModel : ViewModel(){
         viewModelScope.launch(
             onPreExecute = {},
             doInBackground = {
-                UserDAO().getListUser {
+                UserDAO().getListUserDocGia {
                     mListDocGiaLiveData.value = it
+                    Log.d("BXT", "${it.size}")
                 }
             },
             onPostExecute = {}

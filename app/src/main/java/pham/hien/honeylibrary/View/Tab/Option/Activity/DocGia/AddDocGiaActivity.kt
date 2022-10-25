@@ -1,4 +1,4 @@
-package pham.hien.honeylibrary.View.Tab.Option.Activity
+package pham.hien.honeylibrary.View.Tab.Option.Activity.DocGia
 
 import android.view.View
 import android.widget.EditText
@@ -68,21 +68,31 @@ class AddDocGiaActivity : BaseActivity() {
 
     private fun checkValidate() {
         var strError = ""
+        var check = true
         if (edNameDocGia.text.toString().isEmpty()) {
             strError += "Bạn chưa nhập tên.\n"
+            check = false
         }
         if (edEmail.text.toString().isEmpty()) {
             strError += "Bạn chưa nhập email.\n"
+            check = false
         }
         if (edSdt.text.toString().isEmpty()) {
             strError += "Bạn chưa nhập số điện thoại.\n"
+            check = false
+
         }
         if (edDiaChi.text.toString().isEmpty()) {
             strError += "Bạn chưa nhập địa chỉ.\n"
+            check = false
+
         }
         if (strError.isNotEmpty()) {
-            FailDialog(this, "Lỗi", strError).show()
-        } else {
+            check = false
+
+        }
+
+        if (check) {
             mDocGia = UserModel()
             mDocGia.userId = mListDocGia.last().userId + 1
             mDocGia.type = 0
@@ -90,9 +100,10 @@ class AddDocGiaActivity : BaseActivity() {
             mDocGia.email = edEmail.text.toString()
             mDocGia.sdt = edSdt.text.toString()
             mDocGia.diaChi = edDiaChi.text.toString()
-            CreateNewAccount().createNewUser(this, mDocGia) {
+            CreateNewAccount().createNewDocGia(this, mDocGia) {}
+        } else {
+            FailDialog(this, "Lỗi", strError).show()
 
-            }
         }
     }
 }

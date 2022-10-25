@@ -73,6 +73,7 @@ class Constant {
             "https://firebasestorage.googleapis.com/v0/b/honeylibrary-6f5c5.appspot.com/o/TableUser%2F0?alt=media&token=bb543483-6a66-4f1d-b79b-52fbb44cfd63"
         const val TB_NAME = "TableUser"
         const val COL_TYPE = "type"
+        const val COL_FIREBASEID = "firebaseId"
         const val COL_HOAT_DONG = "hoatDong"
     }
 
@@ -87,5 +88,9 @@ class Constant {
         const val TB_NAME = "TableDoanhThu"
         const val COL_SO_TIEN = "soTien"
         const val COL_TIME = "time"
+    }
+
+    object  MESSAGE {
+        const val TB_NAME = "Message"
     }
 }

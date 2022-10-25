@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".View.Support.SupportActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_support"
+        android:scaleType="centerCrop"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_F1F1F1"
+        android:layout_below="@id/tv_toolbar"
+        android:layout_marginTop="@dimen/_30sdp"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Trợ giúp"
+        android:textColor="@color/white_F1F1F1"
+        android:textSize="@dimen/_18sdp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_user_chat"
+        android:layout_width="match_parent"
+        android:layout_below="@id/tv_toolbar"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_toolbar"
+        android:layout_marginTop="@dimen/_55sdp"
+        />
+
+</RelativeLayout>

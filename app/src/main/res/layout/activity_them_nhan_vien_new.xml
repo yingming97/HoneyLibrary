@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/rlt_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp">
+        android:layout_height="@dimen/_80sdp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             android:id="@+id/imb_backchitiet"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
-            android:padding="@dimen/_15sdp"
+            android:padding="@dimen/_17sdp"
             android:rotation="180"
             android:src="@drawable/ic_arrow_right_white" />
     </RelativeLayout>

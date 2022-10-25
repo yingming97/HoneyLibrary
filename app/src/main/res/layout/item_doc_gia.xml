@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layout_item_doc_gia"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_60sdp"
-    android:background="@drawable/bg_list_user_white_rd_10"
-    android:paddingHorizontal="@dimen/_14sdp"
-    android:paddingVertical="@dimen/_6sdp">
+    android:layout_height="@dimen/_80sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:background="@drawable/img_bg_phieu_dang_muon"
+    android:gravity="center_vertical"
+    android:elevation="@dimen/_2sdp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imv_avatar"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:elevation="1dp"
-        android:src="@drawable/ic_user_photo_default"
-        app:civ_border_color="#7C92EF"
+        android:id="@+id/imv_user_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@drawable/ic_avatar_default"
+        app:civ_border_color="@color/white"
         app:civ_border_width="@dimen/_2sdp" />
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_toEndOf="@+id/imv_avatar"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Phạm Văn Hiển"
-        android:textColor="@color/text_color_1c4942" />
-
-    <TextView
-        android:id="@+id/tv_sdt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_name"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:layout_toEndOf="@+id/imv_avatar"
-        android:fontFamily="@font/roboto"
-        android:text="SDT: 0123456789"
-        android:textColor="@color/text_color_1c4942"
-        android:textSize="@dimen/_10sdp" />
-
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/gray_ccc" />
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tv_name_reader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/image_Nhanvien"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Ta Thu Phuong"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_tenNhanvien"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/image_Nhanvien"
+            android:textSize="@dimen/_10sdp"
+            android:text="SDT: 012345678"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

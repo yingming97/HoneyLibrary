@@ -21,7 +21,6 @@ class AdapterListUser(
 ) :
     RecyclerView.Adapter<AdapterListUser.ViewItemDocGia>() {
 
-    private val TAG = "YingMing"
     private var mContext: Context = context
     private var mListUser: ArrayList<UserModel> = listUser
     private var call = callback
@@ -43,28 +42,33 @@ class AdapterListUser(
         val user = mListUser[position]
         Glide.with(mContext).load(user.avatar).placeholder(R.drawable.ic_avatar_default)
             .into(holder.imvAvatar)
-        holder.tv_name.text = user.name
-        holder.tv_sdt.text = "SĐT: ${user.sdt}"
-        holder.layout_item_doc_gia.setOnClickListener {
+        holder.tvName.text = user.name
+        holder.tvNumber.text = "SĐT: ${user.sdt}"
+        holder.itemView.setOnClickListener {
             call.invoke(user)
         }
     }
 
     override fun getItemCount(): Int {
+        Log.d("BXT", "getItemCount ${mListUser.size}")
         return mListUser.size
     }
 
     class ViewItemDocGia(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imvAvatar: ImageView
-        val tv_name: TextView
-        val tv_sdt: TextView
-        val layout_item_doc_gia: RelativeLayout
+        val tvName: TextView
+        val tvNumber: TextView
 
         init {
-            imvAvatar = itemView.findViewById(R.id.imv_avatar)
-            tv_name = itemView.findViewById(R.id.tv_name)
-            tv_sdt = itemView.findViewById(R.id.tv_sdt)
-            layout_item_doc_gia = itemView.findViewById(R.id.layout_item_doc_gia)
+            imvAvatar = itemView.findViewById(R.id.imv_user_avatar)
+            tvName = itemView.findViewById(R.id.tv_name_reader)
+            tvNumber = itemView.findViewById(R.id.tv_phone_number)
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setListDocgia(listUser: ArrayList<UserModel>){
+        mListUser = listUser
+        notifyDataSetChanged()
     }
 }

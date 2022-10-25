@@ -30,14 +30,14 @@ class PhieuMuonDAO {
             .addOnSuccessListener {
                 SuccessDialog(context,
                     context.getString(R.string.them_phieu_muon_thanh_cong),
-                    "").show()
+                    ""){}.show()
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     context.getString(R.string.them_phieu_muon_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_them_phieu_muon)
-                ).show()
+                ){}.show()
             }
     }
 
@@ -125,7 +125,7 @@ class PhieuMuonDAO {
         db.collection(Constant.PHIEUMUON.TB_NAME).document(phieuMuon.maPhieuMuon)
             .delete()
             .addOnSuccessListener {
-                SuccessDialog(activity, activity.getString(R.string.da_xoa_phieu_muon), "").show()
+                SuccessDialog(activity, activity.getString(R.string.da_xoa_phieu_muon), ""){}.show()
                 Handler().postDelayed({ activity.finish() }, 2000)
             }
             .addOnFailureListener { e ->
@@ -167,7 +167,7 @@ class PhieuMuonDAO {
             .addOnSuccessListener {
                 SuccessDialog(activity,
                     activity.getString(R.string.cap_nhap_phieu_muon_thanh_cong),
-                    "").show()
+                    ""){}.show()
                 activity.finish()
             }
             .addOnFailureListener {

@@ -1,6 +1,7 @@
 package pham.yingming.honeylibrary.Dialog
 
 import android.app.Dialog
+import android.content.ComponentCallbacks
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
@@ -11,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import pham.hien.honeylibrary.R
 
-class SuccessDialog(context: Context, private val title: String, private val content: String) :
+class SuccessDialog(context: Context, private val title: String, private val content: String, private val callbacks: ()->Unit ) :
     Dialog(context),
     View.OnClickListener {
 
@@ -53,7 +54,10 @@ class SuccessDialog(context: Context, private val title: String, private val con
 
     override fun onClick(v: View?) {
         when (v) {
-            tvClose, imvClose -> dismiss()
+            imvClose -> dismiss()
+            tvClose -> {
+                dismiss()
+                callbacks()}
         }
     }
 }
