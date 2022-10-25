@@ -42,7 +42,7 @@ class SuaTheLoaiDialog(
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_sua_the_loai)
         window!!.decorView.setBackgroundResource(R.color.transparent)
-        window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+        window!!.attributes.windowAnimations = R.style.DialogAnimation
         val wlp = window!!.attributes
         wlp.gravity = Gravity.CENTER
         wlp.flags = wlp.flags and WindowManager.LayoutParams.FLAG_BLUR_BEHIND.inv()

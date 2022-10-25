@@ -73,7 +73,7 @@ class ChiTietDocGiaActivity : BaseActivity() {
         }
     }
 
-    fun setData(){
+    private fun setData(){
         tvId.text = mUser.userId.toString()
         tvHoTen.text = mUser.name
         tvSdt.text =mUser.sdt

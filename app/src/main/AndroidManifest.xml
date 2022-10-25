@@ -23,6 +23,21 @@
         android:theme="@style/AppThemeHome"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.Support.SupportActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.Support.ChatScreenActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="pham.hien.honeylibrary.View.Main.SplashActivity"
             android:exported="true"
             android:launchMode="singleTop"
@@ -71,15 +86,17 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".View.Tab.Option.Activity.DocGiaActivity"
+            android:name=".View.Tab.Option.Activity.DocGia.DocGiaActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
         <activity
-            android:name=".View.Tab.Option.Activity.AddDocGiaActivity"
+            android:name=".View.Tab.Option.Activity.DocGia.AddDocGiaActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"/>
+
         <activity
             android:name=".View.Tab.Sach.Activity.AddSachActivity"
             android:exported="false"
@@ -96,10 +113,11 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".View.Tab.Option.Activity.ChiTietDocGiaActivity"
+            android:name=".View.Tab.Option.Activity.DocGia.ChiTietDocGiaActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name=".View.Tab.Option.Activity.ThemNhanVienActivity"
             android:exported="false"
@@ -114,18 +132,19 @@
             android:name=".View.Tab.Option.Activity.MessageActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
 
         <activity
             android:name=".View.Tab.Option.Activity.ChangePasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".View.Tab.Option.Activity.TroGiupActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"  />
+
         <activity
             android:name=".View.Tab.Option.Activity.ChiTietNhanVienActivity"
             android:exported="false"

@@ -30,7 +30,6 @@ class DialogSuaDocGia(
     private lateinit var edEmail: EditText
     private lateinit var edDiaChi: EditText
     private lateinit var edSdt: EditText
-    private lateinit var toolBar: RelativeLayout
     private lateinit var tvUpdateDocGia: TextView
     private lateinit var arrUser: List<UserModel>
     private var mUser = user
@@ -41,7 +40,7 @@ class DialogSuaDocGia(
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_sua_doc_gia)
         window!!.decorView.setBackgroundResource(R.color.transparent)
-        window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+        window!!.attributes.windowAnimations = R.style.DialogAnimation
         val wlp = window!!.attributes
         wlp.gravity = Gravity.CENTER
         wlp.flags = wlp.flags and WindowManager.LayoutParams.FLAG_BLUR_BEHIND.inv()
@@ -55,7 +54,6 @@ class DialogSuaDocGia(
     }
 
     private fun initView() {
-
         edNameDocGia = findViewById(R.id.ed_sua_name_doc_gia)
         edEmail = findViewById(R.id.ed_sua_email_doc_gia)
         edDiaChi = findViewById(R.id.ed_sua_dia_chi_doc_gia)
