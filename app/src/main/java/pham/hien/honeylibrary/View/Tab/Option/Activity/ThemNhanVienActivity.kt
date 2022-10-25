@@ -139,8 +139,8 @@ class ThemNhanVienActivity : BaseActivity() {
             haveError = true
         } else if (sdt.isNullOrEmpty()) {
             for (user in arrUser) {
-                if (user.sdt == sdt) {
-                    title += "\n SDT đã tồn tại"
+                if (user.email == email) {
+                    title += "\n Email đã tồn tại"
                     haveError = true
                     break
                 }

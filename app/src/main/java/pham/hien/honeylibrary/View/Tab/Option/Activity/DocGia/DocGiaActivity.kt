@@ -104,7 +104,9 @@ class DocGiaActivity : BaseActivity() {
                 }
                 val listDocGia = ArrayList<UserModel>()
                 for (docGia in mArrDocGia) {
-                    if (docGia.userId == idNhanvien || docGia.name.contains(str, true)) {
+                    if (docGia.userId == idNhanvien || docGia.name.contains(str, true) ||
+                        docGia.email.contains(str, true) || docGia.sdt.contains(str, true)
+                    ) {
                         listDocGia.add(docGia)
                     }
                     if (s.isNullOrEmpty()) {
