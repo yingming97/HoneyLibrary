@@ -261,10 +261,8 @@
                     android:layout_marginStart="@dimen/_70sdp"
                     android:background="@color/no_color"
                     android:gravity="right|center_vertical"
-                    android:inputType="number"
                     android:paddingVertical="@dimen/_6sdp"
                     android:paddingEnd="@dimen/_20sdp"
-                    android:singleLine="true"
                     android:textColor="@color/text_color_5F5C7F"
                     android:textSize="@dimen/_14sdp" />
 

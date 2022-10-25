@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -19,25 +20,27 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import me.relex.circleindicator.CircleIndicator3
 import pham.hien.honeylibrary.Model.*
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
-import pham.hien.honeylibrary.Utils.date2String
+import pham.hien.honeylibrary.Utils.convertStringToListSachThue
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Tab.Home.Adapter.AdapterListSachHome
-import pham.hien.honeylibrary.View.Tab.Home.Adapter.HomeAdapter
+import pham.hien.honeylibrary.View.Tab.Home.Adapter.SachMuonNhieuAdapter
 import pham.hien.honeylibrary.View.Tab.Sach.Activity.ChiTietSachActivity
-import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListSachQuanLy
 import pham.hien.honeylibrary.ViewModel.Main.HomeViewModel
 import java.lang.Math.abs
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.LinkedHashSet
 
 
 class HomeView : BaseView {
 
+    private val TAG = "YingMing"
     private lateinit var mContext: Context
     private lateinit var mActivity: Activity
     private var checkFirstLaunchView: Boolean = false
@@ -45,16 +48,20 @@ class HomeView : BaseView {
     private lateinit var handlers: Handler
     private lateinit var iconHours: ImageView
     private lateinit var tvUserName: TextView
+    private lateinit var tvTime: TextView
     private lateinit var tvThongKeLuotMuon: TextView
     private lateinit var tvThongKeTongSoSach: TextView
     private lateinit var tvThongKeThanhVien: TextView
+    private lateinit var indicator: CircleIndicator3
 
     private val formatter = SimpleDateFormat("EEE, d MMM y", Locale("vi"))
     private lateinit var rcvListSachThue: RecyclerView
     private lateinit var adapterSachThue: AdapterListSachHome
+    private lateinit var sachMuonNhieuAdapter: SachMuonNhieuAdapter
     private var listLuotMuon = ArrayList<DoanhThu>()
     private var listThanhVien = ArrayList<UserModel>()
     private var listSach = ArrayList<Sach>()
+    private var mListSachMuonNhieu = ArrayList<Sach>()
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -76,36 +83,71 @@ class HomeView : BaseView {
         super.initView(context, attrs)
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rootView: View = inflater.inflate(R.layout.view_home, this)
-        tvThongKeLuotMuon = findViewById(R.id.tv_thong_ke_luot_muon)
-        tvThongKeThanhVien = findViewById(R.id.tv_thong_ke_thanh_vien)
-        tvThongKeTongSoSach = findViewById(R.id.tv_thong_ke_tong_so_sach)
-        rcvListSachThue = findViewById(R.id.top_sach_moi_ve)
-        tvUserName = findViewById(R.id.tv_user_name)
-        viewpager2 = findViewById(R.id.lv_sach_muon_nhieu)
-        iconHours = findViewById(R.id.imv_sun)
-        val tvTime = findViewById<TextView>(R.id.tv_time_today)
-        handlers = Handler(Looper.myLooper()!!)
-        val arrFlipData: ArrayList<ViewFlipper> = arrayListOf()
-        arrFlipData.add(ViewFlipper(R.drawable.img_sach_demo,
-            "Đắc nhân tâm là quyển sách nổi tiếng nhất, bán chạy nhất và có tầm ảnh hưởng nhất của mọi thời đại."))
-        arrFlipData.add(ViewFlipper(R.drawable.img_sach_demo,
-            "Đắc nhân tâm là quyển sách nổi tiếng nhất, bán chạy nhất và có tầm ảnh hưởng nhất của mọi thời đại."))
 
-        val homeAdapter = HomeAdapter(arrFlipData, viewpager2)
-        viewpager2.adapter = homeAdapter
-        viewpager2.offscreenPageLimit = 3
-        viewpager2.clipChildren = false
-        viewpager2.clipToPadding = false
-        viewpager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-        setupTransform()
-        viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                handlers.removeCallbacks(runnable)
-                handlers.postDelayed(runnable, 5000)
+        tvThongKeLuotMuon = rootView.findViewById(R.id.tv_thong_ke_luot_muon)
+        tvThongKeThanhVien = rootView.findViewById(R.id.tv_thong_ke_thanh_vien)
+        tvThongKeTongSoSach = rootView.findViewById(R.id.tv_thong_ke_tong_so_sach)
+        rcvListSachThue = rootView.findViewById(R.id.top_sach_moi_ve)
+        tvUserName = rootView.findViewById(R.id.tv_user_name)
+        viewpager2 = rootView.findViewById(R.id.lv_sach_muon_nhieu)
+        iconHours = rootView.findViewById(R.id.imv_sun)
+        indicator = rootView.findViewById(R.id.indicator)
+        tvTime = rootView.findViewById(R.id.tv_time_today)
+
+    }
+
+
+    override fun initViewModel(viewModel: ViewModel?) {
+        homeViewModel = viewModel as HomeViewModel
+    }
+
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
+    override fun initObserver(owner: LifecycleOwner?) {
+        homeViewModel.mListSachLiveData.observe(owner!!) { list ->
+            if (list.isNotEmpty()) {
+                listSach.clear()
+                mListSachMuonNhieu.clear()
+                if (list.size <= 10) {
+                    for (i in list.size - 1 downTo 0) {
+                        listSach.add(list[i])
+                        mListSachMuonNhieu.add(list[i])
+                    }
+                } else {
+                    for (i in list.size - 1 downTo list.size - 10) {
+                        listSach.add(list[i])
+                        mListSachMuonNhieu.add(list[i])
+                    }
+                }
+                indicator.setViewPager(viewpager2)
+                adapterSachThue.setListSach(listSach)
+                tvThongKeTongSoSach.text = list.size.toString()
+                mListSachMuonNhieu.sortBy { it.soLuongConLai }
+                sachMuonNhieuAdapter.setList(mListSachMuonNhieu)
+
             }
-        })
+        }
+        homeViewModel.mListDoanhThuLiveData.observe(owner!!) {
+            if (it.isNotEmpty()) {
+                listLuotMuon = it
+                tvThongKeLuotMuon.text = it.size.toString()
+            }
+        }
+        homeViewModel.mListDocGiaLiveData.observe(owner!!) {
+            if (it.isNotEmpty()) {
+                listThanhVien = it
+                tvThongKeThanhVien.text = it.size.toString()
+            }
+        }
+    }
 
+    override fun initDataDefault(activity: Activity?) {
+        super.initDataDefault(activity)
+        homeViewModel.getListSachMoi()
+        homeViewModel.getListDoanhThu()
+        homeViewModel.getListDocGia()
+        updateUserLogin(SharedPrefUtils.getUserData(mContext)!!)
+        setViewPageMuonNhieu()
+        initRecycleViewSachThue()
         val calendar = Calendar.getInstance()
         tvTime.text = formatter.format(calendar.timeInMillis)
         when (calendar[Calendar.HOUR_OF_DAY]) {
@@ -122,54 +164,12 @@ class HomeView : BaseView {
                 tvUserName.text = "Good evening,"
             }
         }
-        initRecycleViewSachThue()
     }
 
-
-    override fun initViewModel(viewModel: ViewModel?) {
-        homeViewModel = viewModel as HomeViewModel
-    }
-
-    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
-    override fun initObserver(owner: LifecycleOwner?) {
-        homeViewModel.mListSachLiveData.observe(owner!!) {
-            if (it.isNotEmpty()) {
-                listSach = it
-                adapterSachThue.setListSach(it)
-                tvThongKeTongSoSach.text = it.size.toString()
-            }
-        }
-        homeViewModel.mListDoanhThuLiveData.observe(owner!!) {
-            if (it.isNotEmpty()) {
-                listLuotMuon = it
-                tvThongKeLuotMuon.text = it.size.toString()
-            }
-        }
-        homeViewModel.mListDocGiaLiveData.observe(owner!!) {
-            if (it.isNotEmpty()) {
-                listThanhVien = it
-                tvThongKeThanhVien.text = it.size.toString()
-            }
-        }
-        if (!isOpening) {
-            handlers.removeCallbacks(runnable)
-        } else {
-            handlers.postDelayed(runnable, 5000)
-        }
-    }
-
-    override fun initDataDefault(activity: Activity?) {
-        super.initDataDefault(activity)
-        homeViewModel.getListSach()
-        homeViewModel.getListDoanhThu()
-        homeViewModel.getListDocGia()
-        updateUserLogin(SharedPrefUtils.getUserData(mContext)!!)
-    }
-
-    fun initRecycleViewSachThue() {
+    private fun initRecycleViewSachThue() {
         adapterSachThue = AdapterListSachHome(mContext, listSach) {
             val intent = Intent(mContext, ChiTietSachActivity::class.java)
-            intent.putExtra(Constant.SACH.SACH,it)
+            intent.putExtra(Constant.SACH.SACH, it)
             mContext.startActivity(intent)
         }
         rcvListSachThue.layoutManager = LinearLayoutManager(mContext)
@@ -178,6 +178,7 @@ class HomeView : BaseView {
         rcvListSachThue.adapter = adapterSachThue
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUserLogin(user: UserModel) {
         if (SharedPrefUtils.getLogin(mContext)) {
             tvUserName.text = "${tvUserName.text} ${user.name}"
@@ -190,7 +191,7 @@ class HomeView : BaseView {
         super.openForTheFirstTime(activity)
         mActivity = activity!!
         if (!checkFirstLaunchView) {
-            checkFirstLaunchView = true
+            checkFirstLaunchView = false
             initDataDefault(activity)
         }
     }
@@ -200,9 +201,30 @@ class HomeView : BaseView {
         }
     }
 
+    private fun setViewPageMuonNhieu() {
+        handlers = Handler(Looper.myLooper()!!)
+        if (!isOpening(this)) {
+            handlers.removeCallbacks(runnable)
+        } else {
+            handlers.postDelayed(runnable, 5000)
+        }
+        sachMuonNhieuAdapter = SachMuonNhieuAdapter(mContext, mListSachMuonNhieu)
+        viewpager2.adapter = sachMuonNhieuAdapter
+        setupTransform()
+        viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+//                val intent = Intent(mContext,ChiTietSachActivity::class.java)
+//                intent.putExtra(Constant.SACH.SACH,)
+                handlers.removeCallbacks(runnable)
+                handlers.postDelayed(runnable, 5000)
+            }
+        })
+    }
+
     private fun setupTransform() {
         val transform = CompositePageTransformer()
-        transform.addTransformer(MarginPageTransformer(40))
+        transform.addTransformer(MarginPageTransformer(80))
         transform.addTransformer { page, position ->
             val r = 1 - abs(position)
             page.scaleY = 0.85f + r * 0.14f
@@ -210,10 +232,11 @@ class HomeView : BaseView {
         viewpager2.setPageTransformer(transform)
     }
 
-    val isOpening: Boolean
-        get() = visibility == NestedScrollView.VISIBLE
-
     private var runnable = Runnable {
-        viewpager2.currentItem = viewpager2.currentItem + 1
+        if (viewpager2.currentItem == listSach.size - 1) {
+            viewpager2.currentItem = 0
+        } else {
+            viewpager2.currentItem = viewpager2.currentItem + 1
+        }
     }
 }

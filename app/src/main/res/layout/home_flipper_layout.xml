@@ -11,28 +11,46 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_10sdp">
 
-        <LinearLayout
-            android:padding="@dimen/_10sdp"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:padding="@dimen/_10sdp"
             android:weightSum="3">
 
             <ImageView
                 android:id="@+id/img_vp2"
-                android:layout_weight="2"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_60sdp"
                 android:layout_height="match_parent"
                 android:src="@drawable/img_sach_demo" />
 
-            <pham.hien.honeylibrary.View.Custom.ShowMoreTextView
-                android:id="@+id/tv_showText"
-                android:layout_weight="1"
+            <TextView
+                android:id="@+id/tv_ten_sach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toEndOf="@+id/img_vp2"
+                android:fontFamily="@font/roboto"
+                android:lines="1"
+                android:text="Đắc nhân tâm"
+                android:textColor="@color/color_7896EE"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tv_gioi_thieu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/roboto" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_ten_sach"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_toEndOf="@id/img_vp2"
+                android:textColor="@color/text_color_5F5C7F"
+                android:lines="4"
+                android:maxLines="4" />
+        </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>

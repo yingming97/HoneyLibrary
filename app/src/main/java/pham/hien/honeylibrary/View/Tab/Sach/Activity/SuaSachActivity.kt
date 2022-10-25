@@ -1,13 +1,19 @@
 package pham.hien.honeylibrary.View.Tab.Sach.Activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.widget.NestedScrollView
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import pham.hien.honeylibrary.Dialog.ProgressBarLoading
 import pham.hien.honeylibrary.FireBase.FireStore.SachDAO
 import pham.hien.honeylibrary.FireBase.Storage.Images
 import pham.hien.honeylibrary.Model.Sach
@@ -43,6 +49,7 @@ class SuaSachActivity : BaseActivity() {
     private lateinit var rcv_list_the_loai: RecyclerView
     private lateinit var nsv_list_the_loai: NestedScrollView
 
+    private lateinit var mProgressBarLoading: ProgressBarLoading
     private var isShowListTheLoai = false
     private lateinit var mSach: Sach
     private var mListAllSach = ArrayList<Sach>()
@@ -84,6 +91,7 @@ class SuaSachActivity : BaseActivity() {
         imv_show_the_loai.setOnClickListener(this)
         layout_the_loai.setOnClickListener(this)
         layout_luu.setOnClickListener(this)
+        setSoLuongConLai()
     }
 
     override fun initViewModel() {
@@ -106,6 +114,7 @@ class SuaSachActivity : BaseActivity() {
     }
 
     override fun initDataDefault() {
+        mProgressBarLoading = ProgressBarLoading(this)
         mSachViewModel.getListAllSach()
         mTheLoaiViewModel.getListTheLoai()
         initRecycleViewTheLoai()
@@ -142,13 +151,10 @@ class SuaSachActivity : BaseActivity() {
                 }
             }
             layout_luu -> {
+                mProgressBarLoading.showLoading()
                 checkSachValidate {
                     if (it) {
                         updateSach()
-                        val intent = Intent(this, ChiTietSachActivity::class.java)
-                        intent.putExtra(Constant.SACH.SACH, mSach)
-                        startActivity(intent)
-                        finish()
                     }
                 }
             }
@@ -232,6 +238,7 @@ class SuaSachActivity : BaseActivity() {
         if (strError.isEmpty()) {
             checkDone(true)
         } else {
+            mProgressBarLoading.hideLoading()
             checkDone(false)
             FailDialog(this, "Lỗi", strError).show()
         }
@@ -240,13 +247,43 @@ class SuaSachActivity : BaseActivity() {
     private fun updateSach() {
         Images().uploadImage(imv_book, Constant.SACH.TB_NAME, mSach.maSach.toString()) {
             mSach.anhBia = it
+            Log.d(TAG, "  mSach.anhBia sua: ${mSach.anhBia}")
+            mSach.tenSach = ed_ten_sach.text.toString()
+            mSach.giaSach = ed_gia_sach.text.toString().toInt()
+            mSach.giaThue = ed_gia_thue.text.toString().toInt()
+            mSach.soLuongConLai = ed_so_luong_con_lai.text.toString().toInt()
+            mSach.soLuong = ed_so_luong.text.toString().toInt()
+            mSach.gioiThieu = ed_gioi_thieu.text.toString()
+            SachDAO().updateSach(mSach)
+            mProgressBarLoading.hideLoading()
+            val intent = Intent(this, ChiTietSachActivity::class.java)
+            intent.putExtra(Constant.SACH.SACH, mSach)
+            startActivity(intent)
+            finish()
         }
-        mSach.tenSach = ed_ten_sach.text.toString()
-        mSach.giaSach = ed_gia_sach.text.toString().toInt()
-        mSach.giaThue = ed_gia_thue.text.toString().toInt()
-        mSach.soLuong = ed_so_luong.text.toString().toInt()
-        mSach.soLuongConLai = ed_so_luong_con_lai.text.toString().toInt()
-        mSach.gioiThieu = ed_gioi_thieu.text.toString()
-        SachDAO().updateSach(mSach)
+    }
+
+    private fun setSoLuongConLai() {
+        ed_so_luong.addTextChangedListener(
+            object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                @SuppressLint("SetTextI18n")
+                override fun afterTextChanged(p0: Editable?) {
+                    if (ed_so_luong.text.isNotEmpty()) {
+                        ed_so_luong_con_lai.setText((mSach.soLuongConLai + (ed_so_luong.text.toString()
+                            .toInt() - mSach.soLuong)).toString())
+                    }
+//                    else {
+//                        ed_so_luong.setText("0")
+//                        ed_so_luong.setSelection(ed_so_luong.text.length)
+//                    }
+                }
+            }
+        )
     }
 }
