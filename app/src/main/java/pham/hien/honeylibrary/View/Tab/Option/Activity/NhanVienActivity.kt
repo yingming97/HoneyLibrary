@@ -117,15 +117,18 @@ class NhanVienActivity : BaseActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                var str = s.toString()
-                var idNhanvien = try {
+                val str = s.toString()
+                val idNhanvien = try {
                     Integer.parseInt(str)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
                 val listNhanVien = ArrayList<UserModel>()
                 for (nhanvien in mListNhanVien) {
-                    if (nhanvien.userId == idNhanvien || nhanvien.name.contains(str, true)) {
+                    if (nhanvien.userId == idNhanvien || nhanvien.name.contains(str,
+                            true) || nhanvien.sdt.contains(str, true) ||
+                        nhanvien.email.contains(str, true)
+                    ) {
                         listNhanVien.add(nhanvien)
                     }
                     if (s.isNullOrEmpty()) {

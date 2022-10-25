@@ -38,7 +38,7 @@
         android:layout_height="@dimen/_80sdp"
         android:layout_below="@+id/rlt_toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:src="@drawable/ic_avatar_default"
         app:civ_border_color="@color/white"
         app:civ_border_width="@dimen/_1sdp" />
@@ -71,8 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name"
-        android:gravity="center"
         android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
         android:text="vmt@gmail.com"
         android:textColor="#9A9A9A"
         android:textSize="@dimen/_14sdp" />
@@ -102,7 +102,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
+            android:layout_height="@dimen/_1sdp"
             android:layout_alignParentBottom="true"
             android:background="#7D91F0" />
     </RelativeLayout>
