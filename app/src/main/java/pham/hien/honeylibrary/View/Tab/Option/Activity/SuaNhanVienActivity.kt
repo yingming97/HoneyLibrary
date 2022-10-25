@@ -103,9 +103,9 @@ class SuaNhanVienActivity : BaseActivity() {
         tv_dia_chi.text = mUserModel.diaChi
         tv_email.text = mUserModel.email
         if (mUserModel.type == Constant.QUYEN.THU_THU) {
-            radioThuThu.isChecked
+            radioThuThu.isChecked = true
         } else {
-            radioQuanLy.isChecked
+            radioQuanLy.isChecked = true
         }
     }
 
