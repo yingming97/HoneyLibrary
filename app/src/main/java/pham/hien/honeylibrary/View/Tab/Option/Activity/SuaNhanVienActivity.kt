@@ -1,7 +1,6 @@
 package pham.hien.honeylibrary.View.Tab.Option.Activity
 
 import android.util.Log
-import android.util.Patterns
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
@@ -11,7 +10,6 @@ import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.yingming.honeylibrary.Dialog.FailDialog
-import java.util.regex.Pattern
 
 class SuaNhanVienActivity : BaseActivity() {
 
@@ -46,7 +44,7 @@ class SuaNhanVienActivity : BaseActivity() {
         tv_sdt = findViewById(R.id.tv_sdt)
         tv_id = findViewById(R.id.tv_id)
         tv_email = findViewById(R.id.tv_email)
-        layout_luu = findViewById(R.id.layout_luu)
+        layout_luu = findViewById(R.id.layout_luu_nhan_Vien)
         radioThuThu = findViewById(R.id.rd_suaThuthu)
         radioQuanLy = findViewById(R.id.rdQuanLy)
         imb_backchitiet = findViewById(R.id.imb_backchitiet)
@@ -75,7 +73,23 @@ class SuaNhanVienActivity : BaseActivity() {
     override fun onClick(view: View?) {
         when (view) {
             imb_backchitiet -> finish()
-            layout_luu -> finish()
+            layout_luu -> {
+                val thuthu: Int
+                if (radioThuThu.isChecked) {
+                    thuthu = Constant.QUYEN.THU_THU
+                    Log.e("tuvm", "check$thuthu")
+                } else {
+                    thuthu = Constant.QUYEN.ADMIN
+                }
+                checkForm(thuthu) { type, user ->
+                    if (type) {
+                        if (user != null) {
+                            UserDAO().updateNhanVien(this, user)
+                        }
+                    }
+                }
+                finish()
+            }
         }
     }
 
@@ -83,6 +97,7 @@ class SuaNhanVienActivity : BaseActivity() {
         mUserModel = intent.getSerializableExtra(Constant.USER.USER) as UserModel
         Glide.with(this).load(mUserModel.avatar).placeholder(R.drawable.ic_user_photo_default)
             .into(imv_avatar)
+        tv_id.text = mUserModel.userId.toString()
         tv_name.text = mUserModel.name
         tv_sdt.text = mUserModel.sdt
         tv_dia_chi.text = mUserModel.diaChi
@@ -94,72 +109,15 @@ class SuaNhanVienActivity : BaseActivity() {
         }
     }
 
-    private fun suaNhanVien() {
-        val thuthu: Int
-        if (radioThuThu.isChecked) {
-            thuthu = Constant.QUYEN.THU_THU
-            Log.e("tuvm", "check$thuthu")
-        } else {
-            thuthu = Constant.QUYEN.ADMIN
-        }
-//        checkForm(hoten, mail, diachi, sdt, thuthu) { check, user ->
-//            if (check) {
-//                UserDAO().updateNhanVien(this, user!!)
-//            }
-//        }
-    }
-
     private fun checkForm(
-        hoten: String,
-        email: String,
-        diachi: String,
-        sdt: String,
         quyen: Int,
         callback: (Boolean, UserModel?) -> Unit,
     ) {
-        val phonePattern = "(84|0[3|5|7|8|9])+([0-9]{8,9})\\b"
-        var title = ""
         var haveError = false
-        if (hoten.isNullOrEmpty()) {
-            title += "\nTên không được bỏ trống"
-            haveError = true
-        } else if (email.isNullOrEmpty()) {
-            title += "\nEmail không được trống"
-            haveError = true
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            title += "\nEmail sai định dạng"
-            haveError = true
-        } else if (diachi.isNullOrEmpty()) {
-            title += "\nĐịa chỉ không được bỏ trống"
-            haveError = true
-        } else if (diachi.length!! < 6) {
-            title += "\nĐịa chỉ không dưới 6 ký tự"
-            haveError = true
-        } else if (sdt.isNullOrEmpty()) {
-            for (user in arrUser) {
-                if (user.sdt == sdt) {
-                    title += "\n SDT đã tồn tại"
-                    haveError = true
-                    break
-                }
-            }
-            title += "\nSố điện thoại không được bỏ trống"
-            haveError = true
-
-        } else if (!Pattern.compile(phonePattern).matcher(sdt).matches()) {
-            title += "\nSai định dạng số điện thoại"
-            haveError = true
-        }
-
-
         if (haveError) {
             callback(false, null)
-            FailDialog(this, "Thêm Thất Bại", title).show()
+            FailDialog(this, "Thêm Thất Bại", "").show()
         } else {
-            mUserModel.name = hoten
-            mUserModel.sdt = sdt
-            mUserModel.email = email
-            mUserModel.diaChi = diachi
             mUserModel.type = quyen
             callback(true, mUserModel)
         }

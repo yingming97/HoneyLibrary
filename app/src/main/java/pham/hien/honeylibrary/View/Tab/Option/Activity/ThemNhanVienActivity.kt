@@ -2,10 +2,12 @@ package pham.hien.honeylibrary.View.Tab.Option.Activity
 
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
+import kotlinx.coroutines.delay
 import pham.hien.honeylibrary.FireBase.Auth.CreateNewAccount
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
@@ -13,6 +15,7 @@ import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.yingming.honeylibrary.Dialog.FailDialog
+import pham.yingming.honeylibrary.Dialog.SuccessDialog
 import java.util.regex.Pattern
 
 class ThemNhanVienActivity : BaseActivity() {
@@ -47,11 +50,8 @@ class ThemNhanVienActivity : BaseActivity() {
     }
 
     override fun initListener() {
-        them.setOnClickListener {
-            addNhanVien()
-        }
         backThemNhanVien.setOnClickListener(this)
-        backThemNV()
+        them.setOnClickListener(this)
     }
 
     override fun initViewModel() {
@@ -65,6 +65,17 @@ class ThemNhanVienActivity : BaseActivity() {
     override fun initDataDefault() {
         UserDAO().getListUser {
             arrUser = it
+        }
+    }
+
+    override fun onClick(view: View?) {
+        when (view) {
+            them -> {
+                addNhanVien()
+            }
+            backThemNhanVien -> {
+                backThemNV()
+            }
         }
     }
 
@@ -83,7 +94,7 @@ class ThemNhanVienActivity : BaseActivity() {
         checkForm(hoten, mail, diachi, sdt, quyen) { check, user, sdt ->
             if (check) {
                 CreateNewAccount().createNewUser(this, user) {
-                    finish()
+
                 }
             }
         }

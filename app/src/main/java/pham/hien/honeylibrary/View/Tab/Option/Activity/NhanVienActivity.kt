@@ -1,6 +1,8 @@
 package pham.hien.honeylibrary.View.Tab.Option.Activity
 
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -75,6 +77,7 @@ class NhanVienActivity : BaseActivity() {
 
     override fun initDataDefault() {
         mNhanVienViewModel.getListNhanVien()
+        initSearchNhanVien()
     }
 
     override fun onClick(view: View?) {
@@ -85,6 +88,12 @@ class NhanVienActivity : BaseActivity() {
             }
             btnBack -> {
                 finish()
+            }
+            imvEmpty -> {
+                imvSearch.visibility = View.VISIBLE
+                imvEmpty.visibility = View.GONE
+                edSearchNhanVien.setText("")
+                mUserAdapter.setListQuanLy(mListNhanVien)
             }
         }
     }
@@ -99,6 +108,47 @@ class NhanVienActivity : BaseActivity() {
         rcvListNhanVien.setHasFixedSize(false)
         rcvListNhanVien.isNestedScrollingEnabled = false
         rcvListNhanVien.adapter = mUserAdapter
+    }
+
+    private fun initSearchNhanVien() {
+        edSearchNhanVien.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                var str = s.toString()
+                var idNhanvien = try {
+                    Integer.parseInt(str)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                val listNhanVien = ArrayList<UserModel>()
+                for (nhanvien in mListNhanVien) {
+                    if (nhanvien.userId == idNhanvien || nhanvien.name.contains(str, true)) {
+                        listNhanVien.add(nhanvien)
+                    }
+                    if (s.isNullOrEmpty()) {
+                        imvSearch.visibility = View.VISIBLE
+                        imvEmpty.visibility = View.GONE
+                        mUserAdapter.setListQuanLy(mListNhanVien)
+                    } else {
+                        imvSearch.visibility = View.GONE
+                        imvEmpty.visibility = View.VISIBLE
+                        mUserAdapter.setListQuanLy(listNhanVien)
+                        if (listNhanVien.isEmpty()) {
+                            tvNoData.visibility = View.VISIBLE
+                        } else {
+                            tvNoData.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
     }
 
     override fun onResume() {
