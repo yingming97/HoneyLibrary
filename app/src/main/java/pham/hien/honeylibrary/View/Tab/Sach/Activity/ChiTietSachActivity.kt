@@ -17,9 +17,7 @@ import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
-import pham.hien.honeylibrary.ViewModel.Main.SachViewModel
 import pham.hien.honeylibrary.ViewModel.Main.TheLoaiViewModel
-import pham.yingming.honeylibrary.Dialog.XacNhanDialog
 import pham.yingming.honeylibrary.Dialog.XacNhanThuHoiDialog
 
 class ChiTietSachActivity : BaseActivity() {

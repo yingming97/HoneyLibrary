@@ -6,6 +6,7 @@ import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import pham.hien.honeylibrary.FireBase.FireStore.DoanhThuDAO
 import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
 import pham.hien.honeylibrary.Model.PhieuMuon
 import pham.hien.honeylibrary.Model.SachThue
@@ -14,6 +15,7 @@ import pham.hien.honeylibrary.Utils.*
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachPhieuMuon
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachThueSua
+import pham.hien.honeylibrary.View.Tab.PhieuMuon.Dialog.XacNhanXoaPhieuDialog
 import pham.yingming.honeylibrary.Dialog.FailDialog
 import pham.yingming.honeylibrary.Dialog.XacNhanDialog
 import java.text.SimpleDateFormat
@@ -40,7 +42,7 @@ class SuaPhieuMuonActivity : BaseActivity() {
 
     private lateinit var rcvListSachThue: RecyclerView
 
-    private val formatter = SimpleDateFormat("dd/mm/yyyy", Locale("vi"))
+    private val formatter = SimpleDateFormat("dd/MM/yyyy", Locale("vi"))
     private lateinit var mPhieuMuon: PhieuMuon
     private var mListSachThue = ArrayList<SachThue>()
     private lateinit var mSachThueAdapter: AdapterListSachThueSua
@@ -107,17 +109,21 @@ class SuaPhieuMuonActivity : BaseActivity() {
 
             }
             imv_delete_phieu -> {
-                XacNhanDialog(this,
-                    getString(R.string.ban_co_chac_chan_muon_xoa),
-                    getString(R.string.du_lieu_khong_the_phuc_hoi_sau_khi_xoa)) {
-                    if (mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
-                        FailDialog(this,
-                            getString(R.string.loi),
-                            getString(R.string.chi_co_the_xoa_phieu_muon_da_tra)).show()
-                    } else {
+                XacNhanXoaPhieuDialog(this,
+                    taoSai = {
                         PhieuMuonDAO().deletePhieuMuon(this, mPhieuMuon)
+                        DoanhThuDAO().deleteDoanhThu(mPhieuMuon.ngayThue)
+                    },
+                    khac = {
+                        if (mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
+                            FailDialog(this,
+                                getString(R.string.loi),
+                                getString(R.string.chi_co_the_xoa_phieu_muon_da_tra)).show()
+                        } else {
+                            PhieuMuonDAO().deletePhieuMuon(this, mPhieuMuon)
+                        }
                     }
-                }.show()
+                ).show()
             }
         }
     }

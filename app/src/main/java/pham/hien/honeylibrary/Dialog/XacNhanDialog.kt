@@ -14,7 +14,7 @@ import pham.hien.honeylibrary.R
 class XacNhanDialog(
     context: Context,
     private val title: String,
-    private val content: String, private val callback: (() -> Unit)? = null
+    private val content: String, private val dongY: (() -> Unit), private val huy: () -> Unit,
 ) :
     Dialog(context),
     View.OnClickListener {
@@ -60,9 +60,12 @@ class XacNhanDialog(
 
     override fun onClick(v: View?) {
         when (v) {
-            imvClose, tvHuy -> dismiss()
+            imvClose, tvHuy -> {
+                huy()
+                dismiss()
+            }
             tvXoa -> {
-                callback?.invoke()
+                dongY()
                 dismiss()
             }
         }

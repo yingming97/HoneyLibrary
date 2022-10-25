@@ -72,8 +72,8 @@
             android:background="@drawable/bg_btn_blue_rd_5"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/_30sdp"
-            android:text="Xóa"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="Đồng ý"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_18sdp" />
