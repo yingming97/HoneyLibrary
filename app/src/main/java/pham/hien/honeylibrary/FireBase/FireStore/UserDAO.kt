@@ -76,8 +76,8 @@ class UserDAO {
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
-                    context.getString(R.string.dang_ky_thanh_cong),
-                    context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_dang_ky)
+                    "Sửa lỗi",
+                    "Đã xảy ra lỗi trong quá trình update"
                 ){}.show()
             }
     }

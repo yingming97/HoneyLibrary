@@ -129,4 +129,8 @@ class DocGiaActivity : BaseActivity() {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        mUserModel.getListDocGia()
+    }
 }

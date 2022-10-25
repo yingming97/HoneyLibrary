@@ -22,6 +22,7 @@ import pham.hien.honeylibrary.View.Support.SupportActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.ChangePasswordActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.DocGia.DocGiaActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.NhanVienActivity
+import pham.hien.honeylibrary.View.Tab.Option.Activity.*
 
 class OptionView : BaseView {
 
@@ -38,6 +39,7 @@ class OptionView : BaseView {
     private lateinit var lnlDangXuat: LinearLayout
     private lateinit var tvUserName: TextView
     private lateinit var imv_avatar: ImageView
+    private lateinit var layout_info_user: RelativeLayout
 
     constructor(context: Context?) : super(context) {
         if (context != null) {
@@ -67,6 +69,7 @@ class OptionView : BaseView {
         btnLogin = rootView.findViewById(R.id.btn_login)
         tvUserName = rootView.findViewById(R.id.tv_user_name)
         imv_avatar = rootView.findViewById(R.id.imv_avatar)
+        layout_info_user = rootView.findViewById(R.id.layout_info_user)
 
 
 
@@ -78,6 +81,7 @@ class OptionView : BaseView {
         lnlQuanLyNhanVien.setOnClickListener(this)
         btnLogin.setOnClickListener(this)
         imv_avatar.setOnClickListener(this)
+        layout_info_user.setOnClickListener(this)
 
     }
 
@@ -131,17 +135,16 @@ class OptionView : BaseView {
                 lnlTroGiup -> {
                     mContext.startActivity(Intent(mContext, SupportActivity::class.java))
                 }
-                imv_avatar -> {
-
+                imv_avatar, layout_info_user -> {
+                    mContext.startActivity(Intent(mContext, ProfileActivity::class.java))
                 }
                 lnlDangXuat -> {
                     signOut()
                 }
-
             }
         } else {
             when (view) {
-                btnLogin, lnlDoiMatKhau, lnlQuanLyDocGia, lnlThongKe, lnlQuanLyNhanVien, lnlTroGiup, imv_avatar -> {
+                btnLogin, lnlDoiMatKhau, lnlQuanLyDocGia, lnlThongKe, lnlQuanLyNhanVien, lnlTroGiup, imv_avatar, layout_info_user -> {
                     mContext.startActivity(Intent(mContext, LoginActivity::class.java))
                 }
             }

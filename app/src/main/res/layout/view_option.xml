@@ -77,6 +77,14 @@
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:text="Đăng nhập"
                     android:textColor="@color/white" />
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_14sdp"
+                    android:src="@drawable/ic_arrow_right" />
             </RelativeLayout>
 
             <LinearLayout

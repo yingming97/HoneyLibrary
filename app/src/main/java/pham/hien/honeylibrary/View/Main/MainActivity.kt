@@ -218,7 +218,6 @@ class MainActivity : BaseActivity(), MenuBottomView.BottomMenuBarListener {
         super.onResume()
         mUser = SharedPrefUtils.getUserData(this)!!
         layoutOptionView.updateUser(mUser)
-        layoutOptionView.updateUser(mUser)
         layoutPhieuMuonView.loadView(mUser.type)
         layoutPhieuMuonView.openForTheFirstTime(this)
         layoutSachView.openForTheFirstTime(this)

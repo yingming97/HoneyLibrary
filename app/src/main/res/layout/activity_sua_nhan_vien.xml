@@ -38,7 +38,7 @@
         android:layout_height="@dimen/_80sdp"
         android:layout_below="@+id/rlt_toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:src="@drawable/ic_avatar_default"
         app:civ_border_color="@color/white"
         app:civ_border_width="@dimen/_1sdp" />

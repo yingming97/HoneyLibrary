@@ -24,7 +24,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imv_back_doc_gia"
+            android:id="@+id/imb_backchitiet"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
             android:padding="@dimen/_15sdp"
@@ -33,7 +33,7 @@
     </RelativeLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imv_avatar_doc_gia"
+        android:id="@+id/imv_avatar"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_80sdp"
         android:layout_below="@+id/rlt_toolbar"
@@ -44,12 +44,12 @@
         app:civ_border_width="@dimen/_1sdp" />
 
     <ImageView
-        android:id="@+id/imv_edit_doc_gia"
+        android:id="@+id/imv_sua_nhan_vien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rlt_toolbar"
         android:layout_marginTop="@dimen/_100sdp"
-        android:layout_toEndOf="@+id/imv_avatar_doc_gia"
+        android:layout_toEndOf="@+id/imv_avatar"
         android:src="@drawable/ic_edit"
         android:visibility="visible" />
 
@@ -57,10 +57,11 @@
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imv_avatar_doc_gia"
+        android:layout_below="@+id/imv_avatar"
         android:layout_marginTop="@dimen/_20sdp"
         android:fontFamily="@font/roboto"
         android:gravity="center"
+        android:text="Vũ Mạnh Tú"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sdp" />
@@ -72,6 +73,7 @@
         android:layout_below="@+id/tv_name"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
+        android:text="vmt@gmail.com"
         android:textColor="#9A9A9A"
         android:textSize="@dimen/_14sdp" />
 
@@ -100,7 +102,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
+            android:layout_height="@dimen/_1sdp"
             android:layout_alignParentBottom="true"
             android:background="#7D91F0" />
     </RelativeLayout>
