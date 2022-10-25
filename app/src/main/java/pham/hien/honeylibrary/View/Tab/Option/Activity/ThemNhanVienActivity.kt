@@ -94,7 +94,7 @@ class ThemNhanVienActivity : BaseActivity() {
         checkForm(hoten, mail, diachi, sdt, quyen) { check, user, sdt ->
             if (check) {
                 CreateNewAccount().createNewUser(this, user) {
-
+                    SuccessDialog(this,"Them Thanh Cong",it).show()
                 }
             }
         }

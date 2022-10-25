@@ -12,7 +12,7 @@ class UserModel : Serializable {
     var email: String = ""
     var sdt: String = ""
     var diaChi: String? = null
-    val hoatDong = true
+    var hoatDong = true
 
     constructor()
 

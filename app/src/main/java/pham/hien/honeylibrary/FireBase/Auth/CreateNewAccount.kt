@@ -37,7 +37,6 @@ class CreateNewAccount {
                             activity.getString(R.string.dang_ky_thanh_cong),
                             ""
                         ).show()
-                        activity.finish()
                     }
                     .addOnFailureListener { e ->
                         Log.d(TAG, "addOnFailureListener: $user")
@@ -45,7 +44,7 @@ class CreateNewAccount {
                             activity,
                             activity.getString(R.string.dang_ky_thanh_cong),
                             activity.getString(R.string.da_xay_ra_loi_trong_qua_trinh_dang_ky)
-                        ).show()
+                        )
                     }
 //                mAuth.signOut()
             }
