@@ -1,6 +1,7 @@
 package pham.hien.honeylibrary.View.Tab.Sach.Activity
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -93,6 +94,7 @@ class ChiTietSachActivity : BaseActivity() {
         mTheLoaiViewModel.getListTheLoai()
         val user = SharedPrefUtils.getUserData(this)!!
         loadDataSach(user)
+
     }
 
     override fun onClick(view: View?) {
@@ -132,10 +134,19 @@ class ChiTietSachActivity : BaseActivity() {
             Constant.QUYEN.ADMIN, Constant.QUYEN.THU_THU -> {
                 layout_thu_hoi.visibility = View.VISIBLE
                 layout_chinh_sua.visibility = View.VISIBLE
+                layout_luu_hanh.visibility = View.VISIBLE
+                if (!mSach.thuHoi) {
+                    layout_thu_hoi.visibility = View.VISIBLE
+                    layout_luu_hanh.visibility = View.GONE
+                } else {
+                    layout_luu_hanh.visibility = View.VISIBLE
+                    layout_thu_hoi.visibility = View.GONE
+                }
             }
             else -> {
                 layout_thu_hoi.visibility = View.GONE
                 layout_chinh_sua.visibility = View.GONE
+                layout_luu_hanh.visibility = View.GONE
             }
         }
         Glide.with(this).load(mSach.anhBia).placeholder(R.drawable.img_sach_add_default)
@@ -145,14 +156,7 @@ class ChiTietSachActivity : BaseActivity() {
         tv_so_luong.text = mSach.soLuong.toString()
         tv_gia_thue.text = mSach.giaThue.toString()
         tv_so_luong_con_lai.text = mSach.soLuongConLai.toString()
-        tv_content_gioi_thieu.text = mSach.gioiThieu.toString()
-        if (!mSach.thuHoi) {
-            layout_thu_hoi.visibility = View.VISIBLE
-            layout_luu_hanh.visibility = View.GONE
-        } else {
-            layout_luu_hanh.visibility = View.VISIBLE
-            layout_thu_hoi.visibility = View.GONE
-        }
+        tv_content_gioi_thieu.text = mSach.gioiThieu
     }
 
     private fun getTenTheLoai(listTheLoai: ArrayList<TheLoai>, tenTheLoai: (String) -> Unit) {

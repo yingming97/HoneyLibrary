@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -41,10 +42,11 @@ class AdapterListSachHome(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewItemSach, position: Int) {
         val sach = mListSach[position]
+        val animation = AnimationUtils.loadAnimation(mContext, R.anim.blink)
+        holder.imv_new.startAnimation(animation)
         Glide.with(mContext).load(sach.anhBia).placeholder(R.drawable.ic_book_default)
             .into(holder.imvBook)
-        holder.tv_name.text = "${sach.maSach} - ${sach.tenSach}"
-        holder.tv_gioi_thieu.text = sach.gioiThieu
+        holder.tv_name.text = sach.tenSach
         holder.layoutItemSach.setOnClickListener {
             call(sach)
         }
@@ -56,12 +58,14 @@ class AdapterListSachHome(
 
     class ViewItemSach(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imvBook: ImageView
+        val imv_new: ImageView
         val tv_name: TextView
         val tv_gioi_thieu: TextView
         val layoutItemSach: RelativeLayout
 
         init {
             imvBook = itemView.findViewById(R.id.imv_book)
+            imv_new = itemView.findViewById(R.id.imv_new)
             tv_name = itemView.findViewById(R.id.tv_name)
             tv_gioi_thieu = itemView.findViewById(R.id.tv_gioi_thieu)
             layoutItemSach = itemView.findViewById(R.id.layout_item_sach)

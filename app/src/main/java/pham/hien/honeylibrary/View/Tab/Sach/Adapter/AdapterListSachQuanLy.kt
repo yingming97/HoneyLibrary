@@ -16,7 +16,7 @@ import pham.hien.honeylibrary.R
 class AdapterListSachQuanLy(
     context: Context,
     listSach: ArrayList<Sach>,
-    callback: ((Sach) -> Unit)
+    callback: ((Sach) -> Unit),
 ) :
     RecyclerView.Adapter<AdapterListSachQuanLy.ViewItemSach>() {
 
@@ -48,6 +48,13 @@ class AdapterListSachQuanLy(
         holder.layoutItemSach.setOnClickListener {
             call(sach)
         }
+        if (sach.soLuongConLai <= 0) {
+            holder.tv_trang_thai.visibility = View.VISIBLE
+            holder.layoutItemSach.setBackgroundResource(R.drawable.img_bg_phieu_da_tra)
+        } else {
+            holder.tv_trang_thai.visibility = View.GONE
+            holder.layoutItemSach.setBackgroundResource(R.drawable.img_bg_phieu_dang_muon)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -58,12 +65,14 @@ class AdapterListSachQuanLy(
         val imvBook: ImageView
         val tv_name: TextView
         val tv_so_luong: TextView
+        val tv_trang_thai: TextView
         val layoutItemSach: RelativeLayout
 
         init {
             imvBook = itemView.findViewById(R.id.imv_book)
             tv_name = itemView.findViewById(R.id.tv_name)
             tv_so_luong = itemView.findViewById(R.id.tv_so_luong)
+            tv_trang_thai = itemView.findViewById(R.id.tv_trang_thai)
             layoutItemSach = itemView.findViewById(R.id.layout_item_sach)
         }
     }

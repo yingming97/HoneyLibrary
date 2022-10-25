@@ -46,6 +46,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:background="@drawable/bg_ed_white_rd_8"
+            android:hint="Nhập mã/tên sách"
             android:padding="@dimen/_5sdp"
             android:textColor="@color/text_color_72708E" />
 
@@ -116,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:paddingVertical="@dimen/_10sdp"
-                    android:text="Sách đã thu hổi"
+                    android:text="Sách đã thu hồi"
                     android:textColor="@color/no_data_text"
                     android:textSize="@dimen/_14sdp" />
 

@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import gun0912.tedimagepicker.builder.TedImagePicker
+import pham.hien.honeylibrary.Dialog.ProgressBarLoading
 import pham.hien.honeylibrary.FireBase.FireStore.SachDAO
 import pham.hien.honeylibrary.FireBase.Storage.Images
 import pham.hien.honeylibrary.Model.Sach
@@ -56,6 +57,7 @@ class AddSachActivity : BaseActivity() {
     private lateinit var rcv_list_the_loai: RecyclerView
     private lateinit var nsv_list_the_loai: NestedScrollView
 
+    private lateinit var mProgressBar: ProgressBarLoading
     private var isShowListTheLoai = false
     private lateinit var mSach: Sach
     private var mListAllSach = ArrayList<Sach>()
@@ -117,6 +119,7 @@ class AddSachActivity : BaseActivity() {
         mSach = Sach()
         mSachViewModel.getListAllSach()
         mTheLoaiViewModel.getListTheLoai()
+        mProgressBar = ProgressBarLoading(this)
         Glide.with(this).load(R.drawable.img_sach_add_default).into(imv_book)
         initRecycleViewTheLoai()
         rcv_list_the_loai.visibility = View.GONE
@@ -149,6 +152,7 @@ class AddSachActivity : BaseActivity() {
                 }
             }
             tv_them_sach -> {
+                mProgressBar.showLoading()
                 checkSachValidate {
                     if (it) {
                         addNewSach()
@@ -171,6 +175,7 @@ class AddSachActivity : BaseActivity() {
             mSach.anhBia = it
             SachDAO().addSach(this, mSach) { addDone ->
                 if (addDone) {
+                    mProgressBar.hideLoading()
                     mSach = Sach()
                     Glide.with(this).load(R.drawable.img_sach_add_default).into(imv_book)
                     ed_gia_sach.setText("")
@@ -229,6 +234,7 @@ class AddSachActivity : BaseActivity() {
         if (strError.isEmpty()) {
             checkDone(true)
         } else {
+            mProgressBar.hideLoading()
             checkDone(false)
             FailDialog(this, "Lỗi", strError).show()
         }

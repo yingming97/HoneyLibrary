@@ -1,7 +1,6 @@
 package pham.hien.honeylibrary.FireBase.Auth
 
 import android.app.Activity
-import android.content.Intent
 import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -9,7 +8,6 @@ import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
-import pham.hien.honeylibrary.View.Tab.Option.Activity.DocGia.DocGiaActivity
 import pham.yingming.honeylibrary.Dialog.SuccessDialog
 
 class CreateNewAccount {
@@ -21,7 +19,7 @@ class CreateNewAccount {
     // user : userId đã đc + 1 so với userId của phần tử cuối cùng ListUser
     // user : đã qua được validate
 
-    fun createNewUser(activity: Activity, user: UserModel, callback: (() -> Unit)?) {
+    fun createNewUser(activity: Activity, user: UserModel, getUID: ((String) -> Unit)) {
         Log.d(TAG, "createNewUser: $user")
         mAuth.createUserWithEmailAndPassword(user.email, user.sdt)
             .addOnSuccessListener {
@@ -91,6 +89,7 @@ class CreateNewAccount {
                             activity.finish()
                         }.show()
                     }
+//                mAuth.signOut()
             }
             .addOnFailureListener {
                 Log.d(TAG, "getFirebaseId: error $it")

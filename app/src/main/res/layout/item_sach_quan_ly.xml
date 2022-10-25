@@ -16,8 +16,7 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_centerVertical="true"
         android:elevation="1dp"
-        android:src="@drawable/ic_book_default"
-        />
+        android:src="@drawable/ic_book_default" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -55,6 +54,20 @@
         android:text="Sô lượng : 2"
         android:textColor="@color/white"
         android:textSize="@dimen/_10sdp" />
+
+    <TextView
+        android:id="@+id/tv_trang_thai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_so_luong"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_toEndOf="@+id/imv_book"
+        android:fontFamily="@font/roboto"
+        android:text="Tạm thời không có"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
+        android:visibility="gone" />
 
     <ImageView
         android:layout_width="wrap_content"

@@ -27,6 +27,9 @@ class SuaNhanVienActivity : BaseActivity() {
     private lateinit var radioThuThu: RadioButton
     private lateinit var radioQuanLy: RadioButton
 
+    private lateinit var radioHoatDong: RadioButton
+    private lateinit var radioVoHieuHoa: RadioButton
+
     private lateinit var mUserModel: UserModel
     private lateinit var mListUserModel: ArrayList<UserModel>
     private lateinit var arrUser: List<UserModel>
@@ -47,6 +50,8 @@ class SuaNhanVienActivity : BaseActivity() {
         layout_luu = findViewById(R.id.layout_luu_nhan_Vien)
         radioThuThu = findViewById(R.id.rd_suaThuthu)
         radioQuanLy = findViewById(R.id.rdQuanLy)
+        radioHoatDong = findViewById(R.id.rd_sua_hoat_dong)
+        radioVoHieuHoa = findViewById(R.id.rd_sua_khong_hoat_dong)
         imb_backchitiet = findViewById(R.id.imb_backchitiet)
     }
 
@@ -81,14 +86,19 @@ class SuaNhanVienActivity : BaseActivity() {
                 } else {
                     thuthu = Constant.QUYEN.ADMIN
                 }
-                checkForm(thuthu) { type, user ->
+                val hoatdong: Boolean
+                if (radioHoatDong.isChecked) {
+                    hoatdong = true
+                } else {
+                    hoatdong = false
+                }
+                checkForm(thuthu, hoatdong) { type, user ->
                     if (type) {
                         if (user != null) {
                             UserDAO().updateNhanVien(this, user)
                         }
                     }
                 }
-                finish()
             }
         }
     }
@@ -103,14 +113,20 @@ class SuaNhanVienActivity : BaseActivity() {
         tv_dia_chi.text = mUserModel.diaChi
         tv_email.text = mUserModel.email
         if (mUserModel.type == Constant.QUYEN.THU_THU) {
-            radioThuThu.isChecked
+            radioThuThu.isChecked = true
         } else {
-            radioQuanLy.isChecked
+            radioQuanLy.isChecked = true
+        }
+        if (mUserModel.hoatDong) {
+            radioHoatDong.isChecked = true
+        } else {
+            radioVoHieuHoa.isChecked = true
         }
     }
 
     private fun checkForm(
         quyen: Int,
+        hoatDong: Boolean,
         callback: (Boolean, UserModel?) -> Unit,
     ) {
         var haveError = false
@@ -119,6 +135,7 @@ class SuaNhanVienActivity : BaseActivity() {
             FailDialog(this, "Thêm Thất Bại", "").show()
         } else {
             mUserModel.type = quyen
+            mUserModel.hoatDong = hoatDong
             callback(true, mUserModel)
         }
     }

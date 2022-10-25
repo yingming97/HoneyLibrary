@@ -10,8 +10,8 @@
     <RelativeLayout
         android:id="@+id/rlt_toolbar"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_height="@dimen/_70sdp">
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginTop="@dimen/_10sdp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,8 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name"
-        android:gravity="center"
         android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
         android:text="vmt@gmail.com"
         android:textColor="#9A9A9A"
         android:textSize="@dimen/_14sdp" />
@@ -80,8 +80,8 @@
     <RelativeLayout
         android:id="@+id/layout_id"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:layout_below="@+id/tv_email"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_below="@+id/layout_hoat_dong"
         android:padding="@dimen/_16sdp">
 
         <TextView
@@ -111,7 +111,7 @@
     <RelativeLayout
         android:id="@+id/layout_dia_chi"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_below="@+id/layout_id"
         android:layout_marginVertical="@dimen/_2sdp"
         android:padding="@dimen/_16sdp">
@@ -143,7 +143,7 @@
     <RelativeLayout
         android:id="@+id/layout_sdt"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_below="@+id/layout_dia_chi"
         android:padding="@dimen/_16sdp">
 
@@ -178,7 +178,7 @@
         android:layout_below="@+id/layout_sdt"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_18sdp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -208,7 +208,45 @@
             android:text="Quản Lý" />
     </RadioGroup>
 
+    <RadioGroup
+        android:id="@+id/layout_hoat_dong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_email"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rd_sua_hoat_dong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@drawable/radio_select_permision"
+            android:button="@drawable/null_radio_button"
+            android:checked="true"
+            android:fontFamily="@font/roboto_medium"
+            android:padding="5dp"
+            android:text="Hoạt Động"
+            android:textColor="@drawable/radio_select_text_permision"
+            android:textSize="@dimen/_12sdp" />
+
+        <RadioButton
+            android:id="@+id/rd_sua_khong_hoat_dong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_select_permision"
+            android:button="@drawable/null_radio_button"
+            android:fontFamily="@font/roboto_medium"
+            android:padding="5dp"
+            android:text="Vô Hiệu Hóa"
+            android:textColor="@drawable/radio_select_text_permision"
+            android:textSize="@dimen/_12sdp" />
+    </RadioGroup>
+
     <LinearLayout
+        android:layout_marginTop="@dimen/_15sdp"
         android:id="@+id/layout_luu_nhan_Vien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -229,9 +267,9 @@
             android:textSize="@dimen/_16sdp" />
 
         <ImageView
-            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:src="@drawable/ic_save" />
     </LinearLayout>
 </RelativeLayout>

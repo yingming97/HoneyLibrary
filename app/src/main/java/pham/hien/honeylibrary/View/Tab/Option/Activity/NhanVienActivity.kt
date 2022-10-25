@@ -122,7 +122,10 @@ class NhanVienActivity : BaseActivity() {
                 }
                 val listNhanVien = ArrayList<UserModel>()
                 for (nhanvien in mListNhanVien) {
-                    if (nhanvien.userId == idNhanvien || nhanvien.name.contains(str, true)) {
+                    if (nhanvien.userId == idNhanvien || nhanvien.name.contains(str,
+                            true) || nhanvien.sdt.contains(str, true) ||
+                        nhanvien.email.contains(str, true)
+                    ) {
                         listNhanVien.add(nhanvien)
                     }
                     if (s.isNullOrEmpty()) {
