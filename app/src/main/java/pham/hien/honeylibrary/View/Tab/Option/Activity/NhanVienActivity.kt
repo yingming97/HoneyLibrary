@@ -54,7 +54,6 @@ class NhanVienActivity : BaseActivity() {
         tvNoData = findViewById(R.id.tv_no_data)
         btnBack = findViewById(R.id.imv_close)
 
-        mProgressBarLoading = ProgressBarLoading(this)
         ScreenUtils().setMarginStatusBar(this, toolBar)
     }
 
@@ -71,7 +70,6 @@ class NhanVienActivity : BaseActivity() {
 
     override fun initObserver() {
         mNhanVienViewModel.nhanvienModel.observe(this) {
-            mProgressBarLoading.showLoading()
             if (it != null) {
                 mProgressBarLoading.hideLoading()
                 mUserAdapter.setListQuanLy(it)
@@ -82,6 +80,7 @@ class NhanVienActivity : BaseActivity() {
 
     override fun initDataDefault() {
         mProgressBarLoading = ProgressBarLoading(this)
+        mProgressBarLoading.showLoading()
         mNhanVienViewModel.getListNhanVien()
         initSearchNhanVien()
     }
