@@ -1,5 +1,6 @@
 package pham.hien.honeylibrary.View.Tab.ThongKe
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -7,9 +8,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.Chart
@@ -26,8 +30,14 @@ import pham.hien.honeylibrary.Extention.CustomBarChartRender
 import pham.hien.honeylibrary.Extention.CustomMarkerChartView
 import pham.hien.honeylibrary.FireBase.FireStore.DoanhThuDAO
 import pham.hien.honeylibrary.Model.DoanhThu
+import pham.hien.honeylibrary.Model.Sach
 import pham.hien.honeylibrary.R
+import pham.hien.honeylibrary.Utils.Constant
+import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
+import pham.hien.honeylibrary.View.Tab.Sach.Activity.ChiTietSachActivity
+import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListSachQuanLy
+import pham.hien.honeylibrary.View.Tab.ThongKe.Adapter.AdapterSachThieu
 import pham.hien.honeylibrary.ViewModel.ThongKeViewModel
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatterBuilder
@@ -40,6 +50,7 @@ class ThongKeActivity : BaseActivity() {
     private lateinit var imvNextTimeChart: ImageView
     private lateinit var imvLastTimeChart: ImageView
     private lateinit var tvTimeChart: TextView
+    private lateinit var toolBar: RelativeLayout
 
     private lateinit var barChart: BarChart
     private var mYear = 0
@@ -51,17 +62,26 @@ class ThongKeActivity : BaseActivity() {
     private val formatter = SimpleDateFormat("dd/MM/yyyy")
 
     private var listDoanhThu = ArrayList<DoanhThu>()
+    private var listSachThieu = ArrayList<Sach>()
     private lateinit var thongKeViewModel: ThongKeViewModel
+    private lateinit var rcvSachThieu: RecyclerView
+    private lateinit var adapterListSachThieu: AdapterSachThieu
 
     override fun getLayout(): Int {
         return R.layout.activity_thong_ke
     }
 
     override fun initView() {
+        toolBar = findViewById(R.id.tool_bar)
         imvNextTimeChart = findViewById(R.id.imv_report_view__next_time_chart)
         imvLastTimeChart = findViewById(R.id.imv_report_view__last_time_chart)
         barChart = findViewById(R.id.bar_chart)
         tvTimeChart = findViewById(R.id.txv_report_view__time_chart)
+        rcvSachThieu = findViewById(R.id.rcv_sach_thieu)
+        initRecycleViewSachThieu()
+
+        ScreenUtils().setMarginStatusBar(this, toolBar)
+
     }
 
     override fun initListener() {
@@ -80,10 +100,17 @@ class ThongKeActivity : BaseActivity() {
             listDoanhThu = it
             initCharView(it)
         }
+
+        thongKeViewModel.mListSachThieuLiveData.observe(this){
+            listSachThieu = it
+            Log.d("cccc", "initObserver: sach: ${it}")
+            adapterListSachThieu.setListSach(it)
+        }
     }
 
     override fun initDataDefault() {
         thongKeViewModel.getListDoanhThu()
+        thongKeViewModel.getListSachThieu()
     }
 
     override fun onClick(view: View?) {
@@ -103,6 +130,14 @@ class ThongKeActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    fun initRecycleViewSachThieu(){
+        adapterListSachThieu = AdapterSachThieu(this, listSachThieu)
+        rcvSachThieu.layoutManager = LinearLayoutManager(this)
+        rcvSachThieu.setHasFixedSize(false)
+        rcvSachThieu.isNestedScrollingEnabled = false
+        rcvSachThieu.adapter = adapterListSachThieu
     }
 
     private fun initCharView(listDoanhThu: ArrayList<DoanhThu>) {
