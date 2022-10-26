@@ -12,6 +12,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import pham.hien.honeylibrary.Dialog.ProgressBarLoading
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
@@ -36,6 +37,7 @@ class NhanVienActivity : BaseActivity() {
     private var mListNhanVien = ArrayList<UserModel>()
     private lateinit var mUserAdapter: AdapterListQuanLy
     private lateinit var mNhanVienViewModel: NhanVienViewModel
+    private lateinit var mProgressBarLoading: ProgressBarLoading
 
     override fun getLayout(): Int {
         return R.layout.activity_nhan_vien
@@ -68,12 +70,14 @@ class NhanVienActivity : BaseActivity() {
 
     override fun initObserver() {
         mNhanVienViewModel.nhanvienModel.observe(this) {
+            mProgressBarLoading = ProgressBarLoading(this)
             mUserAdapter.setListQuanLy(it)
             mListNhanVien = it
         }
     }
 
     override fun initDataDefault() {
+        mProgressBarLoading = ProgressBarLoading(this)
         mNhanVienViewModel.getListNhanVien()
         initSearchNhanVien()
     }
@@ -152,6 +156,7 @@ class NhanVienActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        mProgressBarLoading = ProgressBarLoading(this)
         mNhanVienViewModel.getListNhanVien()
     }
 }

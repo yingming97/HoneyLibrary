@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
-import kotlinx.coroutines.delay
 import pham.hien.honeylibrary.Dialog.ProgressBarLoading
 import pham.hien.honeylibrary.FireBase.Auth.CreateNewAccount
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
@@ -16,7 +15,6 @@ import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.yingming.honeylibrary.Dialog.FailDialog
-import pham.yingming.honeylibrary.Dialog.SuccessDialog
 import java.util.regex.Pattern
 
 class ThemNhanVienActivity : BaseActivity() {
@@ -131,13 +129,7 @@ class ThemNhanVienActivity : BaseActivity() {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             title += "\nEmail sai định dạng"
             haveError = true
-        } else if (diachi.isNullOrEmpty()) {
-            title += "\nĐịa chỉ không được bỏ trống"
-            haveError = true
-        } else if (diachi.length!! < 6) {
-            title += "\nĐịa chỉ không dưới 6 ký tự"
-            haveError = true
-        } else if (sdt.isNullOrEmpty()) {
+        } else {
             for (user in arrUser) {
                 if (user.email == email) {
                     title += "\n Email đã tồn tại"
@@ -145,6 +137,15 @@ class ThemNhanVienActivity : BaseActivity() {
                     break
                 }
             }
+        }
+        if (diachi.isNullOrEmpty()) {
+            title += "\nĐịa chỉ không được bỏ trống"
+            haveError = true
+        } else if (diachi.length!! < 6) {
+            title += "\nĐịa chỉ không dưới 6 ký tự"
+            haveError = true
+        }
+        if (sdt.isNullOrEmpty()) {
             title += "\nSố điện thoại không được bỏ trống"
             haveError = true
 
@@ -159,7 +160,7 @@ class ThemNhanVienActivity : BaseActivity() {
             mProgressBarLoading.hideLoading()
         } else {
             val userModel =
-                UserModel(arrUser.last().userId+1, "", quyen, hoten, email, sdt, diachi)
+                UserModel(arrUser.last().userId + 1, "", quyen, hoten, email, sdt, diachi)
             callback(true, userModel, sdt)
         }
     }
