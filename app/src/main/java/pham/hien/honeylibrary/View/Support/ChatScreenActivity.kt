@@ -1,6 +1,7 @@
 package pham.hien.honeylibrary.View.Support
 
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -45,8 +46,8 @@ class ChatScreenActivity : AppCompatActivity() {
                         .child(mUser.uid + userSend.firebaseId)
                         .push().setValue(messenger).addOnCompleteListener {}
                 }
+            binding.rvChatRead.scrollToPosition(adapter.itemCount - 1)
             binding.edMess.text = null
-
         }
     }
 
@@ -67,6 +68,7 @@ class ChatScreenActivity : AppCompatActivity() {
                         lsMess.add(messages)
                     }
                     adapter.notifyDataSetChanged()
+                    binding.rvChatRead.scrollToPosition(adapter.itemCount - 1)
                 }
                 override fun onCancelled(error: DatabaseError) {}
             })

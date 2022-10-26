@@ -33,8 +33,9 @@
         android:id="@+id/rv_chat_read"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name_contact"
-        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_below="@+id/tv_name_contact"
+        android:layout_above="@+id/rela_bottom"
+        android:layout_marginTop="@dimen/_20sdp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
