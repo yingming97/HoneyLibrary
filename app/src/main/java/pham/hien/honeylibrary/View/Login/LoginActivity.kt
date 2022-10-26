@@ -13,6 +13,7 @@ import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
 import pham.hien.honeylibrary.View.Base.BaseActivity
+import pham.hien.honeylibrary.View.Tab.Option.CustomView.ForgetPasswordView
 import pham.hien.honeylibrary.View.Tab.Option.CustomView.RegisterView
 import pham.yingming.honeylibrary.Dialog.FailDialog
 import java.util.regex.Pattern
@@ -25,6 +26,11 @@ class LoginActivity : BaseActivity() {
     private var arrUser = ArrayList<UserModel>()
     private lateinit var tvRegister: TextView
     private lateinit var registerView: RegisterView
+    private lateinit var tvResetPass: TextView
+    private lateinit var layoutForgetPasswordView: ForgetPasswordView
+
+
+
 
     override fun getLayout(): Int {
         return R.layout.activity_login
@@ -36,13 +42,17 @@ class LoginActivity : BaseActivity() {
         edPass = findViewById(R.id.ed_password)
         tvRegister = findViewById(R.id.tv_register)
         registerView = findViewById(R.id.view_register)
-
+        tvResetPass = findViewById(R.id.tv_reset_pass)
+        layoutForgetPasswordView = findViewById(R.id.layout_forget_password)
         registerView.openForTheFirstTime(this)
+        layoutForgetPasswordView.openForTheFirstTime(this)
+
     }
 
     override fun initListener() {
         btnLogin.setOnClickListener(this)
         tvRegister.setOnClickListener(this)
+        tvResetPass.setOnClickListener(this)
     }
 
     override fun initViewModel() {
@@ -85,6 +95,10 @@ class LoginActivity : BaseActivity() {
             tvRegister -> {
                 AlphaAnimation().visibleAnimation(registerView, 300)
             }
+            tvResetPass -> {
+                AlphaAnimation().visibleAnimation(layoutForgetPasswordView, 300)
+
+            }
         }
     }
 
@@ -119,7 +133,10 @@ class LoginActivity : BaseActivity() {
     override fun onBackPressed() {
         if (registerView.visibility == View.VISIBLE) {
             registerView.closeView()
-        } else {
+        }else if(layoutForgetPasswordView.visibility == View.VISIBLE){
+            layoutForgetPasswordView.closeView()
+        }
+        else {
             super.onBackPressed()
         }
     }

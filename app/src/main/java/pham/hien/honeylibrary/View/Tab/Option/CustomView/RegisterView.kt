@@ -17,6 +17,7 @@ import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
+import pham.hien.honeylibrary.Utils.KeyBoardUtils
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.yingming.honeylibrary.Dialog.FailDialog
@@ -27,7 +28,6 @@ class RegisterView : BaseView {
 
     private lateinit var mContext: Context
     private var checkFirstLaunchView: Boolean = false
-    private lateinit var cvToolbar: CardView
     private lateinit var btnRegister: Button
     private lateinit var edEmail: EditText
     private lateinit var edName: EditText
@@ -113,6 +113,7 @@ class RegisterView : BaseView {
                         ) { checks, mUser ->
                             if (checks) {
                                 Toast.makeText(context,"Đăng ký thành công", Toast.LENGTH_SHORT).show()
+                                KeyBoardUtils.hideKeyboard(mActivity)
                                 LoginRegisterAuth().loginAfterRegister(mUser, pass, mActivity)
                             }
                         }

@@ -154,15 +154,33 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_20sdp" />
 
-                <TextView
-                    android:id="@+id/tv_register"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginBottom="@dimen/_40sdp"
-                    android:text="Bạn chưa có tài khoản?"
-                    android:textColor="#82b2ff"
-                    android:textSize="@dimen/_12sdp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:text="Bạn chưa có tài khoản?"
+                        android:textColor="#82b2ff"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_reset_pass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:text="Quên mật khẩu"
+                        android:textColor="#82b2ff"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -172,6 +190,12 @@
 
     <pham.hien.honeylibrary.View.Tab.Option.CustomView.RegisterView
         android:id="@+id/view_register"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <pham.hien.honeylibrary.View.Tab.Option.CustomView.ForgetPasswordView
+        android:id="@+id/layout_forget_password"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
