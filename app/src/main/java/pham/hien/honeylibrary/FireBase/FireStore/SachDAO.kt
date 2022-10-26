@@ -20,7 +20,9 @@ class SachDAO {
             .document(sach.maSach.toString())
             .set(sach)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.them_sach_thanh_cong), ""){}.show()
+                SuccessDialog(context,
+                    context.getString(R.string.them_sach_thanh_cong),
+                    "") {}.show()
                 addSuccess(true)
             }
             .addOnFailureListener { e ->
@@ -28,7 +30,7 @@ class SachDAO {
                     context,
                     context.getString(R.string.them_sach_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_them_sach)
-                ){}.show()
+                ) {}.show()
                 addSuccess(false)
             }
     }
@@ -104,5 +106,32 @@ class SachDAO {
         db.collection(Constant.SACH.TB_NAME)
             .document(sach.maSach.toString())
             .update(Constant.SACH.COL_THU_HOI, sach.thuHoi)
+    }
+
+    fun addSachThieu(sach: Sach) {
+        db.collection(Constant.SACHTRATHIEU.TB_NAME)
+            .document(sach.maSach.toString())
+            .set(sach)
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener { e ->
+
+            }
+    }
+
+    fun getListSachThieu(listSachTraThieu: (ArrayList<Sach>) -> Unit) {
+        val list = ArrayList<Sach>()
+        db.collection(Constant.SACHTRATHIEU.TB_NAME)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    list.add(document.toObject(Sach::class.java))
+                }
+                list.sortBy { it.maSach }
+                listSachTraThieu(list)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
     }
 }
