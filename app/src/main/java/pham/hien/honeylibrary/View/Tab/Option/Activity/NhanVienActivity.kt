@@ -54,6 +54,7 @@ class NhanVienActivity : BaseActivity() {
         tvNoData = findViewById(R.id.tv_no_data)
         btnBack = findViewById(R.id.imv_close)
 
+        mProgressBarLoading = ProgressBarLoading(this)
         ScreenUtils().setMarginStatusBar(this, toolBar)
     }
 
@@ -70,9 +71,12 @@ class NhanVienActivity : BaseActivity() {
 
     override fun initObserver() {
         mNhanVienViewModel.nhanvienModel.observe(this) {
-            mProgressBarLoading = ProgressBarLoading(this)
-            mUserAdapter.setListQuanLy(it)
-            mListNhanVien = it
+            mProgressBarLoading.showLoading()
+            if (it != null) {
+                mProgressBarLoading.hideLoading()
+                mUserAdapter.setListQuanLy(it)
+                mListNhanVien = it
+            }
         }
     }
 
@@ -86,7 +90,6 @@ class NhanVienActivity : BaseActivity() {
         when (view) {
             imvAddNewNhanVien -> {
                 startActivity(Intent(this, ThemNhanVienActivity::class.java))
-
             }
             btnBack -> {
                 finish()
@@ -126,8 +129,10 @@ class NhanVienActivity : BaseActivity() {
                 }
                 val listNhanVien = ArrayList<UserModel>()
                 for (nhanvien in mListNhanVien) {
-                    if (nhanvien.userId == idNhanvien || nhanvien.name.contains(str,
-                            true) || nhanvien.sdt.contains(str, true) ||
+                    if (nhanvien.userId == idNhanvien || nhanvien.name.contains(
+                            str,
+                            true
+                        ) || nhanvien.sdt.contains(str, true) ||
                         nhanvien.email.contains(str, true)
                     ) {
                         listNhanVien.add(nhanvien)
@@ -135,6 +140,7 @@ class NhanVienActivity : BaseActivity() {
                     if (s.isNullOrEmpty()) {
                         imvSearch.visibility = View.VISIBLE
                         imvEmpty.visibility = View.GONE
+                        tvNoData.visibility = View.GONE
                         mUserAdapter.setListQuanLy(mListNhanVien)
                     } else {
                         imvSearch.visibility = View.GONE
@@ -156,7 +162,6 @@ class NhanVienActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        mProgressBarLoading = ProgressBarLoading(this)
         mNhanVienViewModel.getListNhanVien()
     }
 }
