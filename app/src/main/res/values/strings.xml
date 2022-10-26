@@ -56,4 +56,5 @@
     <string name="thong_ke__tong_so_sach">Tổng số sách</string>
     <string name="thong_ke_thanh_vien">Thành viên</string>
     <string name="thong_ke_sach_moi">Sách mới về</string>
+    <string name="ban_chua_co_tai_khoan">Bạn chưa có tài khoản?   <u>Đăng ký</u></string>
 </resources>

@@ -50,6 +50,7 @@ class ThongKeActivity : BaseActivity() {
     private lateinit var imvNextTimeChart: ImageView
     private lateinit var imvLastTimeChart: ImageView
     private lateinit var tvTimeChart: TextView
+    private lateinit var tv_thong_ke: TextView
     private lateinit var toolBar: RelativeLayout
 
     private lateinit var barChart: BarChart
@@ -76,6 +77,7 @@ class ThongKeActivity : BaseActivity() {
         imvNextTimeChart = findViewById(R.id.imv_report_view__next_time_chart)
         imvLastTimeChart = findViewById(R.id.imv_report_view__last_time_chart)
         barChart = findViewById(R.id.bar_chart)
+        tv_thong_ke = findViewById(R.id.tv_thong_ke)
         tvTimeChart = findViewById(R.id.txv_report_view__time_chart)
         rcvSachThieu = findViewById(R.id.rcv_sach_thieu)
         initRecycleViewSachThieu()
@@ -101,7 +103,7 @@ class ThongKeActivity : BaseActivity() {
             initCharView(it)
         }
 
-        thongKeViewModel.mListSachThieuLiveData.observe(this){
+        thongKeViewModel.mListSachThieuLiveData.observe(this) {
             listSachThieu = it
             Log.d("cccc", "initObserver: sach: ${it}")
             adapterListSachThieu.setListSach(it)
@@ -132,7 +134,7 @@ class ThongKeActivity : BaseActivity() {
         }
     }
 
-    fun initRecycleViewSachThieu(){
+    fun initRecycleViewSachThieu() {
         adapterListSachThieu = AdapterSachThieu(this, listSachThieu)
         rcvSachThieu.layoutManager = LinearLayoutManager(this)
         rcvSachThieu.setHasFixedSize(false)
@@ -193,6 +195,7 @@ class ThongKeActivity : BaseActivity() {
         listDoanhThu: ArrayList<DoanhThu>,
     ) {
         (barChart.onTouchListener as BarLineChartTouchListener).stopDeceleration()
+        tv_thong_ke.text = "Doanh thu tháng ${month + 1} năm $year"
         mMonth = month
         mYear = year
         typeChart = "MONTHLY"

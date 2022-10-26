@@ -42,8 +42,8 @@ class AdapterListSachHome(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewItemSach, position: Int) {
         val sach = mListSach[position]
-        val animation = AnimationUtils.loadAnimation(mContext, R.anim.blink)
-        holder.imv_new.startAnimation(animation)
+//        val animation = AnimationUtils.loadAnimation(mContext, R.anim.blink)
+//        holder.imv_new.startAnimation(animation)
         Glide.with(mContext).load(sach.anhBia).placeholder(R.drawable.ic_book_default)
             .into(holder.imvBook)
         holder.tv_name.text = sach.tenSach

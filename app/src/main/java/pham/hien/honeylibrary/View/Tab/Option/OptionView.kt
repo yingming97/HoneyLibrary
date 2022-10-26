@@ -162,6 +162,8 @@ class OptionView : BaseView {
             Glide.with(this).load(user.avatar).placeholder(R.drawable.ic_user_photo_default)
                 .into(imv_avatar)
         } else {
+            Glide.with(this).load(user.avatar).placeholder(R.drawable.ic_user_photo_default)
+                .into(imv_avatar)
             btnLogin.visibility = View.VISIBLE
             tvUserName.visibility = View.GONE
             lnlDangXuat.visibility = View.GONE

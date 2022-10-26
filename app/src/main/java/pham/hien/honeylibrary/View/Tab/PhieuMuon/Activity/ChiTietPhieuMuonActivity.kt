@@ -111,7 +111,7 @@ class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
                     for (sach in mListSach) {
                         if (sach.maSach == it.key) {
                             sach.soLuong = it.value
-                            SachDAO().addSachThieu(sach)
+                            SachDAO().checkAddAndUpdateSachTraThieu(sach)
                             tienPhat += sach.giaSach * it.value
                             tv_tien_phat.text = moneyFormatter(tienPhat)
                             tv_tien_phat.visibility = View.VISIBLE

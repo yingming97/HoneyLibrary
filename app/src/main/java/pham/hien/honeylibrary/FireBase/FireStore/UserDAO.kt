@@ -21,14 +21,31 @@ class UserDAO {
             .document(user.userId.toString())
             .set(user)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.dang_ky_thanh_cong), ""){}.show()
+                SuccessDialog(context, context.getString(R.string.dang_ky_thanh_cong), "") {}.show()
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     context.getString(R.string.dang_ky_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_dang_ky)
-                ){}.show()
+                ) {}.show()
+            }
+    }
+
+    fun getUser(userModel: UserModel, user: (UserModel) -> Unit) {
+        db.collection(Constant.USER.TB_NAME)
+            .document(userModel.userId.toString())
+            .get()
+            .addOnSuccessListener { result ->
+                val u = if (result.exists()) {
+                    result.toObject(UserModel::class.java)!!
+                } else {
+                    UserModel()
+                }
+                user(u)
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
             }
     }
 
@@ -55,14 +72,14 @@ class UserDAO {
             .document(docGia.userId.toString())
             .set(docGia)
             .addOnSuccessListener {
-                SuccessDialog(context, context.getString(R.string.sua_the_loai_thanh_cong), ""){}
+                SuccessDialog(context, context.getString(R.string.sua_the_loai_thanh_cong), "") {}
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     context.getString(R.string.sua_the_loai_khong_thanh_cong),
                     context.getString(R.string.da_xay_ra_loi_trong_qua_trinh_sua_the_loai)
-                ){}
+                ) {}
             }
     }
 
@@ -71,14 +88,14 @@ class UserDAO {
             .document(user.userId.toString())
             .set(user)
             .addOnSuccessListener {
-                SuccessDialog(context, "Sửa Thành Công", ""){}.show()
+                SuccessDialog(context, "Sửa Thành Công", "") {}.show()
             }
             .addOnFailureListener { e ->
                 SuccessDialog(
                     context,
                     "Sửa lỗi",
                     "Đã xảy ra lỗi trong quá trình update"
-                ){}.show()
+                ) {}.show()
             }
     }
 

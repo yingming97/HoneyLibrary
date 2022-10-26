@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_16sdp"
                 android:layout_marginTop="16dp"
-                android:text="Doanh thu các tháng"
+                android:text="Doanh thu tháng"
                 android:textColor="@color/text_color_1c4942"
                 android:textSize="@dimen/_18sdp"
                 android:textStyle="bold" />

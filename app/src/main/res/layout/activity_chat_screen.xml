@@ -33,9 +33,9 @@
         android:id="@+id/rv_chat_read"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_name_contact"
         android:layout_above="@+id/rela_bottom"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_90sdp"
+        android:nestedScrollingEnabled="true"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -43,18 +43,18 @@
         android:id="@+id/rela_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_ed_white_rd_8"
+        android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:orientation="horizontal"
+        android:background="@drawable/bg_ed_white_rd_8"
         android:gravity="center_vertical"
-        android:padding="5dp"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <EditText
-            android:layout_weight="1"
             android:id="@+id/ed_mess"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@color/white"
             android:hint="Nhập tin nhắn"
             android:padding="10dp" />
@@ -63,8 +63,7 @@
             android:id="@+id/btn_send"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:background="@drawable/btn_arow_send"
-            />
+            android:background="@drawable/btn_arow_send" />
     </LinearLayout>
 
 </RelativeLayout>

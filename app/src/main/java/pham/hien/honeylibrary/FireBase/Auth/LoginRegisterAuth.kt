@@ -19,7 +19,7 @@ class LoginRegisterAuth {
         email: String,
         pass: String,
         arrUser: List<UserModel>,
-        callback: (Boolean) -> Unit
+        callback: (Boolean) -> Unit,
     ) {
         val auth = Firebase.auth
         auth.signInWithEmailAndPassword(
@@ -30,12 +30,19 @@ class LoginRegisterAuth {
                 val user = auth.currentUser
                 for (mUser in arrUser) {
                     if (mUser.firebaseId == user?.uid) {
-                        SharedPrefUtils.setUserData(context, mUser)
+                        if (mUser.hoatDong) {
+                            SharedPrefUtils.setUserData(context, mUser)
+                            SharedPrefUtils.setPassword(context, pass)
+                            SharedPrefUtils.setLogin(context, true)
+                            callback(true)
+                        } else {
+                            FailDialog(context,
+                                "Tài khoản của bạn đã bị vô hiệu hóa",
+                                "Liên hệ với quản lý để mở tài khoản").show()
+                            callback(false)
+                        }
                     }
                 }
-                SharedPrefUtils.setPassword(context, pass)
-                SharedPrefUtils.setLogin(context, true)
-                callback(true)
             } else {
                 FailDialog(
                     context,
@@ -52,7 +59,7 @@ class LoginRegisterAuth {
         activity: Activity,
         mUser: UserModel,
         pass: String,
-        callback: (Boolean, UserModel) -> Unit
+        callback: (Boolean, UserModel) -> Unit,
     ) {
         val auth = Firebase.auth
         auth.createUserWithEmailAndPassword(mUser.email, pass)
@@ -79,7 +86,7 @@ class LoginRegisterAuth {
             }
     }
 
-    fun loginAfterRegister(mUser: UserModel, pass: String, activity: Activity){
+    fun loginAfterRegister(mUser: UserModel, pass: String, activity: Activity) {
         val auth = Firebase.auth
         auth.signInWithEmailAndPassword(
             mUser.email,

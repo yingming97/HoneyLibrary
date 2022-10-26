@@ -119,6 +119,28 @@ class SachDAO {
             }
     }
 
+
+    fun checkAddAndUpdateSachTraThieu(sach: Sach) {
+        getListSachThieu {
+            for (sachTraThieu in it) {
+                if (sachTraThieu.maSach == sach.maSach) {
+                    sachTraThieu.soLuong = sachTraThieu.soLuong + sach.soLuong
+                    Log.d(TAG, "sachTraThieu.soLuong : ${sachTraThieu.soLuong}")
+                    updateSoLuongSachThieu(sachTraThieu)
+                    break
+                } else {
+                    addSachThieu(sach)
+                }
+            }
+        }
+    }
+
+    fun updateSoLuongSachThieu(sach: Sach) {
+        db.collection(Constant.SACHTRATHIEU.TB_NAME)
+            .document(sach.maSach.toString())
+            .update(Constant.SACH.COL_SO_LUONG, sach.soLuong)
+    }
+
     fun getListSachThieu(listSachTraThieu: (ArrayList<Sach>) -> Unit) {
         val list = ArrayList<Sach>()
         db.collection(Constant.SACHTRATHIEU.TB_NAME)

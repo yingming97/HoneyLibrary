@@ -34,5 +34,4 @@ class SplashViewModel : ViewModel() {
             }
         }, 100, 10)
     }
-
 }
