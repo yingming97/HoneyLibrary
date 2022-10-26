@@ -23,6 +23,7 @@ import pham.hien.honeylibrary.View.Tab.Option.Activity.ChangePasswordActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.DocGia.DocGiaActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.NhanVienActivity
 import pham.hien.honeylibrary.View.Tab.Option.Activity.*
+import pham.hien.honeylibrary.View.Tab.ThongKe.ThongKeActivity
 
 class OptionView : BaseView {
 
@@ -129,7 +130,7 @@ class OptionView : BaseView {
                 }
 
                 lnlThongKe -> {
-                    Toast.makeText(mContext, "Đang được phát triển.", Toast.LENGTH_LONG).show()
+                    mContext.startActivity(Intent(mContext, ThongKeActivity::class.java))
                 }
 
                 lnlTroGiup -> {
