@@ -13,13 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.Model.SachThue
 import pham.hien.honeylibrary.R
+import pham.yingming.honeylibrary.Dialog.FailDialog
 
-class AdapterListSachThueSua(
+class AdapterListSachTraThieu(
     context: Context,
     listSachThue: ArrayList<SachThue>,
-
-    ) :
-    RecyclerView.Adapter<AdapterListSachThueSua.ViewItemSachThue>() {
+    private val themSoLuong: (Int, Int) -> Unit,
+    private val giamSoLuong: (Int, Int) -> Unit,
+) :
+    RecyclerView.Adapter<AdapterListSachTraThieu.ViewItemSachThue>() {
 
     private val TAG = "YingMing"
     private var mContext: Context = context
@@ -34,22 +36,37 @@ class AdapterListSachThueSua(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewItemSachThue {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_sach_phieu_muon_sua, parent, false)
+            .inflate(R.layout.item_sach_tra_thieu, parent, false)
         return ViewItemSachThue(view)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewItemSachThue, position: Int) {
         val sachThue = mListSachThue[position]
+        var soLuong = 0
         Glide.with(mContext).load(sachThue.biaSach).placeholder(R.drawable.ic_book_default)
             .into(holder.imv_book)
         holder.tv_name.text = sachThue.tenSach
-        holder.tv_so_luong.text = sachThue.soLuong.toString()
+        holder.tv_so_luong.text = "0"
         holder.imv_add.setOnClickListener {
-            sachThue.soLuong++
+            Log.d(TAG, "soLuong: ${sachThue.soLuong}")
+            if (soLuong < sachThue.soLuong) {
+                soLuong += 1
+                holder.tv_so_luong.text = soLuong.toString()
+                themSoLuong(sachThue.maSach, soLuong)
+            } else {
+                FailDialog(mContext, "Lỗi", "Nhiều hơn sách đã mượn").show()
+            }
         }
         holder.imv_minus.setOnClickListener {
-            sachThue.soLuong--
+            Log.d(TAG, "soLuong: ${sachThue.soLuong}")
+            if (soLuong > 0) {
+                soLuong -= 1
+                holder.tv_so_luong.text = soLuong.toString()
+                giamSoLuong(sachThue.maSach, soLuong)
+            } else {
+                FailDialog(mContext, "Lỗi", "Số lượng không được nhỏ hơn 0").show()
+            }
         }
     }
 

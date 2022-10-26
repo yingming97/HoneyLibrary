@@ -31,6 +31,8 @@ import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuDaTra
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuDangMuon
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListPhieuQuaHan
 import pham.hien.honeylibrary.ViewModel.Main.PhieuMuonViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class PhieuMuonView : BaseView {
@@ -207,8 +209,10 @@ class PhieuMuonView : BaseView {
         mListPhieuMuonQuaHan.clear()
         mListPhieuMuonDangMuon.clear()
         mListPhieuMuonDaTra.clear()
+        val calender = Calendar.getInstance().timeInMillis
         for (phieuMuon in listPhieuMuon) {
-            if (CheckTimeUtils.isYesterday(phieuMuon.hanTra) || phieuMuon.trangThai == Constant.PHIEUMUON.TRANGTHAI.QUA_HAN) {
+            Log.d(TAG, "checkPhieuMuon: ${!CheckTimeUtils.isToday(phieuMuon.hanTra)}")
+            if (!CheckTimeUtils.isToday(phieuMuon.hanTra) && phieuMuon.hanTra < calender || phieuMuon.trangThai == Constant.PHIEUMUON.TRANGTHAI.QUA_HAN) {
                 phieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.QUA_HAN
                 mListPhieuMuonQuaHan.add(phieuMuon)
             } else if (phieuMuon.trangThai == Constant.PHIEUMUON.TRANGTHAI.DANG_MUON) {

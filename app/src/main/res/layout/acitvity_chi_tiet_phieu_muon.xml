@@ -21,7 +21,7 @@
                 android:id="@+id/imv_close"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="match_parent"
-                android:padding="@dimen/_16sdp"
+                android:padding="@dimen/_12sdp"
                 android:rotation="180"
                 android:src="@drawable/ic_arrow_right_white" />
 
@@ -148,11 +148,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/layout_time"
-                        android:layout_marginVertical="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginTop="@dimen/_14sdp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center"
                         android:text="Thành tiền : 0"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_tien_phat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_thanh_tien"
+                        android:layout_marginVertical="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center"
+                        android:text="Tiền phạt: 10000"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp" />
                 </RelativeLayout>
@@ -217,4 +229,11 @@
             </RelativeLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <pham.hien.honeylibrary.View.Tab.PhieuMuon.CustomView.SachTraThieuView
+        android:id="@+id/ctv_sach_tra_thieu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/_10sdp"
+        android:visibility="gone" />
 </RelativeLayout>

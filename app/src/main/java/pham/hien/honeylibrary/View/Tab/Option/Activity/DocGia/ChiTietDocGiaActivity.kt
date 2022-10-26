@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
 import pham.hien.honeylibrary.R
@@ -64,7 +65,7 @@ class ChiTietDocGiaActivity : BaseActivity() {
                 onBackPressed()
             }
             imvEdit -> {
-                DialogSuaDocGia(this, mUser){
+                DialogSuaDocGia(this, mUser) {
                     mUser = it
                     setData()
                     Toast.makeText(this, "Sửa thông tin thành công", Toast.LENGTH_SHORT).show()
@@ -73,10 +74,11 @@ class ChiTietDocGiaActivity : BaseActivity() {
         }
     }
 
-    private fun setData(){
+    private fun setData() {
+        Glide.with(this).load(mUser.avatar).placeholder(R.drawable.ic_avatar_default).into(imvAnh)
         tvId.text = mUser.userId.toString()
         tvHoTen.text = mUser.name
-        tvSdt.text =mUser.sdt
+        tvSdt.text = mUser.sdt
         tvDiaChi.text = mUser.diaChi
         tvEmail.text = mUser.email
     }

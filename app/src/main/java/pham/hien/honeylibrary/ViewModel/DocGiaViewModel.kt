@@ -11,13 +11,23 @@ import pham.hien.honeylibrary.Utils.launch
 class DocGiaViewModel : ViewModel(){
     var mListDocGiaLiveData = MutableLiveData<ArrayList<UserModel>>()
 
+    fun getListUser() {
+        viewModelScope.launch(
+            onPreExecute = {},
+            doInBackground = {
+                UserDAO().getListUser {
+                    mListDocGiaLiveData.value = it
+                }
+            },
+            onPostExecute = {}
+        )
+    }
     fun getListDocGia() {
         viewModelScope.launch(
             onPreExecute = {},
             doInBackground = {
-                UserDAO().getListUserDocGia {
+                UserDAO().getListUserDocGia{
                     mListDocGiaLiveData.value = it
-                    Log.d("BXT", "${it.size}")
                 }
             },
             onPostExecute = {}

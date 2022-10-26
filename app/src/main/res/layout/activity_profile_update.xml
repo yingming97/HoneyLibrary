@@ -18,13 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/roboto"
-            android:text="Thông tin chi tiết"
+            android:text="Chỉnh sửa thông tin cá nhân"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imv_back_doc_gia"
+            android:id="@+id/imb_backchitiet"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="match_parent"
             android:padding="@dimen/_15sdp"
@@ -33,7 +33,7 @@
     </RelativeLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imv_avatar_doc_gia"
+        android:id="@+id/imv_avatar"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_80sdp"
         android:layout_below="@+id/rlt_toolbar"
@@ -44,34 +44,46 @@
         app:civ_border_width="@dimen/_1sdp" />
 
     <ImageView
-        android:id="@+id/imv_edit_doc_gia"
+        android:id="@+id/imv_change_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rlt_toolbar"
-        android:layout_marginTop="@dimen/_100sdp"
-        android:layout_toEndOf="@+id/imv_avatar_doc_gia"
-        android:src="@drawable/ic_edit"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_toEndOf="@id/imv_avatar"
+        android:src="@drawable/ic_change_images"
         android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/tv_name"
+    <EditText
+        android:id="@+id/ed_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imv_avatar_doc_gia"
+        android:layout_below="@+id/imv_avatar"
         android:layout_marginTop="@dimen/_20sdp"
+        android:background="#00000000"
         android:fontFamily="@font/roboto"
         android:gravity="center"
+        android:text="Vũ Mạnh Tú"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sdp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_below="@+id/ed_name"
+        android:background="#7D91F0" />
 
     <TextView
         android:id="@+id/tv_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_name"
+        android:layout_below="@+id/ed_name"
+        android:background="#00000000"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
+        android:text="vmt@gmail.com"
         android:textColor="#9A9A9A"
         android:textSize="@dimen/_14sdp" />
 
@@ -96,11 +108,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:text="001"
+            android:textColor="@color/text_color_5F5C7F"
             android:textSize="@dimen/_14sdp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
+            android:layout_height="@dimen/_1sdp"
             android:layout_alignParentBottom="true"
             android:background="#7D91F0" />
     </RelativeLayout>
@@ -108,7 +121,7 @@
     <RelativeLayout
         android:id="@+id/layout_dia_chi"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_height="@dimen/_66sdp"
         android:layout_below="@+id/layout_id"
         android:layout_marginVertical="@dimen/_2sdp"
         android:padding="@dimen/_16sdp">
@@ -121,12 +134,14 @@
             android:textColor="#5F5C7F"
             android:textSize="@dimen/_14sdp" />
 
-        <TextView
-            android:id="@+id/tv_dia_chi"
+        <EditText
+            android:id="@+id/ed_dia_chi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:background="#00000000"
             android:text="299, Cầu giấy"
+            android:textColor="@color/text_color_5F5C7F"
             android:textSize="@dimen/_14sdp" />
 
         <View
@@ -139,7 +154,7 @@
     <RelativeLayout
         android:id="@+id/layout_sdt"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_height="@dimen/_66sdp"
         android:layout_below="@+id/layout_dia_chi"
         android:padding="@dimen/_16sdp">
 
@@ -151,12 +166,14 @@
             android:textColor="#5F5C7F"
             android:textSize="@dimen/_14sdp" />
 
-        <TextView
-            android:id="@+id/tv_sdt"
+        <EditText
+            android:id="@+id/ed_sdt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:background="#00000000"
             android:text="0123456789"
+            android:textColor="@color/text_color_5F5C7F"
             android:textSize="@dimen/_14sdp" />
 
         <View
@@ -165,4 +182,31 @@
             android:layout_alignParentBottom="true"
             android:background="#7D91F0" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_luu_nhan_Vien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_sdt"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:orientation="horizontal"
+        android:padding="@dimen/_20sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:includeFontPadding="false"
+            android:text="Lưu"
+            android:textColor="@color/color_80B4FF"
+            android:textSize="@dimen/_16sdp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/ic_save" />
+    </LinearLayout>
 </RelativeLayout>

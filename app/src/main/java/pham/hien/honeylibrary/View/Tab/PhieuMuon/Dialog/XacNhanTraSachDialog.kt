@@ -59,11 +59,11 @@ class XacNhanTraSachDialog(
                 dismiss()
             }
             tvTraThieu -> {
-                traThieu
+                traThieu()
                 dismiss()
             }
             tvTraDu -> {
-                traDu
+                traDu()
                 dismiss()
             }
         }

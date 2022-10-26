@@ -19,7 +19,7 @@ class CreateNewAccount {
     // user : userId đã đc + 1 so với userId của phần tử cuối cùng ListUser
     // user : đã qua được validate
 
-    fun createNewUser(activity: Activity, user: UserModel, getUID: ((String) -> Unit)) {
+    fun createNewUser(activity: Activity, user: UserModel, addDone: (() -> Unit)) {
         Log.d(TAG, "createNewUser: $user")
         mAuth.createUserWithEmailAndPassword(user.email, user.sdt)
             .addOnSuccessListener {
@@ -37,7 +37,7 @@ class CreateNewAccount {
                             activity.getString(R.string.dang_ky_thanh_cong),
                             ""
                         ){
-                            activity.finish()
+                            addDone()
                         }.show()
                     }
                     .addOnFailureListener { e ->
@@ -47,7 +47,6 @@ class CreateNewAccount {
                             activity.getString(R.string.dang_ky_khong_thanh_cong),
                             activity.getString(R.string.da_xay_ra_loi_trong_qua_trinh_dang_ky)
                         ){
-                            activity.finish()
                         }.show()
                     }
             }

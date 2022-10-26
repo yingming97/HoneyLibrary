@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
-import kotlinx.coroutines.delay
+import pham.hien.honeylibrary.Dialog.ProgressBarLoading
 import pham.hien.honeylibrary.FireBase.Auth.CreateNewAccount
 import pham.hien.honeylibrary.FireBase.FireStore.UserDAO
 import pham.hien.honeylibrary.Model.UserModel
@@ -15,7 +15,6 @@ import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.View.Base.BaseActivity
 import pham.yingming.honeylibrary.Dialog.FailDialog
-import pham.yingming.honeylibrary.Dialog.SuccessDialog
 import java.util.regex.Pattern
 
 class ThemNhanVienActivity : BaseActivity() {
@@ -32,7 +31,7 @@ class ThemNhanVienActivity : BaseActivity() {
     private lateinit var them: TextView
     private lateinit var arrUser: List<UserModel>
     private lateinit var mListUser: ArrayList<UserModel>
-
+    private lateinit var mProgressBarLoading: ProgressBarLoading
 
     override fun getLayout(): Int {
         return R.layout.activity_them_nhan_vien_new
@@ -63,6 +62,7 @@ class ThemNhanVienActivity : BaseActivity() {
     }
 
     override fun initDataDefault() {
+        mProgressBarLoading = ProgressBarLoading(this)
         UserDAO().getListUser {
             arrUser = it
         }
@@ -71,10 +71,11 @@ class ThemNhanVienActivity : BaseActivity() {
     override fun onClick(view: View?) {
         when (view) {
             them -> {
+                mProgressBarLoading.showLoading()
                 addNhanVien()
             }
             backThemNhanVien -> {
-                backThemNV()
+                finish()
             }
         }
     }
@@ -94,7 +95,15 @@ class ThemNhanVienActivity : BaseActivity() {
         checkForm(hoten, mail, diachi, sdt, quyen) { check, user, sdt ->
             if (check) {
                 CreateNewAccount().createNewUser(this, user) {
-                    SuccessDialog(this,"Them Thanh Cong",it){}.show()
+                    UserDAO().getListUser {
+                        arrUser = it
+                        hoTen.setText("")
+                        email.setText("")
+                        diaChi.setText("")
+                        this.sdt.setText("")
+                        thuThu.isChecked = true
+                        mProgressBarLoading.hideLoading()
+                    }
                 }
             }
         }
@@ -120,20 +129,23 @@ class ThemNhanVienActivity : BaseActivity() {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             title += "\nEmail sai định dạng"
             haveError = true
-        } else if (diachi.isNullOrEmpty()) {
+        } else {
+            for (user in arrUser) {
+                if (user.email == email) {
+                    title += "\n Email đã tồn tại"
+                    haveError = true
+                    break
+                }
+            }
+        }
+        if (diachi.isNullOrEmpty()) {
             title += "\nĐịa chỉ không được bỏ trống"
             haveError = true
         } else if (diachi.length!! < 6) {
             title += "\nĐịa chỉ không dưới 6 ký tự"
             haveError = true
-        } else if (sdt.isNullOrEmpty()) {
-            for (user in arrUser) {
-                if (user.sdt == sdt) {
-                    title += "\n SDT đã tồn tại"
-                    haveError = true
-                    break
-                }
-            }
+        }
+        if (sdt.isNullOrEmpty()) {
             title += "\nSố điện thoại không được bỏ trống"
             haveError = true
 
@@ -145,16 +157,11 @@ class ThemNhanVienActivity : BaseActivity() {
         if (haveError) {
             callback(false, UserModel(), sdt)
             FailDialog(this, "Thêm Thất Bại", title).show()
+            mProgressBarLoading.hideLoading()
         } else {
             val userModel =
-                UserModel(arrUser.last().userId, "", quyen, hoten, email, sdt, diachi)
+                UserModel(arrUser.last().userId + 1, "", quyen, hoten, email, sdt, diachi)
             callback(true, userModel, sdt)
-        }
-    }
-
-    private fun backThemNV() {
-        backThemNhanVien.setOnClickListener {
-            onBackPressed()
         }
     }
 }

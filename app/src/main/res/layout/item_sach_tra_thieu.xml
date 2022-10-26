@@ -72,7 +72,7 @@
         android:layout_toEndOf="@+id/imv_minus"
         android:fontFamily="@font/roboto"
         android:includeFontPadding="false"
-        android:text="2"
+        android:text="0"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 
@@ -81,5 +81,6 @@
         android:layout_height="@dimen/_50sdp"
         android:layout_alignParentEnd="true"
         android:padding="@dimen/_12sdp"
-        android:src="@drawable/ic_minus_circle" />
+        android:src="@drawable/ic_minus_circle"
+        android:visibility="gone" />
 </RelativeLayout>
