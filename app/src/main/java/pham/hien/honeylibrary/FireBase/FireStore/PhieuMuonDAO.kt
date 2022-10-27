@@ -144,6 +144,7 @@ class PhieuMuonDAO {
         phieuMap[Constant.PHIEUMUON.COL_TEN_DOC_GIA] = phieuMuon.tenDocGia
         phieuMap[Constant.PHIEUMUON.COL_LIST_SACH_THUE] = phieuMuon.listSachThue
         phieuMap[Constant.PHIEUMUON.COL_TRANG_THAI] = phieuMuon.trangThai
+        phieuMap[Constant.PHIEUMUON.COL_GHI_CHU] = phieuMuon.ghiChu
 
         db.collection(Constant.PHIEUMUON.TB_NAME)
             .document(phieuMuon.maPhieuMuon)
@@ -162,6 +163,8 @@ class PhieuMuonDAO {
         phieuMap[Constant.PHIEUMUON.COL_TEN_DOC_GIA] = phieuMuon.tenDocGia
         phieuMap[Constant.PHIEUMUON.COL_LIST_SACH_THUE] = phieuMuon.listSachThue
         phieuMap[Constant.PHIEUMUON.COL_TRANG_THAI] = phieuMuon.trangThai
+        phieuMap[Constant.PHIEUMUON.COL_GHI_CHU] = phieuMuon.ghiChu
+        phieuMap[Constant.PHIEUMUON.COL_NGAY_TRA] = phieuMuon.ngayTra
 
         db.collection(Constant.PHIEUMUON.TB_NAME)
             .document(phieuMuon.maPhieuMuon)
@@ -170,7 +173,6 @@ class PhieuMuonDAO {
                 SuccessDialog(activity,
                     activity.getString(R.string.cap_nhap_phieu_muon_thanh_cong),
                     "") {}.show()
-                activity.finish()
             }
             .addOnFailureListener {
                 FailDialog(activity,

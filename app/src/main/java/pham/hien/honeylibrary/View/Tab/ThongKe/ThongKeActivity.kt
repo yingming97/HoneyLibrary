@@ -47,8 +47,10 @@ import kotlin.math.log
 
 class ThongKeActivity : BaseActivity() {
 
+    private val TAG = "YingMing"
     private lateinit var imvNextTimeChart: ImageView
     private lateinit var imvLastTimeChart: ImageView
+    private lateinit var imv_close: ImageView
     private lateinit var tvTimeChart: TextView
     private lateinit var tv_thong_ke: TextView
     private lateinit var toolBar: RelativeLayout
@@ -74,6 +76,7 @@ class ThongKeActivity : BaseActivity() {
 
     override fun initView() {
         toolBar = findViewById(R.id.tool_bar)
+        imv_close = findViewById(R.id.imv_close)
         imvNextTimeChart = findViewById(R.id.imv_report_view__next_time_chart)
         imvLastTimeChart = findViewById(R.id.imv_report_view__last_time_chart)
         barChart = findViewById(R.id.bar_chart)
@@ -89,6 +92,7 @@ class ThongKeActivity : BaseActivity() {
     override fun initListener() {
         imvNextTimeChart.setOnClickListener(this)
         imvLastTimeChart.setOnClickListener(this)
+        imv_close.setOnClickListener(this)
 
     }
 
@@ -117,6 +121,7 @@ class ThongKeActivity : BaseActivity() {
 
     override fun onClick(view: View?) {
         when (view) {
+            imv_close -> finish()
             imvLastTimeChart -> {
                 if (mMonth == 0) {
                     setUpMonthlyChart(11, mYear - 1, listDoanhThu)
@@ -134,7 +139,7 @@ class ThongKeActivity : BaseActivity() {
         }
     }
 
-    fun initRecycleViewSachThieu() {
+    private fun initRecycleViewSachThieu() {
         adapterListSachThieu = AdapterSachThieu(this, listSachThieu)
         rcvSachThieu.layoutManager = LinearLayoutManager(this)
         rcvSachThieu.setHasFixedSize(false)
@@ -199,11 +204,10 @@ class ThongKeActivity : BaseActivity() {
         mMonth = month
         mYear = year
         typeChart = "MONTHLY"
-        var totalMinuteWorkout = 0
         tvTimeChart.text =
             CheckTimeUtils.mDecimalFormat.format(month + 1).toString() + "/" + year
         val calendar = Calendar.getInstance()
-        calendar[Calendar.DAY_OF_MONTH] = 0
+        calendar[Calendar.DAY_OF_MONTH] = 1
         calendar[Calendar.MONTH] = month
         calendar[Calendar.YEAR] = year
         val numDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
@@ -228,7 +232,6 @@ class ThongKeActivity : BaseActivity() {
             dayOfMonthList[i] = (i + 1).toString() + ""
             valueDayOfMonthList[i] = valueMoney
         }
-        totalMinuteWorkout /= 60
         for (i in dayOfMonthList.indices.reversed()) {
             valuesPushUp.add(0, BarEntry(i.toFloat(), valueDayOfMonthList[i].toFloat()))
             if (valueDayOfMonthList[i] > maxMinute) {

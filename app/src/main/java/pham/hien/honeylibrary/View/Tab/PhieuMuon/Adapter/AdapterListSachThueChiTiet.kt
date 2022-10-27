@@ -46,6 +46,7 @@ class AdapterListSachThueChiTiet(
         holder.tv_name.text = sachThue.tenSach
         holder.tv_so_luong.text = "Số lượng: ${sachThue.soLuong}"
         holder.tv_gia_thue.text = "Giá thuê: ${moneyFormatter(sachThue.giaThue)}"
+        holder.tv_gia_sach.text = "Giá sách: ${moneyFormatter(sachThue.giaSach)}"
     }
 
     override fun getItemCount(): Int {
@@ -57,12 +58,14 @@ class AdapterListSachThueChiTiet(
         val tv_name: TextView
         val tv_gia_thue: TextView
         val tv_so_luong: TextView
+        val tv_gia_sach: TextView
 
         init {
             imv_book = itemView.findViewById(R.id.imv_book)
             tv_name = itemView.findViewById(R.id.tv_name)
             tv_gia_thue = itemView.findViewById(R.id.tv_gia_thue)
             tv_so_luong = itemView.findViewById(R.id.tv_so_luong)
+            tv_gia_sach = itemView.findViewById(R.id.tv_gia_sach)
         }
     }
 }

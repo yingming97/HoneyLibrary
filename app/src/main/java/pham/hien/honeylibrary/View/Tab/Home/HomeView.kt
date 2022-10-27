@@ -126,9 +126,8 @@ class HomeView : BaseView {
 
             }
         }
-        homeViewModel.mListDoanhThuLiveData.observe(owner!!) {
+        homeViewModel.mListPhieuMuonLiveData.observe(owner!!) {
             if (it.isNotEmpty()) {
-                listLuotMuon = it
                 tvThongKeLuotMuon.text = it.size.toString()
             }
         }
@@ -143,8 +142,9 @@ class HomeView : BaseView {
     override fun initDataDefault(activity: Activity?) {
         super.initDataDefault(activity)
         homeViewModel.getListSachMoi()
-        homeViewModel.getListDoanhThu()
+//        homeViewModel.getListDoanhThu()
         homeViewModel.getListDocGia()
+        homeViewModel.getListPhieuMuon()
         updateUserLogin(SharedPrefUtils.getUserData(mContext)!!)
         setViewPageMuonNhieu()
         initRecycleViewSachThue()

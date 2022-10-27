@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_item_doc_gia"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_70sdp"
+    android:layout_height="@dimen/_80sdp"
     android:layout_marginVertical="@dimen/_5sdp"
     android:background="@drawable/bg_list_user_white_rd_10"
     android:elevation="@dimen/_2sdp"
@@ -42,7 +42,18 @@
         android:text="Giá thuê: 250000"
         android:textColor="@color/gray_595F66"
         android:textSize="@dimen/_10sdp" />
-
+    <TextView
+        android:id="@+id/tv_gia_sach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_gia_thue"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_toEndOf="@+id/imv_book"
+        android:fontFamily="@font/roboto"
+        android:text="Giá thuê: 250000"
+        android:textColor="@color/gray_595F66"
+        android:textSize="@dimen/_10sdp" />
     <TextView
         android:id="@+id/tv_so_luong"
         android:layout_width="wrap_content"

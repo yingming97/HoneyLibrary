@@ -25,6 +25,7 @@ import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.Constant
 import pham.hien.honeylibrary.Utils.ScreenUtils
 import pham.hien.honeylibrary.Utils.SharedPrefUtils
+import pham.hien.honeylibrary.Utils.moneyFormatter
 import pham.hien.honeylibrary.View.Base.BaseView
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachThueSua
 import pham.hien.honeylibrary.View.Tab.PhieuMuon.Adapter.AdapterListSachTraThieu
@@ -32,6 +33,7 @@ import pham.hien.honeylibrary.View.Tab.Sach.Activity.AddSachActivity
 import pham.hien.honeylibrary.View.Tab.Sach.Activity.ChiTietSachActivity
 import pham.hien.honeylibrary.View.Tab.Sach.Adapter.AdapterListSachQuanLy
 import pham.hien.honeylibrary.ViewModel.Main.SachViewModel
+import pham.yingming.honeylibrary.Dialog.XacNhanDialog
 import java.lang.Exception
 
 class SachTraThieuView : BaseView {
@@ -117,10 +119,26 @@ class SachTraThieuView : BaseView {
         super.onClick(view)
         when (view) {
             tv_save -> {
+                var str = ""
+                var tienPhat = 0
+                map.forEach {
+                    for (sachThue in mListSachThue) {
+                        if (it.key == sachThue.maSach) {
+                            str += "\n-${sachThue.tenSach} thiếu ${it.value} quyển"
+                            tienPhat += sachThue.giaSach * it.value
+                        }
+                    }
+                }
 
-                mListener.onSave(map)
-                Log.d(TAG, "onClick: ")
-                closeViewGroup(this, 400)
+                XacNhanDialog(mContext,
+                    "Xác nhận",
+                    " $str \n Tổng tiền phạt: ${moneyFormatter(tienPhat)}",
+                    dongY = {
+                        mListener.onSave(map, str)
+                        closeViewGroup(this, 400)
+                    },
+                    huy = {}
+                ).show()
             }
             imv_close -> {
                 closeViewGroup(this, 400)
@@ -156,6 +174,6 @@ class SachTraThieuView : BaseView {
     }
 
     interface SaveListSachTraThieu {
-        fun onSave(map: MutableMap<Int, Int>)
+        fun onSave(map: MutableMap<Int, Int>, str: String)
     }
 }

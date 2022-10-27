@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SuaPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeListener {
+class SuaPhieuMuonActivity : BaseActivity(){
 
     private val TAG = "YingMing"
 
@@ -34,6 +34,7 @@ class SuaPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeListe
     private lateinit var toolBar: RelativeLayout
 
     private lateinit var layoutInfoPhieu: RelativeLayout
+    private lateinit var layout_luu: RelativeLayout
     private lateinit var imvAvatar: ImageView
     private lateinit var imv_edit_phieu: ImageView
     private lateinit var tvName: TextView
@@ -60,6 +61,7 @@ class SuaPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeListe
         imvClose = findViewById(R.id.imv_close)
         toolBar = findViewById(R.id.tool_bar)
         imv_delete_phieu = findViewById(R.id.imv_delete_phieu)
+        layout_luu = findViewById(R.id.layout_luu)
 
         layoutInfoPhieu = findViewById(R.id.layout_info_phieu)
         imvAvatar = findViewById(R.id.imv_avatar)
@@ -82,8 +84,8 @@ class SuaPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeListe
     override fun initListener() {
         imvClose.setOnClickListener(this)
         imv_delete_phieu.setOnClickListener(this)
-        imv_edit_phieu.setOnClickListener(this)
-        switch_tra_sach.setOnCheckedChangeListener(this)
+        layout_luu.setOnClickListener(this)
+
     }
 
     override fun initViewModel() {
@@ -120,9 +122,6 @@ class SuaPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeListe
             imvClose -> {
                 finish()
             }
-            imv_edit_phieu -> {
-
-            }
             imv_delete_phieu -> {
                 XacNhanXoaPhieuDialog(this,
                     taoSai = {
@@ -151,54 +150,54 @@ class SuaPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeListe
         rcvListSachThue.adapter = mSachThueAdapter
     }
 
-    override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
-        if (p1 && mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
-            switch_tra_sach.isChecked = p1
-            XacNhanTraSachDialog(this,
-                traThieu = {
-                    switch_tra_sach.isChecked = true
-                    val intent = Intent(this, SuaPhieuMuonActivity::class.java)
-                    intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, mPhieuMuon)
-                    startActivity(intent)
-                },
-                traDu = {
-                    mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DA_TRA
-                    tv_trang_thai.text = mPhieuMuon.trangThai
-                    PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
-                        updateDone = {
-                            switch_tra_sach.isChecked = true
-                            Toast.makeText(this, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
-                        },
-                        updateNotDone = {
-                            Toast.makeText(this, "Cập nhập không thành công", Toast.LENGTH_LONG)
-                                .show()
-                        })
-                },
-                huy = {
-                    switch_tra_sach.isChecked = false
-                    tv_trang_thai.text = mPhieuMuon.trangThai
-                }
-            ).show()
-        } else if (!p1) {
-            XacNhanDialog(this,
-                "Hủy trả phiếu",
-                "Bạn muốn chuyển phiếu sang trạng thái đang mượn ?",
-                dongY = {
-                    switch_tra_sach.isChecked = false
-                    mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DANG_MUON
-                    tv_trang_thai.text = mPhieuMuon.trangThai
-                    PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
-                        updateDone = {
-                            Toast.makeText(this, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
-                        },
-                        updateNotDone = {
-                            Toast.makeText(this, "Cập nhập không thành công", Toast.LENGTH_LONG)
-                                .show()
-                        })
-                }, huy = {
-                    tv_trang_thai.text = mPhieuMuon.trangThai
-                    switch_tra_sach.isChecked = true
-                }).show()
-        }
-    }
+//    override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+//        if (p1 && mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
+//            switch_tra_sach.isChecked = p1
+//            XacNhanTraSachDialog(this,
+//                traThieu = {
+//                    switch_tra_sach.isChecked = true
+//                    val intent = Intent(this, SuaPhieuMuonActivity::class.java)
+//                    intent.putExtra(Constant.PHIEUMUON.PHIEUMUON, mPhieuMuon)
+//                    startActivity(intent)
+//                },
+//                traDu = {
+//                    mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DA_TRA
+//                    tv_trang_thai.text = mPhieuMuon.trangThai
+//                    PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
+//                        updateDone = {
+//                            switch_tra_sach.isChecked = true
+//                            Toast.makeText(this, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
+//                        },
+//                        updateNotDone = {
+//                            Toast.makeText(this, "Cập nhập không thành công", Toast.LENGTH_LONG)
+//                                .show()
+//                        })
+//                },
+//                huy = {
+//                    switch_tra_sach.isChecked = false
+//                    tv_trang_thai.text = mPhieuMuon.trangThai
+//                }
+//            ).show()
+//        } else if (!p1) {
+//            XacNhanDialog(this,
+//                "Hủy trả phiếu",
+//                "Bạn muốn chuyển phiếu sang trạng thái đang mượn ?",
+//                dongY = {
+//                    switch_tra_sach.isChecked = false
+//                    mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DANG_MUON
+//                    tv_trang_thai.text = mPhieuMuon.trangThai
+//                    PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
+//                        updateDone = {
+//                            Toast.makeText(this, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
+//                        },
+//                        updateNotDone = {
+//                            Toast.makeText(this, "Cập nhập không thành công", Toast.LENGTH_LONG)
+//                                .show()
+//                        })
+//                }, huy = {
+//                    tv_trang_thai.text = mPhieuMuon.trangThai
+//                    switch_tra_sach.isChecked = true
+//                }).show()
+//        }
+//    }
 }

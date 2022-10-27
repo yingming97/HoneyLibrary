@@ -2,7 +2,7 @@ package pham.hien.honeylibrary.Model
 
 import java.io.Serializable
 
-class PhieuMuon : Serializable{
+class PhieuMuon : Serializable {
     var maPhieuMuon: String = ""
     var maDocGia: String = ""
     var photoDocGia: String = ""
@@ -11,9 +11,11 @@ class PhieuMuon : Serializable{
     var soLuong = 0
     var tongTien = 0
     var ngayThue: Long = 0
+    var ngayTra: Long = 0
     var hanTra: Long = 0
     var trangThai: String = ""
     var listSachThue: String = ""
+    var ghiChu: String = ""
 
     constructor()
     constructor(

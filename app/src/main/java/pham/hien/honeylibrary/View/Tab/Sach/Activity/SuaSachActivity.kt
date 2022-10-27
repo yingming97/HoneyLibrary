@@ -247,14 +247,13 @@ class SuaSachActivity : BaseActivity() {
     private fun updateSach() {
         Images().uploadImage(imv_book, Constant.SACH.TB_NAME, mSach.maSach.toString()) {
             mSach.anhBia = it
-            Log.d(TAG, "  mSach.anhBia sua: ${mSach.anhBia}")
             mSach.tenSach = ed_ten_sach.text.toString()
             mSach.giaSach = ed_gia_sach.text.toString().toInt()
             mSach.giaThue = ed_gia_thue.text.toString().toInt()
             mSach.soLuongConLai = ed_so_luong_con_lai.text.toString().toInt()
             mSach.soLuong = ed_so_luong.text.toString().toInt()
             mSach.gioiThieu = ed_gioi_thieu.text.toString()
-            SachDAO().updateSach(mSach)
+            SachDAO().updateSach(this, mSach)
             mProgressBarLoading.hideLoading()
             val intent = Intent(this, ChiTietSachActivity::class.java)
             intent.putExtra(Constant.SACH.SACH, mSach)

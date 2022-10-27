@@ -16,10 +16,7 @@ import com.yomaster.yogaforbeginner.View.Extention.CheckTimeUtils
 import pham.hien.honeylibrary.FireBase.FireStore.DoanhThuDAO
 import pham.hien.honeylibrary.FireBase.FireStore.PhieuMuonDAO
 import pham.hien.honeylibrary.FireBase.FireStore.SachDAO
-import pham.hien.honeylibrary.Model.PhieuMuon
-import pham.hien.honeylibrary.Model.Sach
-import pham.hien.honeylibrary.Model.SachThue
-import pham.hien.honeylibrary.Model.UserModel
+import pham.hien.honeylibrary.Model.*
 import pham.hien.honeylibrary.R
 import pham.hien.honeylibrary.Utils.*
 import pham.hien.honeylibrary.View.Base.BaseActivity
@@ -106,18 +103,26 @@ class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         imv_edit_phieu.setOnClickListener(this)
         switch_tra_sach.setOnCheckedChangeListener(this)
         ctv_sach_tra_thieu.setListener(object : SachTraThieuView.SaveListSachTraThieu {
-            override fun onSave(map: MutableMap<Int, Int>) {
+            override fun onSave(map: MutableMap<Int, Int>, str: String) {
                 map.forEach {
                     for (sach in mListSach) {
                         if (sach.maSach == it.key) {
                             sach.soLuong = it.value
                             SachDAO().checkAddAndUpdateSachTraThieu(sach)
                             tienPhat += sach.giaSach * it.value
-                            tv_tien_phat.text = moneyFormatter(tienPhat)
-                            tv_tien_phat.visibility = View.VISIBLE
                         }
                     }
                 }
+                tv_tien_phat.text = "$str \n***Tiền phạt : ${moneyFormatter(tienPhat)}***"
+                tv_tien_phat.visibility = View.VISIBLE
+                imv_edit_phieu.visibility = View.GONE
+                mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DA_TRA
+                mPhieuMuon.ngayTra = Calendar.getInstance().timeInMillis
+                tv_trang_thai.text = mPhieuMuon.trangThai
+                mPhieuMuon.ghiChu = tv_tien_phat.text.toString()
+                PhieuMuonDAO().updatePhieuMuon(this@ChiTietPhieuMuonActivity, mPhieuMuon)
+                DoanhThuDAO().addDoanhThu(DoanhThu(tienPhat, mPhieuMuon.hanTra))
+                switch_tra_sach.isEnabled = false
             }
         })
     }
@@ -146,7 +151,17 @@ class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
         tvThanhTien.text = "Thành tiền: ${moneyFormatter(mPhieuMuon.tongTien)}"
         tvNgayMuon.text = "Ngày mượn:\n${formatter.format(mPhieuMuon.ngayThue)}"
         tvHanTra.text = "Hạn trả:\n${formatter.format(mPhieuMuon.hanTra)}"
-        if (!CheckTimeUtils.isToday(mPhieuMuon.hanTra) && mPhieuMuon.hanTra < calender || mPhieuMuon.trangThai == Constant.PHIEUMUON.TRANGTHAI.QUA_HAN) {
+        if (mPhieuMuon.trangThai == Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
+            imv_edit_phieu.visibility = View.GONE
+            switch_tra_sach.isEnabled = false
+            tv_tien_phat.visibility = View.VISIBLE
+            tv_tien_phat.text = mPhieuMuon.ghiChu
+        } else {
+            imv_edit_phieu.visibility = View.VISIBLE
+            layout_trang_thai.visibility = View.VISIBLE
+            tv_tien_phat.visibility = View.GONE
+        }
+        if (!CheckTimeUtils.isToday(mPhieuMuon.hanTra) && mPhieuMuon.hanTra < calender && mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
             tv_trang_thai.text = Constant.PHIEUMUON.TRANGTHAI.QUA_HAN
             mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.QUA_HAN
             PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
@@ -154,11 +169,11 @@ class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
                 },
                 updateNotDone = {
                 })
-            tienPhat = ((calender - mPhieuMuon.hanTra) / DateUtils.DAY_IN_MILLIS).toInt() * 1000
-            tv_tien_phat.text = "Tiền phạt quá hạn: ${moneyFormatter(tienPhat)}"
-            tv_tien_phat.visibility = View.VISIBLE
+//            tienPhat = ((calender - mPhieuMuon.hanTra) / DateUtils.DAY_IN_MILLIS).toInt() * 1000
+//            tv_tien_phat.text = "Tiền phạt quá hạn: ${moneyFormatter(tienPhat)}"
+//            tv_tien_phat.visibility = View.VISIBLE
         } else {
-            tv_tien_phat.visibility = View.GONE
+//            tv_tien_phat.visibility = View.GONE
             tv_trang_thai.text = mPhieuMuon.trangThai
         }
         switch_tra_sach.isChecked = mPhieuMuon.trangThai == Constant.PHIEUMUON.TRANGTHAI.DA_TRA
@@ -182,6 +197,9 @@ class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
                     taoSai = {
                         PhieuMuonDAO().deletePhieuMuon(this, mPhieuMuon)
                         DoanhThuDAO().deleteDoanhThu(mPhieuMuon.ngayThue)
+                        if (mPhieuMuon.ghiChu.isNotEmpty()) {
+                            DoanhThuDAO().deleteDoanhThu(mPhieuMuon.ngayThue + 1)
+                        }
                     },
                     khac = {
                         if (mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
@@ -222,19 +240,27 @@ class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
 
     override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
         if (p1 && mPhieuMuon.trangThai != Constant.PHIEUMUON.TRANGTHAI.DA_TRA) {
-            switch_tra_sach.isChecked = p1
             XacNhanTraSachDialog(this,
                 traThieu = {
-//                    switch_tra_sach.isChecked = true
                     BaseView.openViewGroup(ctv_sach_tra_thieu, 400)
                     ctv_sach_tra_thieu.setListSachThue(mListSachThue)
                 },
                 traDu = {
+                    for (sachThue in mListSachThue) {
+                        for (sach in mListSach) {
+                            if (sachThue.maSach == sach.maSach) {
+                                sach.soLuongConLai += sachThue.soLuong
+                                SachDAO().updateSach(this, sach)
+                            }
+                        }
+                    }
                     mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DA_TRA
                     tv_trang_thai.text = mPhieuMuon.trangThai
                     PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
                         updateDone = {
+                            imv_edit_phieu.visibility = View.GONE
                             switch_tra_sach.isChecked = true
+                            switch_tra_sach.isEnabled = false
                             Toast.makeText(this, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
                         },
                         updateNotDone = {
@@ -243,30 +269,38 @@ class ChiTietPhieuMuonActivity : BaseActivity(), CompoundButton.OnCheckedChangeL
                         })
                 },
                 huy = {
-                    switch_tra_sach.isChecked = false
+                    switch_tra_sach.isChecked = !p1
                     tv_trang_thai.text = mPhieuMuon.trangThai
                 }
             ).show()
         } else if (!p1) {
-            XacNhanDialog(this,
-                "Hủy trả phiếu",
-                "Bạn muốn chuyển phiếu sang trạng thái đang mượn ?",
-                dongY = {
-                    switch_tra_sach.isChecked = false
-                    mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DANG_MUON
-                    tv_trang_thai.text = mPhieuMuon.trangThai
-                    PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
-                        updateDone = {
-                            Toast.makeText(this, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
-                        },
-                        updateNotDone = {
-                            Toast.makeText(this, "Cập nhập không thành công", Toast.LENGTH_LONG)
-                                .show()
-                        })
-                }, huy = {
-                    tv_trang_thai.text = mPhieuMuon.trangThai
-                    switch_tra_sach.isChecked = true
-                }).show()
+//            XacNhanDialog(this,
+//                "Hủy trả phiếu",
+//                "Bạn muốn chuyển phiếu sang trạng thái đang mượn ?",
+//                dongY = {
+//                    for (sachThue in mListSachThue) {
+//                        for (sach in mListSach) {
+//                            if (sachThue.maSach == sach.maSach) {
+//                                sach.soLuongConLai -= sachThue.soLuong
+//                                SachDAO().updateSach(this, sach)
+//                            }
+//                        }
+//                    }
+//                    switch_tra_sach.isChecked = false
+//                    mPhieuMuon.trangThai = Constant.PHIEUMUON.TRANGTHAI.DANG_MUON
+//                    tv_trang_thai.text = mPhieuMuon.trangThai
+//                    PhieuMuonDAO().updateTrangThaiPhieuMuon(mPhieuMuon,
+//                        updateDone = {
+//                            Toast.makeText(this, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
+//                        },
+//                        updateNotDone = {
+//                            Toast.makeText(this, "Cập nhập không thành công", Toast.LENGTH_LONG)
+//                                .show()
+//                        })
+//                }, huy = {
+//                    tv_trang_thai.text = mPhieuMuon.trangThai
+//                    switch_tra_sach.isChecked = true
+//                }).show()
         }
     }
 }

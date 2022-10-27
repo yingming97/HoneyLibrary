@@ -2,6 +2,7 @@ package pham.hien.honeylibrary.FireBase.FireStore
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import pham.hien.honeylibrary.Model.Sach
@@ -85,7 +86,7 @@ class SachDAO {
             }
     }
 
-    fun updateSach(sach: Sach) {
+    fun updateSach(context: Context, sach: Sach) {
         val sachMap: MutableMap<String, Any> = HashMap()
         sachMap[Constant.SACH.COL_TEN_SACH] = sach.tenSach
         sachMap[Constant.SACH.COL_ANH_BIA] = sach.anhBia
@@ -100,6 +101,13 @@ class SachDAO {
         db.collection(Constant.SACH.TB_NAME)
             .document(sach.maSach.toString())
             .update(sachMap)
+            .addOnSuccessListener {
+                Toast.makeText(context, "Đã cập nhập thành công", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Cập nhập không thành công", Toast.LENGTH_LONG)
+                    .show()
+            }
     }
 
     fun updateThuHoiSach(sach: Sach) {
@@ -122,16 +130,21 @@ class SachDAO {
 
     fun checkAddAndUpdateSachTraThieu(sach: Sach) {
         getListSachThieu {
-            for (sachTraThieu in it) {
-                if (sachTraThieu.maSach == sach.maSach) {
-                    sachTraThieu.soLuong = sachTraThieu.soLuong + sach.soLuong
-                    Log.d(TAG, "sachTraThieu.soLuong : ${sachTraThieu.soLuong}")
-                    updateSoLuongSachThieu(sachTraThieu)
-                    break
-                } else {
-                    addSachThieu(sach)
+            if(it.isNotEmpty()){
+                for (sachTraThieu in it) {
+                    if (sachTraThieu.maSach == sach.maSach) {
+                        sachTraThieu.soLuong = sachTraThieu.soLuong + sach.soLuong
+                        Log.d(TAG, "sachTraThieu.soLuong : ${sachTraThieu.soLuong}")
+                        updateSoLuongSachThieu(sachTraThieu)
+                        break
+                    } else {
+                        addSachThieu(sach)
+                    }
                 }
+            }else{
+                addSachThieu(sach)
             }
+
         }
     }
 
