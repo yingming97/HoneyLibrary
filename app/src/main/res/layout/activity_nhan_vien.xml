@@ -49,6 +49,7 @@
         android:layout_marginTop="@dimen/_30sdp">
 
         <EditText
+            android:hint="Nhập tên/ email/ sđt/ mã nhân viên"
             android:id="@+id/ed_search_nhan_vien"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
