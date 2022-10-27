@@ -53,6 +53,9 @@ class SupportActivity : AppCompatActivity() {
             binding.imvEmpty.visibility = View.GONE
             binding.imvSearch.visibility = View.VISIBLE
         }
+        binding.imvBack.setOnClickListener{
+            onBackPressed()
+        }
     }
 
     private fun initSearch() {

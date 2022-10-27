@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_4sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_toEndOf="@+id/img_vp2"
                 android:fontFamily="@font/roboto"
@@ -49,6 +49,7 @@
                 android:layout_toEndOf="@id/img_vp2"
                 android:textColor="@color/text_color_5F5C7F"
                 android:lines="4"
+                android:textSize="@dimen/_10sdp"
                 android:maxLines="4" />
         </RelativeLayout>
 

@@ -53,6 +53,7 @@ class DocGiaActivity : BaseActivity() {
     override fun initListener() {
         imvAddDocGia.setOnClickListener(this)
         imvBack.setOnClickListener(this)
+        imvEmpty.setOnClickListener(this)
     }
 
     override fun initViewModel() {
@@ -72,6 +73,7 @@ class DocGiaActivity : BaseActivity() {
             mUserAdapter.notifyDataSetChanged()
         }
 
+
     }
 
     override fun initDataDefault() {
@@ -87,6 +89,14 @@ class DocGiaActivity : BaseActivity() {
             imvBack -> {
                 onBackPressed()
             }
+
+            imvEmpty -> {
+                edSearch.text = null
+                imvEmpty.visibility = View.GONE
+                imvSearch.visibility = View.VISIBLE
+            }
+
+
         }
     }
 

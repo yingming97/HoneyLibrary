@@ -19,8 +19,16 @@
         android:layout_height="match_parent"
         android:background="@color/white_F1F1F1"
         android:layout_below="@id/tv_toolbar"
-        android:layout_marginTop="@dimen/_30sdp"
-        />
+        android:layout_marginTop="@dimen/_50sdp" />
+
+    <ImageView
+        android:id="@+id/imv_back"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:padding="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:rotation="180"
+        android:src="@drawable/ic_arrow_right_white" />
 
 
     <TextView
@@ -40,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_toolbar"
         android:elevation="10dp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginHorizontal="@dimen/_30sdp"
         >
 
