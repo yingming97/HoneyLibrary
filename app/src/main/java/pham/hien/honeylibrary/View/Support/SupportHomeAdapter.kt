@@ -52,4 +52,11 @@ class SupportHomeAdapter(
     override fun getItemCount(): Int {
         return arrUsers.size
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun searchLoad(mListUser: List<UserModel>){
+        this.arrUsers = mListUser
+        notifyDataSetChanged()
+
+    }
 }

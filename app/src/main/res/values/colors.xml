@@ -23,8 +23,8 @@
     <color name="blue_0f0d4e">#0F0D4E</color>
     <color name="purple_7265e3">#7265E3</color>
     <color name="text_color_1c4942">#1C4942</color>
-    <color name="orange_f4865a">#F4865A</color>
-    <color name="no_data_text">#F4865A</color>
+    <color name="orange_f4865a">#f30063</color>
+    <color name="no_data_text">#f30063</color>
     <color name="blue_b0efef">#B0EFEF</color>
     <color name="gray_ccc">#ccc</color>
     <color name="no_color">#00FFFFFF</color>

@@ -3,6 +3,8 @@ package pham.hien.honeylibrary.View.Tab.Option.CustomView
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -139,4 +141,6 @@ class ForgetPasswordView : BaseView {
         AlphaAnimation().goneAnimation(this, 300)
         edEmail.setText("")
     }
+
+
 }
