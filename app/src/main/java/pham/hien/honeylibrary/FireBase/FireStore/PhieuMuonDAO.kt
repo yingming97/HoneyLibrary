@@ -204,6 +204,16 @@ class PhieuMuonDAO {
                 Log.d(TAG, "Error getting documents.", exception)
             }
     }
+    fun updateSoLuongSachConLai(maSach :Int,soLuongConLai :Int) {
+        db.collection(Constant.SACH.TB_NAME)
+            .document(maSach.toString())
+            .update(Constant.SACH.COL_SO_LUONG_CON_LAI, soLuongConLai)
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents.", exception)
+            }
+    }
 
     fun updateSoLuongSach(sach: Sach) {
         db.collection(Constant.SACH.TB_NAME)

@@ -168,61 +168,28 @@
                 android:layout_marginTop="@dimen/_14sdp" />
 
             <RelativeLayout
-                android:id="@+id/layout_trang_thai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/layout_add_sach_thue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
                 android:layout_below="@+id/list_sach_thue"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:padding="@dimen/_20sdp"
-                android:visibility="gone">
+                android:layout_marginHorizontal="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_btn_add_sach_thue_rd_5">
 
-                <TextView
-                    android:id="@+id/tv_trang_thai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:fontFamily="@font/roboto"
-                    android:includeFontPadding="false"
-                    android:text="Đang mượn"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_tra_sach"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    android:layout_toEndOf="@+id/tv_trang_thai"
-                    android:checked="false"
-                    android:elevation="@dimen/_2sdp"
-                    android:gravity="center"
-                    android:thumb="@drawable/ic_switch_thumb"
-                    app:track="@drawable/ic_switch_track" />
-
-                <TextView
-                    android:id="@+id/tv_da_tra"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_toEndOf="@+id/switch_tra_sach"
-                    android:fontFamily="@font/roboto"
-                    android:includeFontPadding="false"
-                    android:text="Trả sách"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp" />
+                <ImageView
+                    android:id="@+id/imv_add_sach_thue"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/_14sdp"
+                    android:src="@drawable/ic_add_sach_thue" />
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/layout_luu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/list_sach_thue"
+                android:layout_below="@+id/layout_add_sach_thue"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:orientation="horizontal"
@@ -235,6 +202,7 @@
                     android:fontFamily="@font/roboto"
                     android:includeFontPadding="false"
                     android:text="Lưu"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_16sdp" />
 
                 <ImageView

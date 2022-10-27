@@ -7,7 +7,6 @@
     android:layout_marginVertical="@dimen/_5sdp"
     android:background="@drawable/img_bg_phieu_dang_muon"
     android:elevation="@dimen/_2sdp"
-    android:paddingHorizontal="@dimen/_14sdp"
     android:paddingVertical="@dimen/_6sdp">
 
     <ImageView
@@ -15,6 +14,7 @@
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_16sdp"
         android:elevation="1dp"
         android:src="@drawable/ic_book_default" />
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
         android:layout_toEndOf="@+id/imv_book"
         android:fontFamily="@font/roboto"
         android:lines="2"
@@ -77,9 +77,11 @@
         android:textSize="@dimen/_15sdp" />
 
     <ImageView
+        android:id="@+id/imv_remove"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
         android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
         android:padding="@dimen/_12sdp"
         android:src="@drawable/ic_minus_circle" />
 </RelativeLayout>

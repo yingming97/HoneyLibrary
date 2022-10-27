@@ -48,6 +48,7 @@
             android:layout_marginTop="@dimen/_30sdp">
 
             <EditText
+                android:hint="Nhập  mã phiếu/tên"
                 android:id="@+id/ed_search_sach"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
