@@ -96,8 +96,9 @@ class LoginRegisterAuth {
                 SharedPrefUtils.setPassword(activity, pass)
                 SharedPrefUtils.setLogin(activity, true)
                 SharedPrefUtils.setUserData(activity, mUser)
+                activity.startActivity(Intent(activity.applicationContext, MainActivity::class.java))
+                activity.finish()
             }
         }
-        activity.startActivity(Intent(activity.applicationContext, MainActivity::class.java))
     }
 }

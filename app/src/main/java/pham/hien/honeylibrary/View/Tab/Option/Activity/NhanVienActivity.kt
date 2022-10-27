@@ -61,7 +61,6 @@ class NhanVienActivity : BaseActivity() {
         imvAddNewNhanVien.setOnClickListener(this)
         btnBack.setOnClickListener(this)
         imvEmpty.setOnClickListener(this)
-        recyclerViewNhanVien()
     }
 
     override fun initViewModel() {
@@ -83,6 +82,7 @@ class NhanVienActivity : BaseActivity() {
         mProgressBarLoading.showLoading()
         mNhanVienViewModel.getListNhanVien()
         initSearchNhanVien()
+        recyclerViewNhanVien()
     }
 
     override fun onClick(view: View?) {
