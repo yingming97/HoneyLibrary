@@ -172,7 +172,14 @@ class RegisterView : BaseView {
         } else if (!Pattern.compile(phonePattern).matcher(phoneNumber).matches()) {
             title += "\nSai định dạng số điện thoại"
             check = false
-
+        } else {
+            for(user in arrUser){
+                if (user.sdt == phoneNumber){
+                    title += "\nSố điện thoại đã tồn tại"
+                    check = false
+                    break
+                }
+            }
         }
 
         if (pass.isNullOrEmpty()) {

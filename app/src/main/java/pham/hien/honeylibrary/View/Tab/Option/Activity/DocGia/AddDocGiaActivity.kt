@@ -94,6 +94,14 @@ class AddDocGiaActivity : BaseActivity() {
         } else if (!Pattern.compile(phonePattern).matcher(edSdt.text.toString()).matches()) {
             strError += "Sai định dạng số điện thoại.\n"
             check = true
+        } else {
+            for (user in mListUser) {
+                if (edSdt.text.toString() == user.sdt) {
+                    strError += "Số điện thoại đã tồn tại.\n"
+                    check = false
+                    break
+                }
+            }
         }
         if (edDiaChi.text.toString().isEmpty()) {
             strError += "Bạn chưa nhập địa chỉ.\n"
@@ -122,7 +130,6 @@ class AddDocGiaActivity : BaseActivity() {
             }
         } else {
             FailDialog(this, "Lỗi", strError).show()
-
         }
     }
 }

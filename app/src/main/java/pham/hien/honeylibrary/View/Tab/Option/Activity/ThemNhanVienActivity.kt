@@ -152,6 +152,14 @@ class ThemNhanVienActivity : BaseActivity() {
         } else if (!Pattern.compile(phonePattern).matcher(sdt).matches()) {
             title += "\nSai định dạng số điện thoại"
             haveError = true
+        } else{
+            for (user in arrUser) {
+                if (user.sdt == sdt) {
+                    title += "\n Số điện thoại đã tồn tại"
+                    haveError = true
+                    break
+                }
+            }
         }
 
         if (haveError) {
